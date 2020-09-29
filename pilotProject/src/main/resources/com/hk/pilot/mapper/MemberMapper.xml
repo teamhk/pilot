@@ -7,7 +7,7 @@
 
 <select id="memberLogin" resultType="com.hk.pilot.dto.Member">
 
-select * from members where email=#{email} and pwd=#{pwd}
+select name from members where id=#{id} and pwd=#{pwd}
 
 </select>
 

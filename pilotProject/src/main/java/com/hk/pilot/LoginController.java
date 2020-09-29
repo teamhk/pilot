@@ -25,8 +25,11 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String loginPost(HttpSession session, Member member) {
+	public String loginPost(HttpSession session, Model model, Member member) {
 		Member loginMember = memberService.memberLogin(member);
+		System.out.println("loginMember는:"+loginMember);
+		System.out.println("name은:"+loginMember.getName());
+		session.setAttribute("name", loginMember.getName());	
 		boolean isLogin=loginMember!=null;
 		if(isLogin) {
 			session.setAttribute("loginMember", loginMember);
