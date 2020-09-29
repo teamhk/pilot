@@ -62,6 +62,7 @@ function change () {
 			hm.value = 0;
 		}
 	sum.value = parseInt(hm.value) * sell_price;
+	
 }  
 
 
