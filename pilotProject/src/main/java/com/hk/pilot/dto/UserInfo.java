@@ -1,6 +1,8 @@
 package com.hk.pilot.dto;
 
-public class Member {
+import java.util.Date;
+
+public class UserInfo {
 	
 	String id;
 	String pwd;
@@ -17,6 +19,14 @@ public class Member {
 	String pwAnswer;
 	String reason;
 	boolean grade;
+	String cardCom;
+	int cardNun;
+	Date cardExp;
+	int cardCvc;
+	int b_price;
+	int bubble;
+	Date b_date;
+	int p_bubble;
 	public String getId() {
 		return id;
 	}
@@ -107,14 +117,64 @@ public class Member {
 	public void setGrade(boolean grade) {
 		this.grade = grade;
 	}
+	public String getCardCom() {
+		return cardCom;
+	}
+	public void setCardCom(String cardCom) {
+		this.cardCom = cardCom;
+	}
+	public int getCardNun() {
+		return cardNun;
+	}
+	public void setCardNun(int cardNun) {
+		this.cardNun = cardNun;
+	}
+	public Date getCardExp() {
+		return cardExp;
+	}
+	public void setCardExp(Date cardExp) {
+		this.cardExp = cardExp;
+	}
+	public int getCardCvc() {
+		return cardCvc;
+	}
+	public void setCardCvc(int cardCvc) {
+		this.cardCvc = cardCvc;
+	}
+	public int getB_price() {
+		return b_price;
+	}
+	public void setB_price(int b_price) {
+		this.b_price = b_price;
+	}
+	public int getBubble() {
+		return bubble;
+	}
+	public void setBubble(int bubble) {
+		this.bubble = bubble;
+	}
+	public Date getB_date() {
+		return b_date;
+	}
+	public void setB_date(Date b_date) {
+		this.b_date = b_date;
+	}
+	public int getP_bubble() {
+		return p_bubble;
+	}
+	public void setP_bubble(int p_bubble) {
+		this.p_bubble = p_bubble;
+	}
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
+		return "UserInfo [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
 				+ ", address=" + address + ", cardCheck=" + cardCheck + ", likeStore=" + likeStore + ", udCheck="
 				+ udCheck + ", fidName=" + fidName + ", fidMail=" + fidMail + ", pwQuestion=" + pwQuestion
-				+ ", pwAnswer=" + pwAnswer + ", reason=" + reason + ", grade=" + grade + "]";
+				+ ", pwAnswer=" + pwAnswer + ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom
+				+ ", cardNun=" + cardNun + ", cardExp=" + cardExp + ", cardCvc=" + cardCvc + ", b_price=" + b_price
+				+ ", bubble=" + bubble + ", b_date=" + b_date + ", p_bubble=" + p_bubble + "]";
 	}
 	
 	
-	
+
 }
