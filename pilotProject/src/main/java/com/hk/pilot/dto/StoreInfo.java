@@ -13,6 +13,7 @@ public class StoreInfo {
 	boolean permit;
 	Date s_date;
 	int area_num;
+	boolean sdcheck;
 	int t_shirt;
 	int shirt;
 	int blouse;
@@ -76,6 +77,12 @@ public class StoreInfo {
 	public void setArea_num(int area_num) {
 		this.area_num = area_num;
 	}
+	public boolean isSdcheck() {
+		return sdcheck;
+	}
+	public void setSdcheck(boolean sdcheck) {
+		this.sdcheck = sdcheck;
+	}
 	public int getT_shirt() {
 		return t_shirt;
 	}
@@ -98,8 +105,9 @@ public class StoreInfo {
 	public String toString() {
 		return "StoreInfo [id=" + id + ", sname=" + sname + ", saddress=" + saddress + ", snum=" + snum + ", scontact="
 				+ scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date
-				+ ", area_num=" + area_num + ", t_shirt=" + t_shirt + ", shirt=" + shirt + ", blouse=" + blouse + "]";
+				+ ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", t_shirt=" + t_shirt + ", shirt=" + shirt
+				+ ", blouse=" + blouse + "]";
 	}
-
-
+	
+	
 }

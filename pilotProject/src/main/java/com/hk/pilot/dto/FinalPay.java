@@ -31,6 +31,7 @@ public class FinalPay {
 	boolean permit;
 	Date s_date;
 	int area_num;
+	boolean sdcheck;
 	int items;
 	boolean check;
 	int cart_seq;
@@ -209,6 +210,12 @@ public class FinalPay {
 	public void setArea_num(int area_num) {
 		this.area_num = area_num;
 	}
+	public boolean isSdcheck() {
+		return sdcheck;
+	}
+	public void setSdcheck(boolean sdcheck) {
+		this.sdcheck = sdcheck;
+	}
 	public int getItems() {
 		return items;
 	}
@@ -277,11 +284,12 @@ public class FinalPay {
 				+ ", pwAnswer=" + pwAnswer + ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom
 				+ ", cardNun=" + cardNun + ", cardExp=" + cardExp + ", cardCvc=" + cardCvc + ", sname=" + sname
 				+ ", saddress=" + saddress + ", snum=" + snum + ", scontact=" + scontact + ", bank=" + bank + ", bnum="
-				+ bnum + ", permit=" + permit + ", s_date=" + s_date + ", area_num=" + area_num + ", items=" + items
-				+ ", check=" + check + ", cart_seq=" + cart_seq + ", blouse_p=" + blouse_p + ", shirt_p=" + shirt_p
-				+ ", t_shirt_p=" + t_shirt_p + ", b_price=" + b_price + ", bubble=" + bubble + ", b_date=" + b_date
-				+ ", p_bubble=" + p_bubble + "]";
+				+ bnum + ", permit=" + permit + ", s_date=" + s_date + ", area_num=" + area_num + ", sdcheck=" + sdcheck
+				+ ", items=" + items + ", check=" + check + ", cart_seq=" + cart_seq + ", blouse_p=" + blouse_p
+				+ ", shirt_p=" + shirt_p + ", t_shirt_p=" + t_shirt_p + ", b_price=" + b_price + ", bubble=" + bubble
+				+ ", b_date=" + b_date + ", p_bubble=" + p_bubble + "]";
 	}
+	
 	
 	
 }
