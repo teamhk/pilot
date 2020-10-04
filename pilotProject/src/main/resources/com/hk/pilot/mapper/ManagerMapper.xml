@@ -55,4 +55,37 @@
 <update id="ownerDeleterPost" parameterType="String">
 	UPDATE MEMBERS SET UDCHECK='1' where ID=#{id}	
 </update>
+
+<select id="managerOrderList" resultType="com.hk.pilot.dto.OrderProcess">
+	SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE , o.PAY_PRICE , o.R_CHECK , o.BUBBLE , o.BLOUSE , o.SHIRT , o.T_SHIRT , m.NAME,m.ADDRESS , m.PNUM ,p.WAIT ,p.OK , p.PICK , p.WASH , p.FINISH, o.items FROM ORDERLIST o , MEMBERS m , PROCESS p WHERE o.ORDERNUM = p.ORDERNUM AND o.ID = m.ID AND snum=#{snum}
+</select>
+
+<select id="managerOrderInfo" resultType="com.hk.pilot.dto.OrderProcess">
+	SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE , o.PAY_PRICE , o.R_CHECK , o.BUBBLE , o.BLOUSE , o.SHIRT , o.T_SHIRT , m.NAME,m.ADDRESS , m.PNUM ,p.WAIT ,p.OK , p.PICK , p.WASH , p.FINISH, o.items FROM ORDERLIST o , MEMBERS m , PROCESS p WHERE o.ORDERNUM = p.ORDERNUM AND o.ID = m.ID AND o.ORDERNUM=#{orderNum}
+</select>
+
+<update id="managerProcess">
+	UPDATE PROCESS SET 
+	<choose>
+    <when test="process != null and process.equals('접수중')">
+      WAIT=sysdate
+    </when>
+    <when test="process != null and process.equals('접수완료')">
+      OK=sysdate
+    </when>
+    <when test="process != null and process.equals('수거완료')">
+      PICK=sysdate
+    </when>
+    <when test="process != null and process.equals('세탁중')">
+      WASH=sysdate
+    </when>
+    <when test="process != null and process.equals('배달완료')">
+      FINISH=sysdate
+    </when>
+    <otherwise>
+    </otherwise>
+  </choose>
+	WHERE ORDERNUM=#{orderNum}
+</update>
+
 </mapper>

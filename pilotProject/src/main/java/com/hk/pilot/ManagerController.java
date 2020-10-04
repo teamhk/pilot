@@ -133,4 +133,40 @@ public class ManagerController {
 		return "/manager/ownerDeleterPost";
 	}
 	
+	@GetMapping("/process")
+	public String process(HttpServletRequest request,Model model,HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		System.out.println(loginMember.toString());
+		model.addAttribute("url", request.getRequestURI());
+		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+		return "/manager/storesList";
+	}
+	
+	@GetMapping("/processOne")
+	public String managerOrderList(@RequestParam("snum") String snum,Model model) {
+		model.addAttribute("managerOrderList",managerService.managerOrderList(snum));
+		return "/manager/managerOrderList";
+	}
+	
+	@GetMapping("/orderInfo")
+	public String managerOrderInfo(@RequestParam("orderNum") int orderNum,Model model) {
+		model.addAttribute("managerOrderInfo",managerService.managerOrderInfo(orderNum));
+		return "/manager/managerOrderInfo";
+	}
+	
+	@GetMapping("/stats")
+	public String stats(HttpServletRequest request,Model model,HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		model.addAttribute("url", request.getRequestURI());
+		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+		return "/manager/storesList";
+	}
+	
+	@GetMapping("/statsOne")
+	public String managerStatsOne(@RequestParam("snum") String snum,Model model) {
+		model.addAttribute("managerStatsOne",managerService.managerStatsOne(snum));
+		return "/manager/managerStatsOne";
+	}
+	
+		
 }

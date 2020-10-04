@@ -15,9 +15,9 @@
 <h1>회원 정보 수정</h1>
 	<form action='ownerUpdate' name='storeform' method='post' id='storeform'>
 		ID :<input type='text' name='id' value="${loginMember.id }" readonly><br>  <!--${loginMember.name }-->
-		비밀번호 확인 : <input id='pwdcheck' type='password' value="">&nbsp;&nbsp;<span id="result1"></span><br>
+		비밀번호 확인 : <input id='pwdcheck' type='password' name= "" value="">&nbsp;&nbsp;<span id="result1"></span><br>
 		새 비밀번호 : <input id='newPwd' type='password' value=""><br>
-		새 비밀번호 확인 : <input type='password' id='pwd' name='pwd' value="">&nbsp;&nbsp;<span id="result2"></span><br>
+		새 비밀번호 확인 : <input type='password' id='pwd' name="" value="">&nbsp;&nbsp;<span id="result2"></span><br>
 		이름 :<input type='text' name='name' value="${owner.name}"><br>
 		이메일 :<input type='text' name='email' value="${owner.email}"><br>
 		주소 :<input type='text' name='address' value="${owner.address}"><br>
@@ -62,6 +62,13 @@ function newPwdCheck(){
 }
 
 function abcd(){
+	pwdcheck = document.getElementById('pwdcheck');
+	rePwd = document.getElementById('pwd');
+	if(rePwd.value!=""){
+		rePwd.setAttribute("name","pwd");
+	} else {
+		pwdcheck.setAttribute("name","pwd");
+	}
 	document.storeform.submit();
 }
 </script>

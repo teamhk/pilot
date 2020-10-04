@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.pilot.dto.Member;
+import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.mapper.ManagerMapper;
@@ -92,4 +93,26 @@ public class ManagerService {
 	public int ownerDeleterPost(String id) {
 		return managerMapper.ownerDeleterPost(id);
 	}
+	
+	// 업체 오더리스트 호출
+	public List<OrderProcess> managerOrderList(String snum) {
+		return managerMapper.managerOrderList(snum);
+	}
+	
+	// 주문 내역 상세 보기
+	public OrderProcess managerOrderInfo(int orderNum) {
+		return managerMapper.managerOrderInfo(orderNum);
+	}
+	
+	// 상태 실시간 ajax 변경
+	public int managerProcess(int orderNum, String process) {
+		System.out.println("managerProcess...호출");
+		System.out.println("orderNum="+orderNum+":::::process ="+process);
+		int ret = managerMapper.managerProcess(orderNum,process);
+		System.out.println("실시간으로 상태가 잘 업데이트 되었나? ="+ret);
+		return ret;
+	}
+	
+	//업체 통계 
+//	managerStatsOne
 }

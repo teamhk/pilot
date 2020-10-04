@@ -13,7 +13,6 @@
 </head>
 <body>
 <h1>업체 정보</h1>
-은행은? ${storeinfo.bank}
 <form action='updateOne' name='storeform' method='post' id='storeform'>
 		ID :<input type='text' name='id' value=${loginMember.id } readonly><br>  <!--${loginMember.name }-->
 		상호명 :<input type='text' name='sname' value="${storeInfo.sname}"><br>

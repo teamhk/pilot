@@ -33,6 +33,7 @@
 <script>
 
 window.onload = function(){	
+	var abc = document.getElementById('abc');
 	$(".tdn").mouseover(function(){  //마우스가 올라왔을때 색깔 빨간색으로
 		$(this).css("color","red");
 	});

@@ -37,12 +37,6 @@ public class ManagerRestController {
 		return managerService.memberList();
 	}
 	
-	@GetMapping(path = "/pwdJson", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String memberRestPwdJson(@RequestParam("id") String id, @RequestParam("pwd") String pwd,Model model) {
-		logger.info("/member/rest/pwdJson ----------");
-		System.out.println("<<여기는 managerRestController>> id ="+ id+" :::   pwd=" + pwd);
-		return managerService.pwdCheck(id, pwd);
-	}
 	
 	@GetMapping(path = "/listxml", produces = MediaType.APPLICATION_XML_VALUE)
 	public List<Member> memberRestListxml(Locale locale, Model model) {
@@ -59,5 +53,20 @@ public class ManagerRestController {
 		return managerService.memberList();
 	}
 
+	@GetMapping(path = "/pwdJson", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String memberRestPwdJson(@RequestParam("id") String id, @RequestParam("pwd") String pwd,Model model) {
+		logger.info("/member/rest/pwdJson ----------");
+		System.out.println("<<여기는 managerRestController>> id ="+ id+" :::   pwd=" + pwd);
+		return managerService.pwdCheck(id, pwd);
+	}
+	
+	@GetMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int managerProcess(@RequestParam("orderNum") int orderNum, @RequestParam("process") String process,Model model) {
+		logger.info("/member/rest/managerProcess ----------");
+		System.out.println("<<여기는 managerRestController>>"+"주문상태 변경중입니다.");
+		return managerService.managerProcess(orderNum, process);
+	}
+
+	
 
 }
