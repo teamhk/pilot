@@ -2,9 +2,23 @@ package com.hk.pilot.dto;
 
 import java.util.Date;
 
-public class StoreInfo {
-	
+public class ManagerInfo {
 	String id;
+	String pwd;
+	String name;
+	String email;
+	String pnum;
+	String userZipCode;
+	String userFirstAddr;
+	String userSecondAddr;
+	String userExtraAddr;
+	String cardCheck;
+	String likeStore;
+	String udCheck;
+	String pwQuestion;
+	String pwAnswer;
+	String reason;
+	String grade;
 	String sname;
 	String snum;
 	String scontact;
@@ -32,23 +46,101 @@ public class StoreInfo {
 	String S1;
 	String C2;
 	String B2;
-	String w_id;
-	int orderNum;
-	String r_content;
-	int star;
-	int badCnt;
-	Date r_date;
-	String depth;
-	int r_no;
-	int rcom_no;
-	String r_id;
-	String rcom_content;
-	Date rcom_date;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPnum() {
+		return pnum;
+	}
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+	public String getUserZipCode() {
+		return userZipCode;
+	}
+	public void setUserZipCode(String userZipCode) {
+		this.userZipCode = userZipCode;
+	}
+	public String getUserFirstAddr() {
+		return userFirstAddr;
+	}
+	public void setUserFirstAddr(String userFirstAddr) {
+		this.userFirstAddr = userFirstAddr;
+	}
+	public String getUserSecondAddr() {
+		return userSecondAddr;
+	}
+	public void setUserSecondAddr(String userSecondAddr) {
+		this.userSecondAddr = userSecondAddr;
+	}
+	public String getUserExtraAddr() {
+		return userExtraAddr;
+	}
+	public void setUserExtraAddr(String userExtraAddr) {
+		this.userExtraAddr = userExtraAddr;
+	}
+	public String getCardCheck() {
+		return cardCheck;
+	}
+	public void setCardCheck(String cardCheck) {
+		this.cardCheck = cardCheck;
+	}
+	public String getLikeStore() {
+		return likeStore;
+	}
+	public void setLikeStore(String likeStore) {
+		this.likeStore = likeStore;
+	}
+	public String getUdCheck() {
+		return udCheck;
+	}
+	public void setUdCheck(String udCheck) {
+		this.udCheck = udCheck;
+	}
+	public String getPwQuestion() {
+		return pwQuestion;
+	}
+	public void setPwQuestion(String pwQuestion) {
+		this.pwQuestion = pwQuestion;
+	}
+	public String getPwAnswer() {
+		return pwAnswer;
+	}
+	public void setPwAnswer(String pwAnswer) {
+		this.pwAnswer = pwAnswer;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	public String getSname() {
 		return sname;
@@ -212,90 +304,19 @@ public class StoreInfo {
 	public void setB2(String b2) {
 		B2 = b2;
 	}
-	public String getW_id() {
-		return w_id;
-	}
-	public void setW_id(String w_id) {
-		this.w_id = w_id;
-	}
-	public int getOrderNum() {
-		return orderNum;
-	}
-	public void setOrderNum(int orderNum) {
-		this.orderNum = orderNum;
-	}
-	public String getR_content() {
-		return r_content;
-	}
-	public void setR_content(String r_content) {
-		this.r_content = r_content;
-	}
-	public int getStar() {
-		return star;
-	}
-	public void setStar(int star) {
-		this.star = star;
-	}
-	public int getBadCnt() {
-		return badCnt;
-	}
-	public void setBadCnt(int badCnt) {
-		this.badCnt = badCnt;
-	}
-	public Date getR_date() {
-		return r_date;
-	}
-	public void setR_date(Date r_date) {
-		this.r_date = r_date;
-	}
-	public String getDepth() {
-		return depth;
-	}
-	public void setDepth(String depth) {
-		this.depth = depth;
-	}
-	public int getR_no() {
-		return r_no;
-	}
-	public void setR_no(int r_no) {
-		this.r_no = r_no;
-	}
-	public int getRcom_no() {
-		return rcom_no;
-	}
-	public void setRcom_no(int rcom_no) {
-		this.rcom_no = rcom_no;
-	}
-	public String getR_id() {
-		return r_id;
-	}
-	public void setR_id(String r_id) {
-		this.r_id = r_id;
-	}
-	public String getRcom_content() {
-		return rcom_content;
-	}
-	public void setRcom_content(String rcom_content) {
-		this.rcom_content = rcom_content;
-	}
-	public Date getRcom_date() {
-		return rcom_date;
-	}
-	public void setRcom_date(Date rcom_date) {
-		this.rcom_date = rcom_date;
-	}
 	@Override
 	public String toString() {
-		return "StoreInfo [id=" + id + ", sname=" + sname + ", snum=" + snum + ", scontact=" + scontact + ", bank="
-				+ bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date + ", area_num=" + area_num
-				+ ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode + ", storeFirstAddr=" + storeFirstAddr
-				+ ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr=" + storeExtraAddr + ", items=" + items
-				+ ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1
-				+ ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2 + ", w_id="
-				+ w_id + ", orderNum=" + orderNum + ", r_content=" + r_content + ", star=" + star + ", badCnt=" + badCnt
-				+ ", r_date=" + r_date + ", depth=" + depth + ", r_no=" + r_no + ", rcom_no=" + rcom_no + ", r_id="
-				+ r_id + ", rcom_content=" + rcom_content + ", rcom_date=" + rcom_date + "]";
+		return "ManagerInfo [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
+				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
+				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore="
+				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
+				+ ", reason=" + reason + ", grade=" + grade + ", sname=" + sname + ", snum=" + snum + ", scontact="
+				+ scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date
+				+ ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode
+				+ ", storeFirstAddr=" + storeFirstAddr + ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr="
+				+ storeExtraAddr + ", items=" + items + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1
+				+ ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1
+				+ ", C2=" + C2 + ", B2=" + B2 + "]";
 	}
-	
 	
 }

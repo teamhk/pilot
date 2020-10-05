@@ -5,7 +5,6 @@ import java.util.Date;
 public class Stores {
 	String id;
 	String sname;
-	String saddress;
 	String snum;
 	String scontact;
 	String bank;
@@ -14,6 +13,10 @@ public class Stores {
 	Date s_date;
 	int area_num;
 	String sdcheck;
+	String storeZipCode;
+	String storeFirstAddr;
+	String storeSecondAddr;
+	String storeExtraAddr;
 	public String getId() {
 		return id;
 	}
@@ -25,12 +28,6 @@ public class Stores {
 	}
 	public void setSname(String sname) {
 		this.sname = sname;
-	}
-	public String getSaddress() {
-		return saddress;
-	}
-	public void setSaddress(String saddress) {
-		this.saddress = saddress;
 	}
 	public String getSnum() {
 		return snum;
@@ -80,14 +77,36 @@ public class Stores {
 	public void setSdcheck(String sdcheck) {
 		this.sdcheck = sdcheck;
 	}
+	public String getStoreZipCode() {
+		return storeZipCode;
+	}
+	public void setStoreZipCode(String storeZipCode) {
+		this.storeZipCode = storeZipCode;
+	}
+	public String getStoreFirstAddr() {
+		return storeFirstAddr;
+	}
+	public void setStoreFirstAddr(String storeFirstAddr) {
+		this.storeFirstAddr = storeFirstAddr;
+	}
+	public String getStoreSecondAddr() {
+		return storeSecondAddr;
+	}
+	public void setStoreSecondAddr(String storeSecondAddr) {
+		this.storeSecondAddr = storeSecondAddr;
+	}
+	public String getStoreExtraAddr() {
+		return storeExtraAddr;
+	}
+	public void setStoreExtraAddr(String storeExtraAddr) {
+		this.storeExtraAddr = storeExtraAddr;
+	}
 	@Override
 	public String toString() {
-		return "Stores [id=" + id + ", sname=" + sname + ", saddress=" + saddress + ", snum=" + snum + ", scontact="
-				+ scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date
-				+ ", area_num=" + area_num + ", sdcheck=" + sdcheck + "]";
+		return "Stores [id=" + id + ", sname=" + sname + ", snum=" + snum + ", scontact=" + scontact + ", bank=" + bank
+				+ ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date + ", area_num=" + area_num
+				+ ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode + ", storeFirstAddr=" + storeFirstAddr
+				+ ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr=" + storeExtraAddr + "]";
 	}
 	
-	
-	
-
 }

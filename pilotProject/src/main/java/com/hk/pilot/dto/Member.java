@@ -1,23 +1,23 @@
 package com.hk.pilot.dto;
 
 public class Member {
+	String id;
+	String pwd;
+	String name;
+	String email;
+	String pnum;
+	String userZipCode;
+	String userFirstAddr;
+	String userSecondAddr;
+	String userExtraAddr;
+	String cardCheck;
+	String likeStore;
+	String udCheck;
+	String pwQuestion;
+	String pwAnswer;
+	String reason;
+	String grade;
 	
-	 String id;
-	   String pwd;
-	   String name;
-	   String email;
-	   String pnum;
-	   String userZipCode;
-	   String userFirstAddr;
-	   String userSecondAddr;
-	   String userExtraAddr;
-	   String cardCheck;
-	   String likeStore;
-	   String udCheck;
-	   String pwQuestion;
-	   String pwAnswer;
-	   String reason;
-	   String grade;
 	public String getId() {
 		return id;
 	}
@@ -122,6 +122,6 @@ public class Member {
 				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
 				+ ", reason=" + reason + ", grade=" + grade + "]";
 	}
-	
-	   
+
+
 }

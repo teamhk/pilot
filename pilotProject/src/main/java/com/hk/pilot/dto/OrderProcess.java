@@ -13,11 +13,24 @@ public class OrderProcess {
 	int pay_price;
 	String r_check;
 	int bubble;
-	int wait;
-	int ok;
-	int pick;
-	int wash;
-	int end;
+	int Y1;
+	int B1;
+	int T1;
+	int M1;
+	int P1;
+	int K1;
+	int J1;
+	int C1;
+	int P2;
+	int D1;
+	int S1;
+	int C2;
+	int B2;
+	Date wait;
+	Date ok;
+	Date pick;
+	Date wash;
+	Date finish;
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -72,44 +85,121 @@ public class OrderProcess {
 	public void setBubble(int bubble) {
 		this.bubble = bubble;
 	}
-	public int getWait() {
+	public int getY1() {
+		return Y1;
+	}
+	public void setY1(int y1) {
+		Y1 = y1;
+	}
+	public int getB1() {
+		return B1;
+	}
+	public void setB1(int b1) {
+		B1 = b1;
+	}
+	public int getT1() {
+		return T1;
+	}
+	public void setT1(int t1) {
+		T1 = t1;
+	}
+	public int getM1() {
+		return M1;
+	}
+	public void setM1(int m1) {
+		M1 = m1;
+	}
+	public int getP1() {
+		return P1;
+	}
+	public void setP1(int p1) {
+		P1 = p1;
+	}
+	public int getK1() {
+		return K1;
+	}
+	public void setK1(int k1) {
+		K1 = k1;
+	}
+	public int getJ1() {
+		return J1;
+	}
+	public void setJ1(int j1) {
+		J1 = j1;
+	}
+	public int getC1() {
+		return C1;
+	}
+	public void setC1(int c1) {
+		C1 = c1;
+	}
+	public int getP2() {
+		return P2;
+	}
+	public void setP2(int p2) {
+		P2 = p2;
+	}
+	public int getD1() {
+		return D1;
+	}
+	public void setD1(int d1) {
+		D1 = d1;
+	}
+	public int getS1() {
+		return S1;
+	}
+	public void setS1(int s1) {
+		S1 = s1;
+	}
+	public int getC2() {
+		return C2;
+	}
+	public void setC2(int c2) {
+		C2 = c2;
+	}
+	public int getB2() {
+		return B2;
+	}
+	public void setB2(int b2) {
+		B2 = b2;
+	}
+	public Date getWait() {
 		return wait;
 	}
-	public void setWait(int wait) {
+	public void setWait(Date wait) {
 		this.wait = wait;
 	}
-	public int getOk() {
+	public Date getOk() {
 		return ok;
 	}
-	public void setOk(int ok) {
+	public void setOk(Date ok) {
 		this.ok = ok;
 	}
-	public int getPick() {
+	public Date getPick() {
 		return pick;
 	}
-	public void setPick(int pick) {
+	public void setPick(Date pick) {
 		this.pick = pick;
 	}
-	public int getWash() {
+	public Date getWash() {
 		return wash;
 	}
-	public void setWash(int wash) {
+	public void setWash(Date wash) {
 		this.wash = wash;
 	}
-	public int getEnd() {
-		return end;
+	public Date getFinish() {
+		return finish;
 	}
-	public void setEnd(int end) {
-		this.end = end;
+	public void setFinish(Date finish) {
+		this.finish = finish;
 	}
 	@Override
 	public String toString() {
 		return "OrderProcess [orderNum=" + orderNum + ", id=" + id + ", snum=" + snum + ", sname=" + sname + ", items="
 				+ items + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble="
-				+ bubble + ", wait=" + wait + ", ok=" + ok + ", pick=" + pick + ", wash=" + wash + ", end=" + end + "]";
+				+ bubble + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1
+				+ ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2
+				+ ", wait=" + wait + ", ok=" + ok + ", pick=" + pick + ", wash=" + wash + ", finish=" + finish + "]";
 	}
-	
-	
-	
-	
+		
 }

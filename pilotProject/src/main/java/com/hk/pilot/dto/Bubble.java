@@ -8,6 +8,14 @@ public class Bubble {
 	int bubble;
 	Date b_date;
 	int p_bubble;
+	int b_bubble;
+	
+	public int getB_bubble() {
+		return b_bubble;
+	}
+	public void setB_bubble(int b_bubble) {
+		this.b_bubble = b_bubble;
+	}
 	public String getId() {
 		return id;
 	}
@@ -41,7 +49,7 @@ public class Bubble {
 	@Override
 	public String toString() {
 		return "Bubble [id=" + id + ", b_price=" + b_price + ", bubble=" + bubble + ", b_date=" + b_date + ", p_bubble="
-				+ p_bubble + "]";
+				+ p_bubble + ", b_bubble=" + b_bubble + "]";
 	}
 	
 	

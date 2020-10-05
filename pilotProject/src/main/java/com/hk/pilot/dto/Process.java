@@ -1,14 +1,15 @@
 package com.hk.pilot.dto;
 
+import java.util.Date;
+
 public class Process {
 	String id;
 	int orderNum;
-	int wait;
-	int ok;
-	int pick;
-	int wash;
-	int end;
-	
+	Date wait;
+	Date ok;
+	Date pick;
+	Date wash;
+	Date finish;
 	public String getId() {
 		return id;
 	}
@@ -21,41 +22,42 @@ public class Process {
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
-	public int getWait() {
+	public Date getWait() {
 		return wait;
 	}
-	public void setWait(int wait) {
+	public void setWait(Date wait) {
 		this.wait = wait;
 	}
-	public int getOk() {
+	public Date getOk() {
 		return ok;
 	}
-	public void setOk(int ok) {
+	public void setOk(Date ok) {
 		this.ok = ok;
 	}
-	public int getPick() {
+	public Date getPick() {
 		return pick;
 	}
-	public void setPick(int pick) {
+	public void setPick(Date pick) {
 		this.pick = pick;
 	}
-	public int getWash() {
+	public Date getWash() {
 		return wash;
 	}
-	public void setWash(int wash) {
+	public void setWash(Date wash) {
 		this.wash = wash;
 	}
-	public int getEnd() {
-		return end;
+	public Date getFinish() {
+		return finish;
 	}
-	public void setEnd(int end) {
-		this.end = end;
+	public void setFinish(Date finish) {
+		this.finish = finish;
 	}
 	@Override
 	public String toString() {
 		return "Process [id=" + id + ", orderNum=" + orderNum + ", wait=" + wait + ", ok=" + ok + ", pick=" + pick
-				+ ", wash=" + wash + ", end=" + end + "]";
+				+ ", wash=" + wash + ", finish=" + finish + "]";
 	}
+	
 	
 	
 }

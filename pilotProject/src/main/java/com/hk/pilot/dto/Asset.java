@@ -6,8 +6,22 @@ public class Asset {
 	String snum;
 	int a_price;
 	Date a_date;
-	Date period;
+	Date periodStart;
+	Date periodEnd;
 	String a_check;
+	
+	public Date getPeriodStart() {
+		return periodStart;
+	}
+	public void setPeriodStart(Date periodStart) {
+		this.periodStart = periodStart;
+	}
+	public Date getPeriodEnd() {
+		return periodEnd;
+	}
+	public void setPeriodEnd(Date periodEnd) {
+		this.periodEnd = periodEnd;
+	}
 	public String getSnum() {
 		return snum;
 	}
@@ -26,12 +40,7 @@ public class Asset {
 	public void setA_date(Date a_date) {
 		this.a_date = a_date;
 	}
-	public Date getPeriod() {
-		return period;
-	}
-	public void setPeriod(Date period) {
-		this.period = period;
-	}
+	
 	public String getA_check() {
 		return a_check;
 	}
@@ -40,8 +49,8 @@ public class Asset {
 	}
 	@Override
 	public String toString() {
-		return "Asset [snum=" + snum + ", a_price=" + a_price + ", a_date=" + a_date + ", period=" + period
-				+ ", a_check=" + a_check + "]";
+		return "Asset [snum=" + snum + ", a_price=" + a_price + ", a_date=" + a_date + ", periodStart=" + periodStart
+				+ ", periodEnd=" + periodEnd + ", a_check=" + a_check + "]";
 	}
 	
 	

@@ -3,9 +3,19 @@ package com.hk.pilot.dto;
 public class ItemList {
 	String snum;
 	String items;
-	String t_shirt;
-	String shirt;
-	String blouse;
+	String Y1;
+	String B1;
+	String T1;
+	String M1;
+	String P1;
+	String K1;
+	String J1;
+	String C1;
+	String P2;
+	String D1;
+	String S1;
+	String C2;
+	String B2;
 	public String getSnum() {
 		return snum;
 	}
@@ -18,29 +28,92 @@ public class ItemList {
 	public void setItems(String items) {
 		this.items = items;
 	}
-	public String getT_shirt() {
-		return t_shirt;
+	public String getY1() {
+		return Y1;
 	}
-	public void setT_shirt(String t_shirt) {
-		this.t_shirt = t_shirt;
+	public void setY1(String y1) {
+		Y1 = y1;
 	}
-	public String getShirt() {
-		return shirt;
+	public String getB1() {
+		return B1;
 	}
-	public void setShirt(String shirt) {
-		this.shirt = shirt;
+	public void setB1(String b1) {
+		B1 = b1;
 	}
-	public String getBlouse() {
-		return blouse;
+	public String getT1() {
+		return T1;
 	}
-	public void setBlouse(String blouse) {
-		this.blouse = blouse;
+	public void setT1(String t1) {
+		T1 = t1;
+	}
+	public String getM1() {
+		return M1;
+	}
+	public void setM1(String m1) {
+		M1 = m1;
+	}
+	public String getP1() {
+		return P1;
+	}
+	public void setP1(String p1) {
+		P1 = p1;
+	}
+	public String getK1() {
+		return K1;
+	}
+	public void setK1(String k1) {
+		K1 = k1;
+	}
+	public String getJ1() {
+		return J1;
+	}
+	public void setJ1(String j1) {
+		J1 = j1;
+	}
+	public String getC1() {
+		return C1;
+	}
+	public void setC1(String c1) {
+		C1 = c1;
+	}
+	public String getP2() {
+		return P2;
+	}
+	public void setP2(String p2) {
+		P2 = p2;
+	}
+	public String getD1() {
+		return D1;
+	}
+	public void setD1(String d1) {
+		D1 = d1;
+	}
+	public String getS1() {
+		return S1;
+	}
+	public void setS1(String s1) {
+		S1 = s1;
+	}
+	public String getC2() {
+		return C2;
+	}
+	public void setC2(String c2) {
+		C2 = c2;
+	}
+	public String getB2() {
+		return B2;
+	}
+	public void setB2(String b2) {
+		B2 = b2;
 	}
 	@Override
 	public String toString() {
-		return "ItemList [snum=" + snum + ", items=" + items + ", t_shirt=" + t_shirt + ", shirt=" + shirt + ", blouse="
-				+ blouse + "]";
+		return "ItemList [snum=" + snum + ", items=" + items + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1
+				+ ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1
+				+ ", C2=" + C2 + ", B2=" + B2 + "]";
 	}
+	
+	
 	
 	
 }

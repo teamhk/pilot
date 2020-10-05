@@ -8,7 +8,7 @@ public class Account {
 	int balance;
 	Date date;
 	int price;
-	String derail;
+	String detail;
 	public String getId() {
 		return id;
 	}
@@ -33,16 +33,16 @@ public class Account {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getDerail() {
-		return derail;
+	public String getdetail() {
+		return detail;
 	}
-	public void setDerail(String derail) {
-		this.derail = derail;
+	public void setdetail(String detail) {
+		this.detail = detail;
 	}
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", date=" + date + ", price=" + price + ", derail="
-				+ derail + "]";
+		return "Account [id=" + id + ", balance=" + balance + ", date=" + date + ", price=" + price + ", detail="
+				+ detail + "]";
 	}
 	
 	
