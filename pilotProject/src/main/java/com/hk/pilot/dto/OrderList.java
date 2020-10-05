@@ -8,12 +8,11 @@ public class OrderList {
 	String id;
 	String snum;
 	String sname;
-	int items;
+	String items;
 	Date pay_date;
 	int pay_price;
-	boolean r_check;
+	String r_check;
 	int bubble;
-	
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -38,10 +37,10 @@ public class OrderList {
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
-	public int getItems() {
+	public String getItems() {
 		return items;
 	}
-	public void setItems(int items) {
+	public void setItems(String items) {
 		this.items = items;
 	}
 	public Date getPay_date() {
@@ -56,10 +55,10 @@ public class OrderList {
 	public void setPay_price(int pay_price) {
 		this.pay_price = pay_price;
 	}
-	public boolean isR_check() {
+	public String getR_check() {
 		return r_check;
 	}
-	public void setR_check(boolean r_check) {
+	public void setR_check(String r_check) {
 		this.r_check = r_check;
 	}
 	public int getBubble() {
@@ -74,6 +73,6 @@ public class OrderList {
 				+ items + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble="
 				+ bubble + "]";
 	}
-
+	
 	
 }

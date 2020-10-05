@@ -2,21 +2,22 @@ package com.hk.pilot.dto;
 
 public class Member {
 	
-	String id;
-	String pwd;
-	String name;
-	String email;
-	String pnum;
-	String address;
-	boolean cardCheck;
-	String likeStore;
-	boolean udCheck;
-	String fidName;
-	String fidMail;
-	String pwQuestion;
-	String pwAnswer;
-	String reason;
-	boolean grade;
+	 String id;
+	   String pwd;
+	   String name;
+	   String email;
+	   String pnum;
+	   String userZipCode;
+	   String userFirstAddr;
+	   String userSecondAddr;
+	   String userExtraAddr;
+	   String cardCheck;
+	   String likeStore;
+	   String udCheck;
+	   String pwQuestion;
+	   String pwAnswer;
+	   String reason;
+	   String grade;
 	public String getId() {
 		return id;
 	}
@@ -47,16 +48,34 @@ public class Member {
 	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
-	public String getAddress() {
-		return address;
+	public String getUserZipCode() {
+		return userZipCode;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setUserZipCode(String userZipCode) {
+		this.userZipCode = userZipCode;
 	}
-	public boolean isCardCheck() {
+	public String getUserFirstAddr() {
+		return userFirstAddr;
+	}
+	public void setUserFirstAddr(String userFirstAddr) {
+		this.userFirstAddr = userFirstAddr;
+	}
+	public String getUserSecondAddr() {
+		return userSecondAddr;
+	}
+	public void setUserSecondAddr(String userSecondAddr) {
+		this.userSecondAddr = userSecondAddr;
+	}
+	public String getUserExtraAddr() {
+		return userExtraAddr;
+	}
+	public void setUserExtraAddr(String userExtraAddr) {
+		this.userExtraAddr = userExtraAddr;
+	}
+	public String getCardCheck() {
 		return cardCheck;
 	}
-	public void setCardCheck(boolean cardCheck) {
+	public void setCardCheck(String cardCheck) {
 		this.cardCheck = cardCheck;
 	}
 	public String getLikeStore() {
@@ -65,23 +84,11 @@ public class Member {
 	public void setLikeStore(String likeStore) {
 		this.likeStore = likeStore;
 	}
-	public boolean isUdCheck() {
+	public String getUdCheck() {
 		return udCheck;
 	}
-	public void setUdCheck(boolean udCheck) {
+	public void setUdCheck(String udCheck) {
 		this.udCheck = udCheck;
-	}
-	public String getFidName() {
-		return fidName;
-	}
-	public void setFidName(String fidName) {
-		this.fidName = fidName;
-	}
-	public String getFidMail() {
-		return fidMail;
-	}
-	public void setFidMail(String fidMail) {
-		this.fidMail = fidMail;
 	}
 	public String getPwQuestion() {
 		return pwQuestion;
@@ -101,20 +108,20 @@ public class Member {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public boolean isGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(boolean grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
-				+ ", address=" + address + ", cardCheck=" + cardCheck + ", likeStore=" + likeStore + ", udCheck="
-				+ udCheck + ", fidName=" + fidName + ", fidMail=" + fidMail + ", pwQuestion=" + pwQuestion
-				+ ", pwAnswer=" + pwAnswer + ", reason=" + reason + ", grade=" + grade + "]";
+				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
+				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore="
+				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
+				+ ", reason=" + reason + ", grade=" + grade + "]";
 	}
 	
-	
-	
+	   
 }

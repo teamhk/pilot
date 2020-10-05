@@ -11,13 +11,13 @@ public class ReviewItems {
 	int star;
 	int badCnt;
 	Date r_date;
-	boolean parents_chk;
+	String parents_chk;
 	int depth;
 	String sname;
 	int items;
 	Date pay_date;
 	int pay_price;
-	boolean r_check;
+	String r_check;
 	int bubble;
 	public String getId() {
 		return id;
@@ -61,10 +61,10 @@ public class ReviewItems {
 	public void setR_date(Date r_date) {
 		this.r_date = r_date;
 	}
-	public boolean isParents_chk() {
+	public String getParents_chk() {
 		return parents_chk;
 	}
-	public void setParents_chk(boolean parents_chk) {
+	public void setParents_chk(String parents_chk) {
 		this.parents_chk = parents_chk;
 	}
 	public int getDepth() {
@@ -97,10 +97,10 @@ public class ReviewItems {
 	public void setPay_price(int pay_price) {
 		this.pay_price = pay_price;
 	}
-	public boolean isR_check() {
+	public String getR_check() {
 		return r_check;
 	}
-	public void setR_check(boolean r_check) {
+	public void setR_check(String r_check) {
 		this.r_check = r_check;
 	}
 	public int getBubble() {
@@ -116,7 +116,6 @@ public class ReviewItems {
 				+ ", depth=" + depth + ", sname=" + sname + ", items=" + items + ", pay_date=" + pay_date
 				+ ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble=" + bubble + "]";
 	}
-	
 	
 	
 }

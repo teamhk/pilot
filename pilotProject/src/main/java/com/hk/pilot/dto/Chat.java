@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Chat {
 	String id;
-	boolean c_check;
+	String c_check;
 	Date c_date;
 	String c_content;
 	String c_title;
@@ -16,10 +16,10 @@ public class Chat {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public boolean isC_check() {
+	public String getC_check() {
 		return c_check;
 	}
-	public void setC_check(boolean c_check) {
+	public void setC_check(String c_check) {
 		this.c_check = c_check;
 	}
 	public Date getC_date() {
@@ -57,8 +57,5 @@ public class Chat {
 		return "Chat [id=" + id + ", c_check=" + c_check + ", c_date=" + c_date + ", c_content=" + c_content
 				+ ", c_title=" + c_title + ", depth=" + depth + ", c_seq=" + c_seq + "]";
 	}
-	
-	
-	
 	
 }

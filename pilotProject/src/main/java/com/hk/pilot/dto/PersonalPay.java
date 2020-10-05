@@ -8,7 +8,7 @@ public class PersonalPay {
 	String id;
 	String cardCom;
 	int cardNun;
-	Date cardExp;
+	int cardExp;
 	int cardCvc;
 	public String getId() {
 		return id;
@@ -28,10 +28,10 @@ public class PersonalPay {
 	public void setCardNun(int cardNun) {
 		this.cardNun = cardNun;
 	}
-	public Date getCardExp() {
+	public int getCardExp() {
 		return cardExp;
 	}
-	public void setCardExp(Date cardExp) {
+	public void setCardExp(int cardExp) {
 		this.cardExp = cardExp;
 	}
 	public int getCardCvc() {
@@ -45,7 +45,7 @@ public class PersonalPay {
 		return "PersonalPay [id=" + id + ", cardCom=" + cardCom + ", cardNun=" + cardNun + ", cardExp=" + cardExp
 				+ ", cardCvc=" + cardCvc + "]";
 	}
-	
+
 	
 	
 }

@@ -7,8 +7,7 @@ public class Asset {
 	int a_price;
 	Date a_date;
 	Date period;
-	boolean a_check;
-	
+	String a_check;
 	public String getSnum() {
 		return snum;
 	}
@@ -33,10 +32,10 @@ public class Asset {
 	public void setPeriod(Date period) {
 		this.period = period;
 	}
-	public boolean isA_check() {
+	public String getA_check() {
 		return a_check;
 	}
-	public void setA_check(boolean a_check) {
+	public void setA_check(String a_check) {
 		this.a_check = a_check;
 	}
 	@Override
@@ -44,6 +43,8 @@ public class Asset {
 		return "Asset [snum=" + snum + ", a_price=" + a_price + ", a_date=" + a_date + ", period=" + period
 				+ ", a_check=" + a_check + "]";
 	}
+	
+	
 	
 	
 }

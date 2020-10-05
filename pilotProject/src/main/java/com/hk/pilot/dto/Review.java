@@ -11,7 +11,7 @@ public class Review {
 	int star;
 	int badCnt;
 	Date r_date;
-	boolean parents_chk;
+	String parents_chk;
 	int depth;
 	public String getId() {
 		return id;
@@ -55,10 +55,10 @@ public class Review {
 	public void setR_date(Date r_date) {
 		this.r_date = r_date;
 	}
-	public boolean isParents_chk() {
+	public String getParents_chk() {
 		return parents_chk;
 	}
-	public void setParents_chk(boolean parents_chk) {
+	public void setParents_chk(String parents_chk) {
 		this.parents_chk = parents_chk;
 	}
 	public int getDepth() {
@@ -73,6 +73,7 @@ public class Review {
 				+ star + ", badCnt=" + badCnt + ", r_date=" + r_date + ", parents_chk=" + parents_chk + ", depth="
 				+ depth + "]";
 	}
+	
 	
 	
 	

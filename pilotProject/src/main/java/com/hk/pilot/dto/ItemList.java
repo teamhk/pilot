@@ -1,63 +1,46 @@
 package com.hk.pilot.dto;
 
 public class ItemList {
-	int snum;
-	int t_shirt;
-	int shirt;
-	int blouse;
-	/**
-	 * @return the snum
-	 */
-	public int getSnum() {
+	String snum;
+	String items;
+	String t_shirt;
+	String shirt;
+	String blouse;
+	public String getSnum() {
 		return snum;
 	}
-	/**
-	 * @param snum the snum to set
-	 */
-	public void setSnum(int snum) {
+	public void setSnum(String snum) {
 		this.snum = snum;
 	}
-	/**
-	 * @return the t_shirt
-	 */
-	public int getT_shirt() {
+	public String getItems() {
+		return items;
+	}
+	public void setItems(String items) {
+		this.items = items;
+	}
+	public String getT_shirt() {
 		return t_shirt;
 	}
-	/**
-	 * @param t_shirt the t_shirt to set
-	 */
-	public void setT_shirt(int t_shirt) {
+	public void setT_shirt(String t_shirt) {
 		this.t_shirt = t_shirt;
 	}
-	/**
-	 * @return the shirt
-	 */
-	public int getShirt() {
+	public String getShirt() {
 		return shirt;
 	}
-	/**
-	 * @param shirt the shirt to set
-	 */
-	public void setShirt(int shirt) {
+	public void setShirt(String shirt) {
 		this.shirt = shirt;
 	}
-	/**
-	 * @return the blouse
-	 */
-	public int getBlouse() {
+	public String getBlouse() {
 		return blouse;
 	}
-	/**
-	 * @param blouse the blouse to set
-	 */
-	public void setBlouse(int blouse) {
+	public void setBlouse(String blouse) {
 		this.blouse = blouse;
 	}
 	@Override
 	public String toString() {
-		return "ItemList [snum=" + snum + ", t_shirt=" + t_shirt + ", shirt=" + shirt + ", blouse=" + blouse + "]";
+		return "ItemList [snum=" + snum + ", items=" + items + ", t_shirt=" + t_shirt + ", shirt=" + shirt + ", blouse="
+				+ blouse + "]";
 	}
 	
 	
-
 }

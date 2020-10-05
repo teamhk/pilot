@@ -6,7 +6,7 @@ public class CartPrice {
 	int items;
 	String snum;
 	String sname;
-	boolean check;
+	String check;
 	int cart_seq;
 	int blouse_p;
 	int shirt_p;
@@ -35,10 +35,10 @@ public class CartPrice {
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
-	public boolean isCheck() {
+	public String getCheck() {
 		return check;
 	}
-	public void setCheck(boolean check) {
+	public void setCheck(String check) {
 		this.check = check;
 	}
 	public int getCart_seq() {
@@ -71,6 +71,7 @@ public class CartPrice {
 				+ ", cart_seq=" + cart_seq + ", blouse_p=" + blouse_p + ", shirt_p=" + shirt_p + ", t_shirt_p="
 				+ t_shirt_p + "]";
 	}
+	
 	
 	
 }

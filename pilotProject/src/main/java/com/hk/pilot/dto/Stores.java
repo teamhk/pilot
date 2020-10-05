@@ -6,14 +6,14 @@ public class Stores {
 	String id;
 	String sname;
 	String saddress;
-	int snum;
-	int scontact;
+	String snum;
+	String scontact;
 	String bank;
 	int bnum;
-	boolean permit;
+	String permit;
 	Date s_date;
 	int area_num;
-	boolean sdcheck;
+	String sdcheck;
 	public String getId() {
 		return id;
 	}
@@ -32,16 +32,16 @@ public class Stores {
 	public void setSaddress(String saddress) {
 		this.saddress = saddress;
 	}
-	public int getSnum() {
+	public String getSnum() {
 		return snum;
 	}
-	public void setSnum(int snum) {
+	public void setSnum(String snum) {
 		this.snum = snum;
 	}
-	public int getScontact() {
+	public String getScontact() {
 		return scontact;
 	}
-	public void setScontact(int scontact) {
+	public void setScontact(String scontact) {
 		this.scontact = scontact;
 	}
 	public String getBank() {
@@ -56,10 +56,10 @@ public class Stores {
 	public void setBnum(int bnum) {
 		this.bnum = bnum;
 	}
-	public boolean isPermit() {
+	public String getPermit() {
 		return permit;
 	}
-	public void setPermit(boolean permit) {
+	public void setPermit(String permit) {
 		this.permit = permit;
 	}
 	public Date getS_date() {
@@ -74,10 +74,10 @@ public class Stores {
 	public void setArea_num(int area_num) {
 		this.area_num = area_num;
 	}
-	public boolean isSdcheck() {
+	public String getSdcheck() {
 		return sdcheck;
 	}
-	public void setSdcheck(boolean sdcheck) {
+	public void setSdcheck(String sdcheck) {
 		this.sdcheck = sdcheck;
 	}
 	@Override
@@ -86,6 +86,7 @@ public class Stores {
 				+ scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date
 				+ ", area_num=" + area_num + ", sdcheck=" + sdcheck + "]";
 	}
+	
 	
 	
 

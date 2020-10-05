@@ -2,10 +2,10 @@ package com.hk.pilot.dto;
 
 public class Cart {
 	String id;
-	int items;
+	String items;
 	String snum;
 	String sname;
-	boolean check;
+	String check;
 	int cart_seq;
 	public String getId() {
 		return id;
@@ -13,10 +13,10 @@ public class Cart {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getItems() {
+	public String getItems() {
 		return items;
 	}
-	public void setItems(int items) {
+	public void setItems(String items) {
 		this.items = items;
 	}
 	public String getSnum() {
@@ -31,10 +31,10 @@ public class Cart {
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
-	public boolean isCheck() {
+	public String getCheck() {
 		return check;
 	}
-	public void setCheck(boolean check) {
+	public void setCheck(String check) {
 		this.check = check;
 	}
 	public int getCart_seq() {
@@ -48,7 +48,6 @@ public class Cart {
 		return "Cart [id=" + id + ", items=" + items + ", snum=" + snum + ", sname=" + sname + ", check=" + check
 				+ ", cart_seq=" + cart_seq + "]";
 	}
-	
 	
 	
 
