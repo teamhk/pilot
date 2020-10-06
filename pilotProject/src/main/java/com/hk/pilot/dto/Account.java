@@ -7,8 +7,9 @@ public class Account {
 	String id;
 	int balance;
 	Date date;
-	int price;
+	int o_price;
 	String detail;
+	int i_price;
 	public String getId() {
 		return id;
 	}
@@ -27,24 +28,28 @@ public class Account {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getPrice() {
-		return price;
+	public int getO_price() {
+		return o_price;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setO_price(int o_price) {
+		this.o_price = o_price;
 	}
-	public String getdetail() {
+	public String getDetail() {
 		return detail;
 	}
-	public void setdetail(String detail) {
+	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+	public int getI_price() {
+		return i_price;
+	}
+	public void setI_price(int i_price) {
+		this.i_price = i_price;
 	}
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", date=" + date + ", price=" + price + ", detail="
-				+ detail + "]";
+		return "Account [id=" + id + ", balance=" + balance + ", date=" + date + ", o_price=" + o_price + ", detail="
+				+ detail + ", i_price=" + i_price + "]";
 	}
 	
-	
-
 }

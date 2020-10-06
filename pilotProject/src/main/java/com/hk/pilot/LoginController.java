@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hk.pilot.dto.Member;
+import com.hk.pilot.dto.Members;
 import com.hk.pilot.service.MemberService;
 
 @Controller
@@ -25,8 +25,8 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String loginPost(HttpSession session, Model model, Member member) {
-		Member loginMember = memberService.memberLogin(member);
+	public String loginPost(HttpSession session, Model model, Members member) {
+		Members loginMember = memberService.memberLogin(member);
 		System.out.println("loginMember는:"+loginMember);
 		System.out.println("name은:"+loginMember.getName());
 		session.setAttribute("name", loginMember.getName());	

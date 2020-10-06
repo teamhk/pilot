@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hk.pilot.dto.Member;
+import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.service.ManagerService;
 
@@ -41,7 +41,7 @@ public class ManagerController {
 	
 	@GetMapping("/update")
 	public String myStoresList(HttpServletRequest request,Model model,HttpSession session) {
-		Member loginMember = (Member) session.getAttribute("loginMember");
+		Members loginMember = (Members) session.getAttribute("loginMember");
 		System.out.println(loginMember.toString());
 		model.addAttribute("url", request.getRequestURI());
 		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
@@ -71,7 +71,7 @@ public class ManagerController {
 	
 	@GetMapping("/delete")
 	public String storeDeleteList(HttpServletRequest request,Model model,HttpSession session) {
-		Member loginMember = (Member) session.getAttribute("loginMember");
+		Members loginMember = (Members) session.getAttribute("loginMember");
 		System.out.println(loginMember.toString());
 		model.addAttribute("url", request.getRequestURI());
 		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
@@ -99,15 +99,15 @@ public class ManagerController {
 	@GetMapping("/ownerUpdate")
 	public String selectMemberOne(Model model,HttpSession session) {
 		
-		Member loginMember = (Member) session.getAttribute("loginMember");
-		Member owner = managerService.selectMemberOne(loginMember.getId());
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		Members owner = managerService.selectMemberOne(loginMember.getId());
 		System.out.println(owner.toString());
 		model.addAttribute("owner",owner);
 		return "/manager/selectMemberOne";
 	}
 	
 	@PostMapping("/ownerUpdate")
-	public String ownerUpdate(Model model,Member member) {
+	public String ownerUpdate(Model model,Members member) {
 		System.out.println("memberUpdate...호출");
 		System.out.println("업주정보 잘들어갔나? =>" + member.toString());
 		int ret = managerService.ownerUpdate(member);
@@ -117,8 +117,8 @@ public class ManagerController {
 	
 	@GetMapping("/ownerDelete")
 	public String ownerDeleteGet(Model model,HttpSession session) {
-		Member loginMember = (Member) session.getAttribute("loginMember");
-		Member owner = managerService.selectMemberOne(loginMember.getId());
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		Members owner = managerService.selectMemberOne(loginMember.getId());
 		System.out.println("업주 정보 로드가 잘 됬나?" +owner.toString());
 		model.addAttribute("owner",owner);
 		return "/manager/ownerDeleteGet";
@@ -135,7 +135,7 @@ public class ManagerController {
 	
 	@GetMapping("/process")
 	public String process(HttpServletRequest request,Model model,HttpSession session) {
-		Member loginMember = (Member) session.getAttribute("loginMember");
+		Members loginMember = (Members) session.getAttribute("loginMember");
 		System.out.println(loginMember.toString());
 		model.addAttribute("url", request.getRequestURI());
 		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
@@ -156,7 +156,7 @@ public class ManagerController {
 	
 	@GetMapping("/stats")
 	public String stats(HttpServletRequest request,Model model,HttpSession session) {
-		Member loginMember = (Member) session.getAttribute("loginMember");
+		Members loginMember = (Members) session.getAttribute("loginMember");
 		model.addAttribute("url", request.getRequestURI());
 		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
 		return "/manager/storesList";

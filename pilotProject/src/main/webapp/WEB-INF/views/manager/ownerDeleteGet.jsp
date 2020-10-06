@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.hk.pilot.dto.Member" %>
-<%  
-	Member owner = (Member) request.getAttribute("owner");
+<%@ page import="com.hk.pilot.dto.Members" %>
+<%
+	Members owner = (Members) request.getAttribute("owner");
 %>
 <!DOCTYPE html>
 <html>

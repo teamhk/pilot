@@ -1,9 +1,9 @@
 package com.hk.pilot.mapper;
 
-import com.hk.pilot.dto.Member;
+import com.hk.pilot.dto.Members;
 
 public interface MemberMapper {
 	
-	public Member memberLogin(Member member);
+	public Members memberLogin(Members member);
 
 }

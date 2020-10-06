@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hk.pilot.dto.Member;
+import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
@@ -18,13 +18,13 @@ public class ManagerService {
 	ManagerMapper managerMapper;
 	
 		
-	public List<Member> memberList(){
+	public List<Members> memberList(){
 		return managerMapper.memberList();
 	}
 
 	public String pwdCheck(String id, String pwd){
 		System.out.println("서비스들어옴");
-		Member checkMember = managerMapper.pwdCheck(id,pwd);
+		Members checkMember = managerMapper.pwdCheck(id,pwd);
 		System.out.println("서비스 실행완료");
 		if(checkMember==null) {
 			return "N";  //비번이 일치하지않음
@@ -79,13 +79,13 @@ public class ManagerService {
 	}
 	
 	// 업주의 개인정보 호출 + 업주 탈퇴 확인을 위한 호출
-	public Member selectMemberOne(String id) {
+	public Members selectMemberOne(String id) {
 		
 		return managerMapper.selectMemberOne(id);
 	}
 	
 	// 업주 개인정보 수정
-	public int ownerUpdate(Member member) {
+	public int ownerUpdate(Members member) {
 		return managerMapper.ownerUpdate(member);
 	}
 	

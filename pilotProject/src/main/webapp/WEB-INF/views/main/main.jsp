@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.hk.pilot.dto.Member"%>
+<%@page import="com.hk.pilot.dto.Members"%>
 <%
-	Member loginMember = (Member) session.getAttribute("loginMember");
+	Members loginMember = (Members) session.getAttribute("loginMember");
 %>
 <%
 	String name = (String) session.getAttribute("name");

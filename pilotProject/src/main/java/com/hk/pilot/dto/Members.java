@@ -1,6 +1,6 @@
 package com.hk.pilot.dto;
 
-public class Member {
+public class Members {
 	String id;
 	String pwd;
 	String name;
