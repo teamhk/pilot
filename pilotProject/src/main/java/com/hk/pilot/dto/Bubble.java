@@ -9,13 +9,7 @@ public class Bubble {
 	Date b_date;
 	int p_bubble;
 	int b_bubble;
-	
-	public int getB_bubble() {
-		return b_bubble;
-	}
-	public void setB_bubble(int b_bubble) {
-		this.b_bubble = b_bubble;
-	}
+	int b_seq;
 	public String getId() {
 		return id;
 	}
@@ -46,13 +40,25 @@ public class Bubble {
 	public void setP_bubble(int p_bubble) {
 		this.p_bubble = p_bubble;
 	}
+	public int getB_bubble() {
+		return b_bubble;
+	}
+	public void setB_bubble(int b_bubble) {
+		this.b_bubble = b_bubble;
+	}
+	public int getB_seq() {
+		return b_seq;
+	}
+	public void setB_seq(int b_seq) {
+		this.b_seq = b_seq;
+	}
 	@Override
 	public String toString() {
 		return "Bubble [id=" + id + ", b_price=" + b_price + ", bubble=" + bubble + ", b_date=" + b_date + ", p_bubble="
-				+ p_bubble + ", b_bubble=" + b_bubble + "]";
+				+ p_bubble + ", b_bubble=" + b_bubble + ", b_seq=" + b_seq + "]";
 	}
 	
-	
+
 	
 
 }

@@ -6,10 +6,11 @@ public class Account {
 	
 	String id;
 	int balance;
-	Date date;
+	Date a_date;
 	int o_price;
 	String detail;
 	int i_price;
+	int a_seq;
 	public String getId() {
 		return id;
 	}
@@ -22,11 +23,11 @@ public class Account {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public Date getDate() {
-		return date;
+	public Date getA_date() {
+		return a_date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setA_date(Date a_date) {
+		this.a_date = a_date;
 	}
 	public int getO_price() {
 		return o_price;
@@ -46,10 +47,18 @@ public class Account {
 	public void setI_price(int i_price) {
 		this.i_price = i_price;
 	}
+	public int getA_seq() {
+		return a_seq;
+	}
+	public void setA_seq(int a_seq) {
+		this.a_seq = a_seq;
+	}
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", date=" + date + ", o_price=" + o_price + ", detail="
-				+ detail + ", i_price=" + i_price + "]";
+		return "Account [id=" + id + ", balance=" + balance + ", a_date=" + a_date + ", o_price=" + o_price
+				+ ", detail=" + detail + ", i_price=" + i_price + ", a_seq=" + a_seq + "]";
 	}
 	
+	
+		
 }

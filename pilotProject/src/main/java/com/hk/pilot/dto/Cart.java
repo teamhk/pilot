@@ -5,7 +5,7 @@ public class Cart {
 	String items;
 	String snum;
 	String sname;
-	String check;
+	String c_check;
 	int cart_seq;
 	String choice;
 	int Y1;
@@ -46,10 +46,10 @@ public class Cart {
 		this.sname = sname;
 	}
 	public String getCheck() {
-		return check;
+		return c_check;
 	}
 	public void setCheck(String check) {
-		this.check = check;
+		this.c_check = check;
 	}
 	public int getCart_seq() {
 		return cart_seq;
@@ -143,7 +143,7 @@ public class Cart {
 	}
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", items=" + items + ", snum=" + snum + ", sname=" + sname + ", check=" + check
+		return "Cart [id=" + id + ", items=" + items + ", snum=" + snum + ", sname=" + sname + ", c_check=" + c_check
 				+ ", cart_seq=" + cart_seq + ", choice=" + choice + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1="
 				+ M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1="
 				+ S1 + ", C2=" + C2 + ", B2=" + B2 + "]";
