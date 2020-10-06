@@ -23,7 +23,7 @@ public class ManagerInfo {
 	String snum;
 	String scontact;
 	String bank;
-	int bnum;
+	String bnum;
 	String permit;
 	Date s_date;
 	int area_num;
@@ -166,10 +166,10 @@ public class ManagerInfo {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public int getBnum() {
+	public String getBnum() {
 		return bnum;
 	}
-	public void setBnum(int bnum) {
+	public void setBnum(String bnum) {
 		this.bnum = bnum;
 	}
 	public String getPermit() {
@@ -318,5 +318,6 @@ public class ManagerInfo {
 				+ ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1
 				+ ", C2=" + C2 + ", B2=" + B2 + "]";
 	}
+	
 	
 }

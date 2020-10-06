@@ -8,7 +8,7 @@ public class Stores {
 	String snum;
 	String scontact;
 	String bank;
-	int bnum;
+	String bnum;
 	String permit;
 	Date s_date;
 	int area_num;
@@ -47,10 +47,10 @@ public class Stores {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public int getBnum() {
+	public String getBnum() {
 		return bnum;
 	}
-	public void setBnum(int bnum) {
+	public void setBnum(String bnum) {
 		this.bnum = bnum;
 	}
 	public String getPermit() {
@@ -108,5 +108,6 @@ public class Stores {
 				+ ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode + ", storeFirstAddr=" + storeFirstAddr
 				+ ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr=" + storeExtraAddr + "]";
 	}
+	
 	
 }

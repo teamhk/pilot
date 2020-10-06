@@ -5,11 +5,11 @@
 
 <mapper namespace="com.hk.pilot.mapper.ManagerMapper">
 
-<select id="memberList" resultType="com.hk.pilot.dto.Member">
+<select id="memberList" resultType="com.hk.pilot.dto.Members">
 	SELECT * FROM MEMBERS
 </select>
 
-<select id="pwdCheck" parameterType ="String" resultType="com.hk.pilot.dto.Member">
+<select id="pwdCheck" parameterType ="String" resultType="com.hk.pilot.dto.Members">
 	SELECT * FROM MEMBERS where id=#{id} and pwd=#{pwd}
 </select>
 
@@ -44,11 +44,11 @@
 	UPDATE STORES SET sdcheck='1' where SNUM=#{snum}
 </update>
 
-<select id="selectMemberOne" resultType="com.hk.pilot.dto.Member">
+<select id="selectMemberOne" resultType="com.hk.pilot.dto.Members">
 	SELECT * FROM MEMBERS WHERE ID=#{ID}
 </select>
 
-<update id="ownerUpdate" parameterType="com.hk.pilot.dto.Member">
+<update id="ownerUpdate" parameterType="com.hk.pilot.dto.Members">
 	UPDATE MEMBERS SET NAME=#{name}, PWD=#{pwd}, EMAIL=#{email}, ADDRESS=#{address}, PNUM=#{pnum}, PWQUESTION=#{pwQuestion}, PWANSWER=#{pwAnswer}, GRADE='2' WHERE ID=#{id}
 </update>
 

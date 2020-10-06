@@ -7,7 +7,7 @@ public class PersonalPay {
 
 	String id;
 	String cardCom;
-	int cardNun;
+	int cardNum;
 	int cardExp;
 	int cardCvc;
 	public String getId() {
@@ -22,11 +22,11 @@ public class PersonalPay {
 	public void setCardCom(String cardCom) {
 		this.cardCom = cardCom;
 	}
-	public int getCardNun() {
-		return cardNun;
+	public int getCardNum() {
+		return cardNum;
 	}
-	public void setCardNun(int cardNun) {
-		this.cardNun = cardNun;
+	public void getCardNum(int cardNum) {
+		this.cardNum = cardNum;
 	}
 	public int getCardExp() {
 		return cardExp;
@@ -42,7 +42,7 @@ public class PersonalPay {
 	}
 	@Override
 	public String toString() {
-		return "PersonalPay [id=" + id + ", cardCom=" + cardCom + ", cardNun=" + cardNun + ", cardExp=" + cardExp
+		return "PersonalPay [id=" + id + ", cardCom=" + cardCom + ", cardNum=" + cardNum + ", cardExp=" + cardExp
 				+ ", cardCvc=" + cardCvc + "]";
 	}
 
