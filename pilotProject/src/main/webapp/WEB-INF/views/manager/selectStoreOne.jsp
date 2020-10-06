@@ -10,13 +10,20 @@
 <meta charset="UTF-8">
 <title>업체 정보</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- daum 도로명주소 찾기 api -->
 </head>
 <body>
 <h1>업체 정보</h1>
 <form action='updateOne' name='storeform' method='post' id='storeform'>
 		ID :<input type='text' name='id' value=${loginMember.id } readonly><br>  <!--${loginMember.name }-->
 		상호명 :<input type='text' name='sname' value="${storeInfo.sname}"><br>
-		주소 :<input type='text' name='saddress' value="${storeInfo.saddress}"><br>
+<%-- 		주소 :<input type='text' name='saddress' value="${storeInfo.saddress}"><br> --%>
+		<label>점포주소</label>
+				<input type="text" id="sample6_postcode" placeholder="우편번호" name="storeZipCode" value="${storeInfo.storeZipCode}">
+				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+				<input type="text" id="sample6_address" placeholder="주소" name="storeFirstAddr" value="${storeInfo.storeFirstAddr}"><br>
+				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="storeExtraAddr" value="${storeInfo.storeExtraAddr}"><br>
+				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="storeSecondAddr" value="${storeInfo.storeSecondAddr}">
 		전화번호:<input type='number' name='scontact' value="${storeInfo.scontact}"><br>
 		사업자 등록 번호:<input type='number' name='snum' value="${storeInfo.snum}" readonly><br>
 		<label for="banks">은행명:</label>
@@ -41,12 +48,12 @@
 		취급 품목 : <input type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
-				<input type='checkbox' id='list' name='blouse' 
-				<%= (stInfo.getBlouse()==1) ? "checked" : ""%> value="">블라우스&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='list' name='shirt' 
-				<%= (stInfo.getShirt()==1) ? "checked" : ""%> value='0'>셔츠&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='list' name='t_shirt' 
-				<%= (stInfo.getT_shirt()==1) ? "checked" : ""%> value='0'>티셔츠&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='list' name='Y1' 
+				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="">와이셔츠&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='list' name='B1' 
+				<%= (stInfo.getB1().equals("Y")) ? "checked" : ""%> value='0'>블라우스&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='list' name='T1' 
+				<%= (stInfo.getT1().equals("Y")) ? "checked" : ""%> value='0'>티셔츠&nbsp;&nbsp;&nbsp;
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
 		<button onclick="abcd();">전송</button>
@@ -70,7 +77,7 @@
 	
 
 		//-----------area_num값을 자동으로 입력해주는 함수
-		$("input[name='saddress']").change(function() {      
+		$("#sample6_address").change(function() {      
 			var a = document.getElementsByName("saddress")[0];
 			aval = a.value;
 			if(aval.indexOf("강남구")!=-1){
@@ -122,7 +129,7 @@
 			} else if (aval.indexOf("중구")!=-1){
 				$("[name='area_num']").val('24');
 			} else {
-				$("[name='area_num']").val('25');  //중랑구
+				$("[name='area_num']").val('25');  //중랑구gk
 			}
 		});
 
@@ -136,7 +143,54 @@
 		);
 		document.storeform.submit();
 	}
-		
+
+	function sample6_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var addr = ''; // 주소 변수
+	            var extraAddr = ''; // 참고항목 변수
+
+	            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                addr = data.roadAddress;
+	            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                addr = data.jibunAddress;
+	            }
+
+	            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	            if(data.userSelectedType === 'R'){
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                if(extraAddr !== ''){
+	                    extraAddr = ' (' + extraAddr + ')';
+	                }
+	                // 조합된 참고항목을 해당 필드에 넣는다.
+	                document.getElementById("sample6_extraAddress").value = extraAddr;
+	            
+	            } else {
+	                document.getElementById("sample6_extraAddress").value = '';
+	            }
+
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById('sample6_postcode').value = data.zonecode;
+	            document.getElementById("sample6_address").value = addr;
+	            // 커서를 상세주소 필드로 이동한다.
+	            document.getElementById("sample6_detailAddress").focus();
+	        }
+	    }).open();
+	}
 </script>
 </body>
 </html>

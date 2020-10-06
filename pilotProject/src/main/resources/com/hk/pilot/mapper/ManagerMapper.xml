@@ -14,18 +14,18 @@
 </select>
 
 <insert id="storeAdd">
-	INSERT INTO STORES (ID, SNAME, SADDRESS, SCONTACT, SNUM, BANK, BNUM, SDCHECK, AREA_NUM) 
-	VALUES(#{id}, #{sname}, #{saddress}, #{scontact}, #{snum}, #{bank}, #{bnum}, '0', #{area_num})
+	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, S_DATE, SDCHECK, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE) 
+	VALUES(#{id}, #{sname},#{scontact}, #{snum}, #{bank}, #{bnum}, 'Y', sysdate, 'N', #{area_num}, #{storeFirstAddr} , #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode})
 </insert>
 
 
 <insert id="itemListAdd">
-	INSERT INTO ITEMLIST (SNUM, SHIRT, BLOUSE, T_SHIRT) 
-	VALUES(#{snum}, #{shirt}, #{blouse}, #{t_shirt})
+	INSERT INTO ITEMLIST (SNUM, ITEMS, Y1, B1, T1, M1, P1, K1, J1, C1, P2, D1, S1, C2, B2) 
+	VALUES(#{snum}, #{items}, #{Y1}, #{B1}, #{T1}, #{M1}, #{P1}, #{K1}, #{J1}, #{C1}, #{P2}, #{D1}, #{S1}, #{C2}, #{B2})
 </insert>
 
 <select id="myStoresList" resultType="com.hk.pilot.dto.Stores">
-	SELECT * FROM STORES WHERE ID=#{ID} AND SDCHECK='0'
+	SELECT * FROM STORES WHERE ID=#{ID} AND SDCHECK='N'
 </select>
 
 <select id="selectStoreOne" parameterType ="String" resultType="com.hk.pilot.dto.StoreInfo">
@@ -49,7 +49,7 @@
 </select>
 
 <update id="ownerUpdate" parameterType="com.hk.pilot.dto.Members">
-	UPDATE MEMBERS SET NAME=#{name}, PWD=#{pwd}, EMAIL=#{email}, ADDRESS=#{address}, PNUM=#{pnum}, PWQUESTION=#{pwQuestion}, PWANSWER=#{pwAnswer}, GRADE='2' WHERE ID=#{id}
+	UPDATE MEMBERS SET NAME=#{name}, PWD=#{pwd}, EMAIL=#{email},USERZIPCODE=#{userZipCode},USERFIRSTADDR=#{userFirstAddr},USERSECONDADDR=#{userSecondAddr},USEREXTRAADDR=#{userExtraAddr}, PNUM=#{pnum}, PWQUESTION=#{pwQuestion}, PWANSWER=#{pwAnswer}, GRADE='2' WHERE ID=#{id}
 </update>
 
 <update id="ownerDeleterPost" parameterType="String">

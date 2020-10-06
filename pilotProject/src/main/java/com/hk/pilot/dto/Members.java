@@ -17,7 +17,6 @@ public class Members {
 	String pwAnswer;
 	String reason;
 	String grade;
-	
 	public String getId() {
 		return id;
 	}
@@ -116,12 +115,11 @@ public class Members {
 	}
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
+		return "Members [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
 				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
 				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore="
 				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
 				+ ", reason=" + reason + ", grade=" + grade + "]";
 	}
-
-
+	
 }
