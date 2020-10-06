@@ -66,6 +66,8 @@ public class FinalPay {
 	int S1P;
 	int C2P;
 	int B2P;
+	Date p_date;
+	int p_seq;
 	int b_price;
 	int bubble;
 	Date b_date;
@@ -249,25 +251,25 @@ public class FinalPay {
 		return storeZipCode;
 	}
 	public void setStoreZipCode(String storeZipCode) {
-		storeZipCode = storeZipCode;
+		this.storeZipCode = storeZipCode;
 	}
 	public String getStoreFirstAddr() {
 		return storeFirstAddr;
 	}
 	public void setStoreFirstAddr(String storeFirstAddr) {
-		storeFirstAddr = storeFirstAddr;
+		this.storeFirstAddr = storeFirstAddr;
 	}
 	public String getStoreSecondAddr() {
 		return storeSecondAddr;
 	}
 	public void setStoreSecondAddr(String storeSecondAddr) {
-		storeSecondAddr = storeSecondAddr;
+		this.storeSecondAddr = storeSecondAddr;
 	}
 	public String getStoreExtraAddr() {
 		return storeExtraAddr;
 	}
 	public void setStoreExtraAddr(String storeExtraAddr) {
-		storeExtraAddr = storeExtraAddr;
+		this.storeExtraAddr = storeExtraAddr;
 	}
 	public String getItems() {
 		return items;
@@ -449,6 +451,18 @@ public class FinalPay {
 	public void setB2P(int b2p) {
 		B2P = b2p;
 	}
+	public Date getP_date() {
+		return p_date;
+	}
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
+	}
+	public int getP_seq() {
+		return p_seq;
+	}
+	public void setP_seq(int p_seq) {
+		this.p_seq = p_seq;
+	}
 	public int getB_price() {
 		return b_price;
 	}
@@ -488,16 +502,15 @@ public class FinalPay {
 				+ ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom + ", cardNun=" + cardNun
 				+ ", cardExp=" + cardExp + ", cardCvc=" + cardCvc + ", sname=" + sname + ", snum=" + snum
 				+ ", scontact=" + scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date="
-				+ s_date + ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", StoreZipCode=" + storeZipCode
-				+ ", StoreFirstAddr=" + storeFirstAddr + ", StoreSecondAddr=" + storeSecondAddr + ", StoreExtraAddr="
+				+ s_date + ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode
+				+ ", storeFirstAddr=" + storeFirstAddr + ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr="
 				+ storeExtraAddr + ", items=" + items + ", check=" + check + ", cart_seq=" + cart_seq + ", choice="
 				+ choice + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1
 				+ ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2
 				+ ", Y1P=" + Y1P + ", B1P=" + B1P + ", T1P=" + T1P + ", M1P=" + M1P + ", P1P=" + P1P + ", K1P=" + K1P
 				+ ", J1P=" + J1P + ", C1P=" + C1P + ", P2P=" + P2P + ", D1P=" + D1P + ", S1P=" + S1P + ", C2P=" + C2P
-				+ ", B2P=" + B2P + ", b_price=" + b_price + ", bubble=" + bubble + ", b_date=" + b_date + ", p_bubble="
-				+ p_bubble + ", b_bubble=" + b_bubble + "]";
+				+ ", B2P=" + B2P + ", p_date=" + p_date + ", p_seq=" + p_seq + ", b_price=" + b_price + ", bubble="
+				+ bubble + ", b_date=" + b_date + ", p_bubble=" + p_bubble + ", b_bubble=" + b_bubble + "]";
 	}
-	
-		
+			
 }

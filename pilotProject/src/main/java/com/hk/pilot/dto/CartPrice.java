@@ -1,5 +1,7 @@
 package com.hk.pilot.dto;
 
+import java.util.Date;
+
 public class CartPrice {
 
 	String id;
@@ -35,6 +37,8 @@ public class CartPrice {
 	int S1P;
 	int C2P;
 	int B2P;
+	Date p_date;
+	int p_seq;
 	public String getId() {
 		return id;
 	}
@@ -233,6 +237,18 @@ public class CartPrice {
 	public void setB2P(int b2p) {
 		B2P = b2p;
 	}
+	public Date getP_date() {
+		return p_date;
+	}
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
+	}
+	public int getP_seq() {
+		return p_seq;
+	}
+	public void setP_seq(int p_seq) {
+		this.p_seq = p_seq;
+	}
 	@Override
 	public String toString() {
 		return "CartPrice [id=" + id + ", items=" + items + ", snum=" + snum + ", sname=" + sname + ", check=" + check
@@ -240,7 +256,7 @@ public class CartPrice {
 				+ M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1="
 				+ S1 + ", C2=" + C2 + ", B2=" + B2 + ", Y1P=" + Y1P + ", B1P=" + B1P + ", T1P=" + T1P + ", M1P=" + M1P
 				+ ", P1P=" + P1P + ", K1P=" + K1P + ", J1P=" + J1P + ", C1P=" + C1P + ", P2P=" + P2P + ", D1P=" + D1P
-				+ ", S1P=" + S1P + ", C2P=" + C2P + ", B2P=" + B2P + "]";
+				+ ", S1P=" + S1P + ", C2P=" + C2P + ", B2P=" + B2P + ", p_date=" + p_date + ", p_seq=" + p_seq + "]";
 	}
-	
+		
 }
