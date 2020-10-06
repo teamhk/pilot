@@ -12,8 +12,8 @@ public class MemberService {
 	@Autowired
 	MemberMapper memberMapper;
 	
-	public Members memberLogin(Members member) {
-		return memberMapper.memberLogin(member);
+	public Members memberLogin(Members members) {
+		return memberMapper.memberLogin(members);
 	}
 
 }

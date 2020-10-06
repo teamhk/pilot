@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.hk.pilot.dto.Member" %>
+<%@ page import="com.hk.pilot.dto.Members" %>
 <%  
-	Member owner = (Member) request.getAttribute("owner");
+	Members owner = (Members) request.getAttribute("owner");
 %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
 		새 비밀번호 확인 : <input type='password' id='pwd' name="" value="">&nbsp;&nbsp;<span id="result2"></span><br>
 		이름 :<input type='text' name='name' value="${owner.name}"><br>
 		이메일 :<input type='text' name='email' value="${owner.email}"><br>
-		주소 :<input type='text' name='address' value="${owner.address}"><br>
+<%-- 		주소 :<input type='text' name='address' value="${owner.address}"><br> --%>
 		연락처:<input type='number' name='pnum' value="${owner.pnum}"><br>
 		비밀 번호 찾기 질문 : <input type='text' name='pwQuestion' value="${owner.pwQuestion}"><br>
 		비밀 번호 찾기 정답 : <input type='text' name='pwAnswer' value="${owner.pwAnswer}"><br>

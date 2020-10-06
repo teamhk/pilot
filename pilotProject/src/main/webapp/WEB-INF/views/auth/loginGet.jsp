@@ -43,7 +43,7 @@
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-4">새얀 방문을 환영합니다.!</h1>
 									</div>
-									<form action="login" method="post">
+									<form action="/auth/login" method="post">
 										<div class="form-group">
 											<input type="text" name="id" class="form-control form-control-user"
 												id="exampleInputEmail" aria-describedby="emailHelp"

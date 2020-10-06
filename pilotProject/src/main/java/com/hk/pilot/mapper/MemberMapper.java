@@ -4,6 +4,6 @@ import com.hk.pilot.dto.Members;
 
 public interface MemberMapper {
 	
-	public Members memberLogin(Members member);
+	public Members memberLogin(Members members);
 
 }

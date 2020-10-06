@@ -25,15 +25,18 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String loginPost(HttpSession session, Model model, Members member) {
-		Members loginMember = memberService.memberLogin(member);
+	public String loginPost(HttpSession session, Model model, Members members) {
+		System.out.println("타니1");
+		System.out.println("members는"+members);
+		Members loginMember = memberService.memberLogin(members);
+		System.out.println("타니2");
 		System.out.println("loginMember는:"+loginMember);
 		System.out.println("name은:"+loginMember.getName());
 		session.setAttribute("name", loginMember.getName());	
 		boolean isLogin=loginMember!=null;
 		if(isLogin) {
 			session.setAttribute("loginMember", loginMember);
-			return "redirect:../???";
+			return "redirect:/";
 		}else {
 			return "/auth/loginFail";
 		}
@@ -42,6 +45,6 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String memberLogout(HttpSession session) {
 		session.invalidate();
-		return "/auth/Login";
+		return "redirect:/";
 	}
 }
