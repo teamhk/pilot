@@ -2,6 +2,8 @@ package com.hk.pilot;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hk.pilot.dto.Members;
+import com.hk.pilot.dto.Statistic;
+import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.service.ManagerService;
 
 
@@ -25,7 +29,7 @@ public class ManagerRestController {
 
 	@Autowired
 	ManagerService managerService;
-
+	
 	@GetMapping(path="/list", produces="text/plain;charset=UTF-8")
 	public String memberRestList(Locale locale, Model model) {
 		logger.info("/member/rest/list ----------");
@@ -70,24 +74,13 @@ public class ManagerRestController {
 	}
 
 	  
-	@GetMapping(path="/adminChart")
-	    public ModelAndView chart1() {
-	        return new ModelAndView("chart/chart01");
-	        //새로운 ModelAndView객체를 만들어서 chart/chart01페이지로 이동
+	@GetMapping(path="/adminChart", produces = MediaType.APPLICATION_JSON_VALUE)
+	    public List<StatisticDay> drawChart() {
+	        return managerService.aabbcc();
 	    }
 	 
-	//?????
-	  @RequestMapping("chart2.do")
-	    public ModelAndView chart2() {
-	        return new ModelAndView("chart/chart02"); //json데이터를 호출한 곳으로 되돌려준다.
-	    }
-	 
-	    //@ResponseBody //화면으로 넘어가는 것이 아닌 데이터를 리턴하는 경우 사용
 	    
-	    @RequestMapping("cart_money_list.do")
-	    public JSONObject cart_money_list() {
-	        return GoogleChartService.getChartData();
-	    }
+	    
 
 }
 	

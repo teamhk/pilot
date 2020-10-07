@@ -44,37 +44,37 @@
 			type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
-			<input type='checkbox' id='list' name='Y1' value='N'>와이셔츠&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='B1' value='N'>블라우스&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='T1' value='N'>티셔츠&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='M1' value='N'>맨투맨,후드&nbsp;&nbsp;&nbsp; 
-			<input type='checkbox' id='list' name='P1' value='N'>바지&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='K1' value='N'>니트류&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='J1' value='N'>자켓&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='C1' value='N'>코트&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='P2' value='N'>패딩&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='D1' value='N'>슈즈(신발류)&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='S1' value='N'>셔츠&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='C2' value='N'>커튼&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='list' name='B2' value='N'>가방류&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='와이셔츠' name='Y1' value="">와이셔츠&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='블라우스' name='B1' value="">블라우스&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='티셔츠' name='T1' value="">티셔츠&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='맨투맨,후드' name='M1' value="">맨투맨,후드&nbsp;&nbsp;&nbsp; 
+			<input type='checkbox' id='바지' name='P1' value="">바지&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='니트류' name='K1' value="">니트류&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='자켓' name='J1' value="">자켓&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='코트' name='C1' value="">코트&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='패딩' name='P2' value="">패딩&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='슈즈(신발류)' name='D1' value="">슈즈(신발류)&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='셔츠' name='S1' value="">셔츠&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='커튼' name='C2' value="">커튼&nbsp;&nbsp;&nbsp;
+			<input type='checkbox' id='가방류' name='B2' value="">가방류&nbsp;&nbsp;&nbsp;
 		</fieldset>
 		<input type='hidden' id='items' name='items' value=""> <input
 			type='hidden' name='area_num' value='0'>
 		<button onclick="abcd();">추가</button>
 	</form>
 	<script>
-	window.onload = function() {
-				
+	
 		//--------품목이 체크되면 Value값을 1로 변경해주는 함수
-		$("input[type='checkbox']").click(function() {
-			if ($(this).is(':checked')) {
-				$(this).val('Y');         //체크된 체크박스는 value값을 1로 바꿈
-			} else {
-				$(this).val('N');			//체크되지 않은 체크박스는 value값을 0으로 바꿈
-			}
-		});
-	}
+// 		$("input[type='checkbox']").click(function() {
+// 			if ($(this).is(':checked')) {
+// 				$(this).val('Y');         //체크된 체크박스는 value값을 1로 바꿈
+// 			} else {
+// 				$(this).val('N');			//체크되지 않은 체크박스는 value값을 0으로 바꿈
+// 			}
+// 		});
+// 	}
 	//-----------------------------------------------------------------
+	
 	function sample6_execDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -120,14 +120,24 @@
 				}
 			}).open();
 		}
-	//--------서브밋 할때 현재 체크 상태 확인해서 체크된건 1로 변경
+	//--------서브밋 할때 현재 체크 상태 확인해서 체크된건 스트링형태로 items에 저장
+	
 	function abcd(){
-		var items=""
-		$("input[type='checkbox']:checked").each(function(){
-			items += $(this).attr('name')+"!@#";
+		var items="";
+		$("input[type='checkbox']").each(function(){
+			if($(this).is(":checked")==true){
+				items += $(this).attr('id')+"!@#";
+				$(this).val('Y');
+			} else {
+				//alert(this);
+				$(this).val('N');
+				alert($(this).val());
+				
+			}
 		});
 		$("#items").val(items);
 
+		
 		//-----------area_num값을 자동으로 입력해주는 함수
 		var a = document.getElementsByName("storeFirstAddr")[0];
 		aval = a.value;

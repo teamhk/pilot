@@ -49,7 +49,7 @@
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
 				<input type='checkbox' id='list' name='Y1' 
-				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="">와이셔츠&nbsp;&nbsp;&nbsp;
+				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="0">와이셔츠&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='list' name='B1' 
 				<%= (stInfo.getB1().equals("Y")) ? "checked" : ""%> value='0'>블라우스&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='list' name='T1' 

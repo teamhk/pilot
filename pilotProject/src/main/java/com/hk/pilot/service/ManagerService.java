@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
+import com.hk.pilot.dto.Statistic;
+import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.mapper.ManagerMapper;
@@ -111,6 +113,12 @@ public class ManagerService {
 		int ret = managerMapper.managerProcess(orderNum,process);
 		System.out.println("실시간으로 상태가 잘 업데이트 되었나? ="+ret);
 		return ret;
+	}
+
+	public List<StatisticDay> aabbcc() {
+		// TODO Auto-generated method stub
+		
+		return managerMapper.aabbcc();
 	}
 	
 	//업체 통계 

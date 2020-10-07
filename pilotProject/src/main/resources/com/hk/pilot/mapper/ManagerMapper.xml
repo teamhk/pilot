@@ -87,5 +87,7 @@
   </choose>
 	WHERE ORDERNUM=#{orderNum}
 </update>
-
+<select id="aabbcc" resultType="com.hk.pilot.dto.StatisticDay">
+	SELECT CDAY, OQ,OP FROM STATISTIC s WHERE snum='13131313'
+</select>
 </mapper>

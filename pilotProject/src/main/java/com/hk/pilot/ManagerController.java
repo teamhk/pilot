@@ -3,6 +3,7 @@ package com.hk.pilot;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -162,11 +163,12 @@ public class ManagerController {
 		return "/manager/storesList";
 	}
 	
-	@GetMapping("/statsOne")
-	public String managerStatsOne(@RequestParam("snum") String snum,Model model) {
-		model.addAttribute("managerStatsOne",managerService.managerStatsOne(snum));
-		return "/manager/managerStatsOne";
-	}
+//	@GetMapping("/statsOne")
+//	public String managerStatsOne(@RequestParam("snum") String snum,Model model) {
+//		model.addAttribute("managerStatsOne",managerService.managerStatsOne(snum));
+//		 
+//		return "/manager/managerStatsOne";
+//	}
 	
 		
 }

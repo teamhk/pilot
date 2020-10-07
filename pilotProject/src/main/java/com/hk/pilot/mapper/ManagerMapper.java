@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
+import com.hk.pilot.dto.Statistic;
+import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 
@@ -40,5 +42,7 @@ public interface ManagerMapper {
 	public OrderProcess managerOrderInfo(int orderNum); // 7-2 업체 주문 정보 상세보기
 	
 	public int managerProcess(@Param("orderNum") int orderNum,@Param("process") String process); // 8 업체 주문 상태 실시간업데이트 (myBatis 동적쿼리)
+
+	public List<StatisticDay> aabbcc();
 		
 }
