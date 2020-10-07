@@ -26,7 +26,11 @@
 	주문번호:<input type='text' value='${managerOrderInfo.orderNum}'><br>
 	ID:<input type='text' value='${managerOrderInfo.id}'><br>
 	이름:<input type='text' value='${managerOrderInfo.name}'><br>
-	주소:<input type='text' value='${managerOrderInfo.address}'><br>
+	<label>주소</label>
+		<input type="text" id="sample6_postcode" placeholder="우편번호" name="storeZipCode" value="${managerOrderInfo.userZipCode}" readonly><br>
+		<input type="text" id="sample6_address" placeholder="주소" name="storeFirstAddr" value="${managerOrderInfo.userFirstAddr}" readonly><br>
+		<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="storeExtraAddr" value="${managerOrderInfo.userExtraAddr}" readonly><br>
+		<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="storeSecondAddr" value="${managerOrderInfo.userSecondAddr}" readonly><br>
 	연락처:<input type='text' value='${managerOrderInfo.pnum}'><br>
 	품목:<input type='text' class='item' value='${itemStr}'><br>
 	결제금액:<input type='text' value='${managerOrderInfo.pay_price}'><br>

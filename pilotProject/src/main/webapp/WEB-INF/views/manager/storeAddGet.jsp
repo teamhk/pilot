@@ -40,8 +40,7 @@
 			<option value="저축은행">저축은행</option>
 			<option value="케이뱅크">케이뱅크</option>
 			<option value="카카오뱅크">카카오뱅크</option>
-		</select> 계좌번호:<input type='number' name='bnum'><br> 취급 품목 : <input
-			type='button' id='btn' value='펼치기'><br>
+		</select> 계좌번호:<input type='number' name='bnum'><br> 취급 품목 : <input type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
 			<input type='checkbox' id='와이셔츠' name='Y1' value="">와이셔츠&nbsp;&nbsp;&nbsp;
@@ -128,12 +127,7 @@
 			if($(this).is(":checked")==true){
 				items += $(this).attr('id')+"!@#";
 				$(this).val('Y');
-			} else {
-				//alert(this);
-				$(this).val('N');
-				alert($(this).val());
-				
-			}
+			} 
 		});
 		$("#items").val(items);
 

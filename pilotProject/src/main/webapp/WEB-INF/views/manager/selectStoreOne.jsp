@@ -44,18 +44,39 @@
   			<option value="케이뱅크">케이뱅크</option>
   			<option value="카카오뱅크">카카오뱅크</option>
   		</select>
-		계좌번호:<input type='number' name='bnum' value="${storeInfo.bnum}"><br>
+		계좌번호:<input type='number' name='bnum' value=${storeInfo.bnum}><br>
 		취급 품목 : <input type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
-				<input type='checkbox' id='list' name='Y1' 
-				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="0">와이셔츠&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='list' name='B1' 
-				<%= (stInfo.getB1().equals("Y")) ? "checked" : ""%> value='0'>블라우스&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='list' name='T1' 
-				<%= (stInfo.getT1().equals("Y")) ? "checked" : ""%> value='0'>티셔츠&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='와이셔츠' name='Y1' 
+				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="Y">와이셔츠&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='블라우스' name='B1' 
+				<%= (stInfo.getB1().equals("Y")) ? "checked" : ""%> value="Y">블라우스&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='티셔츠' name='T1' 
+				<%= (stInfo.getT1().equals("Y")) ? "checked" : ""%> value="Y">티셔츠&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='맨투맨,후드' name='M1' 
+				<%= (stInfo.getM1().equals("Y")) ? "checked" : ""%> value="Y">맨투맨,후드&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='바지' name='P1' 
+				<%= (stInfo.getP1().equals("Y")) ? "checked" : ""%> value="Y">바지&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='니트류' name='K1' 
+				<%= (stInfo.getK1().equals("Y")) ? "checked" : ""%> value="Y">니트류&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='자켓' name='J1' 
+				<%= (stInfo.getJ1().equals("Y")) ? "checked" : ""%> value="Y">자켓&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='코트' name='C1' 
+				<%= (stInfo.getC1().equals("Y")) ? "checked" : ""%> value="Y">코트&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='패딩' name='P2' 
+				<%= (stInfo.getP2().equals("Y")) ? "checked" : ""%> value="Y">패딩&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='이불' name='D1' 
+				<%= (stInfo.getD1().equals("Y")) ? "checked" : ""%> value="Y">이불&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='슈즈(신발류)' name='S1' 
+				<%= (stInfo.getS1().equals("Y")) ? "checked" : ""%> value="Y">슈즈(신발류)&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='커튼' name='C2' 
+				<%= (stInfo.getC2().equals("Y")) ? "checked" : ""%> value="Y">커튼&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' id='가방류' name='B2' 
+				<%= (stInfo.getB2().equals("Y")) ? "checked" : ""%> value="Y">가방류&nbsp;&nbsp;&nbsp;
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
+		<input type='hidden' name='items' value="">
 		<button onclick="abcd();">전송</button>
 	</form>
 <script>
@@ -67,13 +88,13 @@
 
 		
 		//--------품목이 체크되면 Value값을 1로 변경해주는 함수
-		$("input[type='checkbox']").change(function() {
-			if ($(this).is(':checked')) {
-				$(this).val('1');         //체크된 체크박스는 value값을 1로 바꿈
-			} else {
-				$(this).val('0');			//체크되지 않은 체크박스는 value값을 0으로 바꿈
-			}
-		});
+// 		$("input[type='checkbox']").change(function() {
+// 			if ($(this).is(':checked')) {
+// 				$(this).val('1');         //체크된 체크박스는 value값을 1로 바꿈
+// 			} else {
+// 				$(this).val('0');			//체크되지 않은 체크박스는 value값을 0으로 바꿈
+// 			}
+// 		});
 	
 
 		//-----------area_num값을 자동으로 입력해주는 함수
@@ -137,10 +158,12 @@
 	}
 	//--------서브밋 할때 현재 체크 상태 확인해서 체크된건 1로 변경
 	function abcd(){
+		var items = "";
 		$("input[type='checkbox']:checked").each(function(){
-			$(this).val('1');
-			}
+			var str = $(this).attr('id');
+			items += str + "!@#";
 		);
+		$("input[name='items']").val(items);
 		document.storeform.submit();
 	}
 

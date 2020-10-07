@@ -8,7 +8,7 @@ public class Stores {
 	String snum;
 	String scontact;
 	String bank;
-	String bnum;
+	int bnum;
 	String permit;
 	Date s_date;
 	int area_num;
@@ -47,10 +47,10 @@ public class Stores {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public String getBnum() {
+	public int getBnum() {
 		return bnum;
 	}
-	public void setBnum(String bnum) {
+	public void setBnum(int bnum) {
 		this.bnum = bnum;
 	}
 	public String getPermit() {

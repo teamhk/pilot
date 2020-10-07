@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.hk.pilot.dto.Members;
-import com.hk.pilot.dto.Statistic;
-import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.service.ManagerService;
 
 
@@ -74,10 +71,10 @@ public class ManagerRestController {
 	}
 
 	  
-	@GetMapping(path="/adminChart", produces = MediaType.APPLICATION_JSON_VALUE)
-	    public List<StatisticDay> drawChart() {
-	        return managerService.aabbcc();
-	    }
+//	@GetMapping(path="/adminChart", produces = MediaType.APPLICATION_JSON_VALUE)
+//	    public List<StatisticDay> drawChart() {
+//	        return managerService.aabbcc();
+//	    }
 	 
 	    
 	    

@@ -3,7 +3,6 @@ package com.hk.pilot;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,10 +107,10 @@ public class ManagerController {
 	}
 	
 	@PostMapping("/ownerUpdate")
-	public String ownerUpdate(Model model,Members member) {
+	public String ownerUpdate(Model model,Members members) {
 		System.out.println("memberUpdate...호출");
-		System.out.println("업주정보 잘들어갔나? =>" + member.toString());
-		int ret = managerService.ownerUpdate(member);
+		System.out.println("업주정보 잘들어갔나? =>" + members.toString());
+		int ret = managerService.ownerUpdate(members);
 		System.out.println("업주정보 성공적으로 수정 됬나? =>" + ret);
 		return "/manager/ownerUpdate";
 	}

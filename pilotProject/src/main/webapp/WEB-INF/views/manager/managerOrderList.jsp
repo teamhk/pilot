@@ -33,7 +33,7 @@
 				<td class='tdn'>${list.orderNum}</td>
 				<td>${list.id}</td>
 				<td>${list.name }</td>
-				<td>${list.address }</td>
+				<td>${list.userFirstAddr}&nbsp;${list.userSecondAddr}&nbsp;${list.userExtraAddr}</td>
 				<c:set var="itemStr" value="${list.items}"/>
       			<c:set var="itemStr" value="${fn:replace(itemStr, '!@#', ':')}"/>
       			<c:set var="itemStr" value="${fn:replace(itemStr, '$%^', ',')}"/>

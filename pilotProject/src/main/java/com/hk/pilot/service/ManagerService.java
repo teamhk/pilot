@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
-import com.hk.pilot.dto.Statistic;
-import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.mapper.ManagerMapper;
@@ -87,8 +85,8 @@ public class ManagerService {
 	}
 	
 	// 업주 개인정보 수정
-	public int ownerUpdate(Members member) {
-		return managerMapper.ownerUpdate(member);
+	public int ownerUpdate(Members members) {
+		return managerMapper.ownerUpdate(members);
 	}
 	
 	// 업주 개인정보 삭제
@@ -115,12 +113,6 @@ public class ManagerService {
 		return ret;
 	}
 
-	public List<StatisticDay> aabbcc() {
-		// TODO Auto-generated method stub
-		
-		return managerMapper.aabbcc();
-	}
-	
 	//업체 통계 
 //	managerStatsOne
 }

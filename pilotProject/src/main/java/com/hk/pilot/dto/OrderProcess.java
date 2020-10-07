@@ -31,6 +31,13 @@ public class OrderProcess {
 	Date pick;
 	Date wash;
 	Date finish;
+	String name;
+	String email;
+	String pnum;
+	String userZipCode;
+	String userFirstAddr;
+	String userSecondAddr;
+	String userExtraAddr;
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -193,13 +200,58 @@ public class OrderProcess {
 	public void setFinish(Date finish) {
 		this.finish = finish;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPnum() {
+		return pnum;
+	}
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+	public String getUserZipCode() {
+		return userZipCode;
+	}
+	public void setUserZipCode(String userZipCode) {
+		this.userZipCode = userZipCode;
+	}
+	public String getUserFirstAddr() {
+		return userFirstAddr;
+	}
+	public void setUserFirstAddr(String userFirstAddr) {
+		this.userFirstAddr = userFirstAddr;
+	}
+	public String getUserSecondAddr() {
+		return userSecondAddr;
+	}
+	public void setUserSecondAddr(String userSecondAddr) {
+		this.userSecondAddr = userSecondAddr;
+	}
+	public String getUserExtraAddr() {
+		return userExtraAddr;
+	}
+	public void setUserExtraAddr(String userExtraAddr) {
+		this.userExtraAddr = userExtraAddr;
+	}
 	@Override
 	public String toString() {
 		return "OrderProcess [orderNum=" + orderNum + ", id=" + id + ", snum=" + snum + ", sname=" + sname + ", items="
 				+ items + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble="
 				+ bubble + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1
 				+ ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2
-				+ ", wait=" + wait + ", ok=" + ok + ", pick=" + pick + ", wash=" + wash + ", finish=" + finish + "]";
+				+ ", wait=" + wait + ", ok=" + ok + ", pick=" + pick + ", wash=" + wash + ", finish=" + finish
+				+ ", name=" + name + ", email=" + email + ", pnum=" + pnum + ", userZipCode=" + userZipCode
+				+ ", userFirstAddr=" + userFirstAddr + ", userSecondAddr=" + userSecondAddr + ", userExtraAddr="
+				+ userExtraAddr + "]";
 	}
-		
+	
 }
