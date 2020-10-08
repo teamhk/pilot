@@ -70,6 +70,14 @@
 									<label for="writer">작성자</label><input type="text" id="writer" name="w_id" value="${update.w_id}" readonly="readonly"/>
 								</td>
 							</tr>
+							
+							<tr>
+								<td>
+									<label for="writer">회원등급</label><input type="text" id="grade" name="c_check" value="${update.c_check}" readonly="readonly" />
+								</td>
+							</tr>
+							
+							
 							<tr>
 								<td>
 									<label for="regdate">작성날짜</label>

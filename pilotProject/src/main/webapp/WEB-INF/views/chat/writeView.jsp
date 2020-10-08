@@ -53,15 +53,19 @@
 					<tbody>
 						<tr>
 							<td><label for="title">제목</label><input type="text"
-								id="title" name="c_title" class="chk" title="제목을 입력하세요" /></td>
+								id="title" name="c_title" class="chk" title="제목을 입력하세요" placeholder="제목을 입력해주세요" /></td>
 						</tr>
 						<tr>
 							<td><label for="content">내용</label> <textarea id="content"
-									name="c_content" class="chk" title="내용을 입력하세요."></textarea></td>
+									name="c_content" class="chk" title="내용을 입력하세요." placeholder="내용을 입력해주세요"></textarea></td>
 						</tr>
 						<tr>
 							<td><label for="writer">작성자</label><input type="text"
-								id="writer" name="w_id"/></td>
+								id="writer" name="w_id" placeholder="ID가져올 예정"/></td>
+						<tr>
+						<tr>
+							<td><label for="writer">회원등급</label><input type="text"
+								id="grade" name="c_check" placeholder="회원등급 가져올예정" /></td>
 						<tr>
 							<td>
 								<button type="submit" class="write_btn">작성하기</button>

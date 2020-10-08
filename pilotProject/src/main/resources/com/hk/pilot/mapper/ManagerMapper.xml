@@ -15,38 +15,50 @@
 	</select>
 
 	<insert id="storeAdd">
-		INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, S_DATE,
-		SDCHECK, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR,
+		INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK,
+		BNUM, PERMIT, S_DATE,
+		SDCHECK, AREA_NUM, STOREFIRSTADDR,
+		STORESECONDADDR, STOREEXTRAADDR,
 		STOREZIPCODE)
-		VALUES(#{id}, #{sname},#{scontact}, #{snum}, #{bank}, #{bnum}, 'N', sysdate, 'N',
+		VALUES(#{id},
+		#{sname},#{scontact}, #{snum}, #{bank}, #{bnum}, 'N', sysdate, 'N',
 		#{area_num}, #{storeFirstAddr} , #{storeSecondAddr},
 		#{storeExtraAddr}, #{storeZipCode})
 	</insert>
 
 
 	<insert id="itemListAdd">
-		INSERT INTO ITEMLIST (SNUM, ITEMS, Y1, B1, T1, M1, P1, K1, J1, C1, P2, D1,
+		INSERT INTO ITEMLIST (SNUM, ITEMS, Y1, B1, T1, M1,
+		P1, K1, J1, C1, P2, D1,
 		S1, C2, B2)
-		VALUES(#{snum}, #{items}, #{Y1}, #{B1}, #{T1}, #{M1}, #{P1}, #{K1}, #{J1}, #{C1},
-		#{P2}, #{D1}, #{S1}, #{C2}, #{B2})
+		VALUES(#{snum}, #{items}, #{Y1},
+		#{B1}, #{T1}, #{M1}, #{P1}, #{K1}, #{J1}, #{C1},
+		#{P2}, #{D1}, #{S1},
+		#{C2}, #{B2})
 	</insert>
 
 	<select id="myStoresList" resultType="com.hk.pilot.dto.Stores">
-		SELECT * FROM STORES WHERE ID=#{ID} AND SDCHECK='N'AND PERMIT='Y'
+		SELECT * FROM STORES WHERE
+		ID=#{ID} AND SDCHECK='N'AND PERMIT='Y'
 	</select>
 
 	<select id="selectStoreOne" parameterType="String"
 		resultType="com.hk.pilot.dto.StoreInfo">
-		SELECT s.ID , s.SNAME , STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR,
-		STOREZIPCODE, i.snum, scontact,bank, bnum,permit,s_date,area_num, Y1,
-		B1, T1, M1, P1, K1, J1, C1, P2, D1, S1, C2, B2 FROM ITEMLIST i,STORES
-		s WHERE i.SNUM = s.SNUM AND i.snum=#{snum}
+		SELECT s.ID , s.SNAME , STOREFIRSTADDR, STORESECONDADDR,
+		STOREEXTRAADDR,
+		STOREZIPCODE, i.snum, scontact,bank,
+		bnum,permit,s_date,area_num, Y1,
+		B1, T1, M1, P1, K1, J1, C1, P2, D1,
+		S1, C2, B2 FROM ITEMLIST i,STORES
+		s WHERE i.SNUM = s.SNUM AND
+		i.snum=#{snum}
 
 	</select>
 
 	<update id="storeUpdate"
 		parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE STORES SET SNAME=#{sname}, STOREFIRSTADDR=#{storeFirstAddr}
+		UPDATE STORES SET SNAME=#{sname},
+		STOREFIRSTADDR=#{storeFirstAddr}
 		,STORESECONDADDR= #{storeSecondAddr},
 		STOREEXTRAADDR=#{storeExtraAddr},STOREZIPCODE=#{storeZipCode},
 		SCONTACT=#{scontact}, BANK=#{bank}, BNUM=#{bnum}, AREA_NUM=#{area_num}
@@ -55,8 +67,10 @@
 
 	<update id="itemListUpdate"
 		parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE ITEMLIST SET Y1=#{Y1}, B1=#{B1}, T1=#{T1}, M1=#{M1}, P1=#{P1},
-		K1=#{K1}, J1=#{J1}, C1=#{C1}, P2=#{P2}, D1=#{D1}, S1=#{S1}, C2=#{C2},
+		UPDATE ITEMLIST SET Y1=#{Y1}, B1=#{B1}, T1=#{T1},
+		M1=#{M1}, P1=#{P1},
+		K1=#{K1}, J1=#{J1}, C1=#{C1}, P2=#{P2}, D1=#{D1},
+		S1=#{S1}, C2=#{C2},
 		B2=#{B2} WHERE SNUM=#{snum}
 	</update>
 
@@ -78,13 +92,16 @@
 	</update>
 
 	<update id="ownerDeleterPost" parameterType="String">
-		UPDATE MEMBERS SET UDCHECK='Y' where ID=#{id}
+		UPDATE MEMBERS SET
+		UDCHECK='Y' where ID=#{id}
 	</update>
 
 	<select id="managerOrderList"
 		resultType="com.hk.pilot.dto.OrderProcess">
-		SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE , o.PAY_PRICE ,
-		o.R_CHECK , o.BUBBLE , o.Y1, o.B1, o.T1, o.M1, o.P1, o.K1, o.J1, o.C1,
+		SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE ,
+		o.PAY_PRICE ,
+		o.R_CHECK , o.BUBBLE , o.Y1, o.B1, o.T1, o.M1, o.P1,
+		o.K1, o.J1, o.C1,
 		o.P2, o.D1, o.S1, o.C2, o.B2, m.NAME, m.USERFIRSTADDR
 		,m.USERSECONDADDR ,m.USEREXTRAADDR ,m.USERZIPCODE, m.PNUM ,p.WAIT
 		,p.OK , p.PICK , p.WASH , p.FINISH, o.items FROM ORDERLIST o , MEMBERS
@@ -94,8 +111,10 @@
 
 	<select id="managerOrderInfo"
 		resultType="com.hk.pilot.dto.OrderProcess">
-		SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE , o.PAY_PRICE ,
-		o.R_CHECK , o.BUBBLE , o.Y1, o.B1, o.T1, o.M1, o.P1, o.K1, o.J1, o.C1,
+		SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE ,
+		o.PAY_PRICE ,
+		o.R_CHECK , o.BUBBLE , o.Y1, o.B1, o.T1, o.M1, o.P1,
+		o.K1, o.J1, o.C1,
 		o.P2, o.D1, o.S1, o.C2, o.B2, m.NAME, m.USERFIRSTADDR
 		,m.USERSECONDADDR ,m.USEREXTRAADDR ,m.USERZIPCODE, m.PNUM ,p.WAIT
 		,p.OK , p.PICK , p.WASH , p.FINISH, o.items FROM ORDERLIST o , MEMBERS
@@ -136,12 +155,14 @@
 	<insert id="write">
 
 		INSERT INTO CHAT (W_ID, C_NO, C_DATE, C_CONTENT,
+		C_CHECK,
 		C_TITLE)
-		VALUES(#{w_id}, CHAT_seq.nextval, sysdate, #{c_content} ,
+		VALUES(#{w_id}, CHAT_seq.nextval, sysdate,
+		#{c_content} , #{c_check},
 		#{c_title} )
 
 	</insert>
-	
+
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
@@ -183,7 +204,8 @@
 	<select id="selectOne" parameterType="int"
 		resultType="com.hk.pilot.dto.Chat">
 
-		SELECT w_id, c_no, c_date, c_content, c_title FROM CHAT
+		SELECT w_id, c_no, c_date, c_content, c_title, c_check FROM
+		CHAT
 		where c_no = #{c_no}
 
 	</select>
@@ -191,13 +213,10 @@
 	<!-- 게시글 수정 -->
 	<update id="update" parameterType="com.hk.pilot.dto.Chat">
 
-		UPDATE CHAT SET w_id =
-		#{w_id},
-		c_content =
-		#{c_content},
-		c_title = #{c_title}
-		WHERE c_no =
-		#{c_no}
+		UPDATE CHAT SET W_ID=#{w_id},
+		C_CHECK=#{c_check},
+		C_CONTENT=#{c_content}, C_TITLE=#{c_title} WHERE
+		C_NO= #{c_no}
 
 	</update>
 
