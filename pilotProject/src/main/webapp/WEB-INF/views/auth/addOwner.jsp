@@ -368,8 +368,62 @@ function submitCheck() {
 			items += box.eq(i).attr('id')+"!@#";
 		}
 		$("#items").val(items);
-		document.addOwner.submit();
+
+		var a = document.getElementsByName("storeFirstAddr")[0];
+		aval = a.value;
+		if(aval.indexOf("강남구")!=-1){
+			$("[name='area_num']").val('1');
+		} else if (aval.indexOf("강동구")!=-1){
+			$("[name='area_num']").val('2');
+		} else if (aval.indexOf("강북구")!=-1){
+			$("[name='area_num']").val('3');
+		} else if (aval.indexOf("강서구")!=-1){
+			$("[name='area_num']").val('4');
+		} else if (aval.indexOf("관악구")!=-1){
+			$("[name='area_num']").val('5');
+		} else if (aval.indexOf("광진구")!=-1){
+			$("[name='area_num']").val('6');
+		} else if (aval.indexOf("구로구")!=-1){
+			$("[name='area_num']").val('7');
+		} else if (aval.indexOf("금천구")!=-1){
+			$("[name='area_num']").val('8');
+		} else if (aval.indexOf("노원구")!=-1){
+			$("[name='area_num']").val('9');
+		} else if (aval.indexOf("도봉구")!=-1){
+			$("[name='area_num']").val('10');
+		} else if (aval.indexOf("동대문구")!=-1){
+			$("[name='area_num']").val('11');
+		} else if (aval.indexOf("동작구")!=-1){
+			$("[name='area_num']").val('12');
+		} else if (aval.indexOf("마포구")!=-1){
+			$("[name='area_num']").val('13');
+		} else if (aval.indexOf("서대문구")!=-1){
+			$("[name='area_num']").val('14');
+		} else if (aval.indexOf("서초구")!=-1){
+			$("[name='area_num']").val('15');
+		} else if (aval.indexOf("성동구")!=-1){
+			$("[name='area_num']").val('16');
+		} else if (aval.indexOf("성북구")!=-1){
+			$("[name='area_num']").val('17');
+		} else if (aval.indexOf("송파구")!=-1){
+			$("[name='area_num']").val('18');
+		} else if (aval.indexOf("양천구")!=-1){
+			$("[name='area_num']").val('19');
+		} else if (aval.indexOf("영등포구")!=-1){
+			$("[name='area_num']").val('20');
+		} else if (aval.indexOf("용산구")!=-1){
+			$("[name='area_num']").val('21');
+		} else if (aval.indexOf("은평구")!=-1){
+			$("[name='area_num']").val('22');
+		} else if (aval.indexOf("종로구")!=-1){
+			$("[name='area_num']").val('23');
+		} else if (aval.indexOf("중구")!=-1){
+			$("[name='area_num']").val('24');
+		} else {
+			$("[name='area_num']").val('25');  //중랑구
+		}
 	}
+		document.addOwner.submit();
 }
 
 // function bnumCheck(){
@@ -414,6 +468,7 @@ function submitCheck() {
 				<input type="text" id="sample6_address1" placeholder="주소" name="storeFirstAddr"><br>
 				<input type="text" id="sample6_extraAddress1" placeholder="참고항목" name="storeExtraAddr"><br>
 				<input type="text" id="sample6_detailAddress1" placeholder="상세주소" name="storeSecondAddr">				
+				<input type='hidden' name='area_num' value='0'>
 				<label><b>상호 연락처</b></label>
 				<input type="text" id="scontact" placeholder="Store Contact Number" name="scontact" oninput="checkScontact()">
 				<div class="validation" id="scontact_check"></div>
@@ -467,5 +522,6 @@ function submitCheck() {
 		<input type="file" value="파일 선택" name="uploadFile"/>
    				<input type="submit" id ="uploadBtn" value="업로드"/>	
 				<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">	
+
 </body>
 </html>

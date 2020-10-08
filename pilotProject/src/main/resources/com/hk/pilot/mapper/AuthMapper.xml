@@ -21,8 +21,8 @@
 </insert>
 
 <insert id="addStores" parameterType="com.hk.pilot.dto.Stores">
-	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE)
-	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode})
+	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE )
+	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{area_num}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode})
 </insert>
 
 <insert id="addItemList" parameterType="com.hk.pilot.dto.ItemList">
