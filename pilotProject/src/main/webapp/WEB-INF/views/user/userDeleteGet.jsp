@@ -15,7 +15,7 @@
 <h1>회원 탈퇴 확인</h1>
 정말로 탈퇴 하시겠습니까?<br>
 탈퇴를 원하신다면 비밀번호를 입력해주세요<br>
-	<form action='ownerDelete' name='storeform' method='post' id='storeform'>
+	<form action='delet' name='storeform' method='post' id='storeform'>
 		ID :<input type='text' id='id' name='id' value="${loginMember.id }" readonly><br>  <!--${loginMember.name }-->
 		비밀번호 :<input id='pwdcheck' type='password' value="">&nbsp;&nbsp;<span id="result1"></span><br>
 		이름 :<input type='text' name='name' value="${user.name}"><br>

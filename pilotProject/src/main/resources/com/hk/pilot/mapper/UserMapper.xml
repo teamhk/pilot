@@ -30,6 +30,10 @@ SELECT * FROM MEMBERS WHERE ID=#{ID}
 </select>
 
 
+	<update id="userDeleterPost" parameterType="String">
+		UPDATE MEMBERS SET UDCHECK='Y' where ID=#{id}
+	</update>
+
 <select id="bubbleList" resultType="com.hk.pilot.dto.Bubble">
 
 	select m.id,b_price,bubble,b_date,p_bubble,b_bubble,b_seq from members m,bubble b where m.id=b.id and m.id=#{id}
