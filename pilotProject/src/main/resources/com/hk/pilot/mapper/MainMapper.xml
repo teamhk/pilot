@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.pilot.mapper.MainMapper">
+
+<select id="priceList" resultType="com.hk.pilot.dto.Price">
+
+select *from price
+</select>
+
+<select id="storesList" resultType="com.hk.pilot.dto.Stores">
+
+select * from stores
+
+</select>
+
+<select id="userAdr" resultType="com.hk.pilot.dto.ManagerInfo">
+
+select userFirstAddr  from members where id=#{id}
+
+</select>
+
+<!--  <select id="itemArry" resultType="com.hk.pilot.dto.Stores">  -->
+<!-- 	select items from FROM ITEMLIST i,STORES s WHERE i.SNUM = s.SNUM AND i.snum=#{snum}  -->
+
+<!-- </select>  -->
+
+ <select id="selectsStoreOne" parameterType="String" 
+ 		resultType="com.hk.pilot.dto.StoreInfo"> -->
+<!-- 		SELECT s.ID , s.SNAME , s.SADDRESS, i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,storeFirstAddr,storeSecondAddr,storeExtraAddr,items,Y1,B1,T1,M1,P1,K1,J1,C1,P2,D1,S1,C2,B2,w_id,orderNum,r_content,star,badCnt,r_date,depth,r_no,rcom_no,r_id,rcom_content,rcom_date,Y1P,B1P,T1P,M1P,P1P,K1P,J1P,C1P,P2P,D1P,S1P,C2P,B2P,p_date,p_seq FROM ITEMLIST i,STORES s,price,review WHERE i.SNUM = s.SNUM AND i.snum=#{snum} -->
+		SELECT s.ID , s.SNAME , i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,STORESECONDADDR,STOREFIRSTADDR,storeExtraAddr,items,Y1,B1,T1,M1,P1,K1,J1,C1,P2,D1,S1,C2,B2,Y1P,B1P,T1P,M1P,P1P,K1P,J1P,C1P,P2P,D1P,S1P,C2P,B2P,p_date,p_seq FROM ITEMLIST i,STORES s,price WHERE i.SNUM = s.SNUM AND i.snum=#{snum}
+</select> 
+<!--  
+<selet id="cart">
+INSERT INTO CART (CART_SEQ ,ID,ITEMS ,SNUM ,SNAME ,"check"  )
+VALUES (CART_SEQ.nextval,'',NULL,'1234567','세탁특공대',null)
+
+</selet> -->
+ 
+</mapper>

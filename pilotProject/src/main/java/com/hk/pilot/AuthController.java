@@ -24,6 +24,7 @@ public class AuthController {
 	
 	@GetMapping("/registration")
 	public String choiceMemberType() {
+		System.out.println("타니?");
 		return "/auth/choiceMemberType";
 	}
 	
@@ -33,9 +34,10 @@ public class AuthController {
 	} 
 	
 	@PostMapping("/addCustomer")
-	public String addCustomerPost(Model model, UserInfo userInfo) {
-		System.out.println("userInfo는"+userInfo);
-		authService.addMember(userInfo);
+	public String addCustomerPost(Model model, Members members, PersonalPay personalPay) {
+		System.out.println("userInfo는"+members+personalPay);
+		authService.addMembers(members);
+		authService.addPersonalPay(personalPay);
 		return "redirect:/";
 	}
 	
@@ -45,11 +47,33 @@ public class AuthController {
 	}
 	
 	@PostMapping("/addOwner")
-	public String addOwnerPost(Model model, ManagerInfo managerInfo) {
-		authService.addOwner(managerInfo);
+	public String addOwnerPost(Model model, Members members, Stores stores, ItemList itemList) {
+		System.out.println("managerInfo는"+members+stores+itemList);
+		authService.addMembers(members);
+		authService.addStores(stores);
+		authService.addItemList(itemList);
 		return "redirect:/";
 	}
 	
+	@GetMapping("/findId")
+	public String findIdGet() {
+		return "/auth/findIdGet";
+	}
+	
+	@PostMapping("/findId")
+	public String findIdPost(Model model, Members members) {
+		System.out.println("members에 아이디/이멜 있나 확인"+members);
+		
+		
+		model.addAttribute("members", authService.findId(members));
+		
+		return "/auth/findIdPost";
+	}
+	
+	@GetMapping("/findPwd")
+	public String findPwd() {
+		return "/auth/findPwd";
+	}
 //	@PostMapping("/addOwner")
 //	public String addStores(Model model, Stores stores) {
 //		authService.addStores(stores);

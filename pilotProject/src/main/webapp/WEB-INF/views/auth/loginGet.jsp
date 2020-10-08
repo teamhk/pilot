@@ -66,11 +66,8 @@
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="forgot-password.html">Forgot
-											Password?</a>
-									</div>
-									<div class="text-center">
-										<a class="small" href="register.html">회원등록!</a>
+										<a class="small" href="/auth/findId">아이디 찾기</a>&nbsp;&nbsp;&nbsp;<a class="small" href="/auth/findPwd">비밀번호 찾기</a>
+										&nbsp;&nbsp;&nbsp;<a class="small" href="/auth/registration">회원가입</a>
 									</div>
 								</div>
 							</div>
