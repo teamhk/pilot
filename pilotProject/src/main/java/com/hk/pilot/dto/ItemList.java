@@ -3,19 +3,20 @@ package com.hk.pilot.dto;
 public class ItemList {
 	String snum;
 	String items;
-	String Y1;
-	String B1;
-	String T1;
-	String M1;
-	String P1;
-	String K1;
-	String J1;
-	String C1;
-	String P2;
-	String D1;
-	String S1;
-	String C2;
-	String B2;
+	String Y1 = "N";
+	String B1 = "N";
+	String T1 = "N";
+	String M1 = "N";
+	String P1 = "N";
+	String P2 = "N";
+	String K1 = "N";
+	String J1 = "N";
+	String C1 = "N";
+	String D1 = "N";
+	String S1 = "N";
+	String C2 = "N";
+	String B2 = "N";
+	
 	public String getSnum() {
 		return snum;
 	}

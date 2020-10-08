@@ -20,7 +20,7 @@ public class UserInfo {
 	String reason;
 	String grade;
 	String cardCom;
-	int cardNun;
+	String cardNum;
 	int cardExp;
 	int cardCvc;
 	int b_price;
@@ -130,11 +130,11 @@ public class UserInfo {
 	public void setCardCom(String cardCom) {
 		this.cardCom = cardCom;
 	}
-	public int getCardNun() {
-		return cardNun;
+	public String getCardNum() {
+		return cardNum;
 	}
-	public void setCardNun(int cardNun) {
-		this.cardNun = cardNun;
+	public void setCardNum(String cardNum) {
+		this.cardNum = cardNum;
 	}
 	public int getCardExp() {
 		return cardExp;
@@ -184,10 +184,9 @@ public class UserInfo {
 				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
 				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore="
 				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
-				+ ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom + ", cardNun=" + cardNun
+				+ ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom + ", cardNun=" + cardNum
 				+ ", cardExp=" + cardExp + ", cardCvc=" + cardCvc + ", b_price=" + b_price + ", bubble=" + bubble
 				+ ", b_date=" + b_date + ", p_bubble=" + p_bubble + ", b_bubble=" + b_bubble + "]";
 	}
-
-
+	
 }

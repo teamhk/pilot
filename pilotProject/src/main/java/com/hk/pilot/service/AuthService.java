@@ -18,8 +18,8 @@ public class AuthService {
 	@Autowired
 	AuthMapper authMapper;
 	
-	public int addMember(UserInfo userInfo) {
-		return authMapper.addMember(userInfo);
+	public int addPersonalPay(PersonalPay personalPay) {
+		return authMapper.addPersonalPay(personalPay);
 	}
 
 	public String checkId(String id) {
@@ -34,9 +34,20 @@ public class AuthService {
 		}
 	}
 	
-	public int addOwner(ManagerInfo managerInfo) {
-		return authMapper.addOwner(managerInfo);
+	public int addMembers(Members members) {
+		return authMapper.addMembers(members);
+	}
+	
+	public int addStores(Stores stores) {
+		return authMapper.addStores(stores);
+	}
+	
+	public int addItemList(ItemList itemList) {
+		return authMapper.addItemList(itemList);
 	}
 
+	public Members findId(Members members) {
+		return authMapper.findId(members);
+	}
 	
 }
