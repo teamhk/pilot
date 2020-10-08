@@ -17,6 +17,7 @@ import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.service.ManagerService;
+import com.hk.pilot.service.UserService;
 
 @Controller
 @RequestMapping("/manager")
@@ -24,6 +25,9 @@ public class ManagerController {
 
 	@Autowired
 	ManagerService managerService;
+	
+	@Autowired
+	UserService userService;
 
 	@GetMapping("/add")
 	public String StoreAddGet(Model model) {
@@ -184,12 +188,17 @@ public class ManagerController {
 	}
 
 	//게시글 작성 - db저장
-	@PostMapping(value="/aChatW")
-	public String writePost(Model model, Chat chat) {
-		System.out.println("글작성");
-		managerService.write(chat);
-		return "redirect:/manager/aChat";
+		@PostMapping(value="/aChatW")
+		public String writePost(Model model, Chat chat, HttpSession session) {
+			System.out.println("글작성");
+			
+			Members loginMember = (Members) session.getAttribute("loginMember");
+			Members user = userService.selectUserOne(loginMember.getId());
 
+			model.addAttribute("user",user);
+			
+			managerService.write(chat);
+			return "redirect:/manager/aChat";
 	}
 
 	//게시글 목록 조회

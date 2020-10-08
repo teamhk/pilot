@@ -61,7 +61,7 @@
 						</tr>
 						<tr>
 							<td><label for="writer">작성자</label><input type="text"
-								id="writer" name="w_id" placeholder="ID가져올 예정"/></td>
+								id="writer" name="w_id" placeholder="ID가져올 예정" value="${loginMember.id}"/></td>
 						<tr>
 						<tr>
 							<td><label for="writer">회원등급</label><input type="text"
