@@ -6,11 +6,14 @@ import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.OrderProcess;
+import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.UserInfo;
 
 public interface UserMapper {
 	
-	public UserInfo selectUserOne(String id);//user호출
+	public Members selectUserOne(String id);//user호출
+	
+	public PersonalPay selectUserPay(String id) ;
 	
 	public int userUpdate(UserInfo userInfo);//회원의 개인정보 수정
 	

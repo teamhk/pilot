@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
+import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.service.UserService;
 
@@ -39,8 +40,10 @@ public class UserController {
 	public String selectUserOne(Model model,HttpSession session,UserInfo uerInfo) {
 		
 		Members loginMember = (Members) session.getAttribute("loginMember");
-		UserInfo user = userService.selectUserOne(loginMember.getId());
+		Members user = userService.selectUserOne(loginMember.getId());
+		PersonalPay pay = userService.selectUserPay(loginMember.getId());
 		model.addAttribute("user",user);
+		model.addAttribute("pay",pay);
 		return "user/selectUserOne";
 	}
 	

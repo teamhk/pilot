@@ -5,9 +5,14 @@
   
 <mapper namespace="com.hk.pilot.mapper.UserMapper">
 
-<select id="selectUserOne" resultType="com.hk.pilot.dto.UserInfo">
+<select id="selectUserOne" resultType="com.hk.pilot.dto.Members">
 <!-- 	SELECT m.id,pwd,name,cardcom FROM MEMBERS m,personalpay p WHERE m.ID=p.id AND m.id=#{id} -->
-	SELECT m.id,pwd,name,email,pnum,userzipcode,likestore,pwquestion,pwanswer,USERFIRSTADDR,USERSECONDADDR,USEREXTRAADDR,cardcom,cardnum FROM MEMBERS m,personalpay p WHERE m.ID=p.id AND m.id=#{id}
+	SELECT * from members where id=#{id} 
+</select>
+
+<select id="selectUserPay" resultType="com.hk.pilot.dto.PersonalPay">
+<!-- 	SELECT m.id,pwd,name,cardcom FROM MEMBERS m,personalpay p WHERE m.ID=p.id AND m.id=#{id} -->
+	SELECT * from personalPay where id=#{id} 
 </select>
 
 <update id="userUpdate" parameterType="com.hk.pilot.dto.UserInfo">

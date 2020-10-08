@@ -206,7 +206,7 @@ console.log(document.referrer);
 				}
 			})
 	});
-	${.reivce}.
+	
 
 </script>
 </body>

@@ -1,11 +1,15 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.hk.pilot.dto.Members" %>
-<%@ page import="com.hk.pilot.dto.UserInfo" %>
+<%@ page import="com.hk.pilot.dto.PersonalPay" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%  
-	UserInfo user = (UserInfo) request.getAttribute("user");
+	Members user = (Members) request.getAttribute("user");
+%>
+<%  
+	PersonalPay pay = (PersonalPay) request.getAttribute("pay");
 %>
 <!DOCTYPE html>
 <html>
@@ -124,9 +128,9 @@ function sample6_execDaumPostcode() {
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="userExtraAddr" value="${user.userExtraAddr}"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="userSecondAddr" value="${user.userSecondAddr}">
 				<label><b>카드회사</b></label>
-				<input type='text' name='cardCom' value="${user.cardCom }">
+				<input type='text' name='cardCom' value="${pay.cardCom }">
 				<label><b>카드번호</b></label>
-				<input type='text' name='cardNum' value="${user.cardNum }">
+				<input type='text' name='cardNum' value="${pay.cardNum }">
 <!-- 				<h3>결제 카드 등록</h3> -->
 <!-- 				<label for="cardCom"><b>카드회사</b></label> -->
 <!-- 				<select id="cardCom" name="cardCom"> -->

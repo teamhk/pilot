@@ -16,6 +16,7 @@ import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.OrderProcess;
+import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.mapper.UserMapper;
 
@@ -26,9 +27,13 @@ public class UserService {
 	@Autowired
 	UserMapper userMapper;
 	
-	public UserInfo selectUserOne(String id) {
+	public Members selectUserOne(String id) {
 		
 		return userMapper.selectUserOne(id);
+	}
+	
+	public PersonalPay selectUserPay(String id) {
+		return userMapper.selectUserPay(id);
 	}
 
 	// user 개인정보 수정
