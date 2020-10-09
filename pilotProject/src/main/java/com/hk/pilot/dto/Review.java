@@ -13,6 +13,7 @@ public class Review {
 	Date r_date;
 	String depth;
 	int r_no;
+	
 	public String getW_id() {
 		return w_id;
 	}

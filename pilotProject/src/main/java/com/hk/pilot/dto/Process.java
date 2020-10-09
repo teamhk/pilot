@@ -10,6 +10,7 @@ public class Process {
 	Date pick;
 	Date wash;
 	Date finish;
+	Date refundDate;
 	public String getId() {
 		return id;
 	}
@@ -52,12 +53,15 @@ public class Process {
 	public void setFinish(Date finish) {
 		this.finish = finish;
 	}
+	public Date getRefundDate() {
+		return refundDate;
+	}
+	public void setRefundDate(Date refundDate) {
+		this.refundDate = refundDate;
+	}
 	@Override
 	public String toString() {
 		return "Process [id=" + id + ", orderNum=" + orderNum + ", wait=" + wait + ", ok=" + ok + ", pick=" + pick
-				+ ", wash=" + wash + ", finish=" + finish + "]";
+				+ ", wash=" + wash + ", finish=" + finish + ", refundDate=" + refundDate + "]";
 	}
-	
-	
-	
 }

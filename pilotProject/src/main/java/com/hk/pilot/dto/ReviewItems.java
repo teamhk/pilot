@@ -16,6 +16,7 @@ public class ReviewItems {
 	String r_id;
 	String rcom_content;
 	Date rcom_date;
+	String id;
 	String sname;
 	String items;
 	Date pay_date;
@@ -35,6 +36,7 @@ public class ReviewItems {
 	int S1;
 	int C2;
 	int B2;
+	String refund;
 	public String getW_id() {
 		return w_id;
 	}
@@ -112,6 +114,12 @@ public class ReviewItems {
 	}
 	public void setRcom_date(Date rcom_date) {
 		this.rcom_date = rcom_date;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getSname() {
 		return sname;
@@ -227,15 +235,21 @@ public class ReviewItems {
 	public void setB2(int b2) {
 		B2 = b2;
 	}
+	public String getRefund() {
+		return refund;
+	}
+	public void setRefund(String refund) {
+		this.refund = refund;
+	}
 	@Override
 	public String toString() {
 		return "ReviewItems [w_id=" + w_id + ", orderNum=" + orderNum + ", snum=" + snum + ", r_content=" + r_content
 				+ ", star=" + star + ", badCnt=" + badCnt + ", r_date=" + r_date + ", depth=" + depth + ", r_no=" + r_no
 				+ ", rcom_no=" + rcom_no + ", r_id=" + r_id + ", rcom_content=" + rcom_content + ", rcom_date="
-				+ rcom_date + ", sname=" + sname + ", items=" + items + ", pay_date=" + pay_date + ", pay_price="
-				+ pay_price + ", r_check=" + r_check + ", bubble=" + bubble + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1
-				+ ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1
-				+ ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2 + "]";
+				+ rcom_date + ", id=" + id + ", sname=" + sname + ", items=" + items + ", pay_date=" + pay_date
+				+ ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble=" + bubble + ", Y1=" + Y1 + ", B1="
+				+ B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1 + ", P2="
+				+ P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2 + ", refund=" + refund + "]";
 	}
 	
 	

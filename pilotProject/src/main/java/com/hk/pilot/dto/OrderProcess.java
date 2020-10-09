@@ -26,11 +26,13 @@ public class OrderProcess {
 	int S1;
 	int C2;
 	int B2;
+	String refund;
 	Date wait;
 	Date ok;
 	Date pick;
 	Date wash;
 	Date finish;
+	Date refundDate;
 	String name;
 	String email;
 	String pnum;
@@ -170,6 +172,12 @@ public class OrderProcess {
 	public void setB2(int b2) {
 		B2 = b2;
 	}
+	public String getRefund() {
+		return refund;
+	}
+	public void setRefund(String refund) {
+		this.refund = refund;
+	}
 	public Date getWait() {
 		return wait;
 	}
@@ -199,6 +207,12 @@ public class OrderProcess {
 	}
 	public void setFinish(Date finish) {
 		this.finish = finish;
+	}
+	public Date getRefundDate() {
+		return refundDate;
+	}
+	public void setRefundDate(Date refundDate) {
+		this.refundDate = refundDate;
 	}
 	public String getName() {
 		return name;
@@ -248,10 +262,10 @@ public class OrderProcess {
 				+ items + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble="
 				+ bubble + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1
 				+ ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2
-				+ ", wait=" + wait + ", ok=" + ok + ", pick=" + pick + ", wash=" + wash + ", finish=" + finish
-				+ ", name=" + name + ", email=" + email + ", pnum=" + pnum + ", userZipCode=" + userZipCode
-				+ ", userFirstAddr=" + userFirstAddr + ", userSecondAddr=" + userSecondAddr + ", userExtraAddr="
-				+ userExtraAddr + "]";
+				+ ", refund=" + refund + ", wait=" + wait + ", ok=" + ok + ", pick=" + pick + ", wash=" + wash
+				+ ", finish=" + finish + ", refundDate=" + refundDate + ", name=" + name + ", email=" + email
+				+ ", pnum=" + pnum + ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr
+				+ ", userSecondAddr=" + userSecondAddr + ", userExtraAddr=" + userExtraAddr + "]";
 	}
 	
 }

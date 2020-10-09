@@ -26,6 +26,7 @@ public class OrderList {
 	int S1;
 	int C2;
 	int B2;
+	String refund;
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -158,14 +159,19 @@ public class OrderList {
 	public void setB2(int b2) {
 		B2 = b2;
 	}
+	public String getRefund() {
+		return refund;
+	}
+	public void setRefund(String refund) {
+		this.refund = refund;
+	}
 	@Override
 	public String toString() {
 		return "OrderList [orderNum=" + orderNum + ", id=" + id + ", snum=" + snum + ", sname=" + sname + ", items="
 				+ items + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble="
 				+ bubble + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1
 				+ ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2
-				+ "]";
+				+ ", refund=" + refund + "]";
 	}
-	
-	
+		
 }

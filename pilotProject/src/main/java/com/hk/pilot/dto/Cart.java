@@ -5,9 +5,9 @@ public class Cart {
 	String items;
 	String snum;
 	String sname;
-	String c_check;
+	String c_check="N";
 	int cart_seq;
-	String choice;
+	String choice="Y";
 	int Y1;
 	int B1;
 	int T1;

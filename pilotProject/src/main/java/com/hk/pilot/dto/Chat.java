@@ -5,7 +5,7 @@ import java.util.Date;
 public class Chat {
 	String w_id;
 	int c_no;
-	String c_check;
+	String g_check;
 	Date c_date;
 	String c_content;
 	String c_title;
@@ -22,11 +22,11 @@ public class Chat {
 	public void setC_no(int c_no) {
 		this.c_no = c_no;
 	}
-	public String getC_check() {
-		return c_check;
+	public String getG_check() {
+		return g_check;
 	}
-	public void setC_check(String c_check) {
-		this.c_check = c_check;
+	public void setG_check(String g_check) {
+		this.g_check = g_check;
 	}
 	public Date getC_date() {
 		return c_date;
@@ -54,9 +54,8 @@ public class Chat {
 	}
 	@Override
 	public String toString() {
-		return "Chat [w_id=" + w_id + ", c_no=" + c_no + ", c_check=" + c_check + ", c_date=" + c_date + ", c_content="
+		return "Chat [w_id=" + w_id + ", c_no=" + c_no + ", g_check=" + g_check + ", c_date=" + c_date + ", c_content="
 				+ c_content + ", c_title=" + c_title + ", depth=" + depth + "]";
 	}
-	
 		
 }

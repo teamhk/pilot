@@ -7,7 +7,7 @@ public class PersonalPay {
 
 	String id;
 	String cardCom;
-	int cardNum;
+	String cardNum;
 	int cardExp;
 	int cardCvc;
 	public String getId() {
@@ -22,10 +22,10 @@ public class PersonalPay {
 	public void setCardCom(String cardCom) {
 		this.cardCom = cardCom;
 	}
-	public int getCardNum() {
+	public String getCardNum() {
 		return cardNum;
 	}
-	public void getCardNum(int cardNum) {
+	public void getCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
 	public int getCardExp() {

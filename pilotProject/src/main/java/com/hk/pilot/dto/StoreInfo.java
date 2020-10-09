@@ -9,7 +9,7 @@ public class StoreInfo {
 	String snum;
 	String scontact;
 	String bank;
-	int bnum;
+	String bnum;
 	String permit;
 	Date s_date;
 	int area_num;
@@ -18,20 +18,24 @@ public class StoreInfo {
 	String storeFirstAddr;
 	String storeSecondAddr;
 	String storeExtraAddr;
+	String sp1;
+	String sp2;
+	String sp3;
+	String sp4;
 	String items;
-	String Y1="N";
-	String B1="N";
-	String T1="N";
-	String M1="N";
-	String P1="N";
-	String K1="N";
-	String J1="N";
-	String C1="N";
-	String P2="N";
-	String D1="N";
-	String S1="N";
-	String C2="N";
-	String B2="N";
+	String Y1 = "N";
+	String B1 = "N";
+	String T1 = "N";
+	String M1 = "N";
+	String P1 = "N";
+	String P2 = "N";
+	String K1 = "N";
+	String J1 = "N";
+	String C1 = "N";
+	String D1 = "N";
+	String S1 = "N";
+	String C2 = "N";
+	String B2 = "N";
 	String w_id;
 	int orderNum;
 	String r_content;
@@ -89,10 +93,10 @@ public class StoreInfo {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public int getBnum() {
+	public String getBnum() {
 		return bnum;
 	}
-	public void setBnum(int bnum) {
+	public void setBnum(String bnum) {
 		this.bnum = bnum;
 	}
 	public String getPermit() {
@@ -143,6 +147,30 @@ public class StoreInfo {
 	public void setStoreExtraAddr(String storeExtraAddr) {
 		this.storeExtraAddr = storeExtraAddr;
 	}
+	public String getSp1() {
+		return sp1;
+	}
+	public void setSp1(String sp1) {
+		this.sp1 = sp1;
+	}
+	public String getSp2() {
+		return sp2;
+	}
+	public void setSp2(String sp2) {
+		this.sp2 = sp2;
+	}
+	public String getSp3() {
+		return sp3;
+	}
+	public void setSp3(String sp3) {
+		this.sp3 = sp3;
+	}
+	public String getSp4() {
+		return sp4;
+	}
+	public void setSp4(String sp4) {
+		this.sp4 = sp4;
+	}
 	public String getItems() {
 		return items;
 	}
@@ -179,6 +207,12 @@ public class StoreInfo {
 	public void setP1(String p1) {
 		P1 = p1;
 	}
+	public String getP2() {
+		return P2;
+	}
+	public void setP2(String p2) {
+		P2 = p2;
+	}
 	public String getK1() {
 		return K1;
 	}
@@ -196,12 +230,6 @@ public class StoreInfo {
 	}
 	public void setC1(String c1) {
 		C1 = c1;
-	}
-	public String getP2() {
-		return P2;
-	}
-	public void setP2(String p2) {
-		P2 = p2;
 	}
 	public String getD1() {
 		return D1;
@@ -394,15 +422,16 @@ public class StoreInfo {
 		return "StoreInfo [id=" + id + ", sname=" + sname + ", snum=" + snum + ", scontact=" + scontact + ", bank="
 				+ bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date + ", area_num=" + area_num
 				+ ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode + ", storeFirstAddr=" + storeFirstAddr
-				+ ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr=" + storeExtraAddr + ", items=" + items
-				+ ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1
-				+ ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2 + ", w_id="
-				+ w_id + ", orderNum=" + orderNum + ", r_content=" + r_content + ", star=" + star + ", badCnt=" + badCnt
-				+ ", r_date=" + r_date + ", depth=" + depth + ", r_no=" + r_no + ", rcom_no=" + rcom_no + ", r_id="
-				+ r_id + ", rcom_content=" + rcom_content + ", rcom_date=" + rcom_date + ", Y1P=" + Y1P + ", B1P=" + B1P
-				+ ", T1P=" + T1P + ", M1P=" + M1P + ", P1P=" + P1P + ", K1P=" + K1P + ", J1P=" + J1P + ", C1P=" + C1P
-				+ ", P2P=" + P2P + ", D1P=" + D1P + ", S1P=" + S1P + ", C2P=" + C2P + ", B2P=" + B2P + ", p_date="
-				+ p_date + ", p_seq=" + p_seq + "]";
+				+ ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr=" + storeExtraAddr + ", sp1=" + sp1
+				+ ", sp2=" + sp2 + ", sp3=" + sp3 + ", sp4=" + sp4 + ", items=" + items + ", Y1=" + Y1 + ", B1=" + B1
+				+ ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", P2=" + P2 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1
+				+ ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2 + ", w_id=" + w_id + ", orderNum="
+				+ orderNum + ", r_content=" + r_content + ", star=" + star + ", badCnt=" + badCnt + ", r_date=" + r_date
+				+ ", depth=" + depth + ", r_no=" + r_no + ", rcom_no=" + rcom_no + ", r_id=" + r_id + ", rcom_content="
+				+ rcom_content + ", rcom_date=" + rcom_date + ", Y1P=" + Y1P + ", B1P=" + B1P + ", T1P=" + T1P
+				+ ", M1P=" + M1P + ", P1P=" + P1P + ", K1P=" + K1P + ", J1P=" + J1P + ", C1P=" + C1P + ", P2P=" + P2P
+				+ ", D1P=" + D1P + ", S1P=" + S1P + ", C2P=" + C2P + ", B2P=" + B2P + ", p_date=" + p_date + ", p_seq="
+				+ p_seq + "]";
 	}
-	
+		
 }

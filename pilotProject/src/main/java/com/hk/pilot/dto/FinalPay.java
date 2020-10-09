@@ -13,21 +13,21 @@ public class FinalPay {
 	String userSecondAddr;
 	String userExtraAddr;
 	String cardCheck;
-	String likeStore;
+	String likeStore1;
+	String likeStore2;
+	String likeStore3;
 	String udCheck;
-	String pwQuestion;
-	String pwAnswer;
 	String reason;
 	String grade;
 	String cardCom;
-	int cardNun;
+	String cardNun;
 	int cardExp;
 	int cardCvc;
 	String sname;
 	String snum;
 	String scontact;
 	String bank;
-	int bnum;
+	String bnum;
 	String permit;
 	Date s_date;
 	int area_num;
@@ -36,8 +36,12 @@ public class FinalPay {
 	String storeFirstAddr;
 	String storeSecondAddr;
 	String storeExtraAddr;
+	String sp1;
+	String sp2;
+	String sp3;
+	String sp4;
 	String items;
-	String check;
+	String c_check;
 	int cart_seq;
 	String choice;
 	int Y1;
@@ -73,6 +77,7 @@ public class FinalPay {
 	Date b_date;
 	int p_bubble;
 	int b_bubble;
+	int b_seq;
 	public String getId() {
 		return id;
 	}
@@ -133,29 +138,29 @@ public class FinalPay {
 	public void setCardCheck(String cardCheck) {
 		this.cardCheck = cardCheck;
 	}
-	public String getLikeStore() {
-		return likeStore;
+	public String getLikeStore1() {
+		return likeStore1;
 	}
-	public void setLikeStore(String likeStore) {
-		this.likeStore = likeStore;
+	public void setLikeStore1(String likeStore1) {
+		this.likeStore1 = likeStore1;
+	}
+	public String getLikeStore2() {
+		return likeStore2;
+	}
+	public void setLikeStore2(String likeStore2) {
+		this.likeStore2 = likeStore2;
+	}
+	public String getLikeStore3() {
+		return likeStore3;
+	}
+	public void setLikeStore3(String likeStore3) {
+		this.likeStore3 = likeStore3;
 	}
 	public String getUdCheck() {
 		return udCheck;
 	}
 	public void setUdCheck(String udCheck) {
 		this.udCheck = udCheck;
-	}
-	public String getPwQuestion() {
-		return pwQuestion;
-	}
-	public void setPwQuestion(String pwQuestion) {
-		this.pwQuestion = pwQuestion;
-	}
-	public String getPwAnswer() {
-		return pwAnswer;
-	}
-	public void setPwAnswer(String pwAnswer) {
-		this.pwAnswer = pwAnswer;
 	}
 	public String getReason() {
 		return reason;
@@ -175,10 +180,10 @@ public class FinalPay {
 	public void setCardCom(String cardCom) {
 		this.cardCom = cardCom;
 	}
-	public int getCardNun() {
+	public String getCardNun() {
 		return cardNun;
 	}
-	public void setCardNun(int cardNun) {
+	public void setCardNun(String cardNun) {
 		this.cardNun = cardNun;
 	}
 	public int getCardExp() {
@@ -217,10 +222,10 @@ public class FinalPay {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public int getBnum() {
+	public String getBnum() {
 		return bnum;
 	}
-	public void setBnum(int bnum) {
+	public void setBnum(String bnum) {
 		this.bnum = bnum;
 	}
 	public String getPermit() {
@@ -271,17 +276,41 @@ public class FinalPay {
 	public void setStoreExtraAddr(String storeExtraAddr) {
 		this.storeExtraAddr = storeExtraAddr;
 	}
+	public String getSp1() {
+		return sp1;
+	}
+	public void setSp1(String sp1) {
+		this.sp1 = sp1;
+	}
+	public String getSp2() {
+		return sp2;
+	}
+	public void setSp2(String sp2) {
+		this.sp2 = sp2;
+	}
+	public String getSp3() {
+		return sp3;
+	}
+	public void setSp3(String sp3) {
+		this.sp3 = sp3;
+	}
+	public String getSp4() {
+		return sp4;
+	}
+	public void setSp4(String sp4) {
+		this.sp4 = sp4;
+	}
 	public String getItems() {
 		return items;
 	}
 	public void setItems(String items) {
 		this.items = items;
 	}
-	public String getCheck() {
-		return check;
+	public String getC_check() {
+		return c_check;
 	}
-	public void setCheck(String check) {
-		this.check = check;
+	public void setC_check(String c_check) {
+		this.c_check = c_check;
 	}
 	public int getCart_seq() {
 		return cart_seq;
@@ -493,24 +522,31 @@ public class FinalPay {
 	public void setB_bubble(int b_bubble) {
 		this.b_bubble = b_bubble;
 	}
+	public int getB_seq() {
+		return b_seq;
+	}
+	public void setB_seq(int b_seq) {
+		this.b_seq = b_seq;
+	}
 	@Override
 	public String toString() {
 		return "FinalPay [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
 				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
-				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore="
-				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
+				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore1="
+				+ likeStore1 + ", likeStore2=" + likeStore2 + ", likeStore3=" + likeStore3 + ", udCheck=" + udCheck
 				+ ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom + ", cardNun=" + cardNun
 				+ ", cardExp=" + cardExp + ", cardCvc=" + cardCvc + ", sname=" + sname + ", snum=" + snum
 				+ ", scontact=" + scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date="
 				+ s_date + ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode
 				+ ", storeFirstAddr=" + storeFirstAddr + ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr="
-				+ storeExtraAddr + ", items=" + items + ", check=" + check + ", cart_seq=" + cart_seq + ", choice="
-				+ choice + ", Y1=" + Y1 + ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1
-				+ ", J1=" + J1 + ", C1=" + C1 + ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2
-				+ ", Y1P=" + Y1P + ", B1P=" + B1P + ", T1P=" + T1P + ", M1P=" + M1P + ", P1P=" + P1P + ", K1P=" + K1P
-				+ ", J1P=" + J1P + ", C1P=" + C1P + ", P2P=" + P2P + ", D1P=" + D1P + ", S1P=" + S1P + ", C2P=" + C2P
-				+ ", B2P=" + B2P + ", p_date=" + p_date + ", p_seq=" + p_seq + ", b_price=" + b_price + ", bubble="
-				+ bubble + ", b_date=" + b_date + ", p_bubble=" + p_bubble + ", b_bubble=" + b_bubble + "]";
-	}
-			
+				+ storeExtraAddr + ", sp1=" + sp1 + ", sp2=" + sp2 + ", sp3=" + sp3 + ", sp4=" + sp4 + ", items="
+				+ items + ", c_check=" + c_check + ", cart_seq=" + cart_seq + ", choice=" + choice + ", Y1=" + Y1
+				+ ", B1=" + B1 + ", T1=" + T1 + ", M1=" + M1 + ", P1=" + P1 + ", K1=" + K1 + ", J1=" + J1 + ", C1=" + C1
+				+ ", P2=" + P2 + ", D1=" + D1 + ", S1=" + S1 + ", C2=" + C2 + ", B2=" + B2 + ", Y1P=" + Y1P + ", B1P="
+				+ B1P + ", T1P=" + T1P + ", M1P=" + M1P + ", P1P=" + P1P + ", K1P=" + K1P + ", J1P=" + J1P + ", C1P="
+				+ C1P + ", P2P=" + P2P + ", D1P=" + D1P + ", S1P=" + S1P + ", C2P=" + C2P + ", B2P=" + B2P + ", p_date="
+				+ p_date + ", p_seq=" + p_seq + ", b_price=" + b_price + ", bubble=" + bubble + ", b_date=" + b_date
+				+ ", p_bubble=" + p_bubble + ", b_bubble=" + b_bubble + ", b_seq=" + b_seq + "]";
+	}	
+	
 }

@@ -11,10 +11,10 @@ public class Members {
 	String userSecondAddr;
 	String userExtraAddr;
 	String cardCheck;
-	String likeStore;
+	String likeStore1;
+	String likeStore2;
+	String likeStore3;
 	String udCheck;
-	String pwQuestion;
-	String pwAnswer;
 	String reason;
 	String grade;
 	public String getId() {
@@ -77,11 +77,23 @@ public class Members {
 	public void setCardCheck(String cardCheck) {
 		this.cardCheck = cardCheck;
 	}
-	public String getLikeStore() {
-		return likeStore;
+	public String getLikeStore1() {
+		return likeStore1;
 	}
-	public void setLikeStore(String likeStore) {
-		this.likeStore = likeStore;
+	public void setLikeStore1(String likeStore1) {
+		this.likeStore1 = likeStore1;
+	}
+	public String getLikeStore2() {
+		return likeStore2;
+	}
+	public void setLikeStore2(String likeStore2) {
+		this.likeStore2 = likeStore2;
+	}
+	public String getLikeStore3() {
+		return likeStore3;
+	}
+	public void setLikeStore3(String likeStore3) {
+		this.likeStore3 = likeStore3;
 	}
 	public String getUdCheck() {
 		return udCheck;
@@ -89,18 +101,7 @@ public class Members {
 	public void setUdCheck(String udCheck) {
 		this.udCheck = udCheck;
 	}
-	public String getPwQuestion() {
-		return pwQuestion;
-	}
-	public void setPwQuestion(String pwQuestion) {
-		this.pwQuestion = pwQuestion;
-	}
-	public String getPwAnswer() {
-		return pwAnswer;
-	}
-	public void setPwAnswer(String pwAnswer) {
-		this.pwAnswer = pwAnswer;
-	}
+	
 	public String getReason() {
 		return reason;
 	}
@@ -117,9 +118,10 @@ public class Members {
 	public String toString() {
 		return "Members [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
 				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
-				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore="
-				+ likeStore + ", udCheck=" + udCheck + ", pwQuestion=" + pwQuestion + ", pwAnswer=" + pwAnswer
-				+ ", reason=" + reason + ", grade=" + grade + "]";
+				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore1="
+				+ likeStore1 + ", likeStore2=" + likeStore2 + ", likeStore3=" + likeStore3 + ", udCheck=" + udCheck
+				+ ", reason=" + reason + ", grade=" + grade
+				+ "]";
 	}
-	
+		
 }
