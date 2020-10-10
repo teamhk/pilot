@@ -8,8 +8,8 @@ public class PersonalPay {
 	String id;
 	String cardCom;
 	String cardNum;
-	int cardExp;
-	int cardCvc;
+	String cardExp;
+	String cardCvc;
 	public String getId() {
 		return id;
 	}
@@ -28,16 +28,16 @@ public class PersonalPay {
 	public void getCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
-	public int getCardExp() {
+	public String getCardExp() {
 		return cardExp;
 	}
-	public void setCardExp(int cardExp) {
+	public void setCardExp(String cardExp) {
 		this.cardExp = cardExp;
 	}
-	public int getCardCvc() {
+	public String getCardCvc() {
 		return cardCvc;
 	}
-	public void setCardCvc(int cardCvc) {
+	public void setCardCvc(String cardCvc) {
 		this.cardCvc = cardCvc;
 	}
 	@Override

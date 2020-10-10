@@ -21,8 +21,8 @@ public class FinalPay {
 	String grade;
 	String cardCom;
 	String cardNun;
-	int cardExp;
-	int cardCvc;
+	String cardExp;
+	String cardCvc;
 	String sname;
 	String snum;
 	String scontact;
@@ -186,16 +186,16 @@ public class FinalPay {
 	public void setCardNun(String cardNun) {
 		this.cardNun = cardNun;
 	}
-	public int getCardExp() {
+	public String getCardExp() {
 		return cardExp;
 	}
-	public void setCardExp(int cardExp) {
+	public void setCardExp(String cardExp) {
 		this.cardExp = cardExp;
 	}
-	public int getCardCvc() {
+	public String getCardCvc() {
 		return cardCvc;
 	}
-	public void setCardCvc(int cardCvc) {
+	public void setCardCvc(String cardCvc) {
 		this.cardCvc = cardCvc;
 	}
 	public String getSname() {

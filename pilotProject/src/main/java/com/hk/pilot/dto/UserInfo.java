@@ -21,8 +21,8 @@ public class UserInfo {
 	String grade;
 	String cardCom;
 	String cardNum;
-	int cardExp;
-	int cardCvc;
+	String cardExp;
+	String cardCvc;
 	int b_price;
 	int bubble;
 	Date b_date;
@@ -137,16 +137,16 @@ public class UserInfo {
 	public void setCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
-	public int getCardExp() {
+	public String getCardExp() {
 		return cardExp;
 	}
-	public void setCardExp(int cardExp) {
+	public void setCardExp(String cardExp) {
 		this.cardExp = cardExp;
 	}
-	public int getCardCvc() {
+	public String getCardCvc() {
 		return cardCvc;
 	}
-	public void setCardCvc(int cardCvc) {
+	public void setCardCvc(String cardCvc) {
 		this.cardCvc = cardCvc;
 	}
 	public int getB_price() {
