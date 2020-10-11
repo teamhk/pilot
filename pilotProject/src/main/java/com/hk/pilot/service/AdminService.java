@@ -98,4 +98,8 @@ public class AdminService {
 	public Price itemsPriceGet() {
 		return adminMapper.itemsPriceGet();
 	}
+	
+	public int itemsPricePost(Price price) {
+		return adminMapper.itemsPricePost(price);
+	}
 }

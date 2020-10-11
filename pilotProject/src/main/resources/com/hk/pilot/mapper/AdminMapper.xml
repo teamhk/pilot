@@ -73,4 +73,17 @@
 		select * from MAPDATA
 	</select>
 	
+	<select id="itemsPriceGet" resultType="com.hk.pilot.dto.Price">
+		SELECT Y1P, B1P, T1P, M1P, P1P, K1P, J1P, C1P, P2P, D1P, S1P, C2P, B2P, P_SEQ, P_DATE FROM (select * from price order by p_seq desc) WHERE rownum=1
+	</select>
+	
+	<insert id="itemsPricePost">
+		<selectKey keyProperty="seq" order="BEFORE" resultType="long">
+			select max(p_seq) from price
+		</selectKey>
+		INSERT INTO PRICE (Y1P, B1P, T1P, M1P, P1P, K1P, J1P, C1P, P2P, D1P, S1P, C2P, B2P, P_SEQ, P_DATE) 
+		VALUES(#{Y1P}, #{B1P}, #{T1P}, #{M1P}, #{P1P}, #{K1P}, #{J1P}, #{C1P}, #{P2P},#{D1P}, #{S1P}, #{C2P}, #{B2P},#{seq}+1, sysdate )
+	</insert>
+	
+	
 </mapper>

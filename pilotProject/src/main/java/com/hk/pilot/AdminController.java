@@ -102,8 +102,16 @@ public class AdminController {
 		@GetMapping("/price")
 		public String itemsPriceGet(Model model) {
 			System.out.println("priceGet...호출");
+			Price itp = adminService.itemsPriceGet();
+			System.out.println(itp.toString());
+			model.addAttribute("itp",itp);
 			return "/admin/itemsPriceGet";
-			
+		}
+		
+		@PostMapping("/price")
+		public String itemsPricePost(Model model,Price price) {
+			int ret = adminService.itemsPricePost(price);
+			return "admin/itemsPricePost";
 		}
 		
 }

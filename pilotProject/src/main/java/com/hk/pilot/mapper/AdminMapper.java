@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
+import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -36,4 +37,8 @@ public interface AdminMapper {
 	public int storeUpdatePost2(StoreInfo storeInfo); //업체 정보 수정2 (itemList)
 	
 	public List<MapData> mapLoad(); //맵 정보를 실시간으로 가져오는 ajax
+	
+	public Price itemsPriceGet(); //가격표 불러오기
+	
+	public int itemsPricePost(Price price); //가격표 수정하기
 }

@@ -114,5 +114,6 @@ public class Price {
 				+ ", J1P=" + J1P + ", C1P=" + C1P + ", P2P=" + P2P + ", D1P=" + D1P + ", S1P=" + S1P + ", C2P=" + C2P
 				+ ", B2P=" + B2P + ", p_date=" + p_date + ", p_seq=" + p_seq + "]";
 	}
+	
 			
 }
