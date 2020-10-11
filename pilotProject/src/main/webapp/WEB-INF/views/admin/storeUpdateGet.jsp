@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="com.hk.pilot.dto.StoreInfo" %>
 <%  
 	StoreInfo stInfo = (StoreInfo) request.getAttribute("storeInfo");
@@ -14,8 +16,8 @@
 </head>
 <body>
 <h1>업체 정보</h1>
-<form action='updateOne' name='storeform' method='post' id='storeform'>
-		ID :<input type='text' name='id' value=${loginMember.id } readonly><br>  <!--${loginMember.name }-->
+<form action='storeUpdate' name='storeform' method='post' id='storeform'>
+		ID :<input type='text' name='id' value=${storeInfo.id } readonly><br>  <!--${loginMember.name }-->
 		상호명 :<input type='text' name='sname' value="${storeInfo.sname}"><br>
 <%-- 		주소 :<input type='text' name='saddress' value="${storeInfo.saddress}"><br> --%>
 		<label>점포주소</label>
@@ -77,6 +79,11 @@
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
 		<input type='hidden' name='items' value="">
+		<label for="permit">승인여부:</label>
+		<select id="permit" name="permit" form="storeform">
+  			<option value="Y">Y</option>
+  			<option value="N">N</option>
+  		</select><br>
 		<button onclick="abcd();">전송</button>
 	</form>
 <script>
@@ -86,6 +93,8 @@
 		var str1 = "<%=stInfo.getBank()%>";
 		document.storeform.bank.value=str1;
 
+		var str2 = "<%=stInfo.getPermit()%>";
+		document.storeform.permit.value=str2;
 		
 		//--------품목이 체크되면 Value값을 1로 변경해주는 함수
 // 		$("input[type='checkbox']").change(function() {

@@ -28,8 +28,6 @@
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="userExtraAddr" value="${owner.userExtraAddr}"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="userSecondAddr" value="${owner.userSecondAddr}">
 		연락처:<input type='number' name='pnum' value="${owner.pnum}"><br>
-		비밀 번호 찾기 질문 : <input type='text' name='pwQuestion' value="${owner.pwQuestion}"><br>
-		비밀 번호 찾기 정답 : <input type='text' name='pwAnswer' value="${owner.pwAnswer}"><br>
 	</form>
 		<button id='btn' disabled onclick="abcd();">전송</button>
 <script>
