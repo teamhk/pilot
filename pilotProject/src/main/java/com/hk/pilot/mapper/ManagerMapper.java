@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.hk.pilot.dto.Chat;
+import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.SearchCriteria;
@@ -56,5 +57,11 @@ public interface ManagerMapper {
 	
 	public void delete(int c_no); // 게시글 삭제하기
 	
+//	chatComment--------------------------------------------------------------------------------------------------------------------------
+	
+	public List<ChatComment> readComment(int c_no); //작성 댓글 조회
 			
 }
+	
+			
+

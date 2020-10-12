@@ -53,6 +53,8 @@ li {
 						<th>게시글 작성자</th>
 						<th>등록일</th>
 
+						<th>회원등급</th>
+
 					</tr>
 
 					<c:forEach items="${list}" var="list">
@@ -63,6 +65,7 @@ li {
 							<td><c:out value="${list.w_id}" /></td>
 							<td><fmt:formatDate value="${list.c_date}"
 									pattern="yyyy-MM-dd" /></td>
+							<td><c:out value="${list.g_check}" /></td>
 
 						</tr>
 					</c:forEach>
@@ -94,6 +97,7 @@ li {
 				<script>
 					
 				</script>
+
 
 
 

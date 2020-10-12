@@ -37,7 +37,7 @@
 	
 	
 	</script>
-	<body>
+<body>
 	
 		<div id="root">
 			<header>
@@ -73,7 +73,7 @@
 							
 							<tr>
 								<td>
-									<label for="writer">회원등급</label><input type="text" id="grade" name="c_check" value="${update.c_check}" readonly="readonly" />
+									<label for="writer">회원등급</label><input type="text" id="grade" name="g_check" value="${update.g_check}" readonly="readonly" />
 								</td>
 							</tr>
 							

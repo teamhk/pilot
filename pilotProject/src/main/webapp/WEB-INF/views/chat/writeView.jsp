@@ -65,7 +65,7 @@
 						<tr>
 						<tr>
 							<td><label for="writer">회원등급</label><input type="text"
-								id="grade" name="c_check" placeholder="회원등급 가져올예정" /></td>
+								id="grade" name="g_check" placeholder="회원등급 가져올예정" value="${loginMember.grade}"/></td>
 						<tr>
 							<td>
 								<button type="submit" class="write_btn">작성하기</button>

@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>게시판</title>
 </head>
 
@@ -37,7 +38,7 @@
 
 			location.href = "/manager/aChat";
 		})
-		
+
 	})
 </script>
 
@@ -75,14 +76,14 @@
 							id="writer" name="w_id" value="${selectOne.w_id}"
 							readonly="readonly" /></td>
 					</tr>
-					
+
 					<tr>
 						<td><label for="writer">회원등급</label><input type="text"
-							id="grade" name="c_check" value="${selectOne.c_check}"
+							id="grade" name="g_check" value="${selectOne.g_check}"
 							readonly="readonly" /></td>
 					</tr>
-					
-					
+
+
 					<tr>
 						<td><label for="sysdate">작성날짜</label> <fmt:formatDate
 								value="${selectOne.c_date}" pattern="yyyy-MM-dd" /></td>
@@ -95,9 +96,27 @@
 				<button type="submit" class="list_btn">목록</button>
 			</div>
 
-			
+			<!-- 댓글목록 1009 추가 james-->
+			<div id="comment">
+				<ol class="commentList">
+					<c:forEach items="${commentList}" var="commentList">
+						<li>
+							<p>
+								작성자 : ${commentList.r_id}<br /> 작성 날짜 :
+								<fmt:formatDate value="${commentList.com_date}"
+									pattern="yyyy-MM-dd" />
+							</p>
+
+							<p>${commentList.com_content}</p>
+						</li>
+					</c:forEach>
+				</ol>
+			</div>
+
+
 		</section>
 		<hr />
 	</div>
 </body>
 </html>
+

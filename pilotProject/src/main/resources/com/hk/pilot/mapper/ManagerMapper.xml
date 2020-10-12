@@ -155,10 +155,10 @@
 	<insert id="write">
 
 		INSERT INTO CHAT (W_ID, C_NO, C_DATE, C_CONTENT,
-		C_CHECK,
+		G_CHECK,
 		C_TITLE)
 		VALUES(#{w_id}, CHAT_seq.nextval, sysdate,
-		#{c_content} , #{c_check},
+		#{c_content} , #{g_check},
 		#{c_title} )
 
 	</insert>
@@ -166,10 +166,10 @@
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
-		SELECT w_id, c_no, c_date, c_content, c_title
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check
 		FROM
 		(SELECT w_id,
-		c_no, c_date, c_content, c_title,
+		c_no, c_date, c_content, c_title, g_check,
 		row_number()
 		over(ORDER
 		BY c_no DESC) as rnum FROM chat) WHERE rnum
@@ -204,7 +204,7 @@
 	<select id="selectOne" parameterType="int"
 		resultType="com.hk.pilot.dto.Chat">
 
-		SELECT w_id, c_no, c_date, c_content, c_title, c_check FROM
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check FROM
 		CHAT
 		where c_no = #{c_no}
 
@@ -214,7 +214,7 @@
 	<update id="update" parameterType="com.hk.pilot.dto.Chat">
 
 		UPDATE CHAT SET W_ID=#{w_id},
-		C_CHECK=#{c_check},
+		g_CHECK=#{g_check},
 		C_CONTENT=#{c_content}, C_TITLE=#{c_title} WHERE
 		C_NO= #{c_no}
 
@@ -228,6 +228,16 @@
 		#{c_no}
 
 	</delete>
+
+	<!-- 댓글 조회하기 1009 새로 추가 -->
+	<select id="readComment"
+		resultType="com.hk.pilot.dto.ChatComment">
+
+		SELECT com_no, com_content, r_id,
+		com_date FROM CHATCOMMENT
+		WHERE c_no =#{c_no}
+
+	</select>
 
 
 </mapper>

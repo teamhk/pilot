@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.pilot.dto.Chat;
+import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.SearchCriteria;
@@ -173,5 +174,17 @@ public class ManagerService {
 
 	}
 
+	//작성 댓글 조회 —————————————————관리자 외 작성권한 없음 1009
 
-}
+	public List<ChatComment> readComment(int c_no){
+
+		System.out.println("게시글-코멘트 읽으러 들어옴-ok");
+
+		return managerMapper.readComment(c_no);
+	}
+
+
+}	
+
+
+
