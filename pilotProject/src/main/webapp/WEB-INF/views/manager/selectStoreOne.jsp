@@ -55,11 +55,11 @@
 				<input type='checkbox' id='티셔츠' name='T1' 
 				<%= (stInfo.getT1().equals("Y")) ? "checked" : ""%> value="Y">티셔츠&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='맨투맨,후드' name='M1' 
-				<%= (stInfo.getM1().equals("Y")) ? "checked" : ""%> value="Y">맨투맨,후드&nbsp;&nbsp;&nbsp;
+				<%= (stInfo.getM1().equals("Y")) ? "checked" : ""%> value="Y">맨투맨&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='바지' name='P1' 
 				<%= (stInfo.getP1().equals("Y")) ? "checked" : ""%> value="Y">바지&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='니트류' name='K1' 
-				<%= (stInfo.getK1().equals("Y")) ? "checked" : ""%> value="Y">니트류&nbsp;&nbsp;&nbsp;
+				<%= (stInfo.getK1().equals("Y")) ? "checked" : ""%> value="Y">니트&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='자켓' name='J1' 
 				<%= (stInfo.getJ1().equals("Y")) ? "checked" : ""%> value="Y">자켓&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='코트' name='C1' 
@@ -69,11 +69,11 @@
 				<input type='checkbox' id='이불' name='D1' 
 				<%= (stInfo.getD1().equals("Y")) ? "checked" : ""%> value="Y">이불&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='슈즈(신발류)' name='S1' 
-				<%= (stInfo.getS1().equals("Y")) ? "checked" : ""%> value="Y">슈즈(신발류)&nbsp;&nbsp;&nbsp;
+				<%= (stInfo.getS1().equals("Y")) ? "checked" : ""%> value="Y">신발&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='커튼' name='C2' 
 				<%= (stInfo.getC2().equals("Y")) ? "checked" : ""%> value="Y">커튼&nbsp;&nbsp;&nbsp;
 				<input type='checkbox' id='가방류' name='B2' 
-				<%= (stInfo.getB2().equals("Y")) ? "checked" : ""%> value="Y">가방류&nbsp;&nbsp;&nbsp;
+				<%= (stInfo.getB2().equals("Y")) ? "checked" : ""%> value="Y">가방&nbsp;&nbsp;&nbsp;
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
 		<input type='hidden' name='items' value="">

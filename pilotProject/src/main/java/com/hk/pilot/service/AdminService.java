@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -101,5 +102,9 @@ public class AdminService {
 	
 	public int itemsPricePost(Price price) {
 		return adminMapper.itemsPricePost(price);
+	}
+
+	public List<StatisticDay> chartData() {
+		return adminMapper.chartData();
 	}
 }

@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.hk.pilot.dto.Price" %>
+<%
+	Price pri = (Price)request.getAttribute("itp");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,19 +23,21 @@
 		</div>
 		<div id='maindiv'>
 		<form action='price' method='post'>
-			와이셔츠:<input type='text' name='Y1P' value='${itp.Y1P}'><br>
-			블라우스:<input type='text' name='B1P' value='${itp.B1P}'><br>
-			티셔츠:<input type='text' name='T1P' value='${itp.T1P}'><br>
-			맨투맨:<input type='text' name='M1P' value='${itp.M1P}'><br>
-			바지:<input type='text' name='P1P' value='${itp.P1P}'><br>
-			니트:<input type='text' name='K1P' value='${itp.K1P}'><br>
-			자켓:<input type='text' name='J1P' value='${itp.J1P}'><br>
-			코트:<input type='text' name='C1P' value='${itp.C1P}'><br>
-			패딩:<input type='text' name='P2P' value='${itp.P2P}'><br>
-			이불:<input type='text' name='D1P' value='${itp.D1P}'><br>
-			신발:<input type='text' name='S1P' value='${itp.S1P}'><br>
-			커튼:<input type='text' name='C2P' value='${itp.C2P}'><br>
-			가방:<input type='text' name='B2P' value='${itp.B2P}'><br>
+			와이셔츠:<input type='text' name='Y1P' value='<%=pri.getY1P()%>'><br>
+			블라우스:<input type='text' name='B1P' value='<%=pri.getB1P()%>'><br>
+			티셔츠:<input type='text' name='T1P' value='<%=pri.getT1P()%>'><br>
+			맨투맨:<input type='text' name='M1P' value='<%=pri.getM1P()%>'><br>
+			바지:<input type='text' name='P1P' value='<%=pri.getP1P()%>'><br>
+			니트:<input type='text' name='K1P' value='<%=pri.getK1P()%>'><br>
+			자켓:<input type='text' name='J1P' value='<%=pri.getJ1P()%>'><br>
+			코트:<input type='text' name='C1P' value='<%=pri.getC1P()%>'><br>
+			패딩:<input type='text' name='P2P' value='<%=pri.getP1P()%>'><br>
+			이불:<input type='text' name='D1P' value='<%=pri.getD1P()%>'><br>
+			신발:<input type='text' name='S1P' value='<%=pri.getS1P()%>'><br>
+			커튼:<input type='text' name='C2P' value='<%=pri.getC2P()%>'><br>
+			가방:<input type='text' name='B2P' value='<%=pri.getB2P()%>'><br>
+			최종수정날짜: <fmt:formatDate value="<%=pri.getP_date()%>" pattern="YY-MM-dd"/><br>
+			<input type='hidden' name='p_seq' value='<%=pri.getP_seq()%>'><br>
 		<button onclick='updatePrice()'>수정</button>
 		</form>		
 	</div>

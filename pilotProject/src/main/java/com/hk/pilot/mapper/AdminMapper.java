@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -41,4 +42,6 @@ public interface AdminMapper {
 	public Price itemsPriceGet(); //가격표 불러오기
 	
 	public int itemsPricePost(Price price); //가격표 수정하기
+	
+	public List<StatisticDay> chartData(); //일일 통계 불러오기 
 }
