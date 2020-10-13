@@ -4,10 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<!--  1009 session id, grade 수정 js -->
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>문의게시판</title>
+<title>공지사항</title>
 
 <style type="text/css">
 li {
@@ -33,13 +32,13 @@ li {
 <body>
 	<div id="root">
 		<header>
-			<h1>1:1 문의게시판</h1>
+			<h1>공지사항</h1>
 		</header>
 
 		<hr />
 
 		<div>
-			<%@include file="unav.jsp"%>
+			<%@include file="nav.jsp"%>
 		</div>
 		<hr />
 
@@ -49,26 +48,25 @@ li {
 			<form role="form" method="get">
 				<table>
 					<tr>
-						<th>게시글 번호</th>
-						<th>게시글 제목</th>
-						<th>게시글 작성자</th>
+						<th>공지 번호</th>
+						<th>공지 제목</th>
+						<th>공지 작성자</th>
 						<th>등록일</th>
-						<th>회원등급</th>
+
 
 					</tr>
-					<c:forEach items="${list}" var="list">
+
+					<c:forEach items="${noticeList}" var="noticeList">
 						<tr>
-							<td><c:out value="${list.c_no}" /></td>
-							<td><a href="/user/cChatR?c_no=${list.c_no}"><c:out
-										value="${list.c_title}" /></a></td>
-							<td><c:out value="${list.w_id}" /></td>
-							<td><fmt:formatDate value="${list.c_date}"
+							<td><c:out value="${noticeList.n_seq}" /></td>
+							<td><a href="/support/noticeR?n_seq=${noticeList.n_seq}"><c:out
+										value="${noticeList.n_title}" /></a></td>
+							<td><c:out value="${noticeList.id}" /></td>
+							<td><fmt:formatDate value="${noticeList.n_date}"
 									pattern="yyyy-MM-dd" /></td>
-							<td><c:out value="${list.g_check}" /></td>
 
 						</tr>
 					</c:forEach>
-					
 
 				</table>
 
@@ -94,27 +92,22 @@ li {
 
 				</div>
 
-				<script>
-					
-				</script>
-
-
 
 				<div>
 					<ul>
 						<c:if test="${pageMaker.prev}">
 							<li><a
-								href="cChat${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+								href="notice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 						</c:if>
 
-						<c:forEach begin="cChat${pageMaker.startPage}"
+						<c:forEach begin="${pageMaker.startPage}"
 							end="${pageMaker.endPage}" var="idx">
-							<li><a href="cChat${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							<li><a href="notice${pageMaker.makeSearch(idx)}">${idx}</a></li>
 						</c:forEach>
 
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 							<li><a
-								href="cChat${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+								href="notice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 						</c:if>
 					</ul>
 				</div>
