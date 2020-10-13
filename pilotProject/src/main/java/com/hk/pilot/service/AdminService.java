@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.pilot.dto.Chat;
+import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
@@ -107,4 +110,87 @@ public class AdminService {
 	public List<StatisticDay> chartData() {
 		return adminMapper.chartData();
 	}
+	// 관리자 one
+	public Members selectMemberOne(String id) {
+
+		return adminMapper.selectMemberOne(id);
+	}
+	//  admin chat 1011 james------------------------------------------------------------------------------------------------------
+	//어드민 게시글 작성
+	public void write(Chat chat) {
+
+		System.out.println("chatService-write 호출");
+
+		System.out.println(chat.toString());
+
+		adminMapper.write(chat);
+
+	}
+
+	//어드민 게시글 목록 조회
+	public List<Chat> list(SearchCriteria scri){
+
+		System.out.println("chatService-list 호출");
+
+		return adminMapper.list(scri);
+	}
+
+	//어드민 게시물 총 개수
+	public int listCount(SearchCriteria scri) {
+
+		System.out.println("chatService-listCount 호출");
+
+		return adminMapper.listCount(scri);
+	}
+
+	//게시물 상세 조회하기
+	public Chat selectOne(int c_no) {
+
+		System.out.println("chatService-selectOne 호출");
+		return adminMapper.selectOne(c_no);
+	}
+
+	//게시글 수정
+
+	public void update(Chat chat) {
+		System.out.println("chatService-update 호출");
+
+		System.out.println(chat.toString()+"chatService");
+
+		adminMapper.update(chat);
+
+	}
+
+	//게시글 삭제하기
+
+	public void delete(int c_no) {
+		System.out.println("chatService-delete 호출");
+
+		adminMapper.delete(c_no);
+
+	}
+
+	//작성 댓글 조회 -----------------------------------관리자 외 작성권한 없음 1009
+
+	public List<ChatComment> readComment(int c_no){
+
+		System.out.println("게시글-코멘트 읽으러 들어옴-ok");
+
+		return adminMapper.readComment(c_no);
+	}
+
+	//댓글 작성하기
+	public void writeComment(ChatComment ccment) {
+
+		System.out.println("ccmentService -writeComment 호출");
+
+		System.out.println(ccment.toString());
+
+		adminMapper.writeComment(ccment);
+
+
+	}
+
+
+
 }

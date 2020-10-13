@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.pilot.dto.Bubble;
+import com.hk.pilot.dto.Chat;
+import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
+import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.PersonalPay;
+import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.service.UserService;
 
@@ -91,5 +95,101 @@ public class UserController {
 		model.addAttribute("myOrderList",userService.myOrderList(orderNum));
 		return "user/myOrderList";
 	}
-	
+	//  Chat --------------------------------------------------------------------------------------
+
+	//게시글 작성화면
+	@GetMapping(value="/cChatW")
+	public String writeGet() {
+		System.out.println("글작성 페이지 호출");
+
+
+		return "chat/uWriteView";
+	}
+
+	//게시글 작성 - db저장
+	@PostMapping(value="/cChatW")
+	public String writePost(Model model, Chat chat, HttpSession session) {
+		System.out.println("글작성");
+
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		Members user = userService.selectUserOne(loginMember.getId());
+
+		model.addAttribute("user",user);
+
+		userService.write(chat);
+		return "redirect:/user/cChat";
+	}
+
+	//게시글 목록 조회
+	@GetMapping(value="/cChat")
+	public String list(SearchCriteria scri, Model model) {
+		System.out.println("목록 조회 list 호출");
+		model.addAttribute("list", userService.list(scri));
+
+		System.out.println(userService.list(scri));
+
+		PageMaker pageMaker = new PageMaker();
+
+		pageMaker.setCri(scri);
+
+		pageMaker.setTotalCount(userService.listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "chat/uList";
+
+	}
+
+	//게시글 상세 조회
+	@GetMapping(value="/cChatR")
+	public String selectOne (Chat chat, Model model) {
+		System.out.println("selectOne 들어옴");
+
+		model.addAttribute("selectOne", userService.selectOne(chat.getC_no()));
+		
+		List<ChatComment> commentList = userService.readComment(chat.getC_no());
+
+		model.addAttribute("commentList", commentList);
+
+
+		return "chat/uReadView";
+	}
+
+	//게시글 수정 화면
+	@GetMapping(value="/cChatU")
+	public String updateGet(Chat chat, Model model) {
+		System.out.println("updateGet 들어옴");
+
+		model.addAttribute("update", userService.selectOne(chat.getC_no()));
+
+		return "chat/uUpdateView";
+	}
+
+	//게시글 수정 - db저장
+	@PostMapping(value="/cChatU")
+	public String updatePost(Chat chat) {
+		System.out.println("update 들어옴");
+
+		userService.update(chat);
+
+		System.out.println(chat.toString() + "chatCon");
+
+		return "redirect:/user/cChat";
+
+	}
+
+	//게시글 삭제 - db저장
+	@PostMapping(value="/cChatD")
+
+	public String delete(Chat chat) {
+		System.out.println("delete 들어옴");
+
+		userService.delete(chat.getC_no() );
+
+		System.out.println("delete 반환");
+
+		return "redirect:/user/cChat";
+	}
+
+
 }

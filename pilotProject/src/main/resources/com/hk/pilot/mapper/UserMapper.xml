@@ -48,4 +48,94 @@ SELECT * FROM MEMBERS WHERE ID=#{ID}
 <select id="myOrderList" resultType="com.hk.pilot.dto.OrderProcess">
   select o.id,o.ordernum,sname,items,pay_price,pay_date,wait,ok,pick,wash,finish from orderlist o,process p where o.ordernum=p.ordernum and o.ordernum=#{orderNum}
 </select>
+
+	<!-- 게시글 등록 -->
+	<insert id="write">
+
+		INSERT INTO CHAT (W_ID, C_NO, C_DATE, C_CONTENT,
+		G_CHECK,
+		C_TITLE)
+		VALUES(#{w_id}, CHAT_seq.nextval, sysdate,
+		#{c_content} , #{g_check},
+		#{c_title} )
+
+	</insert>
+
+	<!-- 게시글 목록 -->
+	<select id="list" resultType="com.hk.pilot.dto.Chat"
+		parameterType="com.hk.pilot.dto.Criteria">
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check
+		FROM
+		(SELECT w_id,
+		c_no, c_date, c_content, c_title, g_check,
+		row_number()
+		over(ORDER
+		BY c_no DESC) as rnum FROM chat) WHERE g_check = 1 and rnum
+		BETWEEN #{rowStart} AND
+		#{rowEnd}
+		ORDER BY c_no DESC
+	</select>
+
+	<!-- 게시글 총 개수 -->
+	<select id="listCount"
+		parameterType="com.hk.pilot.dto.SearchCriteria" resultType="int">
+
+		SELECT COUNT(c_no)
+		FROM CHAT
+		WHERE 1 = 1
+		<include refid="search"></include>
+		And c_no > 0
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT
+				LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+
+	<!-- 게시글 상세조회 -->
+
+	<select id="selectOne" parameterType="int"
+		resultType="com.hk.pilot.dto.Chat">
+
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check FROM
+		CHAT
+		where c_no = #{c_no}
+
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="com.hk.pilot.dto.Chat">
+
+		UPDATE CHAT SET W_ID=#{w_id},
+		g_CHECK=#{g_check},
+		C_CONTENT=#{c_content}, C_TITLE=#{c_title} WHERE
+		C_NO= #{c_no}
+
+	</update>
+
+	<!-- 게시글 삭제 -->
+
+	<delete id="delete" parameterType="int">
+
+		DELETE FROM CHAT WHERE c_no =
+		#{c_no}
+
+	</delete>
+
+	<!-- 댓글 조회하기 1012 새로 추가 -->
+	<select id="readComment"
+		resultType="com.hk.pilot.dto.ChatComment">
+
+		SELECT com_no, com_content, r_id,
+		com_date FROM CHATCOMMENT
+		WHERE c_no =#{c_no}
+
+	</select>
+
+
 </mapper>

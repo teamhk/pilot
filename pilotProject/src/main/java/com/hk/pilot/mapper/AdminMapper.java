@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.hk.pilot.dto.Chat;
+import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
@@ -44,4 +47,25 @@ public interface AdminMapper {
 	public int itemsPricePost(Price price); //가격표 수정하기
 	
 	public List<StatisticDay> chartData(); //일일 통계 불러오기 
+	//  admin chat 1013 james--------------------------------------------------------------------------------------------------------------------------------
+
+	public Members selectMemberOne(String id); // 관리의 개인정보 호출
+	
+	public void write(Chat chat); //문의게시판 게시글작성
+
+	public List<Chat> list(SearchCriteria cri); //게시글 목록 조회
+
+	public int listCount(SearchCriteria scri); //게시글 총 개수
+
+	public Chat selectOne(int c_no); //게시글 상세보기
+
+	public void update(Chat chat); // 게시글 수정하기
+
+	public void delete(int c_no); // 게시글 삭제하기
+	//	admin 1013 chatComment--------------------------------------------------------------------------------------------------------------------------
+	public void writeComment(ChatComment ccment); //댓글 작성
+	public List<ChatComment> readComment(int c_no); //작성 댓글 조회
+
 }
+
+
