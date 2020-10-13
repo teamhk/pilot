@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -122,11 +123,15 @@ public class UserController {
 
 	//게시글 목록 조회
 	@GetMapping(value="/cChat")
-	public String list(SearchCriteria scri, Model model) {
+	public String list(SearchCriteria scri, Model model, HttpSession session) {
 		System.out.println("목록 조회 list 호출");
-		model.addAttribute("list", userService.list(scri));
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		
+		
+		String logId = loginMember.getId();
+		model.addAttribute("list", userService.list(scri, logId));
 
-		System.out.println(userService.list(scri));
+		System.out.println(userService.list(scri, logId));
 
 		PageMaker pageMaker = new PageMaker();
 

@@ -172,9 +172,7 @@
 		c_no, c_date, c_content, c_title, g_check,
 		row_number()
 		over(ORDER
-		BY c_no DESC) as rnum FROM chat) WHERE g_check = 2 and rnum
-		BETWEEN #{rowStart} AND
-		#{rowEnd}
+		BY c_no DESC) as rnum FROM chat) WHERE w_id=#{logId}
 		ORDER BY c_no DESC
 	</select>
 

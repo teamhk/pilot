@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <!--  1009 session id, grade 수정 js -->
@@ -57,6 +58,11 @@ li {
 
 					</tr>
 					<c:forEach items="${list}" var="list">
+						<c:set var="actor" value="${list.g_check}" />
+						<c:set var="actor" value="${fn:replace(actor, '0', '관리자')}" />
+						<c:set var="actor" value="${fn:replace(actor, '1', '일반회원')}" />
+						<c:set var="actor" value="${fn:replace(actor, '2', '업주회원')}" />
+
 						<tr>
 							<td><c:out value="${list.c_no}" /></td>
 							<td><a href="/admin/aChatR?c_no=${list.c_no}"><c:out
@@ -64,11 +70,11 @@ li {
 							<td><c:out value="${list.w_id}" /></td>
 							<td><fmt:formatDate value="${list.c_date}"
 									pattern="yyyy-MM-dd" /></td>
-							<td><c:out value="${list.g_check}" /></td>
+							<td><c:out value="${actor}" /></td>
 
 						</tr>
 					</c:forEach>
-					
+
 
 				</table>
 

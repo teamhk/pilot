@@ -1,5 +1,7 @@
 package com.hk.pilot;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.pilot.dto.Chat;
+import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.SearchCriteria;
@@ -25,7 +28,7 @@ public class ManagerController {
 
 	@Autowired
 	ManagerService managerService;
-	
+
 	@Autowired
 	UserService userService;
 
@@ -177,7 +180,7 @@ public class ManagerController {
 	//	}
 
 	//  Chat --------------------------------------------------------------------------------------
-	
+
 	//게시글 작성화면
 	@GetMapping(value="/aChatW")
 	public String writeGet() {
@@ -188,26 +191,33 @@ public class ManagerController {
 	}
 
 	//게시글 작성 - db저장
-		@PostMapping(value="/aChatW")
-		public String writePost(Model model, Chat chat, HttpSession session) {
-			System.out.println("글작성");
-			
-			Members loginMember = (Members) session.getAttribute("loginMember");
-			Members user = userService.selectUserOne(loginMember.getId());
+	@PostMapping(value="/aChatW")
+	public String writePost(Model model, Chat chat, HttpSession session) {
+		System.out.println("글작성");
 
-			model.addAttribute("user",user);
-			
-			managerService.write(chat);
-			return "redirect:/manager/aChat";
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		Members user = userService.selectUserOne(loginMember.getId());
+
+		model.addAttribute("user",user);
+
+		managerService.write(chat);
+		return "redirect:/manager/aChat";
 	}
 
 	//게시글 목록 조회
 	@GetMapping(value="/aChat")
-	public String list(SearchCriteria scri, Model model) {
+	public String list(SearchCriteria scri, Model model, HttpSession session) {
 		System.out.println("목록 조회 list 호출");
-		model.addAttribute("list", managerService.list(scri));
 
-		System.out.println(managerService.list(scri));
+		Members loginMember = (Members) session.getAttribute("loginMember");
+
+		String logId = loginMember.getId();
+
+		System.out.println("넌 누구니 ? 난 " + logId);
+
+		model.addAttribute("list", managerService.list(scri, logId));
+
+		System.out.println(managerService.list(scri, logId));
 
 		PageMaker pageMaker = new PageMaker();
 
@@ -228,9 +238,9 @@ public class ManagerController {
 
 		model.addAttribute("selectOne", managerService.selectOne(chat.getC_no()));
 		//			       글 목록에서 댓글 보기
-		//				List<ChatComment> commentList = ccmentService.readComment(chat.getC_no());
-		//				
-		//				model.addAttribute("commentList", commentList);
+		List<ChatComment> commentList = managerService.readComment(chat.getC_no());
+
+		model.addAttribute("commentList", commentList);
 
 
 		return "chat/readView";

@@ -132,11 +132,11 @@ public class ManagerService {
 	}
 
 	//게시글 목록 조회
-	public List<Chat> list(SearchCriteria scri){
+	public List<Chat> list(SearchCriteria scri, String logId){
 
 		System.out.println("chatService-list 호출");
 
-		return managerMapper.list(scri);
+		return managerMapper.list(scri, logId);
 	}
 
 	//게시물 총 개수

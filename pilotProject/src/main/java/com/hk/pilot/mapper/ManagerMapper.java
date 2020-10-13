@@ -47,7 +47,7 @@ public interface ManagerMapper {
 	
 	public void write(Chat chat); //문의게시판 게시글작성
 	
-	public List<Chat> list(SearchCriteria cri); //게시글 목록 조회
+	public List<Chat> list(@Param("cri")SearchCriteria cri, @Param("logId")String lodId); //게시글 목록 조회
 	
 	public int listCount(SearchCriteria scri); //게시글 총 개수
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -91,11 +92,11 @@ public class UserService {
 	}
 
 	//게시글 목록 조회
-	public List<Chat> list(SearchCriteria scri){
+	public List<Chat> list(SearchCriteria scri, String logId){
 
 		System.out.println("chatService-list 호출");
 
-		return userMapper.list(scri);
+		return userMapper.list(scri, logId);
 	}
 
 	//게시물 총 개수
