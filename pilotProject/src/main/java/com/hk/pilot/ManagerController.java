@@ -178,6 +178,30 @@ public class ManagerController {
 	//		 
 	//		return "/manager/managerStatsOne";
 	//	}
+	
+	//  Review 1015 -------------------------------------------------------------------------------
+	
+	@GetMapping("/review")
+	public String myReviewList(HttpServletRequest request,Model model,HttpSession session) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		System.out.println(loginMember.toString());
+		model.addAttribute("url", request.getRequestURI());
+		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+
+		return "/manager/reviewList";
+	}
+	
+	@GetMapping("/reviewOne")
+	public String selectReviewOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
+		System.out.println(snum);
+		StoreInfo storeInfo = managerService.selectStoreOne(snum);
+		System.out.println(storeInfo.toString());
+		model.addAttribute("storeInfo",storeInfo);
+		model.addAttribute("reviewList", managerService.reviewList(snum));
+		return "/manager/selectReviewOne";
+	}
+	
+	
 
 	//  Chat --------------------------------------------------------------------------------------
 

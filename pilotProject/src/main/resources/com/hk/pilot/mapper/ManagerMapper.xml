@@ -148,6 +148,18 @@
 	<!-- <select id="aabbcc" resultType="com.hk.pilot.dto.StatisticDay"> -->
 	<!-- SELECT CDAY, OQ,OP FROM STATISTIC s WHERE snum='13131313' -->
 	<!-- </select> -->
+	
+	<!--  review 관련 -->
+	
+	<select id="reviewList" resultType="com.hk.pilot.dto.Review" parameterType="String">
+
+		SELECT
+
+		orderNum, r_no, r_CONTENT, w_ID, r_date, snum, star, badCnt
+		FROM review WHERE snum = #{snum} ORDER BY r_date desc
+
+	</select>
+	
 
 	<!-- chat 관련 -->
 

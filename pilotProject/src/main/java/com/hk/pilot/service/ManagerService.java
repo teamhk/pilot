@@ -9,6 +9,7 @@ import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
+import com.hk.pilot.dto.Review;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
@@ -118,6 +119,11 @@ public class ManagerService {
 
 	//업체 통계 
 	//	managerStatsOne
+	
+	// review 1015 james-------------------------------------------------------------
+		public List<Review> reviewList(String snum){
+			return managerMapper.reviewList(snum);
+		}
 
 	//  chat------------------------------------------------------------------------------------------------------
 	//게시글 작성
