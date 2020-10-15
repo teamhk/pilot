@@ -27,27 +27,6 @@ public class ManagerRestController {
 	@Autowired
 	ManagerService managerService;
 	
-	@GetMapping(path="/list", produces="text/plain;charset=UTF-8")
-	public String memberRestList(Locale locale, Model model) {
-		logger.info("/member/rest/list ----------");
-		return "이건 서버에서 보내준 /member/rest/list";
-	}
-
-	@GetMapping(path = "/listjson", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Members> memberRestListJson(Locale locale, Model model) {
-		logger.info("/member/rest/listJson ----------");
-		
-		return managerService.memberList();
-	}
-	
-	
-	@GetMapping(path = "/listxml", produces = MediaType.APPLICATION_XML_VALUE)
-	public List<Members> memberRestListxml(Locale locale, Model model) {
-		logger.info("/member/rest/listxml ----------");
-		
-		return managerService.memberList();
-	}
-
 	@GetMapping(path="/addJson" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Members> memberRestAddJSon(@RequestParam("name") String name , @RequestParam("pwd") String pwd) { 
 		logger.info("-----------------");
@@ -71,11 +50,7 @@ public class ManagerRestController {
 	}
 
 	  
-//	@GetMapping(path="/adminChart", produces = MediaType.APPLICATION_JSON_VALUE)
-//	    public List<StatisticDay> drawChart() {
-//	        return managerService.aabbcc();
-//	    }
-	 
+	
 	    
 	    
 

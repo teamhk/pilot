@@ -36,7 +36,7 @@ public class AdminRestController {
 		logger.info("/admin/rest/mapLoad ----------");
 		System.out.println("<<여기는 AdminRestController>>"+"맵데이터 로딩중입니다.");
 		List<StatisticDay> sd = adminService.chartData();
-		
+		System.out.println(sd);
 		JSONObject data = new JSONObject();
 		JSONObject ajaxObjCols1 = new JSONObject();    //cols의 1번째 object를 담을 JSONObject
 		JSONObject ajaxObjCols2 = new JSONObject();    //cols의 2번째 object를 담을 JSONObject
@@ -45,7 +45,7 @@ public class AdminRestController {
 		JSONArray ajaxArryRows = new JSONArray();
 		
 		ajaxObjCols1.put("id", "");
-		ajaxObjCols1.put("label", "날자");
+		ajaxObjCols1.put("label", "날짜");
 		ajaxObjCols1.put("pattern", "");
 		ajaxObjCols1.put("type", "string");
 		 
@@ -67,6 +67,7 @@ public class AdminRestController {
 		
 		for (int i=0; i<size; i++){        //JSONArray의 size만큼 돌면서 형식을 만듭니다.
 			StatisticDay ssd = sd.get(i);
+//			System.out.println("날짜"+ssd.getCday());
 			
 		    JSONObject day = new JSONObject();
 		    day.put("v", ssd.getCday());

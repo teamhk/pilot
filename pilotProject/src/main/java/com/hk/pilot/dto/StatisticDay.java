@@ -1,15 +1,13 @@
 package com.hk.pilot.dto;
 
-import java.util.Date;
-
 public class StatisticDay {
-	Date cday;
+	String cday;
 	int oq;
 	int op;
-	public Date getCday() {
+	public String getCday() {
 		return cday;
 	}
-	public void setCday(Date cday) {
+	public void setCday(String cday) {
 		this.cday = cday;
 	}
 	public int getOq() {

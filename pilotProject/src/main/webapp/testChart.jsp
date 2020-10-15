@@ -9,28 +9,17 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-	<div id="chart_div" style="width: 800px; height: 500px;"></div>
+	<div id="chart_div1" style="width: 500px; height: 500px;"></div>
+	<div id="chart_div2" style="width: 500px; height: 500px;"></div>
 <script>
-
-// function drawStuff() {
-	
-
- google.charts.load('current', {'packages':['corechart', 'bar']});
-      google.charts.setOnLoadCallback(drawStuff);
+// -------------------------------차트 그리는 시작--------------------------------------------
+ 	google.charts.load('current', {'packages':['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
 
-        var button = document.getElementById('change-chart');
-        var chartDiv = document.getElementById('chart_div');
+        var chartDiv = document.getElementById('chart_div1');
 
-//         var data = google.visualization.arrayToDataTable([
-//           ['Galaxy', 'Distance', 'Brightness'],
-//           ['Canis Major Dwarf', 8000, 23.3],
-//           ['Sagittarius Dwarf', 24000, 4.5],
-//           ['Ursa Major II Dwarf', 30000, 14.3],
-//           ['Lg. Magellanic Cloud', 50000, 0.9],
-//           ['Bootes I', 60000, 13.1]
-//         ]);
 		var jsonData = $.ajax({
 			url: "/admin/rest/chartData",
 			dataType:"json",
@@ -51,16 +40,12 @@
           },
           axes: {
             y: {
-              distance: {label: '판매금액'}, // Left y-axis.
-              brightness: {side: 'right', label: '판매량'} // Right y-axis.
+              distance: {label: '판매금액' ,range: {max:100000}}, // Left y-axis.
+              brightness: {side: 'right', label: '판매량',range: {max:20}} // Right y-axis.
             }
           },
-          vAxis: {
-              viewWindow: {
-                  max: 50000
-                  
-              }
-          }          
+          bar: { groupWidth: "90%" },
+          vAxis: { format:''}           
         };
 
         function drawMaterialChart() {
@@ -68,15 +53,8 @@
           materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
         }
         drawMaterialChart();
-    };
-		
-// 			var jsonData = $.ajax({
-// 				url : "/member/rest/adminChart",
-// 				dataType : "json",
-// 				async : false
-// 			}).responseText;
-// 			alert(jsonData);
-			// Create our data table out of JSON data loaded from server.
+    }
+ // -------------------------------차트 그리는 부분 끝--------------------------------------------
 
 </script>	
 </body>

@@ -86,7 +86,7 @@
 	</insert>
 	
 	<select id="chartData" resultType="com.hk.pilot.dto.StatisticDay">
-		SELECT CDAY, OQ,OP FROM STATISTIC s WHERE snum='13131313'
+		SELECT TO_CHAR(CDAY, 'yy-mm-dd') as cday,OQ,OP FROM STATISTIC s WHERE snum='13131313'
 	</select>
 	
 	<!-- 게시물 작성 -->
