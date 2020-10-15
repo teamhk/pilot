@@ -1,396 +1,1446 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
-<%@ page import="com.hk.pilot.dto.StoreInfo" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="com.hk.pilot.dto.StoreInfo"%>
+<%@ page import="com.hk.pilot.dto.ItemList"%>
+<%@ page import="java.util.List"%>
 <% StoreInfo price = (StoreInfo)request.getAttribute("storeInfo"); %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>퀴클린24셀프빨래방 | 카카오맵</title>
-    <meta property="og:title" content="퀴클린24셀프빨래방">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<title>퀴클린24셀프빨래방 | 카카오맵</title>
+<script type="text/javascript">
+
+
+
+//팝업창 오픈하여 데이터 전송
+
+
+
+function openPopup( ) {
+	
+
+
+// window.open("", popOpen, ['fullscreen=no,menubar=no,status=no,toolbar=no,titlebar=no,location=no,scrollbar=auto,width=650,height=550'] );
+
+
+
+// productForm.target="popOpen";
+
+productForm.action=" info";
+
+console.log("서브밋 들어옴");
+var itemlist = "";
+var itemname = $('input[name="item"]');
+var itemmimi = $('input[name="mimi"]');
+console.log(itemname);
+console.log(itemmimi);
+for(var i=0;i<itemname.length;i++){
+	itemlist += itemname.eq(i).val()+"!@#"+itemmimi.eq(i).val()+"$%^";
+// 	if(itemmimi.eq(i).attr("id")==="input_cnt_셔츠"){
+// 		itemmimi.eq(i).prop("name","Y1");
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_블라우스"){
+// 		itemmimi.eq(i).prop("name","B1");
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_티셔츠"){
+// 		itemmimi.eq(i).prop("name","T1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_맨투맨"){
+// 		itemmimi.eq(i).prop("name","M1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_바지"){
+// 		itemmimi.eq(i).prop("name","P1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_니트"){
+// 		itemmimi.eq(i).prop("name","K1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_자켓"){
+// 		itemmimi.eq(i).prop("name","J1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_코트"){
+// 		itemmimi.eq(i).prop("name","C1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_패딩"){
+// 		itemmimi.eq(i).prop("name","P2");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_이불"){
+// 		itemmimi.eq(i).prop("name","D1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_신발"){
+// 		itemmimi.eq(i).prop("name","S1");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_커튼"){
+// 		itemmimi.eq(i).prop("name","C2");	
+// 	}else if(itemmimi.eq(i).attr("id")==="input_cnt_가방"){
+// 		itemmimi.eq(i).prop("name","B2");	
+// 	}
+
+}
+console.log(itemlist);
+
+console.log("서브밋 중반");
+$('#items').val(itemlist);
+console.log("서브밋 후반");
+console.log($('#items').val(itemlist));
+
+
+//	if(prmtObj.goodsId==="셔츠"){
+//	mimi="Y1";
+//}else if(prmtObj.goodsId==="블라우스"){
+//	mimi="B1";
+//}else if(prmtObj.goodsId==="티셔츠"){
+//	mimi="T1";
+//}else if(prmtObj.goodsId==="맨투맨"){
+//	mimi="M1";
+//}else if(prmtObj.goodsId==="바지"){
+//	mimi="P1";
+//}else if(prmtObj.goodsId==="니트"){
+//	mimi="K1";
+//}else if(prmtObj.goodsId==="자켓"){
+//	mimi="J1";
+//}else if(prmtObj.goodsId==="코트"){
+//	mimi="C1";
+//}else if(prmtObj.goodsId==="패딩"){
+//	mimi="P2";
+//}else if(prmtObj.goodsId==="이불"){
+//		mimi="D1";
+//}else if(prmtObj.goodsId==="신발"){
+//	mimi="S1";
+//}else if(prmtObj.goodsId==="커튼"){
+//	mimi="C2";
+//}else if(prmtObj.goodsId==="가방"){
+//	mimi="B2";
+//}
+
+productForm.submit();
+
+
+
+}
+
+
+
+
+
+</script>
+<meta property="og:title" content="퀴클린24셀프빨래방">
 <meta property="og:site_name" content="카카오맵">
 <meta property="og:description" content="서울 은평구 은평로12길 7-10 (응암동 97-28)">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=483596%2C1139090">
+<meta property="og:image"
+	content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=483596%2C1139090">
 <meta property="og:url" content="https://place.map.kakao.com/892584709">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="퀴클린24셀프빨래방">
-<meta name="twitter:description" content="서울 은평구 은평로12길 7-10 (응암동 97-28)">
-<meta name="twitter:image" content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=483596%2C1139090">
-    <link href="//t1.daumcdn.net/localimg/localimages/07/common/kakaomap_favicon.ico" rel="shortcut icon">
-    
-        
-            <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/kakaomapweb/place/jscss/pc.efe78505.css">
-        
-    
+<meta name="twitter:description"
+	content="서울 은평구 은평로12길 7-10 (응암동 97-28)">
+<meta name="twitter:image"
+	content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=483596%2C1139090">
+<link
+	href="//t1.daumcdn.net/localimg/localimages/07/common/kakaomap_favicon.ico"
+	rel="shortcut icon">
+
+
+<link rel="stylesheet" type="text/css"
+	href="//t1.daumcdn.net/kakaomapweb/place/jscss/pc.efe78505.css">
+
+
 <style type="text/css">/* global */
-.screen_out{overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px}
-.show{display:block}
-.hide{display:none}
+.screen_out {
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	text-indent: -9999px
+}
+
+.show {
+	display: block
+}
+
+.hide {
+	display: none
+}
 
 /* PC Social Share */
 /* 2018-04-25 수정 시작 */
-.social_comm_p{position:absolute;z-index:1000;}
-.social_comm_p .img_social{display:block;overflow:hidden;font-size:0;background:url(//t1.daumcdn.net/daumtop_deco/images/common/social/img_social_200414.png) no-repeat 0 0;text-indent:-9999px}
-.social_comm_p .sns_comm_p{overflow:hidden;position:relative;border:1px solid #e2e2e2;font-size:11px;color:#222;background-color:#fff;letter-spacing:-0.025em}
-.social_comm_p .btn_close{position:absolute;top:5px;right:5px;width:24px;height:24px}
-.social_comm_p .ico_close{width:15px;height:16px;margin:5px;background-position:-150px 0}
-.social_comm_p .share_layer{position:relative;width:260px;min-height:228px}
-.social_comm_p .list_sns{overflow:hidden;margin:26px 14px 0}
-.social_comm_p .list_sns li{float:left;width:77px;height:78px}
-.social_comm_p .list_sns .link_sns{display:block;text-align:center;text-decoration:none}
-.social_comm_p .list_sns .link_sns .img_social{width:43px;height:43px;margin:0 auto 4px}
-.social_comm_p .list_sns .tit_sns{display:block;margin-top:7px;font-weight:normal;line-height:16px}
-.social_comm_p .list_sns .ico_sns_ks{background-position:-50px 0}
-.social_comm_p .list_sns .ico_sns_fb{background-position:-100px 0}
-.social_comm_p .list_sns .ico_sns_tw{background-position:0 -50px}
-.social_comm_p .list_sns .ico_sns_cafe{background-position:-100px -50px}
-.social_comm_p .list_sns .ico_sns_mail{background-position:-50px -50px}
-.social_comm_p .list_sns .ico_sns_kt{background-position:0 0}
-.social_comm_p .sns_copyurl{margin:-1px 26px 0;padding-bottom:23px}
-.social_comm_p .sns_copyurl .link_copyurl{display:block;overflow:hidden;position:relative;height:23px;line-height:23px;border:1px solid #d0d0d0;background-color:#f8f8f8;text-decoration:none}
-.social_comm_p .sns_copyurl .txt_url{display:block;overflow:hidden;padding:0 64px 0 7px;color:#2695f8;white-space:nowrap;text-overflow:ellipsis}
-.social_comm_p .sns_copyurl .txt_copy{position:absolute;top:0;right:0;width:47px;height:25px;border-left:1px solid #d0d0d0;background-color:#fff;text-align:center}
-.social_comm_p .copyurl_layer{width:254px;height:78px;text-align:center}
-.social_comm_p .inner_copyurl{display:table;width:100%;height:100%}
-.social_comm_p .inner_copyurl .desc_copyurl{display:table-cell;padding:18px 0 17px;line-height:19px;vertical-align:middle}
-.social_comm_p .sns_copyurl_type2 .tf_url{display:block;width:210px;height:25px;padding:0 10px;border:0 none;color:#2695f8;background-color:transparent}
-.social_comm_p .sns_copyurl_type2 .desc_tip{padding:13px 0;line-height:18px;color:#888;text-align:center;letter-spacing:0}
+.social_comm_p {
+	position: absolute;
+	z-index: 1000;
+}
 
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5),
-only screen and (min-resolution: 144dpi),
-only screen and (min-resolution: 1.5dppx) {
-    .social_comm_p .img_social{background-image:url(//t1.daumcdn.net/daumtop_deco/images/common/social/rtn/img_social_200414.png);background-size:170px 100px}
-}</style><style type="text/css">.kakao-video-ad{background-color:transparent;text-align:center;padding:0;margin:0;font-family:HelveticaNeue-Light,AppleSDGothicNeo-Light,Malgun Gothic,"\B9D1\C740   \ACE0\B515",sans-serif}.kakao-video-ad .header{position:absolute;left:0;top:0;width:100%;z-index:10;height:60px;background:-moz-linear-gradient(top,rgba(0,0,0,.3) 0,transparent 100%);background:-webkit-linear-gradient(top,rgba(0,0,0,.3),transparent);background:linear-gradient(180deg,rgba(0,0,0,.3) 0,transparent);transition:opacity 1s}.kakao-video-ad .header .link_ad{display:block;overflow:hidden;padding:12px 12px 12px 11px;font-size:15px;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.12);text-decoration:none}.kakao-video-ad .header .link_ad .txtdetail_ad{float:left;overflow:hidden;max-width:calc(100% - 98px);margin-top:6px;font-weight:600;letter-spacing:0;white-space:nowrap;text-rendering:auto;text-overflow:ellipsis;text-shadow:1px 1px 1px rgba(0,0,0,.24);text-align:left}.kakao-video-ad .header .link_ad .ico_ad{float:left;overflow:hidden;width:27px;height:16px;margin:-1px 5px 0 0;vertical-align:top;background:url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer_171026_v2.png) no-repeat -70px 0;text-indent:-9999px}.kakao-video-ad .header .link_ad .txt_go{float:right;height:26px;border-radius:2px;font-weight:500;font-size:13px;line-height:27px;background-color:rgba(0,0,0,.6);text-align:center;padding-left:10px;padding-right:10px;letter-spacing:-1px}.kakao-video-ad .header .link_ad .txt_go:after{display:inline-block;width:7px;height:11px;margin:8px 0 0 4px;background:url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png) no-repeat -150px -20px;vertical-align:top;content:""}.kakao-video-ad{display:block;overflow:hidden;max-height:319.5px;width:100%;height:0;padding-top:56.25%;vertical-align:top;box-sizing:border-box;color:#fff;background-color:#000;position:relative;font-size:10px;line-height:1;font-weight:400;font-style:normal;font-family:HelveticaNeue,Helvetica,roboto,sans-serif}.kakao-video-ad *{box-sizing:inherit}.kakao-video-ad video{position:absolute;top:0;left:0;width:100%;height:100%}.kakao-video-ad button{background:none;border:none;color:inherit;display:inline-block;overflow:visible;font-size:inherit;line-height:inherit;text-transform:none;text-decoration:none;transition:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}.kakao-video-ad .loading-spinner{display:none;position:absolute;top:50%;left:50%;margin:-25px 0 0 -25px;opacity:.85;text-align:left;border:6px solid rgba(43,51,63,.7);box-sizing:border-box;background-clip:padding-box;width:50px;height:50px;border-radius:25px}.kakao-video-ad .loading-spinner:after,.kakao-video-ad .loading-spinner:before{content:"";position:absolute;margin:-6px;box-sizing:inherit;width:inherit;height:inherit;border-radius:inherit;opacity:1;border:inherit;border-color:transparent;border-top-color:#fff}.kakao-video-ad.loadstart .loading-spinner:after,.kakao-video-ad.loadstart .loading-spinner:before{-webkit-animation:vjs-spinner-spin 1.1s cubic-bezier(.6,.2,0,.8) infinite,vjs-spinner-fade 1.1s linear infinite;animation:vjs-spinner-spin 1.1s cubic-bezier(.6,.2,0,.8) infinite,vjs-spinner-fade 1.1s linear infinite}.kakao-video-ad.loadstart .loading-spinner{display:block}.kakao-video-ad.loadstart.error .loading-spinner{display:none}.kakao-video-ad .link-load{display:none;position:absolute;top:0;left:0;width:100%;height:100%;color:#fff;text-decoration:none;visibility:visible}.kakao-video-ad .link-load.vod_replay:after{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);content:""}.kakao-video-ad .load{position:absolute;left:50%;top:50%;z-index:1;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.kakao-video-ad.loaded-data .load .ico_load{display:block;overflow:hidden;width:40px;height:40px;margin:0 auto;background:url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png) no-repeat 0 0;text-indent:-9999px;transition:opacity 1s}.kakao-video-ad.has-started.playing .load .ico_load{opacity:0;background-position:-40px 0}.kakao-video-ad.has-started.playing.show-buttons .load .ico_load{opacity:1;transition:opacity 1s;background-position:-40px 0}.kakao-video-ad.has-started.show-buttons.playing.paused.ended .link-load{display:inline-block}.kakao-video-ad.has-started.show-buttons.playing.paused.ended .load .ico_load{opacity:1;background-position:-80px 0}.kakao-video-ad.has-started.show-buttons.playing.paused .load .ico_load{opacity:1;background-position:0 0}.load .txt_time{overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px}.kakao-video-ad .poster{display:inline-block;vertical-align:middle;background-repeat:no-repeat;background-position:50% 50%;background-size:contain;background-color:#000;cursor:pointer;margin:0;padding:0;position:absolute;top:0;right:0;bottom:0;left:0;height:100%;opacity:0;transition:opacity 1s}.kakao-video-ad .poster img{display:block;vertical-align:middle;margin:0 auto;max-height:100%;padding:0;width:100%}.kakao-video-ad.has-started .poster{opacity:0}.kakao-video-ad .control-bar{position:absolute;width:100%;height:60px;left:0;right:0;bottom:0;font-size:0;visibility:visible;opacity:1;text-align:right;background:-moz-linear-gradient(top,transparent 10%,rgba(0,0,0,.3) 100%);background:-webkit-linear-gradient(top,transparent 10%,rgba(0,0,0,.3));background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.3));transition:opacity 1s}.kakao-video-ad .time-control{display:inline-block;width:auto;height:auto;margin:31px 12px 0 0;vertical-align:top;opacity:0;transition:opacity 1s;letter-spacing:0}.kakao-video-ad.has-started .time-control{opacity:1}.kakao-video-ad .control-text{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.kakao-video-ad .time-control em{font-size:12px;font-style:normal;color:#fff;font-weight:600;text-shadow:0 1px 1px rgba(0,0,0,.24)}.kakao-video-ad .control-bar a{background:none;border:none;color:inherit;display:inline-block;overflow:visible;font-size:inherit;line-height:inherit;text-transform:none;text-decoration:none;transition:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}.kakao-video-ad .control-bar .btn_option{display:inline-block;position:relative;width:41px;height:41px;margin:19px 0 0 -12px;padding:0;cursor:pointer;-webkit-box-flex:unset;-moz-box-flex:unset;-webkit-flex:none;-ms-box-flex:none;flex:none;outline:none;opacity:1}.kakao-video-ad .control-bar .btn_option:before{position:absolute;left:8px;top:15px;width:22px;height:7px;background:url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png) no-repeat -150px 0;content:""}.kakao-video-ad .link_sound{position:absolute;bottom:9px;left:7px;z-index:10;height:27px;padding:5px;font-size:12px;line-height:17px;text-decoration:none;opacity:0;transition:opacity 1s}.kakao-video-ad .link_sound .ico_sound{display:inline-block;overflow:hidden;width:22px;height:17px;font-size:1px;line-height:0;color:transparent;background:url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png) no-repeat -120px 0;vertical-align:top}.kakao-video-ad .link_sound.sound_off .ico_sound{background-position:-120px -20px}.kakao-video-ad .link_sound .txt_nosound{padding-left:7px;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.24)}.kakao-video-ad.loaded-data .link_sound{opacity:1}.kakao-video-ad .progress-control{position:absolute;width:100%;bottom:0;left:0;height:2px;-webkit-box-flex:initial;-moz-box-flex:initial;-webkit-flex:auto;-ms-flex:auto;flex:auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}.kakao-video-ad .progress-holder{-webkit-box-flex:initial;-moz-box-flex:initial;-webkit-flex:auto;-ms-flex:auto;flex:auto;-webkit-transition:all .2s;-moz-transition:all .2s;-o-transition:all .2s;transition:all .2s;height:2px}.kakao-video-ad .progress-holder .load-progress,.kakao-video-ad .progress-holder .load-progress div,.kakao-video-ad .progress-holder .play-progress{position:absolute;display:block;height:100%;margin:0;padding:0;width:0;left:0;top:0}.kakao-video-ad .play-progress{background-color:#4dbefa}.kakao-video-ad .play-progress:before{position:absolute;top:-8px;right:-8px;width:16px;height:10px}.kakao-video-ad .progress-control:hover .play-progress:before{transform:scale(1)}.kakao-video-ad .slider{outline:0;position:relative;cursor:pointer;width:100%;padding:0;margin:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:hsla(0,0%,100%,.4)}.kakao-video-ad .load-progress{background:#bfc7d3;background:rgba(115,133,159,.5)}.kakao-video-ad .load-progress div{background:hsla(0,0%,100%,.7)}.kakao-video-ad .option_layer{position:absolute;left:0;right:0;top:0;bottom:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);visibility:hidden;opacity:0;transition:opacity .5s}.kakao-video-ad.can-optout .option_layer{visibility:visible;z-index:400;opacity:1;transition:opacity .5s}.kakao-video-ad .option_layer .info_auto{display:table;width:100%;height:100%}.kakao-video-ad .option_layer .info_auto .inner_auto{display:table-cell;vertical-align:middle}.kakao-video-ad .option_layer .info_auto .desc_auto{position:relative;margin:0;padding:0 10px 57px;font-size:14px;line-height:20px;color:#fff;text-align:center;text-shadow:0 1px 1px rgba(0,0,0,.12);word-break:keep-all}.kakao-video-ad .option_layer .info_auto .btn_auto{position:absolute;left:50%;bottom:-2px;width:110px;height:40px;margin-left:-55px;border-radius:2px;font-size:14px;color:#fff;background-color:#9a9a9a;text-align:center;cursor:pointer;border:0;-webkit-box-flex:unset;-moz-box-flex:unset;-webkit-flex:none;-ms-box-flex:none;flex:none;outline:none}.kakao-video-ad .option_layer .info_auto .btn_on{background-color:#43bbfb}.kakao-video-ad .option_layer .desc_info{position:absolute;left:0;right:0;bottom:0;margin:0;padding-bottom:10px;font-size:9px;color:#bbb;letter-spacing:-.01em;text-align:center}.kakao-video-ad .option_layer .btn_close{position:absolute;right:10px;top:12px;width:30px;height:30px;padding:7px;cursor:pointer;border:0;background-color:transparent;-webkit-box-flex:unset;-moz-box-flex:unset;-webkit-flex:none;-ms-box-flex:none;flex:none;outline:none}.kakao-video-ad .option_layer .btn_close:before{position:absolute;left:7px;top:7px;width:16px;height:16px;background:url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png) no-repeat -120px -40px;content:""}.kakao-video-ad .option_layer .active_on.btn_close:before{background-position:-120px -60px}.kakao-video-ad.can-optout .control-bar,.kakao-video-ad.can-optout .header,.kakao-video-ad.can-optout .link-load,.kakao-video-ad.can-optout .link_sound{opacity:0;transition:opacity .5s}.kakao-video-ad.show-buttons .link-load,.kakao-video-ad.show-poster .link-load,.kakao-video-ad.show-poster .poster{display:inline-block;opacity:1}@media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (min-device-pixel-ratio:1.5),only screen and (min-resolution:1.5dppx){.kakao-video-ad .control-bar .btn_option:before,.kakao-video-ad .header .link_ad .txt_go:after,.kakao-video-ad .link_sound .ico_sound,.kakao-video-ad.loaded-data .load .ico_load,.kakao-video-ad .option_layer .btn_close:before{background-image:url(https://t1.daumcdn.net/biz/ui/adplayer/m640/ico_adplayer2_180308.png);background-size:180px 80px}}</style></head>
+.social_comm_p .img_social {
+	display: block;
+	overflow: hidden;
+	font-size: 0;
+	background:
+		url(//t1.daumcdn.net/daumtop_deco/images/common/social/img_social_200414.png)
+		no-repeat 0 0;
+	text-indent: -9999px
+}
+
+.social_comm_p .sns_comm_p {
+	overflow: hidden;
+	position: relative;
+	border: 1px solid #e2e2e2;
+	font-size: 11px;
+	color: #222;
+	background-color: #fff;
+	letter-spacing: -0.025em
+}
+
+.social_comm_p .btn_close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 24px;
+	height: 24px
+}
+
+.social_comm_p .ico_close {
+	width: 15px;
+	height: 16px;
+	margin: 5px;
+	background-position: -150px 0
+}
+
+.social_comm_p .share_layer {
+	position: relative;
+	width: 260px;
+	min-height: 228px
+}
+
+.social_comm_p .list_sns {
+	overflow: hidden;
+	margin: 26px 14px 0일단 바
+}
+
+.social_comm_p .list_sns li {
+	float: left;
+	width: 77px;
+	height: 78px
+}
+
+.social_comm_p .list_sns .link_sns {
+	display: block;
+	text-align: center;
+	text-decoration: none
+}
+
+.social_comm_p .list_sns .link_sns .img_social {
+	width: 43px;
+	height: 43px;
+	margin: 0 auto 4px
+}
+
+.social_comm_p .list_sns .tit_sns {
+	display: block;
+	margin-top: 7px;
+	font-weight: normal;
+	line-height: 16px
+}
+
+.social_comm_p .list_sns .ico_sns_ks {
+	background-position: -50px 0
+}
+
+.social_comm_p .list_sns .ico_sns_fb {
+	background-position: -100px 0
+}
+
+.social_comm_p .list_sns .ico_sns_tw {
+	background-position: 0 -50px
+}
+
+.social_comm_p .list_sns .ico_sns_cafe {
+	background-position: -100px -50px
+}
+
+.social_comm_p .list_sns .ico_sns_mail {
+	background-position: -50px -50px
+}
+
+.social_comm_p .list_sns .ico_sns_kt {
+	background-position: 0 0
+}
+
+.social_comm_p .sns_copyurl {
+	margin: -1px 26px 0;
+	padding-bottom: 23px
+}
+
+.social_comm_p .sns_copyurl .link_copyurl {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	height: 23px;
+	line-height: 23px;
+	border: 1px solid #d0d0d0;
+	background-color: #f8f8f8;
+	text-decoration: none
+}
+
+.social_comm_p .sns_copyurl .txt_url {
+	display: block;
+	overflow: hidden;
+	padding: 0 64px 0 7px;
+	color: #2695f8;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.social_comm_p .sns_copyurl .txt_copy {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 47px;
+	height: 25px;
+	border-left: 1px solid #d0d0d0;
+	background-color: #fff;
+	text-align: center
+}
+
+.social_comm_p .copyurl_layer {
+	width: 254px;
+	height: 78px;
+	text-align: center
+}
+
+.social_comm_p .inner_copyurl {
+	display: table;
+	width: 100%;
+	height: 100%
+}
+
+.social_comm_p .inner_copyurl .desc_copyurl {
+	display: table-cell;
+	padding: 18px 0 17px;
+	line-height: 19px;
+	vertical-align: middle
+}
+
+.social_comm_p .sns_copyurl_type2 .tf_url {
+	display: block;
+	width: 210px;
+	height: 25px;
+	padding: 0 10px;
+	border: 0 none;
+	color: #2695f8;
+	background-color: transparent
+}
+
+.social_comm_p .sns_copyurl_type2 .desc_tip {
+	padding: 13px 0;
+	line-height: 18px;
+	color: #888;
+	text-align: center;
+	letter-spacing: 0
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) , only screen and
+		(min-device-pixel-ratio: 1.5) , only screen and (min-resolution:
+		144dpi) , only screen and (min-resolution: 1.5dppx) {
+	.social_comm_p .img_social {
+		background-image:
+			url(//t1.daumcdn.net/daumtop_deco/images/common/social/rtn/img_social_200414.png);
+		background-size: 170px 100px
+	}
+}
+</style>
+<style type="text/css">
+.kakao-video-ad {
+	background-color: transparent;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, Malgun Gothic,
+		"\B9D1\C740   \ACE0\B515", sans-serif
+}
+
+.kakao-video-ad .header {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+	height: 60px;
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, .3) 0, transparent
+		100%);
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, .3), transparent);
+	background: linear-gradient(180deg, rgba(0, 0, 0, .3) 0, transparent);
+	transition: opacity 1s
+}
+
+.kakao-video-ad .header .link_ad {
+	display: block;
+	overflow: hidden;
+	padding: 12px 12px 12px 11px;
+	font-size: 15px;
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .12);
+	text-decoration: none
+}
+
+.kakao-video-ad .header .link_ad .txtdetail_ad {
+	float: left;
+	overflow: hidden;
+	max-width: calc(100% - 98px);
+	margin-top: 6px;
+	font-weight: 600;
+	letter-spacing: 0;
+	white-space: nowrap;
+	text-rendering: auto;
+	text-overflow: ellipsis;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .24);
+	text-align: left
+}
+
+.kakao-video-ad .header .link_ad .ico_ad {
+	float: left;
+	overflow: hidden;
+	width: 27px;
+	height: 16px;
+	margin: -1px 5px 0 0;
+	vertical-align: top;
+	background:
+		url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer_171026_v2.png)
+		no-repeat -70px 0;
+	text-indent: -9999px
+}
+
+.kakao-video-ad .header .link_ad .txt_go {
+	float: right;
+	height: 26px;
+	border-radius: 2px;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 27px;
+	background-color: rgba(0, 0, 0, .6);
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	letter-spacing: -1px
+}
+
+.kakao-video-ad .header .link_ad .txt_go:after {
+	display: inline-block;
+	width: 7px;
+	height: 11px;
+	margin: 8px 0 0 4px;
+	background:
+		url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png)
+		no-repeat -150px -20px;
+	vertical-align: top;
+	content: ""
+}
+
+.kakao-video-ad {
+	display: block;
+	overflow: hidden;
+	max-height: 319.5px;
+	width: 100%;
+	height: 0;
+	padding-top: 56.25%;
+	vertical-align: top;
+	box-sizing: border-box;
+	color: #fff;
+	background-color: #000;
+	position: relative;
+	font-size: 10px;
+	line-height: 1;
+	font-weight: 400;
+	font-style: normal;
+	font-family: HelveticaNeue, Helvetica, roboto, sans-serif
+}
+
+.kakao-video-ad * {
+	box-sizing: inherit
+}
+
+.kakao-video-ad video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%
+}
+
+.kakao-video-ad button {
+	background: none;
+	border: none;
+	color: inherit;
+	display: inline-block;
+	overflow: visible;
+	font-size: inherit;
+	line-height: inherit;
+	text-transform: none;
+	text-decoration: none;
+	transition: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none
+}
+
+.kakao-video-ad .loading-spinner {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -25px 0 0 -25px;
+	opacity: .85;
+	text-align: left;
+	border: 6px solid rgba(43, 51, 63, .7);
+	box-sizing: border-box;
+	background-clip: padding-box;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px
+}
+
+.kakao-video-ad .loading-spinner:after, .kakao-video-ad .loading-spinner:before
+	{
+	content: "";
+	position: absolute;
+	margin: -6px;
+	box-sizing: inherit;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	opacity: 1;
+	border: inherit;
+	border-color: transparent;
+	border-top-color: #fff
+}
+
+.kakao-video-ad.loadstart .loading-spinner:after, .kakao-video-ad.loadstart .loading-spinner:before
+	{
+	-webkit-animation: vjs-spinner-spin 1.1s cubic-bezier(.6, .2, 0, .8)
+		infinite, vjs-spinner-fade 1.1s linear infinite;
+	animation: vjs-spinner-spin 1.1s cubic-bezier(.6, .2, 0, .8) infinite,
+		vjs-spinner-fade 1.1s linear infinite
+}
+
+.kakao-video-ad.loadstart .loading-spinner {
+	display: block
+}
+
+.kakao-video-ad.loadstart.error .loading-spinner {
+	display: none
+}
+
+.kakao-video-ad .link-load {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	text-decoration: none;
+	visibility: visible
+}
+
+.kakao-video-ad .link-load.vod_replay:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .3);
+	content: ""
+}
+
+.kakao-video-ad .load {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)
+}
+
+.kakao-video-ad.loaded-data .load .ico_load {
+	display: block;
+	overflow: hidden;
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	background:
+		url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png)
+		no-repeat 0 0;
+	text-indent: -9999px;
+	transition: opacity 1s
+}
+
+.kakao-video-ad.has-started.playing .load .ico_load {
+	opacity: 0;
+	background-position: -40px 0
+}
+
+.kakao-video-ad.has-started.playing.show-buttons .load .ico_load {
+	opacity: 1;
+	transition: opacity 1s;
+	background-position: -40px 0
+}
+
+.kakao-video-ad.has-started.show-buttons.playing.paused.ended .link-load
+	{
+	display: inline-block
+}
+
+.kakao-video-ad.has-started.show-buttons.playing.paused.ended .load .ico_load
+	{
+	opacity: 1;
+	background-position: -80px 0
+}
+
+.kakao-video-ad.has-started.show-buttons.playing.paused .load .ico_load
+	{
+	opacity: 1;
+	background-position: 0 0
+}
+
+.load .txt_time {
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	text-indent: -9999px
+}
+
+.kakao-video-ad .poster {
+	display: inline-block;
+	vertical-align: middle;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	background-color: #000;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 1s
+}
+
+.kakao-video-ad .poster img {
+	display: block;
+	vertical-align: middle;
+	margin: 0 auto;
+	max-height: 100%;
+	padding: 0;
+	width: 100%
+}
+
+.kakao-video-ad.has-started .poster {
+	opacity: 0
+}
+
+.kakao-video-ad .control-bar {
+	position: absolute;
+	width: 100%;
+	height: 60px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 0;
+	visibility: visible;
+	opacity: 1;
+	text-align: right;
+	background: -moz-linear-gradient(top, transparent 10%, rgba(0, 0, 0, .3)
+		100%);
+	background: -webkit-linear-gradient(top, transparent 10%, rgba(0, 0, 0, .3));
+	background: linear-gradient(180deg, transparent 10%, rgba(0, 0, 0, .3));
+	transition: opacity 1s
+}
+
+.kakao-video-ad .time-control {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	margin: 31px 12px 0 0;
+	vertical-align: top;
+	opacity: 0;
+	transition: opacity 1s;
+	letter-spacing: 0
+}
+
+.kakao-video-ad.has-started .time-control {
+	opacity: 1
+}
+
+.kakao-video-ad .control-text {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px
+}
+
+.kakao-video-ad .time-control em {
+	font-size: 12px;
+	font-style: normal;
+	color: #fff;
+	font-weight: 600;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .24)
+}
+
+.kakao-video-ad .control-bar a {
+	background: none;
+	border: none;
+	color: inherit;
+	display: inline-block;
+	overflow: visible;
+	font-size: inherit;
+	line-height: inherit;
+	text-transform: none;
+	text-decoration: none;
+	transition: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none
+}
+
+.kakao-video-ad .control-bar .btn_option {
+	display: inline-block;
+	position: relative;
+	width: 41px;
+	height: 41px;
+	margin: 19px 0 0 -12px;
+	padding: 0;
+	cursor: pointer;
+	-webkit-box-flex: unset;
+	-moz-box-flex: unset;
+	-webkit-flex: none;
+	-ms-box-flex: none;
+	flex: none;
+	outline: none;
+	opacity: 1
+}
+
+.kakao-video-ad .control-bar .btn_option:before {
+	position: absolute;
+	left: 8px;
+	top: 15px;
+	width: 22px;
+	height: 7px;
+	background:
+		url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png)
+		no-repeat -150px 0;
+	content: ""
+}
+
+.kakao-video-ad .link_sound {
+	position: absolute;
+	bottom: 9px;
+	left: 7px;
+	z-index: 10;
+	height: 27px;
+	padding: 5px;
+	font-size: 12px;
+	line-height: 17px;
+	text-decoration: none;
+	opacity: 0;
+	transition: opacity 1s
+}
+
+.kakao-video-ad .link_sound .ico_sound {
+	display: inline-block;
+	overflow: hidden;
+	width: 22px;
+	height: 17px;
+	font-size: 1px;
+	line-height: 0;
+	color: transparent;
+	background:
+		url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png)
+		no-repeat -120px 0;
+	vertical-align: top
+}
+
+.kakao-video-ad .link_sound.sound_off .ico_sound {
+	background-position: -120px -20px
+}
+
+.kakao-video-ad .link_sound .txt_nosound {
+	padding-left: 7px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .24)
+}
+
+.kakao-video-ad.loaded-data .link_sound {
+	opacity: 1
+}
+
+.kakao-video-ad .progress-control {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	-webkit-box-flex: initial;
+	-moz-box-flex: initial;
+	-webkit-flex: auto;
+	-ms-flex: auto;
+	flex: auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center
+}
+
+.kakao-video-ad .progress-holder {
+	-webkit-box-flex: initial;
+	-moz-box-flex: initial;
+	-webkit-flex: auto;
+	-ms-flex: auto;
+	flex: auto;
+	-webkit-transition: all .2s;
+	-moz-transition: all .2s;
+	-o-transition: all .2s;
+	transition: all .2s;
+	height: 2px
+}
+
+.kakao-video-ad .progress-holder .load-progress, .kakao-video-ad .progress-holder .load-progress div,
+	.kakao-video-ad .progress-holder .play-progress {
+	position: absolute;
+	display: block;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 0;
+	left: 0;
+	top: 0
+}
+
+.kakao-video-ad .play-progress {
+	background-color: #4dbefa
+}
+
+.kakao-video-ad .play-progress:before {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	width: 16px;
+	height: 10px
+}
+
+.kakao-video-ad .progress-control:hover .play-progress:before {
+	transform: scale(1)
+}
+
+.kakao-video-ad .slider {
+	outline: 0;
+	position: relative;
+	cursor: pointer;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: hsla(0, 0%, 100%, .4)
+}
+
+.kakao-video-ad .load-progress {
+	background: #bfc7d3;
+	background: rgba(115, 133, 159, .5)
+}
+
+.kakao-video-ad .load-progress div {
+	background: hsla(0, 0%, 100%, .7)
+}
+
+.kakao-video-ad .option_layer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .5s
+}
+
+.kakao-video-ad.can-optout .option_layer {
+	visibility: visible;
+	z-index: 400;
+	opacity: 1;
+	transition: opacity .5s
+}
+
+.kakao-video-ad .option_layer .info_auto {
+	display: table;
+	width: 100%;
+	height: 100%
+}
+
+.kakao-video-ad .option_layer .info_auto .inner_auto {
+	display: table-cell;
+	vertical-align: middle
+}
+
+.kakao-video-ad .option_layer .info_auto .desc_auto {
+	position: relative;
+	margin: 0;
+	padding: 0 10px 57px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .12);
+	word-break: keep-all
+}
+
+.kakao-video-ad .option_layer .info_auto .btn_auto {
+	position: absolute;
+	left: 50%;
+	bottom: -2px;
+	width: 110px;
+	height: 40px;
+	margin-left: -55px;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #9a9a9a;
+	text-align: center;
+	cursor: pointer;
+	border: 0;
+	-webkit-box-flex: unset;
+	-moz-box-flex: unset;
+	-webkit-flex: none;
+	-ms-box-flex: none;
+	flex: none;
+	outline: none
+}
+
+.kakao-video-ad .option_layer .info_auto .btn_on {
+	background-color: #43bbfb
+}
+
+.kakao-video-ad .option_layer .desc_info {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	padding-bottom: 10px;
+	font-size: 9px;
+	color: #bbb;
+	letter-spacing: -.01em;
+	text-align: center
+}
+
+.kakao-video-ad .option_layer .btn_close {
+	position: absolute;
+	right: 10px;
+	top: 12px;
+	width: 30px;
+	height: 30px;
+	padding: 7px;
+	cursor: pointer;
+	border: 0;
+	background-color: transparent;
+	-webkit-box-flex: unset;
+	-moz-box-flex: unset;
+	-webkit-flex: none;
+	-ms-box-flex: none;
+	flex: none;
+	outline: none
+}
+
+.kakao-video-ad .option_layer .btn_close:before {
+	position: absolute;
+	left: 7px;
+	top: 7px;
+	width: 16px;
+	height: 16px;
+	background:
+		url(https://t1.daumcdn.net/biz/ui/adplayer/m320/ico_adplayer2_180308.png)
+		no-repeat -120px -40px;
+	content: ""
+}
+
+.kakao-video-ad .option_layer .active_on.btn_close:before {
+	background-position: -120px -60px
+}
+
+.kakao-video-ad.can-optout .control-bar, .kakao-video-ad.can-optout .header,
+	.kakao-video-ad.can-optout .link-load, .kakao-video-ad.can-optout .link_sound
+	{
+	opacity: 0;
+	transition: opacity .5s
+}
+
+.kakao-video-ad.show-buttons .link-load, .kakao-video-ad.show-poster .link-load,
+	.kakao-video-ad.show-poster .poster {
+	display: inline-block;
+	opacity: 1
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5) , only screen and
+		(min-device-pixel-ratio:1.5) , only screen and
+	(min-resolution:1.5dppx) {
+	.kakao-video-ad .control-bar .btn_option:before, .kakao-video-ad .header .link_ad .txt_go:after,
+		.kakao-video-ad .link_sound .ico_sound, .kakao-video-ad.loaded-data .load .ico_load,
+		.kakao-video-ad .option_layer .btn_close:before {
+		background-image:
+			url(https://t1.daumcdn.net/biz/ui/adplayer/m640/ico_adplayer2_180308.png);
+		background-size: 180px 80px
+	}
+}
+</style>
+</head>
 
 <body>
-  <div id="kakaoIndex">
-        <a href="#kakaoBody">본문 바로가기</a>
-        <a href="#kakaoGnb">메뉴 바로가기</a>
-    </div>
-    <div id="kakaoWrap" class="wrap_mapdetail"><div data-viewid="header" id="kakaoHead" class="head_mapdetail" role="banner">
-    
-    <h1 class="logo_daum">
-        <a href="http://daum.net" id="kakaoLogo" data-logtarget data-logevent="daum_top" target="_blank"><img src="//t1.daumcdn.net/localimg/localimages/07/2017/pc/rtn/logo_daum.png" width="44" height="18" class="img_logo" alt="다음"></a>
-        <a href="https://map.kakao.com" id="kakaoServiceLogo" data-logtarget data-logevent="map_top" target="_blank">
-            <img src="//t1.daumcdn.net/localimg/localimages/07/2017/pc/rtn/logo_service.png" width="39" height="20" class="img_logo" alt="지도">
-        </a>
-    </h1>
-   
-    <h1 class="logo_daum">
-        2018-07-23 수정
-        <a href="https://map.kakao.com" id="#kakaoMapLogo" data-logtarget="" data-logevent="map_top" target="_blank"><img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/logo_kakaomap.png" width="121" height="25" class="img_logo" alt="카카오맵" id="exifviewer-img-1" exifid="1656209132" oldsrc="http://t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/logo_kakaomap.png">
-        </a>
-    </h1>
-    <div data-viewid="header" data-root="" class="search_map">
-    <h2 class="screen_out">검색</h2>
-    <form id="searchForm" method="GET">
-        <fieldset>
-            <legend class="screen_out">검색어 입력 폼</legend>
-            <label for="searchKeyword" class="lab_search">카카오맵 지도 검색</label>
-            <input type="text" name="q" id="searchKeyword" class="tf_search" autocomplete="off" spellcheck="false">
-            <button type="submit" id="kakaoBtnSearch" class="btn_search">
-                <span class="ico_comm ico_search">검색</span>
-            </button>
-        </fieldset>
-        <blockquote id="searchKeywordSuggest" class="wrapper">
-            <div class="suggestBox box_sub" style="display: none;">
-                <div class="baseBox bg">
-                    <div class="list">
-                        <ul class="suggest_list_target"></ul>
-                    </div>
-                </div>
-                <div class="favorite_find"></div>
-                <div class="search_recent"></div>
-            </div>
-        <div class="suggestBox box_sub"><div class="baseBox bg"><div class="list"><ul class="suggest_list_target"></ul></div></div><div class="favorite_find"></div><div class="search_recent"></div></div></blockquote>
-    </form>
-</div>
+	<div id="kakaoIndex">
+		<a href="#kakaoBody">본문 바로가기</a> <a href="#kakaoGnb">메뉴 바로가기</a>
+	</div>
+	<div id="kakaoWrap" class="wrap_mapdetail">
+		<div data-viewid="header" id="kakaoHead" class="head_mapdetail"
+			role="banner">
 
-    <div id="kakaoGnb" data-viewid="navBar" data-root="" class="location_bar" role="navigation">스크롤 내려 왔을 때 location_bar_on 추가
-    <div class="inner_bar">
-        <div class="outer_header_share_container">
-            <div id="header_share_container" class="inner_header_share_container"><div class="social_comm_p hide"><div class="sns_comm_p share_layer">
-    <strong class="screen_out">SNS로 공유하기 펼쳐짐</strong>
-    <ul class="list_sns"><li>
-        <a href="#none" class="link_sns" data-handler="kakaotalk">
-        <span class="img_social ico_sns_kt">
-        </span>카카오톡</a></li><li>
-        <a href="#none" class="link_sns" data-handler="kakaostory">
-        <span class="img_social ico_sns_ks">
-        </span>카카오스토리</a></li><li>
-        <a href="#none" class="link_sns" data-handler="facebook">
-        <span class="img_social ico_sns_fb">
-        </span>페이스북</a></li><li>
-        <a href="#none" class="link_sns" data-handler="twitter">
-        <span class="img_social ico_sns_tw">
-        </span>트위터</a></li><li>
-        <a href="#none" class="link_sns" data-handler="mail">
-        <span class="img_social ico_sns_mail">
-        </span>다음메일</a></li><li>
-        <a href="#none" class="link_sns" data-handler="daumcafe">
-        <span class="img_social ico_sns_cafe">
-        </span>다음카페</a></li></ul>
-    <div class="copyUrl"><div class="sns_copyurl">
-    <a href="#none" class="link_copyurl">
-    <span class="screen_out">현재페이지 URL복사</span>
-    <span class="txt_url">https://place.map.kakao.com/892584709</span>
-    <span class="txt_copy">URL복사</span>
-    </a>
-    </div></div>
-    <button class="btn_close"><span class="img_social ico_close">공유목록 닫기</span></button>
-    </div><div class="sns_comm_p copyurl_layer hide">
-  <div class="inner_copyurl">
-  <p class="desc_copyurl">주소가 복사되었습니다.<br>원하는곳에 붙여넣기(Ctrl+V)해주세요.</p>
-  <button class="btn_close"><span class="img_social ico_close">공유목록 닫기</span>
-  </button>
-  </div></div></div></div>
-        </div>
-        <h2 class="tit_location" aria-hidden="true" data-logtarget="" data-logevent="name_bar,name">퀴클린24셀프빨래방</h2>
-        <strong class="screen_out">상세정보 퀵메뉴</strong>
-        <ul class="list_lnb">
-            <li>
-                <a href="https://map.kakao.com?urlX=483596&amp;urlY=1139090&amp;urlLevel=3&amp;itemId=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;srcid=892584709&amp;map_type=TYPE_MAP" target="_blank" class="link_lnb" data-logtarget="" data-logevent="name_bar,map">
-                    <span class="ico_comm ico_map">지도</span> 2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_map 요소 추가 
-                </a>
-            </li>
-            2018-11-28 추가 : 로드뷰, 즐겨찾기 위치이동으로 인한 추가
-            <li>
-                <a href="https://map.kakao.com?srcid=892584709&amp;confirmid=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rv=on" target="_blank" class="link_lnb" data-roadview="" data-logtarget="" data-logevent="name_bar,roadview">
-                    <span class="ico_comm ico_roadview">로드뷰</span> 2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_roadview 요소 추가 
-                </a>
-            </li>
-            <li>2018-11-28 즐겨찾기 메뉴의 lst클래스 삭제
-                <a href="#none" class="link_lnb link_bookmark " data-fid="" data-link="fav" data-logtarget="" data-logevent="name_bar,favorite">
-                    <span class="ico_comm ico_bookmark">즐겨찾기 추가</span>
-                    <span class="ico_num ico_num"><span class="screen_out">나의 즐겨찾기 폴더 개수</span></span>
-                </a>
-            </li>
-            <li data-share="">
-                <a href="#none" target="_blank" class="link_lnb" data-link="share">
-                    <span class="ico_comm ico_share">공유하기</span>
-                </a>
-            </li>
-            // 2018-11-28 추가 : 공유하기 버튼 추가
-            <li>
-                <a href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,483596,1139090&amp;rt1=&amp;rt2=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rtIds=,892584709" target="_blank" class="link_lnb" data-logtarget="" data-logevent="name_bar,route">
-                    <span class="ico_comm ico_route">길찾기</span> 2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_route 요소 추가 
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-    <div data-viewid="headerProfile" data-root="">
-    <a href="https://map.kakao.com/user/signup" target="_top" class="btn_login">시작하기</a>
-</div>
+			<h1 class="logo_daum">
+				<a href="http://daum.net" id="kakaoLogo" data-logtarget
+					data-logevent="daum_top" target="_blank"><img
+					src="//t1.daumcdn.net/localimg/localimages/07/2017/pc/rtn/logo_daum.png"
+					width="44" height="18" class="img_logo" alt="다음"></a> <a
+					href="https://map.kakao.com" id="kakaoServiceLogo" data-logtarget
+					data-logevent="map_top" target="_blank"> <img
+					src="//t1.daumcdn.net/localimg/localimages/07/2017/pc/rtn/logo_service.png"
+					width="39" height="20" class="img_logo" alt="지도">
+				</a>
+			</h1>
 
-</div>
-<hr class="hide">
-<div data-viewid="nativeAdvertisement" adfit-unit-id="DAN-1h8210bp60zzq" data-root="" style="position: absolute; top: 354px; left: 50%; margin-left: -555px;" adfit-init="true" adfit-unit-idx="0">
-    <strong style="overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px">광고</strong>
-    <a href="https://analytics.ad.daum.net/clk?wa=kYrDZmAs_17qld0MtxcOTw&amp;enc=ZpRCYkW-dpMXSnvMo4DsErYV17s_vfccVRVMfJL6IgC3j_TT7-tcnNSzi7bYsgg5SimxpP2PQY2bjNLrJNC12nCBNR0Z2Eqc1f3lBSyWj9Usw6tT7BSNzqjh5DUZudILd_VpJtv_NSbwzVV47yV3QVblWKD017_2TiW9lNRziZXjpbHoTt6oYGLW65TTpUf5dAWeXiMjbe9RcsG_dBH8EkK_6_O0qhDpsJQul1RcreM8XZ74MscbFzFQPCpnrqoc7L0DYCStMGjhnZVAMMMXcRUnvQi7i53kpcNZ3fnymceY3I-fJwXZT35A3IZJBzamA-FQjF1qrugLbakRV1s17PjElbzWG69pzlwQ6VtmpdUgt9gDnpIuSuYhdOQLsSI4is5lujWv2_1L5ag9SkQ38rSQILaGyv34ewtFLSsuBCEqFOpjYBgZWU6a3BllPI3zbE7LaWKJFEskkd9IkXG7EEKvhKxGjHvYR2Eznw0lfku0-qbBlMsBKqu01yqGva3rn8pJrOqMTIPd1RLxQx5SvbS3iGZX5sLWpNNbRfQt_i0lNbwIWt2PIqTPawzfkuzBteQEALpLgO_GFSvNGl2mQhpjpwjGOKMtG7RQs234uT7csY_baLIdF0Oqk2svdgj9aFg8RI--ZMJjKTjGGqJcT6N9mb4qEqvFwU-kA_mic5ZA0dQtnVVwM9PAFfavBK2Z&amp;lc=1" target="_blank" style="display:block" adfit-landing-url="">
-        <span style="display:block;overflow:hidden;position:relative">
-            <img width="125" height="94" adfit-image-width="125" adfit-image-height="94" adfit-main-img-url="" style="display:block;border-radius:4px" alt="암 투병 하며 쌍둥이를 돌보는 엄마" src="https://img1.daumcdn.net/thumb/S250x187/?scode=b2_01&amp;x-twg-thumb-fname=http%3A%2F%2Ft1.daumcdn.net%2Fb2%2Fcreative%2F51957%2Fa72797fc8570cdb8e75138ccf48ad592.jpg&amp;TWGServiceId=b2&amp;Expires=1601816400&amp;Signature=zy4LOEmuej96Tys0Wyd7QqYPBLY%3D" adfit-action-type="mainImage">
-            <img adfit-ad-info-icon="" src="https://t1.daumcdn.net/b2/templates/image/opt_out_30.png" width="24" height="16" style="position: absolute; top: 4px; right: 4px; cursor: pointer; pointer-events: auto;" alt="암 투병 하며 쌍둥이를 돌보는 엄마" adfit-action-type="adInfoIcon">
-        </span>
-        <strong class="tit_item" adfit-title="" style="display:block;overflow:hidden;width:125px;max-height:38px;padding-top:6px;font-weight:normal;font-size:13px;line-height:18px;color:#555;font-family:AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;text-align:center" adfit-action-type="title">암 투병 하며 쌍둥이를 돌보는 엄마</strong>
-    </a>
-</div>
-<div id="kakaoContent" role="main" class="cont_mapdetail">
-    <div class="dimmed_layer hide"></div>
-    <div id="mArticle">
-        <div data-viewid="basicInfo" class="cont_essential">
-    <div data-viewid="basicInfoTop" data-root="">
-    <div class="details_present" style="background:none;">
-        <a href="#none" class="link_present" data-logtarget="" data-logevent="info_pannel,main_pic">
-                <span class="bg_present" style="background-image:url('//img1.daumcdn.net/thumb/T800x0.q70/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flocalfiy%2F2D6916B41D7C492EB7A93CEFC2F357AA')"></span>
-            <span class="frame_g"></span>
-        </a>
-    </div>
-    <div class="place_details">
-        <div class="inner_place">
-                <span class="color_g txt_elocation">quicklean</span>
-            <h2 class="tit_location">퀴클린24셀프빨래방</h2>
-            <div class="location_evaluation">
-                <span class="txt_location"><span class="screen_out">분류: </span>셀프빨래방</span>
-                <span class="ico_comm ico_dot"></span>
-                <a href="#none" class="link_evaluation" data-cnt="3" data-target="comment" data-logtarget="" data-logevent="info_pannel,point">평점 <span class="color_b">5.0<span class="screen_out">점</span></span>
-                    <span class="color_g">(3)<span class="screen_out">명 평가</span></span>
-                </a>
-                <span class="ico_comm ico_dot"></span>
-                <a href="#none" class="link_evaluation" data-cnt="0" data-target="review" data-logtarget="" data-logevent="info_pannel,review">
-                    리뷰 <span class="color_b inactive">0<span class="screen_out">개</span></span>
-                </a>
-            </div>
-            <strong class="screen_out">위치 정보 및 공유하기</strong>
-            <ul class="list_place">
-                <li>
-                    <a href="https://map.kakao.com?urlX=483596&amp;urlY=1139090&amp;urlLevel=3&amp;itemId=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;srcid=892584709&amp;map_type=TYPE_MAP" target="_blank" class="link_place" data-logtarget="" data-logevent="info_pannel,map_view"><span class="ico_comm ico_storemap"></span>지도</a></li>
-                <li>
-                    <a href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,483596,1139090&amp;rt1=&amp;rt2=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rtIds=,892584709" target="_blank" class="link_place" data-logtarget="" data-logevent="info_pannel,route"><span class="ico_comm ico_route"></span>길찾기</a>
-                </li>
-                <li>
-                        <a href="https://map.kakao.com?srcid=892584709&amp;confirmid=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rv=on" class="link_place" target="_blank" data-logtarget="" data-logevent="info_pannel,roadview" data-roadview=""><span class="ico_comm ico_roadmap"></span>로드뷰</a>
-                </li>
-                <li class="lst">
-                    <a href="#none" class="link_place" data-logevent="info_pannel,share"><span class="ico_comm ico_share"></span>공유하기</a>
-                    <div data-viewid="snsShare" data-root="" class="detail_share">
-</div>
-                    <div class="place_share_container" id="place_share_container"><div class="social_comm_p hide"><div class="sns_comm_p share_layer">
-    <strong class="screen_out">SNS로 공유하기 펼쳐짐</strong>
-    <ul class="list_sns"><li>
-        <a href="#none" class="link_sns" data-handler="kakaotalk">
-        <span class="img_social ico_sns_kt">
-        </span>카카오톡</a></li><li>
-        <a href="#none" class="link_sns" data-handler="kakaostory">
-        <span class="img_social ico_sns_ks">
-        </span>카카오스토리</a></li><li>
-        <a href="#none" class="link_sns" data-handler="facebook">
-        <span class="img_social ico_sns_fb">
-        </span>페이스북</a></li><li>
-        <a href="#none" class="link_sns" data-handler="twitter">
-        <span class="img_social ico_sns_tw">
-        </span>트위터</a></li><li>
-        <a href="#none" class="link_sns" data-handler="mail">
-        <span class="img_social ico_sns_mail">
-        </span>다음메일</a></li><li>
-        <a href="#none" class="link_sns" data-handler="daumcafe">
-        <span class="img_social ico_sns_cafe">
-        </span>다음카페</a></li></ul>
-    <div class="copyUrl"><div class="sns_copyurl">
-    <a href="#none" class="link_copyurl">
-    <span class="screen_out">현재페이지 URL복사</span>
-    <span class="txt_url">https://place.map.kakao.com/892584709</span>
-    <span class="txt_copy">URL복사</span>
-    </a>
-    </div></div>
-    <button class="btn_close"><span class="img_social ico_close">공유목록 닫기</span></button>
-    </div><div class="sns_comm_p copyurl_layer hide">
-  <div class="inner_copyurl">
-  <p class="desc_copyurl">주소가 복사되었습니다.<br>원하는곳에 붙여넣기(Ctrl+V)해주세요.</p>
-  <button class="btn_close"><span class="img_social ico_close">공유목록 닫기</span>
-  </button>
-  </div></div></div></div>
-                </li>
-            </ul>
+			<h1 class="logo_daum">
+				2018-07-23 수정 <a href="https://map.kakao.com" id="#kakaoMapLogo"
+					data-logtarget="" data-logevent="map_top" target="_blank"><img
+					src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/logo_kakaomap.png"
+					width="121" height="25" class="img_logo" alt="카카오맵"
+					id="exifviewer-img-1" exifid="1656209132"
+					oldsrc="http://t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/logo_kakaomap.png">
+				</a>
+			</h1>
+			<div data-viewid="header" data-root="" class="search_map">
+				<h2 class="screen_out">검색</h2>
+				<form id="searchForm" method="GET">
+					<fieldset>
+						<legend class="screen_out">검색어 입력 폼</legend>
+						<label for="searchKeyword" class="lab_search">카카오맵 지도 검색</label> <input
+							type="text" name="q" id="searchKeyword" class="tf_search"
+							autocomplete="off" spellcheck="false">
+						<button type="submit" id="kakaoBtnSearch" class="btn_search">
+							<span class="ico_comm ico_search">검색</span>
+						</button>
+					</fieldset>
+					<blockquote id="searchKeywordSuggest" class="wrapper">
+						<div class="suggestBox box_sub" style="display: none;">
+							<div class="baseBox bg">
+								<div class="list">
+									<ul class="suggest_list_target"></ul>
+								</div>
+							</div>
+							<div class="favorite_find"></div>
+							<div class="search_recent"></div>
+						</div>
+						<div class="suggestBox box_sub">
+							<div class="baseBox bg">
+								<div class="list">
+									<ul class="suggest_list_target"></ul>
+								</div>
+							</div>
+							<div class="favorite_find"></div>
+							<div class="search_recent"></div>
+						</div>
+					</blockquote>
+				</form>
+			</div>
 
-            <a href="#none" class="link_bookmark " data-fid="" data-logtarget="" data-logevent="info_pannel,favorite">
-                <span class="ico_comm ico_bookmark">즐겨찾기 추가</span>
-                <span class="ico_num ico_num"><span class="screen_out">나의 즐겨찾기 폴더 개수</span></span>
-            </a>
+			<div id="kakaoGnb" data-viewid="navBar" data-root=""
+				class="location_bar" role="navigation">
+				스크롤 내려 왔을 때 location_bar_on 추가
+				<div class="inner_bar">
+					<div class="outer_header_share_container">
+						<div id="header_share_container"
+							class="inner_header_share_container">
+							<div class="social_comm_p hide">
+								<div class="sns_comm_p share_layer">
+									<strong class="screen_out">SNS로 공유하기 펼쳐짐</strong>
+									<ul class="list_sns">
+										<li><a href="#none" class="link_sns"
+											data-handler="kakaotalk"> <span
+												class="img_social ico_sns_kt"> </span>카카오톡
+										</a></li>
+										<li><a href="#none" class="link_sns"
+											data-handler="kakaostory"> <span
+												class="img_social ico_sns_ks"> </span>카카오스토리
+										</a></li>
+										<li><a href="#none" class="link_sns"
+											data-handler="facebook"> <span
+												class="img_social ico_sns_fb"> </span>페이스북
+										</a></li>
+										<li><a href="#none" class="link_sns"
+											data-handler="twitter"> <span
+												class="img_social ico_sns_tw"> </span>트위터
+										</a></li>
+										<li><a href="#none" class="link_sns" data-handler="mail">
+												<span class="img_social ico_sns_mail"> </span>다음메일
+										</a></li>
+										<li><a href="#none" class="link_sns"
+											data-handler="daumcafe"> <span
+												class="img_social ico_sns_cafe"> </span>다음카페
+										</a></li>
+									</ul>
+									<div class="copyUrl">
+										<div class="sns_copyurl">
+											<a href="#none" class="link_copyurl"> <span
+												class="screen_out">현재페이지 URL복사</span> <span class="txt_url">https://place.map.kakao.com/892584709</span>
+												<span class="txt_copy">URL복사</span>
+											</a>
+										</div>
+									</div>
+									<button class="btn_close">
+										<span class="img_social ico_close">공유목록 닫기</span>
+									</button>
+								</div>
+								<div class="sns_comm_p copyurl_layer hide">
+									<div class="inner_copyurl">
+										<p class="desc_copyurl">
+											주소가 복사되었습니다.<br>원하는곳에 붙여넣기(Ctrl+V)해주세요.
+										</p>
+										<button class="btn_close">
+											<span class="img_social ico_close">공유목록 닫기</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h2 class="tit_location" aria-hidden="true" data-logtarget=""
+						data-logevent="name_bar,name">퀴클린24셀프빨래방</h2>
+					<strong class="screen_out">상세정보 퀵메뉴</strong>
+					<ul class="list_lnb">
+						<li><a
+							href="https://map.kakao.com?urlX=483596&amp;urlY=1139090&amp;urlLevel=3&amp;itemId=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;srcid=892584709&amp;map_type=TYPE_MAP"
+							target="_blank" class="link_lnb" data-logtarget=""
+							data-logevent="name_bar,map"> <span class="ico_comm ico_map">지도</span>
+								2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_map 요소 추가
+						</a></li> 2018-11-28 추가 : 로드뷰, 즐겨찾기 위치이동으로 인한 추가
+						<li><a
+							href="https://map.kakao.com?srcid=892584709&amp;confirmid=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rv=on"
+							target="_blank" class="link_lnb" data-roadview=""
+							data-logtarget="" data-logevent="name_bar,roadview"> <span
+								class="ico_comm ico_roadview">로드뷰</span> 2018-11-28 추가 : 텍스트 감싸는
+								.ico_comm.ico_roadview 요소 추가
+						</a></li>
+						<li>2018-11-28 즐겨찾기 메뉴의 lst클래스 삭제 <a href="#none"
+							class="link_lnb link_bookmark " data-fid="" data-link="fav"
+							data-logtarget="" data-logevent="name_bar,favorite"> <span
+								class="ico_comm ico_bookmark">즐겨찾기 추가</span> <span
+								class="ico_num ico_num"><span class="screen_out">나의
+										즐겨찾기 폴더 개수</span></span>
+						</a>
+						</li>
+						<li data-share=""><a href="#none" target="_blank"
+							class="link_lnb" data-link="share"> <span
+								class="ico_comm ico_share">공유하기</span>
+						</a></li> // 2018-11-28 추가 : 공유하기 버튼 추가
+						<li><a
+							href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,483596,1139090&amp;rt1=&amp;rt2=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rtIds=,892584709"
+							target="_blank" class="link_lnb" data-logtarget=""
+							data-logevent="name_bar,route"> <span
+								class="ico_comm ico_route">길찾기</span> 2018-11-28 추가 : 텍스트 감싸는
+								.ico_comm.ico_route 요소 추가
+						</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-viewid="headerProfile" data-root="">
+				<a href="https://map.kakao.com/user/signup" target="_top"
+					class="btn_login">시작하기</a>
+			</div>
 
-        </div>
-    </div>
-    <div class="details_rest">
-        <strong class="screen_out">기타 메뉴</strong>
-        <ul class="list_rest">
-            <li>
-                <a href="#none" class="link_rest" data-type="print" data-logtarget="" data-logevent="right_etc,print">
-                    <span class="ico_comm ico_print">프린트하기</span>
-                </a>
-            </li>
-            <li>
-                <a href="#none" class="link_rest" data-type="roughmap" data-logtarget="" data-logevent="right_etc,simplemap">
-                    <span class="ico_comm ico_makemap">약도 만들기</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-    <div data-viewid="basicInfo" data-root="" class="details_placeinfo">
-    <h3 class="tit_subject">상세정보</h3>
-    <div class="placeinfo_default">
-        <h4 class="tit_detail"><span class="ico_comm ico_address">위치</span></h4>
-        <div class="location_detail">
-            <span class="txt_address">서울 은평구
-                은평로12길 7-10
-                 (우)03462</span>
-            <span class="txt_addrnum">지번<span class="bg_bar"></span>응암동 97-28</span>
-        </div>
-    </div>
-        <div class="placeinfo_default">
-            <h4 class="tit_detail"><span class="ico_comm ico_operation">운영시간 안내</span></h4>
-            <div class="location_detail openhour_wrap">btn_more 클릭 했을 때 open_on 추가
-                <div class="location_present">
-                            <strong class="tit_operation fst">영업시간
-                                    <span class="open">영업중</span>
-                            </strong>
-                            
-                                <ul class="list_operation">
-                                        <li>
-                                            <span class="txt_operation">매일 <span class="time_operation">00:00 ~ 24:00</span>
-                                            
-                                            </span>
-                                       </li>
-                                </ul>
-                </div>
-            </div>
-        </div>
-        <div class="placeinfo_default placeinfo_facility">
-            <h4 class="tit_facility"><span class="ico_comm ico_installation"></span>시설정보</h4>
-            <ul class="list_facility">
-                    <li>
-                        <span class="ico_comm ico_wifi"></span>
-                        <span class="color_g">WIFI</span>
-                    </li>
-                    <li>
-                        <span class="ico_comm ico_parking"></span>
-                        <span class="color_g">주차</span>
-                    </li>
-            </ul>
-          <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
-<%--수요일 수정 --%>
-<c:set var="itemStr" value="${storeInfo.items}"/>
-<c:set var="itemStr" value="${fn:replace(itemStr, '!@#', ':')}"/>
-<c:set var="itemStr" value="${fn:replace(itemStr, '$%^', '개 ')}"/>
-<c:set var="itemStr" value="${fn:substring(itemStr, 0, fn:length(itemStr)-1)}" />
-<input type='text' class='item' value='${itemStr}'>
+		</div>
+		<hr class="hide">
+		<div data-viewid="nativeAdvertisement"
+			adfit-unit-id="DAN-1h8210bp60zzq" data-root=""
+			style="position: absolute; top: 354px; left: 50%; margin-left: -555px;"
+			adfit-init="true" adfit-unit-idx="0">
+			<strong
+				style="overflow: hidden; position: absolute; width: 0; height: 0; line-height: 0; text-indent: -9999px">광고</strong>
+			<a
+				href="https://analytics.ad.daum.net/clk?wa=kYrDZmAs_17qld0MtxcOTw&amp;enc=ZpRCYkW-dpMXSnvMo4DsErYV17s_vfccVRVMfJL6IgC3j_TT7-tcnNSzi7bYsgg5SimxpP2PQY2bjNLrJNC12nCBNR0Z2Eqc1f3lBSyWj9Usw6tT7BSNzqjh5DUZudILd_VpJtv_NSbwzVV47yV3QVblWKD017_2TiW9lNRziZXjpbHoTt6oYGLW65TTpUf5dAWeXiMjbe9RcsG_dBH8EkK_6_O0qhDpsJQul1RcreM8XZ74MscbFzFQPCpnrqoc7L0DYCStMGjhnZVAMMMXcRUnvQi7i53kpcNZ3fnymceY3I-fJwXZT35A3IZJBzamA-FQjF1qrugLbakRV1s17PjElbzWG69pzlwQ6VtmpdUgt9gDnpIuSuYhdOQLsSI4is5lujWv2_1L5ag9SkQ38rSQILaGyv34ewtFLSsuBCEqFOpjYBgZWU6a3BllPI3zbE7LaWKJFEskkd9IkXG7EEKvhKxGjHvYR2Eznw0lfku0-qbBlMsBKqu01yqGva3rn8pJrOqMTIPd1RLxQx5SvbS3iGZX5sLWpNNbRfQt_i0lNbwIWt2PIqTPawzfkuzBteQEALpLgO_GFSvNGl2mQhpjpwjGOKMtG7RQs234uT7csY_baLIdF0Oqk2svdgj9aFg8RI--ZMJjKTjGGqJcT6N9mb4qEqvFwU-kA_mic5ZA0dQtnVVwM9PAFfavBK2Z&amp;lc=1"
+				target="_blank" style="display: block" adfit-landing-url=""> <span
+				style="display: block; overflow: hidden; position: relative">
+					<img width="125" height="94" adfit-image-width="125"
+					adfit-image-height="94" adfit-main-img-url=""
+					style="display: block; border-radius: 4px"
+					alt="암 투병 하며 쌍둥이를 돌보는 엄마"
+					src="https://img1.daumcdn.net/thumb/S250x187/?scode=b2_01&amp;x-twg-thumb-fname=http%3A%2F%2Ft1.daumcdn.net%2Fb2%2Fcreative%2F51957%2Fa72797fc8570cdb8e75138ccf48ad592.jpg&amp;TWGServiceId=b2&amp;Expires=1601816400&amp;Signature=zy4LOEmuej96Tys0Wyd7QqYPBLY%3D"
+					adfit-action-type="mainImage"> <img adfit-ad-info-icon=""
+					src="https://t1.daumcdn.net/b2/templates/image/opt_out_30.png"
+					width="24" height="16"
+					style="position: absolute; top: 4px; right: 4px; cursor: pointer; pointer-events: auto;"
+					alt="암 투병 하며 쌍둥이를 돌보는 엄마" adfit-action-type="adInfoIcon">
+			</span> <strong class="tit_item" adfit-title=""
+				style="display: block; overflow: hidden; width: 125px; max-height: 38px; padding-top: 6px; font-weight: normal; font-size: 13px; line-height: 18px; color: #555; font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif; text-align: center"
+				adfit-action-type="title">암 투병 하며 쌍둥이를 돌보는 엄마</strong>
+			</a>
+		</div>
+		<div id="kakaoContent" role="main" class="cont_mapdetail">
+			<div class="dimmed_layer hide"></div>
+			<div id="mArticle">
+				<div data-viewid="basicInfo" class="cont_essential">
+					<div data-viewid="basicInfoTop" data-root="">
+						<div class="details_present" style="background: none;">
+							<a href="#none" class="link_present" data-logtarget=""
+								data-logevent="info_pannel,main_pic"> <span
+								class="bg_present"
+								style="background-image: url('//img1.daumcdn.net/thumb/T800x0.q70/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flocalfiy%2F2D6916B41D7C492EB7A93CEFC2F357AA')"></span>
+								<span class="frame_g"></span>
+							</a>
+						</div>
+						<div class="place_details">
+							<div class="inner_place">
+								<span class="color_g txt_elocation">quicklean</span>
+								<h2 class="tit_location">퀴클린24셀프빨래방</h2>
+								<div class="location_evaluation">
+									<span class="txt_location"><span class="screen_out">분류:
+									</span>셀프빨래방</span> <span class="ico_comm ico_dot"></span> <a href="#none"
+										class="link_evaluation" data-cnt="3" data-target="comment"
+										data-logtarget="" data-logevent="info_pannel,point">평점 <span
+										class="color_b">5.0<span class="screen_out">점</span></span> <span
+										class="color_g">(3)<span class="screen_out">명 평가</span></span>
+									</a> <span class="ico_comm ico_dot"></span> <a href="#none"
+										class="link_evaluation" data-cnt="0" data-target="review"
+										data-logtarget="" data-logevent="info_pannel,review"> 리뷰 <span
+										class="color_b inactive">0<span class="screen_out">개</span></span>
+									</a>
+								</div>
+								<strong class="screen_out">위치 정보 및 공유하기</strong>
+								<ul class="list_place">
+									<li><a
+										href="https://map.kakao.com?urlX=483596&amp;urlY=1139090&amp;urlLevel=3&amp;itemId=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;srcid=892584709&amp;map_type=TYPE_MAP"
+										target="_blank" class="link_place" data-logtarget=""
+										data-logevent="info_pannel,map_view"><span
+											class="ico_comm ico_storemap"></span>지도</a></li>
+									<li><a
+										href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,483596,1139090&amp;rt1=&amp;rt2=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rtIds=,892584709"
+										target="_blank" class="link_place" data-logtarget=""
+										data-logevent="info_pannel,route"><span
+											class="ico_comm ico_route"></span>길찾기</a></li>
+									<li><a
+										href="https://map.kakao.com?srcid=892584709&amp;confirmid=892584709&amp;q=%ED%80%B4%ED%81%B4%EB%A6%B024%EC%85%80%ED%94%84%EB%B9%A8%EB%9E%98%EB%B0%A9&amp;rv=on"
+										class="link_place" target="_blank" data-logtarget=""
+										data-logevent="info_pannel,roadview" data-roadview=""><span
+											class="ico_comm ico_roadmap"></span>로드뷰</a></li>
+									<li class="lst"><a href="#none" class="link_place"
+										data-logevent="info_pannel,share"><span
+											class="ico_comm ico_share"></span>공유하기</a>
+										<div data-viewid="snsShare" data-root="" class="detail_share">
+										</div>
+										<div class="place_share_container" id="place_share_container">
+											<div class="social_comm_p hide">
+												<div class="sns_comm_p share_layer">
+													<strong class="screen_out">SNS로 공유하기 펼쳐짐</strong>
+													<ul class="list_sns">
+														<li><a href="#none" class="link_sns"
+															data-handler="kakaotalk"> <span
+																class="img_social ico_sns_kt"> </span>카카오톡
+														</a></li>
+														<li><a href="#none" class="link_sns"
+															data-handler="kakaostory"> <span
+																class="img_social ico_sns_ks"> </span>카카오스토리
+														</a></li>
+														<li><a href="#none" class="link_sns"
+															data-handler="facebook"> <span
+																class="img_social ico_sns_fb"> </span>페이스북
+														</a></li>
+														<li><a href="#none" class="link_sns"
+															data-handler="twitter"> <span
+																class="img_social ico_sns_tw"> </span>트위터
+														</a></li>
+														<li><a href="#none" class="link_sns"
+															data-handler="mail"> <span
+																class="img_social ico_sns_mail"> </span>다음메일
+														</a></li>
+														<li><a href="#none" class="link_sns"
+															data-handler="daumcafe"> <span
+																class="img_social ico_sns_cafe"> </span>다음카페
+														</a></li>
+													</ul>
+													<div class="copyUrl">
+														<div class="sns_copyurl">
+															<a href="#none" class="link_copyurl"> <span
+																class="screen_out">현재페이지 URL복사</span> <span
+																class="txt_url">https://place.map.kakao.com/892584709</span>
+																<span class="txt_copy">URL복사</span>
+															</a>
+														</div>
+													</div>
+													<button class="btn_close">
+														<span class="img_social ico_close">공유목록 닫기</span>
+													</button>
+												</div>
+												<div class="sns_comm_p copyurl_layer hide">
+													<div class="inner_copyurl">
+														<p class="desc_copyurl">
+															주소가 복사되었습니다.<br>원하는곳에 붙여넣기(Ctrl+V)해주세요.
+														</p>
+														<button class="btn_close">
+															<span class="img_social ico_close">공유목록 닫기</span>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div></li>
+								</ul>
 
-<select id="selGoods" name="selGoods" style="height:40px;">
-<%-- <fmt:formatNumber value="{price.t_shirt}" pattern="###,###,###"/> --%>
-<%-- <option id="1" value="${itemStr}">티셔츠</option> --%>
-<%-- console.log(${itemStr}); --%>
+								<a href="#none" class="link_bookmark " data-fid=""
+									data-logtarget="" data-logevent="info_pannel,favorite"> <span
+									class="ico_comm ico_bookmark">즐겨찾기 추가</span> <span
+									class="ico_num ico_num"><span class="screen_out">나의
+											즐겨찾기 폴더 개수</span></span>
+								</a>
 
-</select>
-<form name='productForm' action="cart.jsp" method="post">
-<div id="container">
-	
-</div>
+							</div>
+						</div>
+						<div class="details_rest">
+							<strong class="screen_out">기타 메뉴</strong>
+							<ul class="list_rest">
+								<li><a href="#none" class="link_rest" data-type="print"
+									data-logtarget="" data-logevent="right_etc,print"> <span
+										class="ico_comm ico_print">프린트하기</span>
+								</a></li>
+								<li><a href="#none" class="link_rest" data-type="roughmap"
+									data-logtarget="" data-logevent="right_etc,simplemap"> <span
+										class="ico_comm ico_makemap">약도 만들기</span>
+								</a></li>
+							</ul>
+						</div>
+					</div>
+					<div data-viewid="basicInfo" data-root="" class="details_placeinfo">
+						<h3 class="tit_subject">상세정보</h3>
+						<div class="placeinfo_default">
+							<h4 class="tit_detail">
+								<span class="ico_comm ico_address">위치</span>
+							</h4>
+							<div class="location_detail">
+								<span class="txt_address">서울 은평구 은평로12길 7-10 (우)03462</span> <span
+									class="txt_addrnum">지번<span class="bg_bar"></span>응암동
+									97-28
+								</span>
+							</div>
+						</div>
+						<div class="placeinfo_default">
+							<h4 class="tit_detail">
+								<span class="ico_comm ico_operation">운영시간 안내</span>
+							</h4>
+							<div class="location_detail openhour_wrap">
+								btn_more 클릭 했을 때 open_on 추가
+								<div class="location_present">
+									<strong class="tit_operation fst">영업시간 <span
+										class="open">영업중</span>
+									</strong>
+
+									<ul class="list_operation">
+										<li><span class="txt_operation">매일 <span
+												class="time_operation">00:00 ~ 24:00</span>
+
+										</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="placeinfo_default placeinfo_facility">
+							<h4 class="tit_facility">
+								<span class="ico_comm ico_installation"></span>시설정보
+							</h4>
+							<ul class="list_facility">
+								<li><span class="ico_comm ico_wifi"></span> <span
+									class="color_g">WIFI</span></li>
+								<li><span class="ico_comm ico_parking"></span> <span
+									class="color_g">주차</span></li>
+							</ul>
+							
+							<%--수요일 수정 --%>
+							<%-- <c:set var="itemStr" value="${storeInfo.items}"/> --%>
+							<%-- <c:set var="itemStr" value="${fn:replace(itemStr, '!@#', ':')}"/> --%>
+							<%-- <c:set var="itemStr" value="${fn:substring(itemStr, 0, fn:length(itemStr)-1)}" /> --%>
+							<%-- <c:set var="itemStr" value="${fn:split(itemStr,':') }"/> --%>
+							<%-- <c:forEach var="itemStr" items="${itemStr}" > --%>
+							<%-- <input type='text' class='item' value='${itemStr}'> --%>
+							<%-- </c:forEach> --%>
+							
+								<select id="selGoods" name="selGoods" style="height: 40px;">
+									<option value=''>-[필수] 옵션을 선택해 주세요 -</option>
+									<c:set var="num" value="1" />
+									<c:forEach var="item" items="${items}" varStatus="status">
+										<option id="${item}" value="${item}">${item}</option>
+										<c:set var="num" value="${num + 1}" />
+									</c:forEach>
+								</select>
+
+								<!-- <select id="selGoods" name="selGoods" style="height:40px;"> -->
+								<%-- <fmt:formatNumber value="{price.t_shirt}" pattern="###,###,###"/> --%>
+								<%-- <option id="1" value="${itemStr}">티셔츠</option> --%>
+								<%-- console.log(${itemStr}); --%>
+
+								<!-- </select> -->
+								<form name='productForm' method="post" >
+								<div id="container" name="addCart">
+ 							<input type="hidden" value="${storeInfo.snum}" name="snum">
+								<input type="hidden" value="${storeInfo.sname}" name="sname">
+								<input type="hidden" id="items" value="" name="items">
+								<input type="hidden"  value='N' name="choice">
+							<input type="hidden"  value='N' name="c_check">
+								</div>
 
 
-</form> 
-
-총금액:<input id="goodsTotAmt" name="totAmt" value=0></br>
 
 
-
+								총금액:<input id="goodsTotAmt" name="pay_cart" value="0">	 
+ 								<input type='button' value='장바구니담기' onclick="openPopup()"/> 
+							<input type='submit' value='구매하기' onclick="cart" />
+							</form>
+							<!-- //<input type='button' value='장바구니담기' onclick='location.href="cart"'/> -->
+							
+							
 <script>
 
 
 
-	function Goods(){
+function Goods(){
 
-		//json 배열[{goodsId:goodsId, goodsNm:goodsNm, amt:amt},{...},{...}]
-		this.arrAllGoods = new Array();//상품 목록
-		this.arrSelGoods = new Array();//선택한 상품 목록
-		
+	//json 배열[{goodsId:goodsId, goodsNm:goodsNm, amt:amt},{...},{...}]
+	this.arrAllGoods = new Array();//상품 목록
+	this.arrSelGoods = new Array();//선택한 상품 목록
+	
 var p = this;
-		
-		//상품 추가 시
+	
+	//상품 추가 시
 this.select = function (trgtGoodsId){
 	
-	var selectedIndex = -1;
+	var selectedIndex = -1;//이미 추가했는지 0이면 추가할걸로 뜬다	
 	
 	//전체 목록 배열에서 검색하여 goodsId가 없다면 선택 목록에 push후 container안에 그려준다.
 	
 	//선택 목록에서 검색
-	for(var i=0;i<p.arrSelGoods.length;i++){
+for(var i=0;i<p.arrSelGoods.length;i++){
 		
 		if(p.arrSelGoods[i].goodsId==trgtGoodsId){
 			selectedIndex = i;
@@ -432,17 +1482,48 @@ this.deselect = function (trgtGoodsId){
 			p.afterProc();
 		}
 		
-		this.appendChoiceDiv = function(prmtObj){
+	this.appendChoiceDiv = function(prmtObj){
+			var mimi="";
+// 			if(prmtObj.goodsId==="셔츠"){
+// 					mimi="Y1";
+// 				}else if(prmtObj.goodsId==="블라우스"){
+// 					mimi="B1";
+// 				}else if(prmtObj.goodsId==="티셔츠"){
+// 					mimi="T1";
+// 				}else if(prmtObj.goodsId==="맨투맨"){
+// 					mimi="M1";
+// 				}else if(prmtObj.goodsId==="바지"){
+// 					mimi="P1";
+// 				}else if(prmtObj.goodsId==="니트"){
+// 					mimi="K1";
+// 				}else if(prmtObj.goodsId==="자켓"){
+// 					mimi="J1";
+// 				}else if(prmtObj.goodsId==="코트"){
+// 					mimi="C1";
+// 				}else if(prmtObj.goodsId==="패딩"){
+// 					mimi="P2";
+// 				}else if(prmtObj.goodsId==="이불"){
+// 						mimi="D1";
+// 				}else if(prmtObj.goodsId==="신발"){
+// 					mimi="S1";
+// 				}else if(prmtObj.goodsId==="커튼"){
+// 					mimi="C2";
+// 				}else if(prmtObj.goodsId==="가방"){
+// 					mimi="B2";
+// 				}
+
+			
 			
 			var innerHtml = "";
 			
 			innerHtml += '<div id="div_'+prmtObj.goodsId+'">';			
 			innerHtml += '<ul>';
-			innerHtml += '	<li>'+prmtObj.goodsNm+'</li>';
+			innerHtml += '	<li><input type="hidden" value='+prmtObj.goodsId+' name="item"/>'+prmtObj.goodsId+'</li>';
 			innerHtml += '	<li>'+prmtObj.goodsprc+'원</li>';
 			innerHtml += '	<li><button type="button" id="" class="add" name="" onclick="goods.minus(\''+prmtObj.goodsId+'\');">-</button></li>';
 			innerHtml += '	<li><button type="button" id="" class="remove" name="" onclick="goods.plus(\''+prmtObj.goodsId+'\');">+</button></li>';
-			innerHtml += '	<li>개수:<input type="text" id="input_cnt_'+prmtObj.goodsId+'" name="" value="0"/>'
+			innerHtml += '	<li>개수:<input type="text" id="input_cnt_'+prmtObj.goodsId+'" name="mimi" value="0"/>'
+			
 			innerHtml += '	<li>가격:<input type="text" id="input_sumAmt_'+prmtObj.goodsId+'" name="" value="0"/>'
 			innerHtml += '	<li><button type="button" id="" class="remove" name="" onclick="goods.deselect(\''+prmtObj.goodsId+'\');">제거</button></li>';
 			innerHtml += '</ul>';
@@ -474,7 +1555,7 @@ this.deselect = function (trgtGoodsId){
 			for(var i=0;i<p.arrSelGoods.length;i++){
 					
 					if(p.arrSelGoods[i].goodsId==trgtGoodsId){
-						if(p.arrSelGoods[i].cnt==0) break;
+						if(p.arrSelGoods[i].cnt==1) break;
 						p.arrSelGoods[i].cnt--;
 						break;
 					}
@@ -502,107 +1583,166 @@ this.deselect = function (trgtGoodsId){
 	}
 				
 	var goods = new Goods();
-	
-	//jstl로 전체 상품 목록 미리 세팅
-	
-// 	$("input[type='select']").click(function() {
-//    if ($(this).is(':selected')) {
-// //       $(this).val('1');         //체크된 체크박스는 value값을 1로 바꿈
-//    } else {
-//       $(this).val('0');         //체크되지 않은 체크박스는 value값을 0으로 바꿈
-//    }
-// });
 
-<%-- 	//<%=row.get("SALARY")%> --%>
- 	goods.arrAllGoods.push({goodsId:"1",goodsprc:<%=price.getT1P()%>,goodsNm:"티셔츠"  ,cnt:0});
-	goods.arrAllGoods.push({goodsId:"2",goodsprc:<%=price.getB1P()%>,goodsNm:"블라우스"  ,cnt:0});
-	goods.arrAllGoods.push({goodsId:"3",goodsprc:<%=price.getY1P()%>,goodsNm:"셔츠",cnt:0});
+ //	itemStr = itemStr.split('!@#');
+// 	var N="N";
+<%--  	if(<%=price.getT1()%>!="N"){  --%>
+
+    goods.arrAllGoods.push({goodsId:"셔츠",goodsprc:<%=price.getY1P()%>,goodsNm:"셔츠",cnt:0});  
+    goods.arrAllGoods.push({goodsId:"블라우스",goodsprc:<%=price.getB1P()%>,goodsNm:"블라우스",cnt:0});
+	goods.arrAllGoods.push({goodsId:"티셔츠",goodsprc:<%=price.getT1P()%>,goodsNm:"티셔츠",cnt:0});  
+	goods.arrAllGoods.push({goodsId:"맨투맨",goodsprc:<%=price.getM1P()%>,goodsNm:"맨투맨",cnt:0});
+	goods.arrAllGoods.push({goodsId:"바지",goodsprc:<%=price.getP1P()%>,goodsNm:"바지",cnt:0});
+	goods.arrAllGoods.push({goodsId:"니트",goodsprc:<%=price.getK1P()%>,goodsNm:"니트",cnt:0});
+	goods.arrAllGoods.push({goodsId:"자켓",goodsprc:<%=price.getJ1P()%>,goodsNm:"자켓",cnt:0});
+	goods.arrAllGoods.push({goodsId:"코트",goodsprc:<%=price.getC1P()%>,goodsNm:"코트",cnt:0});
+	goods.arrAllGoods.push({goodsId:"패딩",goodsprc:<%=price.getP2P()%>,goodsNm:"패딩",cnt:0});
+	goods.arrAllGoods.push({goodsId:"이불",goodsprc:<%=price.getD1P()%>,goodsNm:"이불",cnt:0});
+	goods.arrAllGoods.push({goodsId:"신발",goodsprc:<%=price.getS1P()%>,goodsNm:"신발",cnt:0});
+	goods.arrAllGoods.push({goodsId:"커튼",goodsprc:<%=price.getC2P()%>,goodsNm:"커튼",cnt:0});
+	goods.arrAllGoods.push({goodsId:"가방",goodsprc:<%=price.getB2P()%>,goodsNm:"가방",cnt:0});
+
+	  
+
+
+// 	 	}
+
+// 	//$("#selGoods option:selectd").text()
+	
+	
+// 	var price=0;
+// 	var name="";
+<%-- 	for(var i=0;i<<%=items.length%>;i++){ --%>
+<%-- 		item = <%=itmes[i]%>; --%>
+// 		if(item=="Y1"){
+// 			name="티셔츠";
+// 			price=3000;
+// 		} else if(item=="B1"){
+// 			name="블라우스";
+// 			price=4000;
+// 		}
+// 	goods.arrAllGoods.push({goodsId:item,goodsprc:price,goodsNm:name,cnt:0});   
+// }
+	
+	
+	
+	
+	//var[] $itm =${item}.val();
+	
+// 	var $txt = $('#items').text();
+// 	for(var i in $itm ){
+		
+ 		 
+
+// 		//id=value sprc=price Nm->value=>변환 
+
+// 		}
+
+<%--      goods.arrAllGoods.push({goodsId:"1",goodsprc:<%=price.getT1P()%>,goodsNm:"티셔츠",cnt:0});    --%>
+<%-- 	goods.arrAllGoods.push({goodsId:"2",goodsprc:<%=price.getB1P()%>,goodsNm:"blouse"  ,cnt:0}); --%>
+<%-- 	goods.arrAllGoods.push({goodsId:"3",goodsprc:<%=price.getY1P()%>,goodsNm:"shirt",cnt:0}); --%>
 	
 	
 	//jstl로 셀렉트 박스 옵션 채우기
 	
 	
 	
- 	$('#selGoods').append('<option id="" value="">-[필수] 옵션을 선택해 주세요 -</option>');
- 	
-    $('#selGoods').append('<option id="1" value="1">t_shirt</option>');
- 	$('#selGoods').append('<option id="2" value="2">blouse</option>');
- 	$('#selGoods').append('<option id="3" value="3">shirt</option>');
+// 	$('#selGoods').append('<option id="" value="">-[필수] 옵션을 선택해 주세요 -</option>');
+<%--     $('#selGoods').append('<option id="1" value="1"><%=price.getItems()%></option>');  --%>
+<%--  	$('#selGoods').append('<option id="2" value="2"><%=price.getItems()%></option>');  --%>
+<%--  	$('#selGoods').append('<option id="3" value="3"><%=price.getItems()%></option>');  --%>
+<%-- 	var items=<%=${items}%>; --%>
+// 	for(items=0;i<items.length;items++){
+		
+// 		 $('#selGoods').append('<option id="1" value="items">items</option>');
 
-	
-	$('#selGoods').change('click',function(){
-	
-		goods.select($('#selGoods option:selected').val());
 
-	});
-	
+// 		}
+
+
+
+
+	$(function(){
+
+		$('#selGoods').change('click',function(){
+			
+			//alert(this.value);
+ 			goods.select($('#selGoods option:selected').val());
+
+		}); 
+
+	});	
 </script>
 
 
-<input type='submit' value='주문하기' >
-<input type='button' onclick='location.href="list"' value='계쇽쇼핑하기'>
 
-</form>
-        </div>
-    <span class="info_revise">업데이트 <span class="date_revise">2019.03.14.</span> <span class="bg_bar">|</span> <a href="#" class="link_fiy" data-fiytype="detail" data-logtarget="" data-logevent="main_info,FIY">틀린정보 신고</a></span>
-</div>
-</div>
-        <div data-viewid="photoSection" data-root="" class="cont_photo no_category">
-    <div class="particular_head">
-        <h3 class="tit_subject">사진</h3>
-        
-        <div class="wrap_btn">
-            <a href="#none" class="link_enroll" data-fiytype="photo" data-logtarget="" data-logevent="photo,add">
-                <span class="ico_comm ico_photo"></span>사진등록
-            </a>
-        </div>
-    </div>
-        <div class="photo_area">
-            <ul class="list_photo">
-        <li class="">
-            사진 2장 부터 클래스 size_l 추가
-            <a href="#none" class="link_photo" data-pidx="0" style="background-image:url('//img1.daumcdn.net/thumb/C640x320.q70/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flocalfiy%2F2D6916B41D7C492EB7A93CEFC2F357AA')" data-logtarget="" data-logevent="photo,photo_view">
-                <span class="frame_g"></span>
-            </a>
-        </li>
-</ul>
+						</div>
+						<span class="info_revise">업데이트 <span class="date_revise">2019.03.14.</span>
+							<span class="bg_bar">|</span> <a href="#" class="link_fiy"
+							data-fiytype="detail" data-logtarget=""
+							data-logevent="main_info,FIY">틀린정보 신고</a></span>
+					</div>
+				</div>
+				<div data-viewid="photoSection" data-root=""
+					class="cont_photo no_category">
+					<div class="particular_head">
+						<h3 class="tit_subject">사진</h3>
 
-        </div>
-</div>
-        <div data-viewid="comment" data-root="" class="cont_evaluation">
-    <h3 class="tit_subject">평가하기</h3>
-    <div class="evaluation_place">
-        텍스트 필드에 포커스 일때 클래스 write_on 추가
-        <form id="commentUpdateForm" method="post" data-commentid="">
-            <fieldset>
-                <input type="hidden" name="point" value="">
-                <div class="grade_star">
-                    <span class="ico_star star_rate">
-                        <span class="ico_star inner_star" style="width:0%"></span>
-                    </span>
-                    <em class="num_rate">0/5</em>
-                    <span class="txt_word">평가해주세요.</span>
-                </div>
-                <div class="write_review">
-                    <label for="tfReview" class="lab_review">여기의 어떤 점이 마음에 드셨나요?</label>
-                    <textarea name="contents" id="tfReview2" class="tf_review"></textarea>
-                </div>
-            </fieldset>
-        </form>
-        <div class="upload_photo hide">
-            <strong class="screen_out">첨부된 사진 목록</strong>
-            <form id="imgUploadForm" action="/commentphoto/upload" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="pidx">
-                <span class="thumb_upload box_upload">
-                    <label for="imgUpload2" class="lab_upload">사진 등록하기</label>
-                    <input type="file" id="imgUpload2" name="upphoto" class="inp_upload" accept="image/*">
-                    <span class="ico_comm ico_upload"></span>
-                </span>
-            </form>
-        </div>
-        <div class="agree_review">
-            
-            <span class="choice_mapdetail agree_checked"><!-- 선택 되었을 때 클래스 agree_chacked ->
+						<div class="wrap_btn">
+							<a href="#none" class="link_enroll" data-fiytype="photo"
+								data-logtarget="" data-logevent="photo,add"> <span
+								class="ico_comm ico_photo"></span>사진등록
+							</a>
+						</div>
+					</div>
+					<div class="photo_area">
+						<ul class="list_photo">
+							<li class="">사진 2장 부터 클래스 size_l 추가 <a href="#none"
+								class="link_photo" data-pidx="0"
+								style="background-image: url('//img1.daumcdn.net/thumb/C640x320.q70/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flocalfiy%2F2D6916B41D7C492EB7A93CEFC2F357AA')"
+								data-logtarget="" data-logevent="photo,photo_view"> <span
+									class="frame_g"></span>
+							</a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+				<div data-viewid="comment" data-root="" class="cont_evaluation">
+					<h3 class="tit_subject">평가하기</h3>
+					<div class="evaluation_place">
+						텍스트 필드에 포커스 일때 클래스 write_on 추가
+						<form id="commentUpdateForm" method="post" data-commentid="">
+							<fieldset>
+								<input type="hidden" name="point" value="">
+								<div class="grade_star">
+									<span class="ico_star star_rate"> <span
+										class="ico_star inner_star" style="width: 0%"></span>
+									</span> <em class="num_rate">0/5</em> <span class="txt_word">평가해주세요.</span>
+								</div>
+								<div class="write_review">
+									<label for="tfReview" class="lab_review">여기의 어떤 점이 마음에
+										드셨나요?</label>
+									<textarea name="contents" id="tfReview2" class="tf_review"></textarea>
+								</div>
+							</fieldset>
+						</form>
+						<div class="upload_photo hide">
+							<strong class="screen_out">첨부된 사진 목록</strong>
+							<form id="imgUploadForm" action="/commentphoto/upload"
+								method="POST" enctype="multipart/form-data">
+								<input type="hidden" name="pidx"> <span
+									class="thumb_upload box_upload"> <label for="imgUpload2"
+									class="lab_upload">사진 등록하기</label> <input type="file"
+									id="imgUpload2" name="upphoto" class="inp_upload"
+									accept="image/*"> <span class="ico_comm ico_upload"></span>
+								</span>
+							</form>
+						</div>
+						<div class="agree_review">
+
+							<span class="choice_mapdetail agree_checked">
+								<!-- 선택 되었을 때 클래스 agree_chacked ->
                 <input id="mapChoice2" class="inp_choice" type="checkbox" checked="checked">
                 <label for="mapChoice2" class="lab_agree">
                     <span class="ico_comm ico_choice"></span><!-- 선택 되었을 때 클래스 ico_focused 추가 ->
@@ -1131,9 +2271,9 @@ this.deselect = function (trgtGoodsId){
         
             <script type="text/javascript" src="//s1.daumcdn.net/svc/attach/U0301/cssjs/mm/1482483925476/Chart.min.js"></script>
             <script type="text/javascript" src="//t1.daumcdn.net/kakaomapweb/place/jscss/pc.2018109d.js"></script><iframe style="position:absolute;left:0;top:0;width:0;height:0;border:0" src="mapclick.html?_=1601813623771"></iframe>-->
-        
-    
-    <!--
+
+
+								<!--
     <script>
         var minidaum_options = {
             disableTracker: true, // 미니다음에서 tiara 사용안함
@@ -1146,14 +2286,8 @@ this.deselect = function (trgtGoodsId){
         };
     </script>
     <script async src="//go.daum.net/jsa_minidaum_pc.daum" charset="utf-8" type="text/javascript"></script>
-    -->
+    --> <!-- <input type='submit' value='주문하기' > --> <!-- <input type='button' onclick='location.href="list"' value='계쇽쇼핑하기'> -->
 
- 
-
-<!-- <input type='submit' value='주문하기' > -->
-<!-- <input type='button' onclick='location.href="list"' value='계쇽쇼핑하기'> -->
-
-<!-- </form>  -->
-
+								<!-- </form>  -->
 </body>
 </html>

@@ -1,13 +1,19 @@
 package com.hk.pilot.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Cart;
+
+import com.hk.pilot.dto.FinalPay;
+import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
+import com.hk.pilot.dto.UserInfo;
 
 public interface MainMapper {
 	
@@ -17,10 +23,23 @@ public interface MainMapper {
 	
 	public ManagerInfo userAdr(String id);
 	
-//	public List<StoreInfo> itemArry(String items);
+	//public ItemList itemArry(String items);
 	
 	public StoreInfo selectsStoreOne(String snum);
 	
-	public void addCart(Cart cart);
+	public int insert(Cart Cart);
+	
+	//public List<CartPrice> myCart();
+	
+	public List<Cart> userCart(String id);
+	
+	public int cartPrice(Integer cart_seq);
+
+	public FinalPay userPay(String id);
+	
+	public List<FinalPay> cartpay (String id);
+	
+	public int bubblePay(int b_price);
+	
 
 }

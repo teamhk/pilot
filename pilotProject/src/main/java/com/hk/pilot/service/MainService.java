@@ -1,16 +1,21 @@
 package com.hk.pilot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Cart;
+import com.hk.pilot.dto.FinalPay;
+import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
+import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.mapper.MainMapper;
 
 @Service
@@ -30,8 +35,8 @@ public class MainService {
 	public ManagerInfo userAdr(String id) {
 		return mainMapper.userAdr(id);
 	}
-	
-//	public List<StoreInfo> itemArry(String items){
+//	
+//	public ItemList itemArry(String items){
 //		return mainMapper.itemArry(items);
 //	}//수정
 	
@@ -40,8 +45,44 @@ public class MainService {
 		return mainMapper.selectsStoreOne(snum);
 	}
 	
-	public void addCart(Cart cart) {
-		mainMapper.addCart(cart);
+
+	public int insert(Cart cart) {
+		// TODO Auto-generated method stub
+		return mainMapper.insert(cart);
+		
+	}
+	
+//	public int countCart(int cart_seq, Members id) {
+//		return mainMapper.countCart(cart_seq,id);
+//	}
+	
+	public List<Cart> userCart(String id) { //카트
+		return mainMapper.userCart(id);
+	}
+	
+	public int cartPrice(List<Integer> cart_seq){
+		for(int i=0;i<cart_seq.size();i++) {
+//			System.out.println("cart_seq="+cart_seq.get(i));
+		 int ret = mainMapper.cartPrice(cart_seq.get(i));
+//		 System.out.println("ret"+i+"="+ret);
+		}
+		return 1;
+	}
+	
+	public FinalPay userPay(String id) {
+		return mainMapper.userPay(id);
+		
 	}
 
+	public List<FinalPay> cartpay (String id){
+		
+		return mainMapper.cartpay(id);
+	}
+	
+
+	//버블충전
+	public int bubblePay(int b_price) {
+		
+		return mainMapper.bubblePay(b_price);
+	}
 }
