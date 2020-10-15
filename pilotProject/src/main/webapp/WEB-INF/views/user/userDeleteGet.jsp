@@ -19,7 +19,15 @@
 		ID :<input type='text' id='id' name='id' value="${loginMember.id }" readonly><br>  <!--${loginMember.name }-->
 		비밀번호 :<input id='pwdcheck' type='password' value="">&nbsp;&nbsp;<span id="result1"></span><br>
 		이름 :<input type='text' name='name' value="${user.name}"><br>
-		<button id='btn' disabled onclick="abcd();">삭제</button>
+		탈퇴 사유: <select id="reason" name="reason">
+					<option value="" selected>-탈퇴사유를 선택 해주세요-</option>
+					<option value="사이트 이용">사이트 이용이 불편함</option>
+					<option value="가격 불만족">세탁 가격이 비쌈</option>
+					<option value="세탁 불만족">세탁 결과 불만족</option>
+					<option value="세탁 진행">세탁 진행이 오래걸림</option>
+					<option value="기타">기타 사유</option>
+				</select>
+		<button type="button" id='btn' disabled onclick="abcd();">삭제</button>
 	</form>
 <script>
 $().ready(function() {
@@ -35,7 +43,13 @@ $().ready(function() {
 	});
 });
 function abcd(){
-	document.storeform.submit();
+	if($('#reason').val() == ''){
+		console.log("이유1", $("#reason").val());
+		document.getElementById('reason').focus();
+	} else {
+		console.log("이유2", $("#reason").val());
+		document.storeform.submit();
+	}
 }
 
 </script>

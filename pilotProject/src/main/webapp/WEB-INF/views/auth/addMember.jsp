@@ -289,9 +289,7 @@ $(document).ready(function(){
 		checkCardNum();
 	});
 });
-
-function checkCardNum(cardNum){
-	console.log("cardNum", cardNum);
+function checkCardNum(){
 	if($('#cardNum').val() == ''){
 		$('#cardNum_check').text('카드번호를 입력해주세요');
 		$('#cardNum_check').css('color', 'black');
@@ -301,38 +299,55 @@ function checkCardNum(cardNum){
 	} else {
 		$('#cardNum_check').text('✔' );
 		$('#cardNum_check').css('color', 'black');
+		console.log($("#cardNum").val());
 	}
-// 	cardNum = cardNum.replace(/[-]/g,'');
 }
+
+function cardExp(){
+	var cardExp = ($("#expMM").val() + $("#expYY").val());
+	$("#cardExp").val(cardExp);
+}
+
+
 
 function submitCheck() {
 	if($('#id').val() == '') {
 		alert('아이디를 입력해주세요.');
+		return false;
 	} else if($('#pwd').val() == '') {
 		document.getElementById('pwd').focus();
+		return false;
 	} else if($('#re-pwd').val() == '') {
 		document.getElementById('re-pwd').focus();
+		return false;
 	} else if($('#name').val() == '') {
 		document.getElementById('name').focus();
+		return false;
 	} else if($('#email').val() == '') {
 		document.getElementById('email').focus();
+		return false;
 	} else if($('#pnum').val() == '') {
 		document.getElementById('pnum').focus();
+		return false;
 	} else if($('#sample6_postcode').val() == '') {
 		document.getElementById('sample6_postcode').focus();
+		return false;
 	} else if($('#sample6_address').val() == '') {
 		document.getElementById('sample6_address').focus();
+		return false;
 	} else if($('#sample6_extraAddress').val() == '') {
 		document.getElementById('sample6_extraAddress').focus();
+		return false;
 	} else if($('#sample6_detailAddress').val() == '') {
 		document.getElementById('sample6_detailAddress').focus();
-	} else if($('#cardCom').val() == '') {
-		document.getElementById('cardCom').focus();
-	} else if($('#cardNum').val() == '') {
-		document.getElementById('cardNum').focus();
-	} else if(isComfirm == true){
+		return false;
+	} else if($("#cardNum").val() != ''){
+		$("#cardCheck").val('Y');
+	} 
+		var str = ($("#expMM").val()+$("#expYY").val());
+		$("#cardExp").val(str);
+		console.log($("#cardExp").val());
 		document.addCustomer.submit();
-	}
 }
 
 </script>
@@ -347,6 +362,7 @@ function submitCheck() {
 		<div class="col-sm-6 col-md-offset-3">
 			<form name="addCustomer" action="addCustomer" method="post">
 				<input type="hidden" name="grade" value="1">
+				<input type="hidden" name="udcheck" value="N">
 				<label><b>아이디</b></label>
 				<input type="text" id="id" placeholder="ID" name="id" oninput="checkId()">
 				<div class="validation" id="id_check"></div>
@@ -372,7 +388,8 @@ function submitCheck() {
 				<input type="text" id="sample6_address" placeholder="주소" name="userFirstAddr"><br>
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="userExtraAddr"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="userSecondAddr">
-				<h3>결제 카드 등록</h3>
+				<h5>결제 카드 등록</h5>
+				
 				<label for="cardCom"><b>카드회사</b></label>
 				<select id="cardCom" name="cardCom">
 					<option value="" selected>-카드사를 선택해 주세요-</option>
@@ -386,8 +403,17 @@ function submitCheck() {
 					<option value="현대카드">현대카드</option>
 				</select>
 				<label><b>카드번호</b></label>
-				<input type="text" size="20" id="cardNum" name="cardNum" maxlength="12" oninput="checkCardNum(this.value)">
+				<input type="text" size="20" id="cardNum" name="cardNum" maxlength="12" oninput="checkCardNum()">
 				<div class="validation" id="cardNum_check"></div>
+				<label><b>유효기간</b></label>
+				<label><b>월</b></label>
+				<input type="text" size="20" id="expMM" maxlength="4" >
+				<label><b>년</b></label>
+				<input type="text" size="20" id="expYY" maxlength="4">
+				<input type="hidden" id="cardExp" name="cardExp" value=""><br>
+				<label><b>CVC</b></label>
+				<input type="text" size="20" id="cardCvc" name="cardCvc"><br>
+				<input type="hidden" id="cardCheck" name="cardCheck" value="N" >
 				<!-- 카드 날짜 입력 받는거 상의해야해, 혹시 굳이 날싸 입력 받아야 된다고 하면 int타입으로 바꾸고 월입력칸 따로 년도 입력칸 따로 만든후 DB에도 칼럼을 그냥 date타입으로 하나만 하는게 아니라 나눠서 하기 -->
 				<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">
 			</form>

@@ -61,8 +61,8 @@ public class UserService {
 		return userMapper.deleteUserOne(id);
 	}
 	
-	public int userDeleterPost(String id) {
-		return userMapper.userDeleterPost(id);
+	public int userDeleterPost(Members members) {
+		return userMapper.userDeleterPost(members);
 	}
 	
 	//버블리스트출력

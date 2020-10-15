@@ -39,9 +39,13 @@ public class StoresController {
 		ManagerInfo user=mainService.userAdr(loginMember.getId());
 		model.addAttribute("stores",mainService.storesList());
 		model.addAttribute("user",user);
-		return "main/storesList";
+		return "/main/mapTestEnd";
 	}
 	
+	@GetMapping("/noUserMap")
+	public String noUserMap(Stores stores, ManagerInfo managerInfo, Model model) {
+		return "/main/noUserMap";
+	}
 	
 	@GetMapping("/info")
 	public String selectsStoreOne(String snum,Model model,StoreInfo StoreInfo) {

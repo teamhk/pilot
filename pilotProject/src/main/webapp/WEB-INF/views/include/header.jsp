@@ -67,7 +67,7 @@
 										</li>
 									</ul>
 								</li>
-								<li class="menu-%eb%aa%a8%eb%b0%94%ec%9d%bc-%ec%95%b1-%ec%9d%b4%ec%9a%a9%ec%95%88%eb%82%b4 sf-dropdown menu-item-1741"><a href="/stores" class="sf-with-ul">점포찾기<span class="sf-sub-indicator"> »</span></a>
+								<li class="menu-%eb%aa%a8%eb%b0%94%ec%9d%bc-%ec%95%b1-%ec%9d%b4%ec%9a%a9%ec%95%88%eb%82%b4 sf-dropdown menu-item-1741"><a href="/stores/noUserMap" class="sf-with-ul">점포찾기<span class="sf-sub-indicator"> »</span></a>
 									<ul class="sf-dropdown-menu" style="display: none;">
 										<li class="menu-%eb%aa%a8%eb%b0%94%ec%9d%bc-%ec%95%b1-%ec%84%a4%ec%b9%98-%eb%b0%8f-%ea%b0%80%ec%9e%85%ec%95%88%eb%82%b4 menu-item-1731"><a href="/stores/map">인근점포</a></li>
 										<li class="menu-%eb%aa%a8%eb%b0%94%ec%9d%bc-%ec%a3%bc%ec%b0%a8%ea%b6%8c-%ec%95%88%eb%82%b4 menu-item-1022"><a href="stores/like">관심점포</a></li>

@@ -30,9 +30,9 @@ SELECT * FROM MEMBERS WHERE ID=#{ID}
 </select>
 
 
-	<update id="userDeleterPost" parameterType="String">
-		UPDATE MEMBERS SET UDCHECK='Y' where ID=#{id}
-	</update>
+<update id="userDeleterPost" parameterType="com.hk.pilot.dto.Members">
+	UPDATE MEMBERS SET UDCHECK='Y', REASON=#{reason} where ID=#{id}
+</update>
 
 <select id="bubbleList" resultType="com.hk.pilot.dto.Bubble">
 

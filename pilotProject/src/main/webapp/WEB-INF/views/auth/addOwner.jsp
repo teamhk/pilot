@@ -332,34 +332,49 @@ $(document).ready(function(){
 function submitCheck() {
 	if($('#id').val() == '') {
 		alert('아이디를 입력해주세요.');
+		return false;
 	} else if($('#pwd').val() == '') {
 		document.getElementById('pwd').focus();
+		return false;
 	} else if($('#re-pwd').val() == '') {
 		document.getElementById('re-pwd').focus();
+		return false;
 	} else if($('#name').val() == '') {
 		document.getElementById('name').focus();
+		return false;
 	} else if($('#email').val() == '') {
 		document.getElementById('email').focus();
+		return false;
 	} else if($('#pnum').val() == '') {
 		document.getElementById('pnum').focus();
+		return false;
 	} else if($('#sample6_postcode').val() == '') {
 		document.getElementById('sample6_postcode').focus();
+		return false;
 	} else if($('#sample6_address').val() == '') {
 		document.getElementById('sample6_address').focus();
+		return false;
 	} else if($('#sample6_extraAddress').val() == '') {
 		document.getElementById('sample6_extraAddress').focus();
+		return false;
 	} else if($('#sample6_detailAddress').val() == '') {
 		document.getElementById('sample6_detailAddress').focus();
+		return false;
 	} else if($('#sname').val() == '') {
 		document.getElementById('sname').focus();
+		return false;
 	}else if($('#scontact').val() == '') {
 		document.getElementById('scontact').focus();
+		return false;
 	}else if($('#snum').val() == '') {
 		document.getElementById('snum').focus();
+		return false;
 	}else if($('#banks').val() == '') {
 		document.getElementById('banks').focus();
+		return false;
 	}else if($('#bnum').val() == '') {
 		document.getElementById('bnum').focus();
+		return false;
 	}else {
 		console.log($(this).attr('name'));
 		var box= $("input[type='checkbox']:checked");
@@ -519,9 +534,13 @@ function submitCheck() {
 				</fieldset>
 				<input type="hidden" id ="items" name="items" value="">
 		</form>
-		<input type="file" value="파일 선택" name="uploadFile"/>
-   				<input type="submit" id ="uploadBtn" value="업로드"/>	
-				<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">	
-
+<!-- 		<input type="file" value="파일 선택" name="uploadFile"/> -->
+<!--                <input type="submit" id ="uploadBtn" value="업로드"/>    -->
+<!--             <input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">  -->
+		<form id="fileForm" action="fileUpload" method="post" enctype="multipart/form-data" >
+			<input type="file" value="파일 선택" multiple="multiple" name="uploadFile"/>
+			<input type="button" value="전송" id="uploadBtn">
+		</form>
+		<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">
 </body>
 </html>

@@ -25,7 +25,7 @@ public interface UserMapper {
 	public int payUpdate(UserInfo uerInfo);//회원의 카드정보수정
 	
 	public Members deleteUserOne(String id);//user탈퇴
-	public int userDeleterPost(String id);//
+	public int userDeleterPost(Members members);//
 	
 	public List<Bubble> bubbleList(String id);//버블내역
 

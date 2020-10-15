@@ -5,9 +5,9 @@
 
 <mapper namespace="com.hk.pilot.mapper.AuthMapper">
 
-<insert id="addPersonalPay" >
-	INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM) 
-	VALUES (#{id}, #{cardCom}, #{cardNum})
+<insert id="addPersonalPay" parameterType="com.hk.pilot.dto.PersonalPay">
+	INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC) 
+	VALUES (#{id}, #{cardCom}, #{cardNum}, #{cardExp}, #{cardCvc})
 </insert>
 
 <!-- id중복체크 sql문 -->
@@ -16,8 +16,8 @@
 </select>
 
 <insert id="addMembers" parameterType="com.hk.pilot.dto.Members">
-	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
-	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
+	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, CARDCHECK, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
+	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{cardCheck}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
 </insert>
 
 <insert id="addStores" parameterType="com.hk.pilot.dto.Stores">

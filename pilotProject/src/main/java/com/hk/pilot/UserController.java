@@ -68,11 +68,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/delet")
-	public String userDeleterPost(@RequestParam("id") String id,Model model) {
-		int ret = userService.userDeleterPost(id);
-		return "user/userDeleterPost";
-	}
-	
+	   public String userDeleterPost(Members members,Model model) {
+	      int ret = userService.userDeleterPost(members);
+	      return "user/userDeleterPost";
+	   }
+
 	//버블관리
 	@GetMapping("/bubbleList")
 	public String bubbleList(Model model,HttpSession session,Bubble bubble) {
