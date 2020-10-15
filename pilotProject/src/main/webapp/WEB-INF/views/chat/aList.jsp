@@ -40,7 +40,7 @@ li {
 		<hr />
 
 		<div>
-			<%@include file="anav.jsp"%>
+			<%@include file="nav.jsp"%>
 		</div>
 		<hr />
 

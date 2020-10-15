@@ -76,7 +76,7 @@
 								<li class="menu-%ec%a3%bc%ec%b0%a8-%ea%b3%b5%ec%9c%a0-%ec%95%88%eb%82%b4 sf-dropdown menu-item-1163"><a href="/support" class="sf-with-ul">고객지원<span class="sf-sub-indicator"> »</span></a>
 									<ul class="sf-dropdown-menu" style="display: none;">
 										<li class="menu-%ea%b3%b5%ec%9c%a0%ec%a3%bc%ec%b0%a8%ec%9e%a5-%ec%9d%b4%ec%9a%a9%ed%95%98%ea%b8%b0 menu-item-1382"><a href="/support/notice">공지사항</a></li>
-										<li class="menu-%ea%b1%b0%ec%a3%bc%ec%9e%90%ec%9a%b0%ec%84%a0%ec%a3%bc%ea%b1%b0%ec%a7%80%ec%a3%bc%ec%b0%a8-%ea%b3%b5%ec%9c%a0 menu-item-1021"><a href="/support/notice">FAQ</a></li>
+										<li class="menu-%ea%b1%b0%ec%a3%bc%ec%9e%90%ec%9a%b0%ec%84%a0%ec%a3%bc%ea%b1%b0%ec%a7%80%ec%a3%bc%ec%b0%a8-%ea%b3%b5%ec%9c%a0 menu-item-1021"><a href="/support/faq">FAQ</a></li>
 										<li class="menu-%ec%82%ac%ec%9c%a0%ec%a7%80-%ec%a3%bc%ec%b0%a8%ea%b3%b5%ea%b0%84-%ea%b3%b5%ec%9c%a0 menu-item-1144"><a href="/support/tip">세탁팁</a></li>
 									</ul>
 								<li class="menu-%ec%a3%bc%ec%b0%a8-%ea%b3%b5%ec%9c%a0-%ec%95%88%eb%82%b4 sf-dropdown menu-item-1163"><a href="/auth/registration" class="sf-with-ul">회원가입<span class="sf-sub-indicator"> »</span></a>
@@ -124,7 +124,7 @@
 													<a href="/manager/update">점포 수정</a>
 													<a href="/manager/delete">점포 삭제</a>
 													<a href="/manager/process">세탁 진행 상황</a>
-													<a href="/manager/review>">리뷰 관리</a>
+													<a href="/manager/review">리뷰 관리</a>
 													<a href="/manager/aChat">문의글 관리</a>
 													<a href="/manager/stats">통계 관리</a>
 													<a href="/manager/asset">정산 관리</a>

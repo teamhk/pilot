@@ -16,7 +16,7 @@
 			if (fn_valiChk()) {
 				return false;
 			}
-			formObj.attr("action", "/user/cChatW");
+			formObj.attr("action", "/admin/aChatW");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
@@ -43,7 +43,7 @@
 		<hr />
 
 		<div>
-			<%@include file="anav.jsp"%>
+			<%@include file="nav.jsp"%>
 		</div>
 		<hr />
 

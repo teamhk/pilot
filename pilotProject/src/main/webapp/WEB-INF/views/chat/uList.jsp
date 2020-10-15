@@ -39,7 +39,7 @@ li {
 		<hr />
 
 		<div>
-			<%@include file="unav.jsp"%>
+			<%@include file="nav.jsp"%>
 		</div>
 		<hr />
 
@@ -107,7 +107,7 @@ li {
 								href="cChat${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 						</c:if>
 
-						<c:forEach begin="cChat${pageMaker.startPage}"
+						<c:forEach begin="${pageMaker.startPage}"
 							end="${pageMaker.endPage}" var="idx">
 							<li><a href="cChat${pageMaker.makeSearch(idx)}">${idx}</a></li>
 						</c:forEach>
