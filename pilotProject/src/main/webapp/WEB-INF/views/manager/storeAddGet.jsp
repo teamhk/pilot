@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,19 +45,23 @@
 		</select> 계좌번호:<input type='number' name='bnum'><br> 취급 품목 : <input type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
-			<input type='checkbox' id='와이셔츠' name='Y1' value="">와이셔츠&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='블라우스' name='B1' value="">블라우스&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='티셔츠' name='T1' value="">티셔츠&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='맨투맨,후드' name='M1' value="">맨투맨,후드&nbsp;&nbsp;&nbsp; 
-			<input type='checkbox' id='바지' name='P1' value="">바지&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='니트류' name='K1' value="">니트류&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='자켓' name='J1' value="">자켓&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='코트' name='C1' value="">코트&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='패딩' name='P2' value="">패딩&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='슈즈(신발류)' name='D1' value="">슈즈(신발류)&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='셔츠' name='S1' value="">셔츠&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='커튼' name='C2' value="">커튼&nbsp;&nbsp;&nbsp;
-			<input type='checkbox' id='가방류' name='B2' value="">가방류&nbsp;&nbsp;&nbsp;
+			<c:forEach var="tt" items="${product}" varStatus="status">
+				<input type='checkbox' id='${tt.pname }' name='item' value='${tt.pname}'>${tt.pname}&nbsp;&nbsp;&nbsp;
+				<c:if test="${status.count%5==0}"><br></c:if>
+			</c:forEach>
+<!-- 			<input type='checkbox' id='와이셔츠' name='Y1' value="">와이셔츠&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='블라우스' name='B1' value="">블라우스&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='티셔츠' name='T1' value="">티셔츠&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='맨투맨,후드' name='M1' value="">맨투맨,후드&nbsp;&nbsp;&nbsp;  -->
+<!-- 			<input type='checkbox' id='바지' name='P1' value="">바지&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='니트류' name='K1' value="">니트류&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='자켓' name='J1' value="">자켓&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='코트' name='C1' value="">코트&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='패딩' name='P2' value="">패딩&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='슈즈(신발류)' name='D1' value="">슈즈(신발류)&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='셔츠' name='S1' value="">셔츠&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='커튼' name='C2' value="">커튼&nbsp;&nbsp;&nbsp; -->
+<!-- 			<input type='checkbox' id='가방류' name='B2' value="">가방류&nbsp;&nbsp;&nbsp; -->
 		</fieldset>
 		<input type='hidden' id='items' name='items' value=""> <input
 			type='hidden' name='area_num' value='0'>
@@ -72,6 +78,11 @@
 // 			}
 // 		});
 // 	}
+
+	
+
+
+
 	//-----------------------------------------------------------------
 	
 	function sample6_execDaumPostcode() {

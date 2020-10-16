@@ -28,18 +28,13 @@
 
 
 	<insert id="itemListAdd">
-		INSERT INTO ITEMLIST (SNUM, ITEMS, Y1, B1, T1, M1,
-		P1, K1, J1, C1, P2, D1,
-		S1, C2, B2)
-		VALUES(#{snum}, #{items}, #{Y1},
-		#{B1}, #{T1}, #{M1}, #{P1}, #{K1}, #{J1}, #{C1},
-		#{P2}, #{D1}, #{S1},
-		#{C2}, #{B2})
+		INSERT INTO ITEMLIST (SNUM, ITEMS)
+		VALUES(#{snum}, #{items})
 	</insert>
 
 	<select id="myStoresList" resultType="com.hk.pilot.dto.Stores">
 		SELECT * FROM STORES WHERE
-		ID=#{ID} AND SDCHECK='N'AND PERMIT='Y'
+		ID=#{ID} AND SDCHECK='N'
 	</select>
 
 	<select id="selectStoreOne" parameterType="String"
@@ -47,9 +42,7 @@
 		SELECT s.ID , s.SNAME , STOREFIRSTADDR, STORESECONDADDR,
 		STOREEXTRAADDR,
 		STOREZIPCODE, i.snum, scontact,bank,
-		bnum,permit,s_date,area_num, Y1,
-		B1, T1, M1, P1, K1, J1, C1, P2, D1,
-		S1, C2, B2 FROM ITEMLIST i,STORES
+		bnum,permit,s_date,area_num,i.items FROM ITEMLIST i,STORES
 		s WHERE i.SNUM = s.SNUM AND
 		i.snum=#{snum}
 
@@ -67,11 +60,9 @@
 
 	<update id="itemListUpdate"
 		parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE ITEMLIST SET Y1=#{Y1}, B1=#{B1}, T1=#{T1},
-		M1=#{M1}, P1=#{P1},
-		K1=#{K1}, J1=#{J1}, C1=#{C1}, P2=#{P2}, D1=#{D1},
-		S1=#{S1}, C2=#{C2},
-		B2=#{B2} WHERE SNUM=#{snum}
+		
+		UPDATE ITEMLIST SET ITEMS=#{items} WHERE SNUM=#{snum}
+			
 	</update>
 
 	<update id="storeDelete">
@@ -87,8 +78,7 @@
 		parameterType="com.hk.pilot.dto.Members">
 		UPDATE MEMBERS SET NAME=#{name}, PWD=#{pwd},
 		EMAIL=#{email},USERZIPCODE=#{userZipCode},USERFIRSTADDR=#{userFirstAddr},USERSECONDADDR=#{userSecondAddr},USEREXTRAADDR=#{userExtraAddr},
-		PNUM=#{pnum}, PWQUESTION=#{pwQuestion}, PWANSWER=#{pwAnswer},
-		GRADE='2' WHERE ID=#{id}
+		PNUM=#{pnum}, GRADE='2' WHERE ID=#{id}
 	</update>
 
 	<update id="ownerDeleterPost" parameterType="String">
@@ -100,11 +90,9 @@
 		resultType="com.hk.pilot.dto.OrderProcess">
 		SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE ,
 		o.PAY_PRICE ,
-		o.R_CHECK , o.BUBBLE , o.Y1, o.B1, o.T1, o.M1, o.P1,
-		o.K1, o.J1, o.C1,
-		o.P2, o.D1, o.S1, o.C2, o.B2, m.NAME, m.USERFIRSTADDR
+		o.R_CHECK , o.BUBBLE , m.NAME, m.USERFIRSTADDR
 		,m.USERSECONDADDR ,m.USEREXTRAADDR ,m.USERZIPCODE, m.PNUM ,p.WAIT
-		,p.OK , p.PICK , p.WASH , p.FINISH, o.items FROM ORDERLIST o , MEMBERS
+		,p.OK , p.PICK , p.WASH , p.FINISH,p.REFUNDDATE, o.items FROM ORDERLIST o , MEMBERS
 		m , PROCESS p WHERE o.ORDERNUM = p.ORDERNUM AND o.ID = m.ID AND
 		snum=#{snum}
 	</select>
@@ -113,11 +101,9 @@
 		resultType="com.hk.pilot.dto.OrderProcess">
 		SELECT o.ORDERNUM, o.ID , o.SNUM , o.SNAME , o.PAY_DATE ,
 		o.PAY_PRICE ,
-		o.R_CHECK , o.BUBBLE , o.Y1, o.B1, o.T1, o.M1, o.P1,
-		o.K1, o.J1, o.C1,
-		o.P2, o.D1, o.S1, o.C2, o.B2, m.NAME, m.USERFIRSTADDR
+		o.R_CHECK , o.BUBBLE , m.NAME, m.USERFIRSTADDR
 		,m.USERSECONDADDR ,m.USEREXTRAADDR ,m.USERZIPCODE, m.PNUM ,p.WAIT
-		,p.OK , p.PICK , p.WASH , p.FINISH, o.items FROM ORDERLIST o , MEMBERS
+		,p.OK , p.PICK , p.WASH , p.FINISH,p.REFUNDDATE, o.items FROM ORDERLIST o , MEMBERS
 		m , PROCESS p WHERE o.ORDERNUM = p.ORDERNUM AND o.ID = m.ID AND
 		o.ORDERNUM=#{orderNum}
 	</select>
@@ -126,16 +112,16 @@
 		UPDATE PROCESS SET
 		<choose>
 			<when test="process != null and process.equals('접수중')">
-				WAIT=sysdate
+				WAIT=sysdate , OK=null, PICK=null, WASH=null, FINISH=null
 			</when>
 			<when test="process != null and process.equals('접수완료')">
-				OK=sysdate
+				OK=sysdate , PICK=null, WASH=null, FINISH=null
 			</when>
 			<when test="process != null and process.equals('수거완료')">
-				PICK=sysdate
+				PICK=sysdate , WASH=null, FINISH=null
 			</when>
 			<when test="process != null and process.equals('세탁중')">
-				WASH=sysdate
+				WASH=sysdate , FINISH=null
 			</when>
 			<when test="process != null and process.equals('배달완료')">
 				FINISH=sysdate

@@ -19,6 +19,7 @@ import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StoreInfo;
+import com.hk.pilot.service.AdminService;
 import com.hk.pilot.service.ManagerService;
 import com.hk.pilot.service.UserService;
 
@@ -31,10 +32,14 @@ public class ManagerController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AdminService adminService;
 
 	@GetMapping("/add")
 	public String StoreAddGet(Model model) {
 		System.out.println("StoreAddGet...호출");
+		model.addAttribute("product",adminService.getProduct());
 		return "/manager/storeAddGet";
 	}
 
@@ -63,6 +68,7 @@ public class ManagerController {
 		System.out.println(snum);
 		StoreInfo storeInfo = managerService.selectStoreOne(snum);
 		System.out.println(storeInfo.toString());
+		model.addAttribute("product",adminService.getProduct());
 		model.addAttribute("storeInfo",storeInfo);
 		return "/manager/selectStoreOne";
 	}

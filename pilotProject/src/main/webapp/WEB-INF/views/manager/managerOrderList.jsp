@@ -50,12 +50,13 @@
 				</c:choose>
 				<td class='process'>
 				<input type='hidden' value='<%=process%>' class='pro'>
-					<select id="${list.orderNum}" class="sel">
+					<select id="${list.orderNum}" class="sel"> 
   						<option value="접수중">접수중</option>
   						<option value="접수완료">접수완료</option>
   						<option value="수거완료">수거완료</option>
   						<option value="세탁중">세탁중</option>
   						<option value="배달완료">배달완료</option>
+  						<option value="환불" disabled>환불</option>
   			  		</select>
   			  	</tr>
 		</c:forEach>
