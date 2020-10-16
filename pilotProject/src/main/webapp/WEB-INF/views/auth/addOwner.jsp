@@ -126,13 +126,43 @@ function checkName(){
 }
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //이메일 양식 검사
+//이메일 양식 검사
 $(document).ready(function(){
 	$('#email').focus(function(){
 		checkEmail();
 	});
 });
 
-function checkEmail(){
+function checkEmail() {
+	var regExEmailResult = regExEmail();
+	console.log('regExEmailResult:',regExEmailResult);
+	if(regExEmailResult == true){
+		console.log("이메일 중복체크");
+		var inputed=$('#email').val();
+		$.ajax({
+			data: {
+				email:inputed
+			},
+			url:"/auth1/emailCheck",
+			dataType:'text',
+			method:'get',
+			success:function(data){
+				if(data=="0"){
+					$("#email_check").text("사용 가능한 이메일 입니다.");
+					$("#email_check").css('color', 'black');
+				} else {
+					$("#email_check").text("이미 가입된 이메일 입니다. 이메일을 확인해주세요");
+					$("#email_check").css('color', 'red');
+					$("#email").focus();
+				}
+			},
+			error: function() {
+				$("#email_check").text("url을 호출중 에러입니다.")}
+		});
+	}
+}
+
+function regExEmail(){
 	if($('#email').val() == ''){
 		console.log("타니1");
 		$('#email_check').text('이메일을 입력해주세요');
@@ -142,12 +172,69 @@ function checkEmail(){
 		console.log("타니2");
 		$('#email_check').text('이메일 양식을 확인해주세요');
 		$('#email_check').css('color', 'red');
+		return false;
 	} else {
 		console.log("타니3");
 		$('#email_check').text('✔' );
 		$('#email_check').css('color', 'black');
+		return true;
 	}
 }
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//이메일 인증
+
+
+	$(document).on("click", "#emailBtn", function(){
+		var userEmail = $("#email").val();
+		$.ajax({
+			data:{email:userEmail},
+			dataType:"json",
+			method: "post",
+			url: "/createEmailCheck",
+			success : function(data){
+				if(data==null){
+					alert("이메일을 입력해주세요");
+				}else{
+					alert("이메일이 발송되었습니다. 인증번호 확인 후 입력해주세요");
+				}
+					
+			},
+			error: function(data){
+					alert("에러가 발생했습니다.");
+					return false;
+			}
+		});
+	});
+
+	$(document).on("click", "#codeBtn", function(){
+		var email = $("#email").val();
+		var userCode = $("#checkCode").val();
+		console.log('userCode:',userCode)
+		$.ajax({
+			//data:{code:userCode},
+			data:{
+				email:email,				
+				checkCode:userCode
+			},
+			method: "post",
+			dataType: "json",
+			//dataType: "json",
+			url:"/checkCode11",
+			success:function(data){
+				console.log("data는",data);
+				if(data==0){
+					alert("인증이 완려되었습니다.");
+					isComfirm = true; // 인증완료값
+				} else {
+					alert("인증번호를 잘못 입력하셨습니다. 인증번호를 ");
+				}
+			},
+			error:function(error){
+				alert("에러가 발생했습니다.");
+				console.log('error - email check:', error)
+			}
+		});
+	});
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //핸드폰 번호 검사
 $(document).ready(function(){
@@ -300,47 +387,10 @@ $(document).ready(function(){
 		}
 	});
 });
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-//파일업로드 ajax
-// $(document).ready(function(){
-// 	$("#uploadBtn").on("click", function(e){
-// 		var snum = $("#snum").val();
-// 		var formData = new FormData();
-// 		var inputFile = $("input[name='uploadFile']");
-// 		var files = inputFile[0].files;
-// 		console.log(files);
 
-// 		//add file data to formdata
-// 		for(var i=0; i<files.length; i++){
-// 			formData.append("uploadFile", files[i]);
-// 		}
-
-// 		$.ajax({
-// 			url: "/auth1/uploadAjaxAction",
-// 			processData : false,
-// 			contentType : false,
-// 			data : {formData, snum},
-// 			dataType: 'text',
-// 			type : 'POST',
-// 			success : function(result){
-// 				console.log(result);
-// 				alert("업로드 완료");
-// 			}
-// 		});
-// 	});
-// });
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //submit not null chekc
 function submitCheck() {
-// 	$('#id').val() = 'manager5';
-// 	$('#pwd').val() = 'aaaa1111!';
-// 	$('#name').val() = '강사님'
-// 	$('#email').val() = 'dkjs@naver.com';
-// 	$('#pnum').val() = '01012341234';
-// 	$('#sample6_postcode').val() = '08789';
-// 	$('#sample6_address').val() = '서울 관악구 낙성대로 4';
-// 	$('#sample6_extraAddress').val() = ' (봉천동)';
-// 	$('#sample6_detailAddress').val() = '111동111호';
 	if($('#id').val() == '') {
 		alert('아이디를 입력해주세요.');
 		return false;
@@ -452,10 +502,6 @@ function submitCheck() {
 		document.addOwner.submit();
 }
 
-// function bnumCheck(){
-// 	var bnum = $('#bnum').val()
-// 	bnum = Number(bnum);
-// }
 </script>
 </head>
 <body>
@@ -477,7 +523,8 @@ function submitCheck() {
 				<input type="text" id="name" placeholder="Name" name="name" oninput="checkName()">
 				<div class="validation" id="name_check"></div>
 				<label><b>이메일</b></label>
-				<input type="text" id="email" placeholder="E-mail" name="email" oninput="checkEmail()">
+				<input type="text" id="email" placeholder="E-mail" name="email" oninput="checkEmail()"><button type="button" id="emailBtn" onclick="">이메일 발송</button><br>
+				<input type="text" id="checkCode" placeholder="인증번호 입력" name="checkCode"><button type="button" id="codeBtn">인증확인</button><br>
 				<div class="validation" id="email_check"></div>
 				<label><b>휴대전화</b></label>
 				<input type="text" id="pnum" placeholder="Phone Number" name="pnum" oninput="checkPnum()">

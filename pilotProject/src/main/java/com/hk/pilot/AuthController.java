@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
+import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.Stores;
@@ -57,7 +58,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/addOwner")
-	public String addOwnerPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model, Members members, Stores stores, ItemList itemList) {
+	public String addOwnerPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model, ManagerInfo managerInfo) {
 		for(int i=0; i<uploadFile.length; i++) {
 			 String uploadFolder = "C:\\upload";
 			 String uploadFileName = uploadFile[i].getOriginalFilename(); 
@@ -74,27 +75,28 @@ public class AuthController {
 	            UUID uuid = UUID.randomUUID();
 	            uploadFileName = uuid.toString()+"_"+uploadFileName;
 	            
-	            if(i==0) {stores.setSp1(uploadFileName);}
-	            else if(i==1) {stores.setSp2(uploadFileName);}
-	            else if(i==2) {stores.setSp3(uploadFileName);}
-	            else if(i==3) {stores.setSp4(uploadFileName);}
+	            if(i==0) {managerInfo.setSp1(uploadFileName);}
+	            else if(i==1) {managerInfo.setSp2(uploadFileName);}
+	            else if(i==2) {managerInfo.setSp3(uploadFileName);}
+	            else if(i==3) {managerInfo.setSp4(uploadFileName);}
 	           // stores.setSnum(snum);
 	            
 	            //File saveFile = new File(uploadFolder, uploadFileName);
 	            File saveFile = new File(uploadFolder, uploadFileName);
 	            System.out.println("saveFile"+saveFile);
 	            System.out.println("uploadFile:"+uploadFile[i]);
-	            System.out.println("stores는"+stores);
+	            System.out.println("ManagerInfo는"+managerInfo);
 	            try {
 	            	uploadFile[i].transferTo(saveFile);
 	            }catch (Exception e) {
 	               logger.error(e.getMessage());
 	            }//end catch
 			}
-		System.out.println("managerInfo는"+members+stores+itemList);
-		authService.addManager(members);
-		authService.addStores(stores);
-		authService.addItemList(itemList);
+		System.out.println("managerInfo는"+managerInfo);
+		authService.addManager(managerInfo);
+		authService.addStores(managerInfo);
+		authService.addItemList(managerInfo);
+		authService.addMapData(managerInfo);
 		return "redirect:/";
 	}
 	

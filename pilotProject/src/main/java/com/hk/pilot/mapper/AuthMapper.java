@@ -16,13 +16,17 @@ public interface AuthMapper {
 		
 	public Members checkId(@Param("id") String id);
 	
+	public Members checkEmail(String email);
+	
 	public int addMembers(Members members);
 	
-	public int addManager(Members members);
+	public int addManager(ManagerInfo managerInfo);
 	
-	public int addStores(Stores stores);
+	public int addStores(ManagerInfo managerInfo);
 	
-	public int addItemList(ItemList itemList);
+	public int addItemList(ManagerInfo managerInfo);
+	
+	public int addMapData(ManagerInfo managerInfo);
 	
 	public int addEmailCheck(EmailCheck emailCheck);
 	

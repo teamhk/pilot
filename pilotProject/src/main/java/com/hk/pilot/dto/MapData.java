@@ -1,31 +1,33 @@
 package com.hk.pilot.dto;
 
 public class MapData {
+	int mno;
 	String snum;
-	String sname;
-	String Saddress;
+	String saddress;
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	public String getSnum() {
 		return snum;
 	}
 	public void setSnum(String snum) {
 		this.snum = snum;
 	}
-	public String getSname() {
-		return sname;
-	}
-	public void setSname(String sname) {
-		this.sname = sname;
-	}
 	public String getSaddress() {
-		return Saddress;
+		return saddress;
 	}
 	public void setSaddress(String saddress) {
-		Saddress = saddress;
+		this.saddress = saddress;
 	}
 	@Override
 	public String toString() {
-		return "MapData [snum=" + snum + ", sname=" + sname + ", Saddress=" + Saddress + "]";
+		return "MapData [mno=" + mno + ", snum=" + snum + ", saddress=" + saddress + "]";
 	}
+	
+	
 	
 	
 }

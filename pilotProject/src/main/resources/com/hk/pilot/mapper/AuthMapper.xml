@@ -15,24 +15,36 @@
 	select * from members where id=#{id}
 </select>
 
+<select id ="checkEmail" parameterType="String" resultType="com.hk.pilot.dto.Members">
+	select * from members where email=#{email}
+</select>
+
 <insert id="addMembers" parameterType="com.hk.pilot.dto.Members">
 	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, CARDCHECK, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
 	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{cardCheck}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
 </insert>
 
-<insert id="addManager" parameterType="com.hk.pilot.dto.Members">
+<insert id="addManager" parameterType="com.hk.pilot.dto.ManagerInfo">
 	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
 	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
 </insert>
 
-<insert id="addStores" parameterType="com.hk.pilot.dto.Stores">
+<insert id="addStores" parameterType="com.hk.pilot.dto.ManagerInfo">
 	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, SDCHECK, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE, SP1, SP2, SP3, SP4 )
 	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{permit}, #{sdcheck}, #{area_num}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode}, #{sp1}, #{sp2}, #{sp3}, #{sp4})
 </insert>
 
-<insert id="addItemList" parameterType="com.hk.pilot.dto.ItemList">
+<insert id="addItemList" parameterType="com.hk.pilot.dto.ManagerInfo">
 	INSERT INTO ITEMLIST (SNUM, ITEMS, Y1, B1, T1, M1, P1, K1, J1, C1, P2, D1, S1, C2, B2)
 	VALUES (#{snum}, #{items}, #{Y1}, #{B1}, #{T1}, #{M1}, #{P1}, #{K1}, #{J1}, #{C1}, #{P2}, #{D1}, #{S1}, #{C2}, #{B2})
+</insert>
+
+<insert id="addMapData" parameterType="com.hk.pilot.dto.ManagerInfo">
+	<selectKey resultType="int" keyProperty="mno" order="BEFORE" >
+		SELECT MAX(mno)+1 FROM MAPDATA
+	</selectKey>
+	INSERT INTO MAPDATA (MNO, SNUM, SADDRESS) 
+	VALUES (#{mno}, #{snum}, #{storeFirstAddr}+#{STOREEXTRAADDR})
 </insert>
 
 <insert id="addEmailCheck" parameterType="com.hk.pilot.dto.EmailCheck">

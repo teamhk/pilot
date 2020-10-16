@@ -34,28 +34,37 @@ public class AuthService {
 		}
 	}
 	
+	public String checkEmail(String email) {
+		Members checkEmail = authMapper.checkEmail(email);
+		System.out.println("checkEmail:"+checkEmail);
+		if(checkEmail == null) {
+			return "0";
+		} else {
+			return "1";
+		}
+	}
+	
 	public int addMembers(Members members) {
 		return authMapper.addMembers(members);
 	}
 	
-	public int addManager(Members members) {
-		return authMapper.addManager(members);
+	public int addManager(ManagerInfo managerInfo) {
+		return authMapper.addManager(managerInfo);
 	}
 	
-	public int addStores(Stores stores) {
-		return authMapper.addStores(stores);
+	public int addStores(ManagerInfo managerInfo) {
+		return authMapper.addStores(managerInfo);
 	}
 	
-	public int addItemList(ItemList itemList) {
-		return authMapper.addItemList(itemList);
+	public int addItemList(ManagerInfo managerInfo) {
+		return authMapper.addItemList(managerInfo);
 	}
 
+	public int addMapData(ManagerInfo managerInfo) {
+		return authMapper.addMapData(managerInfo);
+	}
+	
 	public Members findId(Members members) {
 		return authMapper.findId(members);
-	}
-	
-	public void uploadAjaxPost(Stores stores) {
-		return;
-	}
-	
+	}	
 }

@@ -141,7 +141,36 @@ $(document).ready(function(){
 	});
 });
 
-function checkEmail(){
+function checkEmail() {
+	var regExEmailResult = regExEmail();
+	console.log('regExEmailResult:',regExEmailResult);
+	if(regExEmailResult == true){
+		console.log("이메일 중복체크");
+		var inputed=$('#email').val();
+		$.ajax({
+			data: {
+				email:inputed
+			},
+			url:"/auth1/emailCheck",
+			dataType:'text',
+			method:'get',
+			success:function(data){
+				if(data=="0"){
+					$("#email_check").text("사용 가능한 이메일 입니다.");
+					$("#email_check").css('color', 'black');
+				} else {
+					$("#email_check").text("이미 가입된 이메일 입니다. 이메일을 확인해주세요");
+					$("#email_check").css('color', 'red');
+					$("#email").focus();
+				}
+			},
+			error: function() {
+				$("#email_check").text("url을 호출중 에러입니다.")}
+		});
+	}
+}
+
+function regExEmail(){
 	if($('#email').val() == ''){
 		console.log("타니1");
 		$('#email_check').text('이메일을 입력해주세요');
@@ -151,10 +180,12 @@ function checkEmail(){
 		console.log("타니2");
 		$('#email_check').text('이메일 양식을 확인해주세요');
 		$('#email_check').css('color', 'red');
+		return false;
 	} else {
 		console.log("타니3");
 		$('#email_check').text('✔' );
 		$('#email_check').css('color', 'black');
+		return true;
 	}
 }
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

@@ -45,4 +45,10 @@ public class AuthRestController {
 		System.out.println("타니?");   
 		return authService.checkId(id);
 	   }
+	
+	@GetMapping(path="/emailCheck", produces=MediaType.APPLICATION_JSON_VALUE)
+	   public String checkEmailDup(@RequestParam("email") String email) {
+		System.out.println("email중복체크 타니?");   
+		return authService.checkEmail(email);
+	   }
 }
