@@ -4,9 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="com.hk.pilot.dto.StoreInfo"%>
-<%@ page import="com.hk.pilot.dto.ItemList"%>
+<%@ page import="com.hk.pilot.dto.Product"%>
 <%@ page import="java.util.List"%>
-<% StoreInfo price = (StoreInfo)request.getAttribute("storeInfo"); %>
+<% List<Product> pro=(List<Product>) request.getAttribute("product"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -1377,14 +1377,7 @@ productForm.submit();
 									class="color_g">주차</span></li>
 							</ul>
 							
-							<%--수요일 수정 --%>
-							<%-- <c:set var="itemStr" value="${storeInfo.items}"/> --%>
-							<%-- <c:set var="itemStr" value="${fn:replace(itemStr, '!@#', ':')}"/> --%>
-							<%-- <c:set var="itemStr" value="${fn:substring(itemStr, 0, fn:length(itemStr)-1)}" /> --%>
-							<%-- <c:set var="itemStr" value="${fn:split(itemStr,':') }"/> --%>
-							<%-- <c:forEach var="itemStr" items="${itemStr}" > --%>
-							<%-- <input type='text' class='item' value='${itemStr}'> --%>
-							<%-- </c:forEach> --%>
+							
 							
 								<select id="selGoods" name="selGoods" style="height: 40px;">
 									<option value=''>-[필수] 옵션을 선택해 주세요 -</option>
@@ -1395,11 +1388,7 @@ productForm.submit();
 									</c:forEach>
 								</select>
 
-								<!-- <select id="selGoods" name="selGoods" style="height:40px;"> -->
-								<%-- <fmt:formatNumber value="{price.t_shirt}" pattern="###,###,###"/> --%>
-								<%-- <option id="1" value="${itemStr}">티셔츠</option> --%>
-								<%-- console.log(${itemStr}); --%>
-
+								
 								<!-- </select> -->
 								<form name='productForm' method="post" >
 								<div id="container" name="addCart">
@@ -1408,9 +1397,10 @@ productForm.submit();
 								<input type="hidden" id="items" value="" name="items">
 								<input type="hidden"  value='N' name="choice">
 							<input type="hidden"  value='N' name="c_check">
+						
 								</div>
 
-
+							
 
 
 								총금액:<input id="goodsTotAmt" name="pay_cart" value="0">	 
@@ -1418,8 +1408,10 @@ productForm.submit();
 							<input type='submit' value='구매하기' onclick="cart" />
 							</form>
 							<!-- //<input type='button' value='장바구니담기' onclick='location.href="cart"'/> -->
-							
-							
+							<c:forEach var="ppp" items='${product }'>
+								<input type='hidden' value='${ppp.pname}' name='pname'>
+								<input type='hidden' value='${ppp.pprice}' name='pprice'>
+							</c:forEach>
 <script>
 
 
@@ -1584,83 +1576,47 @@ this.deselect = function (trgtGoodsId){
 				
 	var goods = new Goods();
 
- //	itemStr = itemStr.split('!@#');
-// 	var N="N";
-<%--  	if(<%=price.getT1()%>!="N"){  --%>
 
-    goods.arrAllGoods.push({goodsId:"셔츠",goodsprc:<%=price.getY1P()%>,goodsNm:"셔츠",cnt:0});  
-    goods.arrAllGoods.push({goodsId:"블라우스",goodsprc:<%=price.getB1P()%>,goodsNm:"블라우스",cnt:0});
-	goods.arrAllGoods.push({goodsId:"티셔츠",goodsprc:<%=price.getT1P()%>,goodsNm:"티셔츠",cnt:0});  
-	goods.arrAllGoods.push({goodsId:"맨투맨",goodsprc:<%=price.getM1P()%>,goodsNm:"맨투맨",cnt:0});
-	goods.arrAllGoods.push({goodsId:"바지",goodsprc:<%=price.getP1P()%>,goodsNm:"바지",cnt:0});
-	goods.arrAllGoods.push({goodsId:"니트",goodsprc:<%=price.getK1P()%>,goodsNm:"니트",cnt:0});
-	goods.arrAllGoods.push({goodsId:"자켓",goodsprc:<%=price.getJ1P()%>,goodsNm:"자켓",cnt:0});
-	goods.arrAllGoods.push({goodsId:"코트",goodsprc:<%=price.getC1P()%>,goodsNm:"코트",cnt:0});
-	goods.arrAllGoods.push({goodsId:"패딩",goodsprc:<%=price.getP2P()%>,goodsNm:"패딩",cnt:0});
-	goods.arrAllGoods.push({goodsId:"이불",goodsprc:<%=price.getD1P()%>,goodsNm:"이불",cnt:0});
-	goods.arrAllGoods.push({goodsId:"신발",goodsprc:<%=price.getS1P()%>,goodsNm:"신발",cnt:0});
-	goods.arrAllGoods.push({goodsId:"커튼",goodsprc:<%=price.getC2P()%>,goodsNm:"커튼",cnt:0});
-	goods.arrAllGoods.push({goodsId:"가방",goodsprc:<%=price.getB2P()%>,goodsNm:"가방",cnt:0});
-
-	  
-
-
-// 	 	}
-
-// 	//$("#selGoods option:selectd").text()
 	
 	
-// 	var price=0;
-// 	var name="";
-<%-- 	for(var i=0;i<<%=items.length%>;i++){ --%>
-<%-- 		item = <%=itmes[i]%>; --%>
-// 		if(item=="Y1"){
-// 			name="티셔츠";
-// 			price=3000;
-// 		} else if(item=="B1"){
-// 			name="블라우스";
-// 			price=4000;
-// 		}
-// 	goods.arrAllGoods.push({goodsId:item,goodsprc:price,goodsNm:name,cnt:0});   
-// }
+	//${product};
+// 	for(Product pro : ${product}){
+<%-- 		<%for(Product ppp : pro){%> --%>
+<%-- 		Product abc = <%=pro%>.shift(); --%>
+// 		console.log(abc);
+<%-- 	<%}%> --%>
+// 	goods.arrAllGoods.push({goodsId:"셔츠",goodsprc:"1500",goodsNm:"셔츠",cnt:0});
 	
-	
-	
-	
-	//var[] $itm =${item}.val();
-	
-// 	var $txt = $('#items').text();
-// 	for(var i in $itm ){
+// 	List<Product> product = $("#product").val();
+// 	for(var i=0;i<product.length;i++){
+// 	var pname = new Array(); 
+// 	var pprice = new Array();
+		for(var i=0;i<$('input[name="pname"]').length;i++){
+// 			pname.push($('input[name="pname"]').eq(i).val());
+// 			pprice.push($('input[name="pprice"]').eq(i).val());
+    		goods.arrAllGoods.push({goodsId:$('input[name="pname"]').eq(i).val(),goodsprc:$('input[name="pprice"]').eq(i).val(),goodsNm:$('input[name="pname"]').eq(i).val(),cnt:0});  
+			
+		}
+// 		console.log(pname);
+// 		console.log(pprice);
 		
- 		 
-
-// 		//id=value sprc=price Nm->value=>변환 
-
-// 		}
-
-<%--      goods.arrAllGoods.push({goodsId:"1",goodsprc:<%=price.getT1P()%>,goodsNm:"티셔츠",cnt:0});    --%>
-<%-- 	goods.arrAllGoods.push({goodsId:"2",goodsprc:<%=price.getB1P()%>,goodsNm:"blouse"  ,cnt:0}); --%>
-<%-- 	goods.arrAllGoods.push({goodsId:"3",goodsprc:<%=price.getY1P()%>,goodsNm:"shirt",cnt:0}); --%>
+// 	}
 	
-	
-	//jstl로 셀렉트 박스 옵션 채우기
-	
-	
-	
-// 	$('#selGoods').append('<option id="" value="">-[필수] 옵션을 선택해 주세요 -</option>');
-<%--     $('#selGoods').append('<option id="1" value="1"><%=price.getItems()%></option>');  --%>
-<%--  	$('#selGoods').append('<option id="2" value="2"><%=price.getItems()%></option>');  --%>
-<%--  	$('#selGoods').append('<option id="3" value="3"><%=price.getItems()%></option>');  --%>
-<%-- 	var items=<%=${items}%>; --%>
-// 	for(items=0;i<items.length;items++){
-		
-// 		 $('#selGoods').append('<option id="1" value="items">items</option>');
+// 	goods.arrAllGoods.push({goodsId:"셔츠",goodsprc:"1500",goodsNm:"셔츠",cnt:0});
+//     goods.arrAllGoods.push({goodsId:"블라우스",goodsprc:"2000",goodsNm:"블라우스",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"티셔츠",goodsprc:"2000",goodsNm:"티셔츠",cnt:0});  
+// 	goods.arrAllGoods.push({goodsId:"맨투맨",goodsprc:"2000",goodsNm:"맨투맨",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"바지",goodsprc:"2000",goodsNm:"바지",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"니트",goodsprc:"2000",goodsNm:"니트",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"자켓",goodsprc:"2000",goodsNm:"자켓",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"코트",goodsprc:"2000",goodsNm:"코트",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"패딩",goodsprc:"2000",goodsNm:"패딩",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"이불",goodsprc:"2000",goodsNm:"이불",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"신발",goodsprc:"2000",goodsNm:"신발",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"커튼",goodsprc:"2000",goodsNm:"커튼",cnt:0});
+// 	goods.arrAllGoods.push({goodsId:"가방",goodsprc:"2000",goodsNm:"가방",cnt:0});
 
-
-// 		}
-
-
-
+	 
 
 	$(function(){
 

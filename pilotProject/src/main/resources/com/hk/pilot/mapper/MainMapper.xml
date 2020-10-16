@@ -25,13 +25,18 @@ select userFirstAddr  from members where id=#{id}
  <select id="selectsStoreOne" parameterType="String" 
  		resultType="com.hk.pilot.dto.StoreInfo"> 
 <!-- 		SELECT s.ID , s.SNAME , s.SADDRESS, i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,storeFirstAddr,storeSecondAddr,storeExtraAddr,items,Y1,B1,T1,M1,P1,K1,J1,C1,P2,D1,S1,C2,B2,w_id,orderNum,r_content,star,badCnt,r_date,depth,r_no,rcom_no,r_id,rcom_content,rcom_date,Y1P,B1P,T1P,M1P,P1P,K1P,J1P,C1P,P2P,D1P,S1P,C2P,B2P,p_date,p_seq FROM ITEMLIST i,STORES s,price,review WHERE i.SNUM = s.SNUM AND i.snum=#{snum} -->
-		SELECT s.ID , s.SNAME , i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,STORESECONDADDR,STOREFIRSTADDR,storeExtraAddr,items,Y1,B1,T1,M1,P1,K1,J1,C1,P2,D1,S1,C2,B2,Y1P,B1P,T1P,M1P,P1P,K1P,J1P,C1P,P2P,D1P,S1P,C2P,B2P,p_date,p_seq FROM ITEMLIST i,STORES s,price WHERE i.SNUM = s.SNUM AND i.snum=#{snum}
+		SELECT s.ID , s.SNAME , i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,STORESECONDADDR,STOREFIRSTADDR,storeExtraAddr,items FROM ITEMLIST i,STORES s WHERE i.SNUM = s.SNUM AND i.snum=#{snum}
 </select> 
 
+<select id="price" resultType="com.hk.pilot.dto.Product">
+
+	select * from Product
+
+</select>
 
 <insert id="insert" > 
  INSERT INTO STUDY.CART (id,snum,sname,ITEMS,PAY_CART,cart_seq,choice,c_check) 
-  VALUES(#{id},#{snum},#{sname},#{items},#{Y1},#{B1}, #{T1}, #{M1},#{P1},#{K1},#{J1},#{C1},#{P2},#{D1},#{S1},#{C2}, #{B2},#{pay_cart},CARTNUM_SEQ.nextval,#{choice},#{c_check})
+  VALUES(#{id},#{snum},#{sname},#{items},#{pay_cart},CARTNUM_SEQ.nextval,#{choice},#{c_check})
  </insert>
 
 <!-- <select id="countCart" resultType="int"> -->
@@ -41,7 +46,7 @@ select userFirstAddr  from members where id=#{id}
 
 <select id="userCart" resultType="com.hk.pilot.dto.Cart">
 
-select m.id,ITEMS, SNUM, SNAME, C_CHECK, CART_SEQ, CHOICE,pay_cart from Members m,cart c,price where m.id=c.id and m.id=#{id}
+select m.id,ITEMS, SNUM, SNAME, C_CHECK, CART_SEQ, CHOICE,pay_cart from Members m,cart c where m.id=c.id and m.id=#{id}
 
 </select>
 
@@ -64,9 +69,19 @@ select items,SNUM, SNAME,CART_SEQ,pay_cart from members m,cart c where m.id=c.id
 
 </select>
 
+<select id="bubbleplus"  resultType="int" parameterType="com.hk.pilot.dto.Bubble">
+
+SELECT bubble FROM (
+      SELECT bubble FROM BUBBLE 
+      WHERE id=#{id}
+      ORDER BY ROWNUM DESC)
+   WHERE ROWNUM = 1
+
+</select>
+
 <insert id="bubblePay" >
 
-INSERT INTO STUDY.BUBBLE (B_PRICE, B_DATE) VALUES(#{b_price}, sysdate);
+INSERT INTO STUDY.BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble) VALUES(#{id},#{b_price}, sysdate,#{b_bubble},BUBBLE_SEQ.NEXTVAL,#{bubble}) 
 
 
 </insert>

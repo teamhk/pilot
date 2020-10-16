@@ -1,6 +1,6 @@
 package com.hk.pilot.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
-import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -45,6 +45,9 @@ public class MainService {
 		return mainMapper.selectsStoreOne(snum);
 	}
 	
+	public List<Product> price(){
+		return mainMapper.price();
+	}
 
 	public int insert(Cart cart) {
 		// TODO Auto-generated method stub
@@ -52,9 +55,6 @@ public class MainService {
 		
 	}
 	
-//	public int countCart(int cart_seq, Members id) {
-//		return mainMapper.countCart(cart_seq,id);
-//	}
 	
 	public List<Cart> userCart(String id) { //카트
 		return mainMapper.userCart(id);
@@ -81,8 +81,14 @@ public class MainService {
 	
 
 	//버블충전
-	public int bubblePay(int b_price) {
+	public int bubblePay(Bubble bubble) {
 		
-		return mainMapper.bubblePay(b_price);
+		return mainMapper.bubblePay(bubble);
 	}
+
+	public int bubbleplus(Bubble bubble) {
+		
+		return mainMapper.bubbleplus(bubble);
+	}
+	
 }

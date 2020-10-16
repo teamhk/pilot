@@ -10,6 +10,7 @@ import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -26,6 +27,8 @@ public interface MainMapper {
 	
 	public StoreInfo selectsStoreOne(String snum);
 	
+	public List<Product> price();
+	
 	public int insert(Cart Cart);
 	
 	//public List<CartPrice> myCart();
@@ -38,7 +41,9 @@ public interface MainMapper {
 	
 	public List<FinalPay> cartpay (String id);
 	
-	public int bubblePay(int b_price);
+	public int bubblePay(Bubble bubble);
+	
+	public int bubbleplus(Bubble bubble);
 	
 
 }

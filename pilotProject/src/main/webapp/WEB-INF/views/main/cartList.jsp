@@ -38,6 +38,14 @@
   
            
         }
+
+       
+        $("#order").click(function () {               
+            if (confirm("결제 하시겠습니까?")== true) {
+                $("#cartform").submit();
+            }
+        });
+    
 </script>
 
 	<form id="cartform" method="post">
@@ -88,17 +96,6 @@
 			<input type="text" class="total-cart-p" id="total_sum"name="pay_cart" /> 
 			<input type='button' value='계속빨래하기'onclick='location.href="/"' /> 
 			<input type='submit' id='order' value='구매하기' onclick='location.href="pay"' />
-
-
-			<script>
-                $("#order").click(function () {               
-                    if (confirm("결제 하시겠습니까?")) {
-               
-                        $("#cartform").submit();
-                    }
-
-                });
-            </script>
 		</div>
 	</form>
 	<script>
