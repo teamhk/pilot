@@ -11,6 +11,10 @@
 		WHERE rownum=1
 	</select>
 	
+	<select id="getProduct" resultType="com.hk.pilot.dto.Product">
+		select * from product
+	</select>
+	
 	<update id="userUpdatePost1">
 		UPDATE MEMBERS SET NAME=#{name}, PNUM=#{pnum}, USERZIPCODE=#{userZipCode}, CARDCHECK=#{cardCheck}, USERFIRSTADDR=#{userFirstAddr}, USERSECONDADDR=#{userSecondAddr}, USEREXTRAADDR=#{userExtraAddr}, EMAIL=#{email} WHERE ID=#{id}
 	</update>
@@ -40,8 +44,8 @@
 	</select>
 	
 	<select id="storeUpdateGet" resultType="com.hk.pilot.dto.StoreInfo">
-		 SELECT s.ID , s.SNAME , s.SCONTACT , s.SNUM , s.BANK , s.BNUM , s.PERMIT , s.S_DATE , s.SDCHECK , s.AREA_NUM , s.STOREFIRSTADDR ,s.STORESECONDADDR ,s.STOREEXTRAADDR ,s.STOREZIPCODE , sp1,sp2,sp3,sp4, i.ITEMS , i.Y1 ,i.B1 
-		, i.T1 , i.M1 , i.P1 , i.K1 , i.J1 ,i.C1 , i.P2 , i.D1 ,i.S1 ,i.C2 ,i.B2 FROM STORES s , ITEMLIST i WHERE s.SNUM =i.SNUM AND s.SNUM =#{snum}
+		 SELECT s.ID , s.SNAME , s.SCONTACT , s.SNUM , s.BANK , s.BNUM , s.PERMIT , s.S_DATE , s.SDCHECK , s.AREA_NUM , s.STOREFIRSTADDR ,s.STORESECONDADDR ,s.STOREEXTRAADDR ,s.STOREZIPCODE , sp1,sp2,sp3,sp4, i.ITEMS 
+		 FROM STORES s , ITEMLIST i WHERE s.SNUM =i.SNUM AND s.SNUM =#{snum}
 	</select>
 	
 	<update id="storeUpdatePost1" parameterType="com.hk.pilot.dto.StoreInfo">
@@ -65,25 +69,31 @@
 	</update>
 	
 	<update id="storeUpdatePost2" parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE ITEMLIST SET ITEMS=#{items}, Y1=#{Y1}, B1=#{B1}, T1=#{T1}, M1=#{M1}, P1=#{P1},
-		K1=#{K1}, J1=#{J1}, C1=#{C1}, P2=#{P2}, D1=#{D1}, S1=#{S1}, C2=#{C2}, B2=#{B2} WHERE SNUM=#{snum}
+		UPDATE ITEMLIST SET ITEMS=#{items} WHERE SNUM=#{snum}
 	</update>
 	
 	<select id="mapLoad" resultType="com.hk.pilot.dto.MapData">
 		select * from MAPDATA
 	</select>
 	
-	<select id="itemsPriceGet" resultType="com.hk.pilot.dto.Price">
-		SELECT Y1P, B1P, T1P, M1P, P1P, K1P, J1P, C1P, P2P, D1P, S1P, C2P, B2P, P_SEQ, P_DATE FROM (select * from price order by p_seq desc) WHERE rownum=1
+	<select id="itemsPriceGet" resultType="com.hk.pilot.dto.Product">
+		SELECT * FROM product
 	</select>
 	
-	<insert id="itemsPricePost">
-<!-- 		<selectKey keyProperty="abc" order="BEFORE" resultType="int"> -->
-<!-- 			select MAX(p_seq)+1 from price -->
-<!-- 		</selectKey> -->
-		INSERT INTO PRICE (Y1P, B1P, T1P, M1P, P1P, K1P, J1P, C1P, P2P, D1P, S1P, C2P, B2P, P_SEQ, P_DATE) 
-		VALUES(#{Y1P}, #{B1P}, #{T1P}, #{M1P}, #{P1P}, #{K1P}, #{J1P}, #{C1P}, #{P2P},#{D1P}, #{S1P}, #{C2P}, #{B2P},#{p_seq}+1, sysdate )
+	<insert id="insertItem" parameterType="com.hk.pilot.dto.Product" useGeneratedKeys="true">
+		<selectKey resultType="int" keyProperty="pno" order="BEFORE">
+        	SELECT MAX(pno)+1 FROM PRODUCT        
+    	</selectKey>    
+		insert into product (PNO,PNAME,PCODE,PPRICE) VALUES (#{pno}, #{pname},#{pcode},#{pprice})
 	</insert>
+	
+	<update id="itemsPricePost" parameterType="com.hk.pilot.dto.Product">
+		UPDATE PRODUCT SET PCODE=#{pcode}, PNAME=#{pname}, PPRICE=#{pprice} WHERE PNO=#{pno}
+	</update>
+	
+	<delete id="deleteItem">
+		DELETE FROM PRODUCT WHERE PNO=#{pno}
+	</delete>
 	
 	<select id="chartData" resultType="com.hk.pilot.dto.StatisticDay">
 		SELECT TO_CHAR(CDAY, 'yy-mm-dd') as cday,OQ,OP FROM STATISTIC s WHERE snum='13131313'

@@ -7,9 +7,11 @@ import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hk.pilot.dto.MapData;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.service.AdminService;
 import java.util.List;
@@ -98,4 +100,19 @@ public class AdminRestController {
 		System.out.println(data);
 		return data;
 	}
+	
+	@GetMapping(path = "/insertItem", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int insertItem(Model model,Product product) {
+		logger.info("/admin/rest/insertItem ----------");
+		System.out.println(product.toString());
+		return adminService.insertItem(product);
+	}
+	@GetMapping(path = "/deleteItem", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int deleteItem(Model model,@RequestParam("pno") int pno) {
+		logger.info("/admin/rest/deleteItem ----------");
+		System.out.println("삭제 pno="+pno);
+		return adminService.deleteItem(pno);
+	}
+	
+	
 }

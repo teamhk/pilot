@@ -35,7 +35,7 @@ $().ready(function() {
 	$("#pwdcheck").change(function() {
 		var pwdch = document.getElementById('pwdcheck').value;
 		$.ajax({
-			url : '/member/rest/pwdJson',
+			url : '/manager/rest/pwdJson',
 			data : { 
 				id : '${loginMember.id}',
 				pwd : pwdch

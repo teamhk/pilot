@@ -88,7 +88,7 @@
 											<ul class="sf-dropdown-menu" style="display: none;">
 												<li class="menu-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%86%8c%ea%b0%9c-%ec%98%81%ec%83%81 menu-item-1256">
 													<a href="/admin/memberList">회원 관리</a>
-													<a href="/admin/storeInfo">점포 관리</a>
+													<a href="/admin/storeList">점포 관리</a>
 													<a href="/admin/price">가격 관리</a>
 													<a href="/admin/aChat">게시글 관리</a>
 													<a href="/admin/stats">통계 관리</a>

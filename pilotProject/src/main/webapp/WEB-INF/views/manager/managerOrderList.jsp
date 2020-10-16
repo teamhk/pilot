@@ -41,6 +41,7 @@
       			<td class='item'>${itemStr}</td>
 				<%String process="";%>
 				<c:choose>
+					<c:when test="${list.refundDate ne null}"><%process="환불";%></c:when>
 					<c:when test="${list.finish ne null}"><%process="배달완료";%></c:when>
 					<c:when test="${list.wash ne null}"><%process="세탁중";%></c:when>
 					<c:when test="${list.pick ne null}"><%process="수거완료";%></c:when>
@@ -104,7 +105,7 @@ window.onload = function(){
 		console.log($(this).val());
 		var num = parseInt($(this).attr("id"));
 			$.ajax({
-				url : '/member/rest/process',
+				url : '/manager/rest/process',
 				data : { 
 					orderNum : num,
 					process : $(this).val()

@@ -17,6 +17,7 @@ import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
@@ -49,6 +50,7 @@ public class AdminController {
 			
 			System.out.println(userInfo.toString());
 			model.addAttribute("userInfo",userInfo);
+			
 			return "/admin/userUpdateGet";
 		}
 		
@@ -82,7 +84,7 @@ public class AdminController {
 			return "admin/userUpdatePost";
 		}
 		
-		@GetMapping("/storeInfo")
+		@GetMapping("/storeList")
 		public String storeList(Model model) {
 			System.out.println("storeList....호출...");
 			model.addAttribute("stores",adminService.storeList());
@@ -94,6 +96,9 @@ public class AdminController {
 			
 			model.addAttribute("storeInfo",adminService.storeUpdateGet(snum));
 			System.out.println(adminService.storeUpdateGet(snum).toString());
+			List<Product> product = adminService.getProduct();
+			model.addAttribute("product",product);
+			System.out.println(product.toString());
 			return "/admin/storeUpdateGet";
 		}
 		
@@ -108,15 +113,17 @@ public class AdminController {
 		@GetMapping("/price")
 		public String itemsPriceGet(Model model) {
 			System.out.println("priceGet...호출");
-			Price itp = adminService.itemsPriceGet();
+			List<Product> itp = adminService.itemsPriceGet();
 			System.out.println(itp.toString());
 			model.addAttribute("itp",itp);
 			return "/admin/itemsPriceGet";
 		}
 		
 		@PostMapping("/price")
-		public String itemsPricePost(Model model,Price price) {
-			int ret = adminService.itemsPricePost(price);
+		public String itemsPricePost(Model model,Product product) {
+			System.out.println("pricePost...호출");
+			System.out.println(product);
+			int ret = adminService.itemsPricePost(product);
 			return "admin/itemsPricePost";
 		}
 		//--------------chat---------------------------------------------------------------------------------------------------------------------------------------------

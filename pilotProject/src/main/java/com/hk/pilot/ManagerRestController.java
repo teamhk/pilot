@@ -20,7 +20,7 @@ import com.hk.pilot.service.ManagerService;
 
 
 @RestController  //화면(jsp파일명 리턴이 필요하지않다, 데이터값만 리턴)
-@RequestMapping(value="/member/rest") //순수한 형태의 text로 주겠다.
+@RequestMapping(value="/manager/rest") //순수한 형태의 text로 주겠다.
 public class ManagerRestController {
 	private static final Logger logger = LoggerFactory.getLogger(ManagerRestController.class);
 

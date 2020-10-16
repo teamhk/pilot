@@ -9,9 +9,9 @@
 <body>
 <h1>가격표 정보 수정 결과</h1><br>
 <b>정상적으로 수정되었습니다.</b>
-<a href="/admin/memberList">리스트로 이동하려면 누르세요</a>
+<a href="/admin/price">리스트로 이동하려면 누르세요</a>
 <script>
-	setTimeout( function() { window.location='/admin/memberList';},5000);
+	setTimeout( function() { window.location='/admin/price';},3000);
 </script>
 </body>
 </html>

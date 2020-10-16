@@ -50,32 +50,45 @@
 		취급 품목 : <input type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
-				<input type='checkbox' id='와이셔츠' name='Y1' 
-				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="Y">와이셔츠&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='블라우스' name='B1' 
-				<%= (stInfo.getB1().equals("Y")) ? "checked" : ""%> value="Y">블라우스&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='티셔츠' name='T1' 
-				<%= (stInfo.getT1().equals("Y")) ? "checked" : ""%> value="Y">티셔츠&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='맨투맨,후드' name='M1' 
-				<%= (stInfo.getM1().equals("Y")) ? "checked" : ""%> value="Y">맨투맨,후드&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='바지' name='P1' 
-				<%= (stInfo.getP1().equals("Y")) ? "checked" : ""%> value="Y">바지&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='니트류' name='K1' 
-				<%= (stInfo.getK1().equals("Y")) ? "checked" : ""%> value="Y">니트류&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='자켓' name='J1' 
-				<%= (stInfo.getJ1().equals("Y")) ? "checked" : ""%> value="Y">자켓&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='코트' name='C1' 
-				<%= (stInfo.getC1().equals("Y")) ? "checked" : ""%> value="Y">코트&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='패딩' name='P2' 
-				<%= (stInfo.getP2().equals("Y")) ? "checked" : ""%> value="Y">패딩&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='이불' name='D1' 
-				<%= (stInfo.getD1().equals("Y")) ? "checked" : ""%> value="Y">이불&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='슈즈(신발류)' name='S1' 
-				<%= (stInfo.getS1().equals("Y")) ? "checked" : ""%> value="Y">슈즈(신발류)&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='커튼' name='C2' 
-				<%= (stInfo.getC2().equals("Y")) ? "checked" : ""%> value="Y">커튼&nbsp;&nbsp;&nbsp;
-				<input type='checkbox' id='가방류' name='B2' 
-				<%= (stInfo.getB2().equals("Y")) ? "checked" : ""%> value="Y">가방류&nbsp;&nbsp;&nbsp;
+			<c:forEach var="tt" items="${product}" varStatus="status">
+				<input type='checkbox' id='${tt.pname }' name='item' value='${tt.pname}'>${tt.pname}&nbsp;&nbsp;&nbsp;
+				<c:if test="${status.count%5==0}"><br></c:if>
+			</c:forEach>
+			
+			
+
+
+			
+			
+<%-- 			<c:forEach > --%>
+<!-- 				<input type='checkbox' id='아이템이름' name='아이템코드' "checked" value='아이템이름'>아이템이름&nbsp;&nbsp;&nbsp; -->
+<%-- 			</c:forEach> --%>
+<!-- 				<input type='checkbox' id='와이셔츠' name='Y1'  -->
+<%-- 				<%= (stInfo.getY1().equals("Y")) ? "checked" : ""%> value="Y">와이셔츠&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='블라우스' name='B1'  -->
+<%-- 				<%= (stInfo.getB1().equals("Y")) ? "checked" : ""%> value="Y">블라우스&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='티셔츠' name='T1'  -->
+<%-- 				<%= (stInfo.getT1().equals("Y")) ? "checked" : ""%> value="Y">티셔츠&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='맨투맨,후드' name='M1'  -->
+<%-- 				<%= (stInfo.getM1().equals("Y")) ? "checked" : ""%> value="Y">맨투맨,후드&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='바지' name='P1'  -->
+<%-- 				<%= (stInfo.getP1().equals("Y")) ? "checked" : ""%> value="Y">바지&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='니트류' name='K1'  -->
+<%-- 				<%= (stInfo.getK1().equals("Y")) ? "checked" : ""%> value="Y">니트류&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='자켓' name='J1'  -->
+<%-- 				<%= (stInfo.getJ1().equals("Y")) ? "checked" : ""%> value="Y">자켓&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='코트' name='C1'  -->
+<%-- 				<%= (stInfo.getC1().equals("Y")) ? "checked" : ""%> value="Y">코트&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='패딩' name='P2'  -->
+<%-- 				<%= (stInfo.getP2().equals("Y")) ? "checked" : ""%> value="Y">패딩&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='이불' name='D1'  -->
+<%-- 				<%= (stInfo.getD1().equals("Y")) ? "checked" : ""%> value="Y">이불&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='슈즈(신발류)' name='S1'  -->
+<%-- 				<%= (stInfo.getS1().equals("Y")) ? "checked" : ""%> value="Y">슈즈(신발류)&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='커튼' name='C2'  -->
+<%-- 				<%= (stInfo.getC2().equals("Y")) ? "checked" : ""%> value="Y">커튼&nbsp;&nbsp;&nbsp; --%>
+<!-- 				<input type='checkbox' id='가방류' name='B2'  -->
+<%-- 				<%= (stInfo.getB2().equals("Y")) ? "checked" : ""%> value="Y">가방류&nbsp;&nbsp;&nbsp; --%>
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
 		<input type='hidden' name='items' value="">
@@ -96,6 +109,18 @@
 		var str2 = "<%=stInfo.getPermit()%>";
 		document.storeform.permit.value=str2;
 		
+		var strIt = "<%=stInfo.getItems()%>";
+		var arrayIt = strIt.split('!@#');
+
+		$("input[type='checkbox']").each(function(){
+			for(var i=0;i<arrayIt.length;i++){
+				if($(this).val()==arrayIt[i]){
+					$(this).prop("checked",true);
+				}
+			}
+		});
+
+
 		//--------품목이 체크되면 Value값을 1로 변경해주는 함수
 // 		$("input[type='checkbox']").change(function() {
 // 			if ($(this).is(':checked')) {

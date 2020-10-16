@@ -9,6 +9,7 @@ import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
@@ -19,6 +20,8 @@ import com.hk.pilot.dto.UserInfo;
 public interface AdminMapper {
 	
 	public UserInfo userUpdateGet(String id);
+	
+	public List<Product> getProduct();
 	
 	public int userUpdatePost1(UserInfo userInfo); //유저 정보 변경시 Member 테이블 수정
 	
@@ -42,9 +45,13 @@ public interface AdminMapper {
 	
 	public List<MapData> mapLoad(); //맵 정보를 실시간으로 가져오는 ajax
 	
-	public Price itemsPriceGet(); //가격표 불러오기
+	public List<Product> itemsPriceGet(); //가격표 불러오기
 	
-	public int itemsPricePost(Price price); //가격표 수정하기
+	public int insertItem(Product product); //품목 추가하기
+	
+	public int deleteItem(int pno); //품목 제거하기
+	
+	public int itemsPricePost(Product product); //제품 수정하기
 	
 	public List<StatisticDay> chartData(); //일일 통계 불러오기 
 	//  admin chat 1013 james--------------------------------------------------------------------------------------------------------------------------------

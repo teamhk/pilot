@@ -5,7 +5,7 @@ public class Product {
 	int pno;
 	String pcode;
 	String pname;
-	String pprice;
+	int pprice;
 	public int getPno() {
 		return pno;
 	}
@@ -24,14 +24,15 @@ public class Product {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public String getPprice() {
+	public int getPprice() {
 		return pprice;
 	}
-	public void setPprice(String pprice) {
+	public void setPprice(int pprice) {
 		this.pprice = pprice;
 	}
 	@Override
 	public String toString() {
 		return "Product [pno=" + pno + ", pcode=" + pcode + ", pname=" + pname + ", pprice=" + pprice + "]";
 	}
+	
 }

@@ -10,6 +10,7 @@ import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.Price;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StatisticDay;
 import com.hk.pilot.dto.StoreInfo;
@@ -26,6 +27,10 @@ public class AdminService {
 	public UserInfo userUpdateGet(String id) {
 		
 		return adminMapper.userUpdateGet(id);
+	}
+	
+	public List<Product> getProduct(){
+		return adminMapper.getProduct();
 	}
 	
 	public int userUpdatePost(UserInfo userInfo) {
@@ -99,12 +104,20 @@ public class AdminService {
 		return adminMapper.mapLoad();
 	}
 	
-	public Price itemsPriceGet() {
+	public List<Product> itemsPriceGet() {
 		return adminMapper.itemsPriceGet();
 	}
 	
-	public int itemsPricePost(Price price) {
-		return adminMapper.itemsPricePost(price);
+	public int insertItem(Product product) {
+		return adminMapper.insertItem(product);
+	}
+	
+	public int itemsPricePost(Product product) {
+		return adminMapper.itemsPricePost(product);
+	}
+	
+	public int deleteItem(int pno) {
+		return adminMapper.deleteItem(pno);
 	}
 
 	public List<StatisticDay> chartData() {
