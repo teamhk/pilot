@@ -373,6 +373,8 @@ function checkScontact(){
 		$('#scontact_check').css('color', 'black');
 	}
 }
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//파일 업로드 갯수제한 스크립트 추가
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //--------품목이 체크되면 Value값을 1로 변경해주는 함수
 $(document).ready(function(){
@@ -592,7 +594,7 @@ function submitCheck() {
 						<input type='checkbox' id='가방' name='B2' value='N'>가방&nbsp;&nbsp;&nbsp;			
 				</fieldset>
 				<input type="hidden" id ="items" name="items" value="">
-				<input type="file" value="파일 선택" multiple="multiple" name="uploadFile"/><br>
+				<input type="file" id="file" value="파일 선택" multiple="multiple" name="uploadFile" maxlength="4"/><br>
 				<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">
 		</form>
 </body>

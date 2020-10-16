@@ -63,8 +63,9 @@
 <!-- 			<input type='checkbox' id='커튼' name='C2' value="">커튼&nbsp;&nbsp;&nbsp; -->
 <!-- 			<input type='checkbox' id='가방류' name='B2' value="">가방류&nbsp;&nbsp;&nbsp; -->
 		</fieldset>
-		<input type='hidden' id='items' name='items' value=""> <input
-			type='hidden' name='area_num' value='0'>
+		<input type='hidden' id='items' name='items' value=""> 
+		<input type='hidden' name='area_num' value='0'>
+		<input type="file" value="파일 선택" multiple="multiple" name="uploadFile"/><br>
 		<button onclick="abcd();">추가</button>
 	</form>
 	<script>

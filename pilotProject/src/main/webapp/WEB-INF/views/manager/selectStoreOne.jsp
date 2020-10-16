@@ -84,6 +84,7 @@
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
 		<input type='hidden' name='items' value="">
+		<input type="file" value="파일 선택" multiple="multiple" name="uploadFile" maxlength="4"/><br>
 		<button onclick="abcd();">전송</button>
 	</form>
 <script>

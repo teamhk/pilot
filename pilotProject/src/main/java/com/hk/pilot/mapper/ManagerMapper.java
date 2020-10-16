@@ -20,6 +20,8 @@ public interface ManagerMapper {
 	public Members pwdCheck(@Param("id") String id,@Param("pwd") String pwd);
 
 	public int storeAdd(StoreInfo storeInfo); //1-1 업체정보 추가
+	
+	public int mapDataAdd(StoreInfo storeInfo); //1-2 업체정보 추가하면서 MapaData테이블에도 데이터 insert
 
 	public int itemListAdd(StoreInfo storeInfo); //1-2 아이템 리스트 추가
 
@@ -30,6 +32,8 @@ public interface ManagerMapper {
 	public int storeUpdate(StoreInfo storeInfo); // 3-1 업체1개 정보 수정
 
 	public int itemListUpdate(StoreInfo storeInfo); // 3-2 업체1개 품목 수정
+	
+	public int mapDataUpdate(StoreInfo storeInfo); //3-3 업체1개 정보 수정시 MapData테이블도 정보 수정인데..얘는 주소만 update
 
 	public int storeDelete(String snum);  // 4 업체 정보 삭제처리
 

@@ -30,8 +30,8 @@
 </insert>
 
 <insert id="addStores" parameterType="com.hk.pilot.dto.ManagerInfo">
-	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, SDCHECK, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE, SP1, SP2, SP3, SP4 )
-	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{permit}, #{sdcheck}, #{area_num}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode}, #{sp1}, #{sp2}, #{sp3}, #{sp4})
+	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, SDCHECK, S_DATE, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE, SP1, SP2, SP3, SP4 )
+	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{permit}, #{sdcheck}, 'N', #{area_num}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode}, #{sp1}, #{sp2}, #{sp3}, #{sp4})
 </insert>
 
 <insert id="addItemList" parameterType="com.hk.pilot.dto.ManagerInfo">

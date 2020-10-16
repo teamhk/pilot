@@ -1,10 +1,14 @@
 package com.hk.pilot;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
@@ -27,6 +32,8 @@ import com.hk.pilot.service.UserService;
 @RequestMapping("/manager")
 public class ManagerController {
 
+	private static final Logger logger = LoggerFactory.getLogger(AuthRestController.class);
+	
 	@Autowired
 	ManagerService managerService;
 
@@ -44,11 +51,33 @@ public class ManagerController {
 	}
 
 	@PostMapping("/add")
-	public String StoreAddPost(Model model,StoreInfo storeInfo ) {
+	public String StoreAddPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
+		for(int i=0; i<uploadFile.length; i++) {
+			String uploadFolder = "C:\\upload";
+			String uploadFileName = uploadFile[i].getOriginalFilename(); 
+			
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			
+			UUID uuid = UUID.randomUUID();
+	        uploadFileName = uuid.toString()+"_"+uploadFileName;
+	        
+	        if(i==0) {storeInfo.setSp1(uploadFileName);}
+            else if(i==1) {storeInfo.setSp2(uploadFileName);}
+            else if(i==2) {storeInfo.setSp3(uploadFileName);}
+            else if(i==3) {storeInfo.setSp4(uploadFileName);}
+	        
+	        File saveFile = new File(uploadFolder, uploadFileName);
+	        try {
+            	uploadFile[i].transferTo(saveFile);
+            }catch (Exception e) {
+               logger.error(e.getMessage());
+            }//end catch
+		}
 		System.out.println("StoreAddPost...호출");
 		System.out.println("점포정보 잘들어왔나? =>" + storeInfo.toString());
 
 		int ret = managerService.storeAdd(storeInfo);
+		managerService.mapDataAdd(storeInfo);
 		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
 
 		return "/manager/storeAddPost";
@@ -74,12 +103,33 @@ public class ManagerController {
 	}
 
 	@PostMapping("/updateOne")
-	public String storeUpdate(Model model,StoreInfo storeInfo ) {
+	public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
 		System.out.println(storeInfo.toString());
 		System.out.println("StoreUpdate...호출");
 		System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
-
+		for(int i=0; i<uploadFile.length; i++) {
+			String uploadFolder = "C:\\upload";
+			String uploadFileName = uploadFile[i].getOriginalFilename(); 
+			
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			
+			UUID uuid = UUID.randomUUID();
+	        uploadFileName = uuid.toString()+"_"+uploadFileName;
+	        
+	        if(i==0) {storeInfo.setSp1(uploadFileName);}
+            else if(i==1) {storeInfo.setSp2(uploadFileName);}
+            else if(i==2) {storeInfo.setSp3(uploadFileName);}
+            else if(i==3) {storeInfo.setSp4(uploadFileName);}
+	        
+	        File saveFile = new File(uploadFolder, uploadFileName);
+	        try {
+            	uploadFile[i].transferTo(saveFile);
+            }catch (Exception e) {
+               logger.error(e.getMessage());
+            }//end catch
+		}
 		int ret = managerService.storeUpdate(storeInfo);
+		managerService.mapDataUpdate(storeInfo);
 		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
 
 		return "/manager/storeUpdate";

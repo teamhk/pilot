@@ -49,6 +49,16 @@ public class ManagerService {
 			return 0; 
 		}
 	}
+	
+	//업체정보 추가2-MapData테이블에도 데이터 insert
+	public int mapDataAdd(StoreInfo storeInfo) {
+		int ret1 = managerMapper.mapDataAdd(storeInfo);
+		if(ret1==1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 
 	// 전체 업체 리스트
 	public List<Stores> myStoresList(String id) {
@@ -62,7 +72,7 @@ public class ManagerService {
 		return managerMapper.selectStoreOne(snum);
 	}
 
-	// 업체 정보 수정
+	// 업체 정보 수정1
 	public int storeUpdate(StoreInfo storeInfo) {
 		int ret1 = managerMapper.storeUpdate(storeInfo); 
 		int ret2 = managerMapper.itemListUpdate(storeInfo);
@@ -74,6 +84,16 @@ public class ManagerService {
 		} 
 	}
 
+	//업체 정보 수정2
+	public int mapDataUpdate(StoreInfo storeInfo) {
+		int ret = managerMapper.mapDataUpdate(storeInfo);
+		if(ret == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
 	// 업체 정보 삭제(sdcheck=>true)
 	public int storeDelete(String snum) {
 

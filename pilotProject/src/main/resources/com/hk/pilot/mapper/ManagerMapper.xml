@@ -16,16 +16,28 @@
 
 	<insert id="storeAdd">
 		INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK,
-		BNUM, PERMIT, S_DATE,
+		BNUM, PERMIT, S_DATE, 
 		SDCHECK, AREA_NUM, STOREFIRSTADDR,
 		STORESECONDADDR, STOREEXTRAADDR,
-		STOREZIPCODE)
+		STOREZIPCODE, SP1, SP2, SP3, SP4)
 		VALUES(#{id},
 		#{sname},#{scontact}, #{snum}, #{bank}, #{bnum}, 'N', sysdate, 'N',
 		#{area_num}, #{storeFirstAddr} , #{storeSecondAddr},
-		#{storeExtraAddr}, #{storeZipCode})
+		#{storeExtraAddr}, #{storeZipCode}, #{sp1}, #{sp2}, #{sp3}, #{sp4})
 	</insert>
 
+	<insert id="mapDataAdd" parameterType="com.hk.pilot.dto.ManagerInfo">
+		<selectKey resultType="int" keyProperty="mno" order="BEFORE" >
+			SELECT MAX(mno)+1 FROM MAPDATA
+		</selectKey>
+			INSERT INTO MAPDATA (MNO, SNUM, SADDRESS) 
+			VALUES (#{mno}, #{snum}, #{storeFirstAddr}+#{STOREEXTRAADDR})
+	</insert>
+	
+	<insert id="mapDataUpdate" parameterType="com.hk.pilot.dto.StoreInfo">
+		UPDATE MAPDATA SET SADDRESS=#{storeFirstAddr}+#{STOREEXTRAADDR}
+		WHERE SNUM=#{snum}
+	</insert>
 
 	<insert id="itemListAdd">
 		INSERT INTO ITEMLIST (SNUM, ITEMS)
