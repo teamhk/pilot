@@ -18,6 +18,8 @@ public interface AuthMapper {
 	
 	public int addMembers(Members members);
 	
+	public int addManager(Members members);
+	
 	public int addStores(Stores stores);
 	
 	public int addItemList(ItemList itemList);
@@ -30,7 +32,5 @@ public interface AuthMapper {
 	
 	public int updateRandomPwd(Members members);
 	
-//	public int addJoinCode(String joinCode);
-//	
-//	public int addEmail(String email);
+	public void uploadAjaxPost(Stores stores);
 }

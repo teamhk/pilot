@@ -38,6 +38,10 @@ public class AuthService {
 		return authMapper.addMembers(members);
 	}
 	
+	public int addManager(Members members) {
+		return authMapper.addManager(members);
+	}
+	
 	public int addStores(Stores stores) {
 		return authMapper.addStores(stores);
 	}
@@ -48,6 +52,10 @@ public class AuthService {
 
 	public Members findId(Members members) {
 		return authMapper.findId(members);
+	}
+	
+	public void uploadAjaxPost(Stores stores) {
+		return;
 	}
 	
 }

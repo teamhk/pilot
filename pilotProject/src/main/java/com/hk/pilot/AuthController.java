@@ -1,11 +1,18 @@
 package com.hk.pilot;
 
+import java.io.File;
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
@@ -19,6 +26,9 @@ import com.hk.pilot.service.AuthService;
 @RequestMapping("/auth")
 public class AuthController {
 
+	private static final Logger logger = LoggerFactory.getLogger(AuthRestController.class);
+
+	
 	@Autowired
 	AuthService authService;
 	
@@ -47,9 +57,42 @@ public class AuthController {
 	}
 	
 	@PostMapping("/addOwner")
-	public String addOwnerPost(Model model, Members members, Stores stores, ItemList itemList) {
+	public String addOwnerPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model, Members members, Stores stores, ItemList itemList) {
+		for(int i=0; i<uploadFile.length; i++) {
+			 String uploadFolder = "C:\\upload";
+			 String uploadFileName = uploadFile[i].getOriginalFilename(); 
+			 logger.info("---------------------------------");
+	         logger.info("Upload File Name :"+uploadFile[i].getOriginalFilename());
+	         logger.info("Upload File Size : " + uploadFile[i].getSize());
+	         
+	       //IE has file path
+	            uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+	            logger.info("only file name : " + uploadFileName);
+	            
+	            //중복 방지를 위햔 UUID적용
+	            //동일한 이름으로 업로드 되면 기존파일을 지운데 그래서 java.util.UUID의 값을 이용
+	            UUID uuid = UUID.randomUUID();
+	            uploadFileName = uuid.toString()+"_"+uploadFileName;
+	            
+	            if(i==0) {stores.setSp1(uploadFileName);}
+	            else if(i==1) {stores.setSp2(uploadFileName);}
+	            else if(i==2) {stores.setSp3(uploadFileName);}
+	            else if(i==3) {stores.setSp4(uploadFileName);}
+	           // stores.setSnum(snum);
+	            
+	            //File saveFile = new File(uploadFolder, uploadFileName);
+	            File saveFile = new File(uploadFolder, uploadFileName);
+	            System.out.println("saveFile"+saveFile);
+	            System.out.println("uploadFile:"+uploadFile[i]);
+	            System.out.println("stores는"+stores);
+	            try {
+	            	uploadFile[i].transferTo(saveFile);
+	            }catch (Exception e) {
+	               logger.error(e.getMessage());
+	            }//end catch
+			}
 		System.out.println("managerInfo는"+members+stores+itemList);
-		authService.addMembers(members);
+		authService.addManager(members);
 		authService.addStores(stores);
 		authService.addItemList(itemList);
 		return "redirect:/";
@@ -74,15 +117,5 @@ public class AuthController {
 	public String findPwd() {
 		return "/auth/findPwd";
 	}
-//	@PostMapping("/addOwner")
-//	public String addStores(Model model, Stores stores) {
-//		authService.addStores(stores);
-//		return "redirect:/";
-//	}
-//	
-//	@PostMapping("/addOwner")
-//	public String addItemList(Model model, ItemList itemList) {
-//		authService.addItemList(itemList);
-//		return "redirect:/";
-//	}
+
 }

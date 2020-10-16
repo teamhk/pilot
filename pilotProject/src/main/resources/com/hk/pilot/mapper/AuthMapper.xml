@@ -20,9 +20,14 @@
 	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{cardCheck}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
 </insert>
 
+<insert id="addManager" parameterType="com.hk.pilot.dto.Members">
+	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
+	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
+</insert>
+
 <insert id="addStores" parameterType="com.hk.pilot.dto.Stores">
-	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE )
-	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{area_num}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode})
+	INSERT INTO STORES (ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, SDCHECK, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE, SP1, SP2, SP3, SP4 )
+	VALUES (#{id}, #{sname}, #{scontact}, #{snum}, #{bank}, #{bnum}, #{permit}, #{sdcheck}, #{area_num}, #{storeFirstAddr}, #{storeSecondAddr}, #{storeExtraAddr}, #{storeZipCode}, #{sp1}, #{sp2}, #{sp3}, #{sp4})
 </insert>
 
 <insert id="addItemList" parameterType="com.hk.pilot.dto.ItemList">
@@ -53,5 +58,7 @@
 	SET PWD=#{pwd}
 	WHERE ID=#{id} AND EMAIL=#{email}
 </update>
+
+
 </mapper>
 	

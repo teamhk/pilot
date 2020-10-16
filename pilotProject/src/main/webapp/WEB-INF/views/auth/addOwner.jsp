@@ -302,34 +302,45 @@ $(document).ready(function(){
 });
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //파일업로드 ajax
-$(document).ready(function(){
-	$("#uploadBtn").on("click", function(e){
-		var formData = new FormData();
-		var inputFile = $("input[name='uploadFile']");
-		var files = inputFile[0].files;
-		console.log(files);
+// $(document).ready(function(){
+// 	$("#uploadBtn").on("click", function(e){
+// 		var snum = $("#snum").val();
+// 		var formData = new FormData();
+// 		var inputFile = $("input[name='uploadFile']");
+// 		var files = inputFile[0].files;
+// 		console.log(files);
 
-		//add file data to formdata
-		for(var i=0; i<files.length; i++){
-			formData.append("uploadFile", files[i]);
-		}
+// 		//add file data to formdata
+// 		for(var i=0; i<files.length; i++){
+// 			formData.append("uploadFile", files[i]);
+// 		}
 
-		$.ajax({
-			url: "/auth1/uploadAjaxAction",
-			processData : false,
-			contentType : false,
-			data : formData,
-			type : 'POST',
-			success : function(result){
-				console.log("d여기");
-				alert("업로드 완료");
-			}
-		});
-	});
-});
+// 		$.ajax({
+// 			url: "/auth1/uploadAjaxAction",
+// 			processData : false,
+// 			contentType : false,
+// 			data : {formData, snum},
+// 			dataType: 'text',
+// 			type : 'POST',
+// 			success : function(result){
+// 				console.log(result);
+// 				alert("업로드 완료");
+// 			}
+// 		});
+// 	});
+// });
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //submit not null chekc
 function submitCheck() {
+// 	$('#id').val() = 'manager5';
+// 	$('#pwd').val() = 'aaaa1111!';
+// 	$('#name').val() = '강사님'
+// 	$('#email').val() = 'dkjs@naver.com';
+// 	$('#pnum').val() = '01012341234';
+// 	$('#sample6_postcode').val() = '08789';
+// 	$('#sample6_address').val() = '서울 관악구 낙성대로 4';
+// 	$('#sample6_extraAddress').val() = ' (봉천동)';
+// 	$('#sample6_detailAddress').val() = '111동111호';
 	if($('#id').val() == '') {
 		alert('아이디를 입력해주세요.');
 		return false;
@@ -449,8 +460,10 @@ function submitCheck() {
 </head>
 <body>
 	<h3>회원가입</h3>
-		<form id="myForm" name="addOwner" action="addOwner" method="post">
+		<form id="myForm" name="addOwner" action="addOwner" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="grade" value="2">
+				<input type="hidden" name="permit" value="N">
+				<input type="hidden" name="sdcheck" value="N">
 				<label><b>아이디</b></label>
 				<input type="text" id="id" placeholder="ID" name="id" oninput="checkId()">
 				<div class="validation" id="id_check"></div>
@@ -488,7 +501,7 @@ function submitCheck() {
 				<input type="text" id="scontact" placeholder="Store Contact Number" name="scontact" oninput="checkScontact()">
 				<div class="validation" id="scontact_check"></div>
 				<label><b>사업자 등록 번호</b></label>
-				<input type='number' name='snum'><br>
+				<input type='text' name='snum' id="snum"><br>
 				<label for="banks">은행명:</label>
 				<select id="banks" name="bank" >
 		  			<option value="" selected>-은행을 선택해 주세요-</option>
@@ -529,18 +542,11 @@ function submitCheck() {
 						<input type='checkbox' id='이불' name='D1' value='N'>이불&nbsp;&nbsp;&nbsp;
 						<input type='checkbox' id='신발' name='S1' value='N'>신발&nbsp;&nbsp;&nbsp;
 						<input type='checkbox' id='커튼' name='C2' value='N'>커튼&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='가방' name='B2' value='N'>가방&nbsp;&nbsp;&nbsp;
-									
+						<input type='checkbox' id='가방' name='B2' value='N'>가방&nbsp;&nbsp;&nbsp;			
 				</fieldset>
 				<input type="hidden" id ="items" name="items" value="">
+				<input type="file" value="파일 선택" multiple="multiple" name="uploadFile"/><br>
+				<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">
 		</form>
-<!-- 		<input type="file" value="파일 선택" name="uploadFile"/> -->
-<!--                <input type="submit" id ="uploadBtn" value="업로드"/>    -->
-<!--             <input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">  -->
-		<form id="fileForm" action="fileUpload" method="post" enctype="multipart/form-data" >
-			<input type="file" value="파일 선택" multiple="multiple" name="uploadFile"/>
-			<input type="button" value="전송" id="uploadBtn">
-		</form>
-		<input type="button" value="회원가입" class="signup" onclick="submitCheck()" id="submintCheck">
 </body>
 </html>
