@@ -104,6 +104,7 @@
 											<ul class="sf-dropdown-menu" style="display: none;">
 												<li class="menu-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%86%8c%ea%b0%9c-%ec%98%81%ec%83%81 menu-item-1256">
 													<a href="/user/update">회원정보 수정</a>
+													<a href="/user/creditCard">등록된 카드 관리</a>
 													<a href="/user/bubbleList">버블 관리</a>
 													<a href="/user/cart">장바구니</a>
 													<a href="/user/process">세탁 진행 상황</a>
