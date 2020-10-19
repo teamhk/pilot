@@ -20,7 +20,13 @@
 		userFirstAddr=#{userFirstAddr},userSecondAddr=#{userSecondAddr},userExtraAddr=#{userExtraAddr}
 		where id = #{id}
 </update>
-<update id="payUpdate" parameterType="com.hk.pilot.dto.UserInfo">
+
+<insert id="insertCard" parameterType="com.hk.pilot.dto.PersonalPay">
+	INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC)
+	VALUES (#{id}, #{cardCom}, #{cardNum}, #{cardExp}, #{cardCvc})
+</insert>
+
+<update id="payUpdate" parameterType="com.hk.pilot.dto.PersonalPay">
 	update personalpay set cardcom=#{cardCom} ,cardnum=#{cardNum}, cardexp=#{cardExp}, cardcvc=#{cardCvc} where id =#{id}
 
 </update>

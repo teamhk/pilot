@@ -22,7 +22,9 @@ public interface UserMapper {
 	
 	public int userUpdate(UserInfo userInfo);//회원의 개인정보 수정
 	
-	public int payUpdate(PersonalPay personalPay);//회원의 카드정보수정
+	public int insertCard(PersonalPay personalPay);//카드정보 조회해서 없으면 insert
+	
+	public int payUpdate(PersonalPay personalPay);//카드정보 조회해서 있으면 update
 	
 	public Members deleteUserOne(String id);//user탈퇴
 	

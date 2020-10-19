@@ -22,6 +22,7 @@ import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.UserInfo;
+import com.hk.pilot.mapper.AuthMapper;
 import com.hk.pilot.mapper.UserMapper;
 
 
@@ -54,7 +55,21 @@ public class UserService {
 	
 	//user 카드정보 업데이트
 	public int payUpdate(PersonalPay personalPay) {
-		return userMapper.payUpdate(personalPay);
+		if(userMapper.selectUserPay(personalPay.getId())==null) {
+			int ret1 = userMapper.insertCard(personalPay);
+			if(ret1==1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} else {
+			int ret2 = userMapper.payUpdate(personalPay);
+			if(ret2 == 1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 	}
 
 	
