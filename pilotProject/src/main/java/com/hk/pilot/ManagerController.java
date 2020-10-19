@@ -371,5 +371,28 @@ public class ManagerController {
 		return "redirect:/manager/aChatL";
 	}
 
+	// chat manager from user 1019 james ------------------------------------------------------------------------------
+
+	@GetMapping("/schat")
+	public String mySchatList(HttpServletRequest request,Model model,HttpSession session) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		System.out.println(loginMember.toString());
+		model.addAttribute("url", request.getRequestURI());
+		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+
+		return "/manager/schatList";
+	}
+
+	@GetMapping("/schatOne")
+	public String selectSchatOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
+		System.out.println(snum);
+		StoreInfo storeInfo = managerService.selectStoreOne(snum);
+		System.out.println(storeInfo.toString());
+		model.addAttribute("storeInfo",storeInfo);
+		model.addAttribute("reviewList", managerService.reviewList(snum));
+		return "/manager/selectSchatOne";
+
+	}
+
 
 }

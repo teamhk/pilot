@@ -115,7 +115,17 @@ public class UserController {
 		model.addAttribute("myOrderList",userService.myOrderList(orderNum));
 		return "user/myOrderList";
 	}
-	//  Chat --------------------------------------------------------------------------------------
+	//  Chat choice board type  --------------------------------------------------------------------------------------
+
+	//게시판 선택 페이지
+	@GetMapping(value="/cChat")
+	public String choiceBoardType() {
+		return "/chat/choiceBoardType";
+	}
+	
+	
+	
+	//  Chat user to admin--------------------------------------------------------------------------------------
 
 	//게시글 작성화면
 	@GetMapping(value="/cChatW")
@@ -141,7 +151,7 @@ public class UserController {
 	}
 
 	//게시글 목록 조회
-	@GetMapping(value="/cChat")
+	@GetMapping(value="/cChatL")
 	public String list(SearchCriteria scri, Model model, HttpSession session) {
 		System.out.println("목록 조회 list 호출");
 		Members loginMember = (Members) session.getAttribute("loginMember");
@@ -198,7 +208,7 @@ public class UserController {
 
 		System.out.println(chat.toString() + "chatCon");
 
-		return "redirect:/user/cChat";
+		return "redirect:/user/cChatL";
 
 	}
 
@@ -212,7 +222,7 @@ public class UserController {
 
 		System.out.println("delete 반환");
 
-		return "redirect:/user/cChat";
+		return "redirect:/user/cChatL";
 	}
 	
 	// chat manager from user 1019 james ------------------------------------------------------------------------------

@@ -49,7 +49,7 @@ public class ManagerService {
 			return 0; 
 		}
 	}
-	
+
 	//업체정보 추가2-MapData테이블에도 데이터 insert
 	public int mapDataAdd(StoreInfo storeInfo) {
 		int ret1 = managerMapper.mapDataAdd(storeInfo);
@@ -93,7 +93,7 @@ public class ManagerService {
 			return 0;
 		}
 	}
-	
+
 	// 업체 정보 삭제(sdcheck=>true)
 	public int storeDelete(String snum) {
 
@@ -139,11 +139,11 @@ public class ManagerService {
 
 	//업체 통계 
 	//	managerStatsOne
-	
+
 	// review 1015 james-------------------------------------------------------------
-		public List<Review> reviewList(String snum){
-			return managerMapper.reviewList(snum);
-		}
+	public List<Review> reviewList(String snum){
+		return managerMapper.reviewList(snum);
+	}
 
 	//  chat------------------------------------------------------------------------------------------------------
 	//게시글 작성
@@ -207,6 +207,12 @@ public class ManagerService {
 		System.out.println("게시글-코멘트 읽으러 들어옴-ok");
 
 		return managerMapper.readComment(c_no);
+	}
+
+	//  chat  manager from user 1019 james ------------------------------------------------------------------------------------------------
+
+	public List<Chat> schatList(String snum){
+		return managerMapper.schatList(snum);
 	}
 
 

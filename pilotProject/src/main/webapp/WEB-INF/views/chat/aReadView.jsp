@@ -16,6 +16,7 @@
 
 		// 수정 
 		$(".update_btn").on("click", function() {
+			
 			formObj.attr("action", "/admin/aChatU");
 			formObj.attr("method", "get");
 			formObj.submit();
@@ -42,7 +43,7 @@
 		//관리자 댓글 작성버튼 1011 추가 james
 		$(".commentWriteBtn").on("click", function() {
 			var formObj = $("form[name='commentForm']");
-			
+			alert("댓글 작성이완료되었습니다")
 			formObj.attr("action", "/admin/aChatCom");
 			formObj.attr("method", "post");
 			formObj.submit();

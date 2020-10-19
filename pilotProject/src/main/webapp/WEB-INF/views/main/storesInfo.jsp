@@ -8,6 +8,7 @@
 
 <%@ page import="java.util.List"%>
 <% List<Product> pro=(List<Product>) request.getAttribute("product"); %>
+<% StoreInfo StoreInfo = (StoreInfo) request.getAttribute("storeInfo"); %>
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <title>퀴클린24셀프빨래방 | 카카오맵</title>
 <script type="text/javascript">
 
@@ -179,10 +181,6 @@ $(document).ready(function() {
 	});
 
 })
-
-
-
-
 
 </script>
 <meta property="og:title" content="퀴클린24셀프빨래방">
@@ -409,6 +407,50 @@ $(document).ready(function() {
 		background-size: 170px 100px
 	}
 }
+
+/*-- POPUP common style S ======================================================================================================================== --*/
+#mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+	background-color: #000000;
+	display: none;
+}
+.layerpop {
+	display: none;
+	z-index: 1000;
+	border: 2px solid #ccc;
+	background: #fff;
+	/* 	cursor: move; */
+}
+.layerpop_area .title {
+	padding: 10px 10px 10px 10px;
+	border: 0px solid #aaaaaa;
+	background: #f1f1f1;
+	color: #3eb0ce;
+	font-size: 1.3em;
+	font-weight: bold;
+	line-height: 24px;
+}
+.layerpop_area .layerpop_close {
+	width: 25px;
+	height: 25px;
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.layerpop_area .layerpop_close:hover {
+	cursor: pointer;
+}
+.layerpop_area .content {
+	width: 96%;
+	margin: 2%;
+	color: #828282;
+}
+
+
 </style>
 <style type="text/css">
 .kakao-video-ad {
@@ -1731,40 +1773,6 @@ this.deselect = function (trgtGoodsId){
 
 					</div>
 				</div>
-				<div data-viewid="comment" data-root="" class="cont_evaluation">
-					<h3 class="tit_subject">평가하기</h3>
-					<div class="evaluation_place">
-						텍스트 필드에 포커스 일때 클래스 write_on 추가
-						<form id="commentUpdateForm" method="post" data-commentid="">
-							<fieldset>
-								<input type="hidden" name="point" value="">
-								<div class="grade_star">
-									<span class="ico_star star_rate"> <span
-										class="ico_star inner_star" style="width: 0%"></span>
-									</span> <em class="num_rate">0/5</em> <span class="txt_word">평가해주세요.</span>
-								</div>
-								<div class="write_review">
-									<label for="tfReview" class="lab_review">여기의 어떤 점이 마음에
-										드셨나요?</label>
-									<textarea name="contents" id="tfReview2" class="tf_review"></textarea>
-								</div>
-							</fieldset>
-						</form>
-						<div class="upload_photo hide">
-							<strong class="screen_out">첨부된 사진 목록</strong>
-							<form id="imgUploadForm" action="/commentphoto/upload"
-								method="POST" enctype="multipart/form-data">
-								<input type="hidden" name="pidx"> <span
-									class="thumb_upload box_upload"> <label for="imgUpload2"
-									class="lab_upload">사진 등록하기</label> <input type="file"
-									id="imgUpload2" name="upphoto" class="inp_upload"
-									accept="image/*"> <span class="ico_comm ico_upload"></span>
-								</span>
-							</form>
-						</div>
-						<div class="agree_review">
-
-							<span class="choice_mapdetail agree_checked">
 								<!-- 선택 되었을 때 클래스 agree_chacked ->
                 <input id="mapChoice2" class="inp_choice" type="checkbox" checked="checked">
                 <label for="mapChoice2" class="lab_agree">
