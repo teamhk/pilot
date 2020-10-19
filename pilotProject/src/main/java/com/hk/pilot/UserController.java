@@ -24,7 +24,9 @@ import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.SearchCriteria;
+import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.UserInfo;
+import com.hk.pilot.service.MainService;
 import com.hk.pilot.service.UserService;
 
 @Controller
@@ -39,6 +41,9 @@ public class UserController {
 //	}
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	MainService mainService;
 	
 	//회원정보수정
 	@GetMapping("/update")
@@ -209,6 +214,66 @@ public class UserController {
 
 		return "redirect:/user/cChat";
 	}
+	
+	// chat manager from user 1019 james ------------------------------------------------------------------------------
+	//문의글 목록 조회
+	@GetMapping(value="/schat")
+	public String schatList(SearchCriteria scri, Model model, HttpSession session) {
+		System.out.println("목록 조회 list 호출");
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		
+		
+		String logId = loginMember.getId();
+		model.addAttribute("schatList", userService.schatList(scri, logId));
+
+
+
+		PageMaker pageMaker = new PageMaker();
+
+		pageMaker.setCri(scri);
+
+		pageMaker.setTotalCount(userService.listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "user/schatList";
+	}
+	
+	//게시글 작성화면
+		@GetMapping(value="/schatW")
+		public String swriteGet() {
+			System.out.println("너 여기 들어오니?");
+
+
+			return "main/storesInfo";
+		}
+
+		//게시글 작성 - db저장
+		@PostMapping(value="/schatW")
+		public String swritePost(@RequestParam("snum") String snum, Model model, Chat chat, HttpSession session) {
+			System.out.println("너 여기도 들어오니?");
+
+			Members loginMember = (Members) session.getAttribute("loginMember");
+			Members user = userService.selectUserOne(loginMember.getId());
+			
+			System.out.println("이거 찍히니??");
+			
+			StoreInfo storeInfo = mainService.selectsStoreOne(snum);
+			
+			
+			model.addAttribute("user",user);
+			
+			model.addAttribute("storeInfom",storeInfo);
+			System.out.println("snum 은" +  storeInfo.getSnum());
+			
+			
+			userService.schatWrite(chat);
+			
+			
+			return "main/storesInfo";
+		}
+	
+	
 
 
 }

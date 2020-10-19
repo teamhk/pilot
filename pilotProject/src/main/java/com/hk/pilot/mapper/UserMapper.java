@@ -52,5 +52,10 @@ public interface UserMapper {
 //	1013 chatComment--------------------------------------------------------------------------------------------------------------------------
 	
 	public List<ChatComment> readComment(int c_no); //작성 댓글 조회
-			
+//  chat  manager from user 1019 james ------------------------------------------------------------------------------------------------
+	
+	public List<Chat> schatList(SearchCriteria scri, @Param("logId") String logId);
+	
+	public void schatWrite(Chat chat);
+	
 }

@@ -31,12 +31,12 @@ public class UserService {
 
 	@Autowired
 	UserMapper userMapper;
-	
+
 	public Members selectUserOne(String id) {
-		
+
 		return userMapper.selectUserOne(id);
 	}
-	
+
 	public PersonalPay selectUserPay(String id) {
 		return userMapper.selectUserPay(id);
 	}
@@ -52,7 +52,7 @@ public class UserService {
 			return 0; 
 		} 
 	}
-	
+
 	//user 카드정보 업데이트
 	public int payUpdate(PersonalPay personalPay) {
 		if(userMapper.selectUserPay(personalPay.getId())==null) {
@@ -72,29 +72,29 @@ public class UserService {
 		}
 	}
 
-	
+
 	//user 탈퇴
-	
+
 	public Members deleteUserOne(String id) {
-		
+
 		return userMapper.deleteUserOne(id);
 	}
-	
+
 	public int userDeleterPost(Members members) {
 		return userMapper.userDeleterPost(members);
 	}
-	
+
 	//버블리스트출력
-	
+
 	public List<Bubble> bubbleList(String id) {
 		return userMapper.bubbleList(id);
 	}
-	
+
 	//주문내역출력
 	public List<OrderList> orderList(String id) {
 		return userMapper.orderList(id);
 	}
-	
+
 	public OrderProcess myOrderList(int orderNum) {
 		return userMapper.myOrderList(orderNum);
 	}
@@ -161,6 +161,24 @@ public class UserService {
 
 		return userMapper.readComment(c_no);
 	}
+
+	//  chat user to manager 1019 james ------------------------------------------------------------------------------------------------
+
+	public List<Chat> schatList(SearchCriteria scri, String logId){
+		return userMapper.schatList(scri, logId);
+	}
+
+	public void schatWrite(Chat chat) {
+
+		System.out.println(" 유저 문의 chatService-write 호출");
+
+		System.out.println(chat.toString());
+
+		userMapper.schatWrite(chat);
+
+	}
+
+
 
 
 }	

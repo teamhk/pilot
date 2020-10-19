@@ -9,7 +9,10 @@ public class Chat {
 	Date c_date;
 	String c_content;
 	String c_title;
-	String depth;
+	String c_cnt;
+	String snum;
+	String sname;
+	
 	public String getW_id() {
 		return w_id;
 	}
@@ -46,16 +49,29 @@ public class Chat {
 	public void setC_title(String c_title) {
 		this.c_title = c_title;
 	}
-	public String getDepth() {
-		return depth;
+	public String getc_cnt() {
+		return c_cnt;
 	}
-	public void setDepth(String depth) {
-		this.depth = depth;
+	public void setc_cnt(String c_cnt) {
+		this.c_cnt = c_cnt;
+	}
+	public String getSnum() {
+		return snum;
+	}
+	public void setSnum(String snum) {
+		this.snum = snum;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 	@Override
 	public String toString() {
 		return "Chat [w_id=" + w_id + ", c_no=" + c_no + ", g_check=" + g_check + ", c_date=" + c_date + ", c_content="
-				+ c_content + ", c_title=" + c_title + ", depth=" + depth + "]";
+				+ c_content + ", c_title=" + c_title + ", c_cnt=" + c_cnt + ", snum=" + snum + ", sname=" + sname + "]";
 	}
-		
+
+	
 }

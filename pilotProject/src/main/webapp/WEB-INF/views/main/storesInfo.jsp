@@ -115,6 +115,71 @@ productForm.submit();
 
 }
 
+function wrapWindowByMask() {
+	//화면의 높이와 너비를 구한다.
+	var maskHeight = $(document).height();
+	var maskWidth = $(window).width();
+
+	//문서영역의 크기 
+	console.log("document 사이즈:" + $(document).width() + "*"
+			+ $(document).height());
+	//브라우저에서 문서가 보여지는 영역의 크기
+	console.log("window 사이즈:" + $(window).width() + "*"
+			+ $(window).height());
+
+	//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+	$('#mask').css({
+		'width' : maskWidth,
+		'height' : maskHeight
+	});
+
+	//애니메이션 효과
+	//$('#mask').fadeIn(1000);      
+	$('#mask').fadeTo("slow", 0.5);
+}
+
+function popupOpen() {
+	$('.layerpop').css("position", "absolute");
+	//영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+	$('.layerpop').css(
+			"top",
+			(($(window).height() - $('.layerpop').outerHeight()) / 2)
+					+ $(window).scrollTop());
+	$('.layerpop').css(
+			"left",
+			(($(window).width() - $('.layerpop').outerWidth()) / 2)
+					+ $(window).scrollLeft());
+	$('.layerpop').draggable();
+	$('#layerbox').show();
+}
+
+function popupClose() {
+	$('#layerboxc').hide();
+	$('#mask').hide();
+}
+
+function goDetail() {
+
+	/*팝업 오픈전 별도의 작업이 있을경우 구현*/
+
+	popupOpen(); //레이어 팝업창 오픈 
+	wrapWindowByMask(); //화면 마스크 효과 
+}
+
+$(document).ready(function() {
+	var formObj = $("form[name='reviewForm']");
+	$(".write_btn").on("click", function() {
+		if (fn_valiChk()) {
+			return false;
+		}
+		alert("문의글 작성이 완료되었습니다.");
+		formObj.attr("action", "/");
+		formObj.attr("method", "post");
+		formObj.submit();
+	});
+
+})
+
 
 
 
@@ -2247,5 +2312,77 @@ this.deselect = function (trgtGoodsId){
     --> <!-- <input type='submit' value='주문하기' > --> <!-- <input type='button' onclick='location.href="list"' value='계쇽쇼핑하기'> -->
 
 								<!-- </form>  -->
+								
+		<!--Popup Start -->
+
+		<button onClick="javascript:goDetail('테스트');">문의글 작성하기</button>
+		<div style="height: 1000px;"></div>
+
+		<!-- 팝업뜰때 배경 -->
+		<div id="mask"></div>
+
+
+		<div id="layerbox" class="layerpop"
+			style="width: 700px; height: 350px;">
+			<article class="layerpop_area">
+				<div class="title2">문의하기</div>
+				<a href="javascript:popupClose();" class="layerpop_close"
+					id="layerbox_close"></a> <br>
+
+
+				<form name="writeForm" method="post" action="/user/schatW">
+					<table>
+						<tbody>
+						
+						<tr>
+								<td><label for="content">제목</label> <textarea
+										id="c_title" name="c_title" class="chk" title="제목을 입력하세요."
+										placeholder="내용을 입력해주세요"></textarea></td>
+							</tr>
+
+							<tr>
+								<td><label for="content">내용</label> <textarea
+										id="c_content" name="c_content" class="chk" title="내용을 입력하세요."
+										placeholder="내용을 입력해주세요"></textarea></td>
+							</tr>
+							<tr>
+								<td><label for="writer">작성자</label><input type="text"
+									id="writer" name="w_id" placeholder="ID가져올 예정"
+									value="${loginMember.id}" /></td>
+							<tr>
+							
+													<tr>
+							<td><label for="writer"></label><input type="hidden"
+								id="grade" name="g_check" placeholder="회원등급 가져올예정" value="${loginMember.grade}"/></td>
+						<tr>
+							
+							
+							<tr>
+								<td><label for="writer"></label><input type="text"
+									id="snum" name="snum" value='${storeInfo.snum}'
+									placeholder="사업자번호 가져올예정" /></td>
+							<tr>
+
+								<td>
+									<button type="submit" class="write_btn">작성하기</button>
+								</td>
+							</tr>
+
+							<tr>
+
+
+								<td>
+									<button id='layerboxc'>취소</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</form>
+
+			</article>
+		</div>
+
+		<!--Popup End -->								
 </body>
 </html>
