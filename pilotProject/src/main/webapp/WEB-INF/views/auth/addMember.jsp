@@ -437,7 +437,6 @@ function submitCheck() {
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="userExtraAddr"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="userSecondAddr">
 				<h5>결제 카드 등록</h5>
-				
 				<label for="cardCom"><b>카드회사</b></label>
 				<select id="cardCom" name="cardCom">
 					<option value="" selected>-카드사를 선택해 주세요-</option>

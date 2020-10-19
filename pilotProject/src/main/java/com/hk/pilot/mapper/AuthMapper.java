@@ -12,13 +12,13 @@ import com.hk.pilot.dto.UserInfo;
 
 public interface AuthMapper {
 
-	public int addPersonalPay(PersonalPay personalPay);
+	public int addPersonalPay(UserInfo userInfo);
 		
 	public Members checkId(@Param("id") String id);
 	
 	public Members checkEmail(String email);
 	
-	public int addMembers(Members members);
+	public int addMembers(UserInfo userInfo);
 	
 	public int addManager(ManagerInfo managerInfo);
 	

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.hk.pilot.mapper.AuthMapper">
 
-<insert id="addPersonalPay" parameterType="com.hk.pilot.dto.PersonalPay">
+<insert id="addPersonalPay" parameterType="com.hk.pilot.dto.UserInfo">
 	INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC) 
 	VALUES (#{id}, #{cardCom}, #{cardNum}, #{cardExp}, #{cardCvc})
 </insert>
@@ -19,7 +19,7 @@
 	select * from members where email=#{email}
 </select>
 
-<insert id="addMembers" parameterType="com.hk.pilot.dto.Members">
+<insert id="addMembers" parameterType="com.hk.pilot.dto.UserInfo">
 	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, CARDCHECK, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
 	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{cardCheck}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
 </insert>

@@ -18,8 +18,23 @@ public class AuthService {
 	@Autowired
 	AuthMapper authMapper;
 	
-	public int addPersonalPay(PersonalPay personalPay) {
-		return authMapper.addPersonalPay(personalPay);
+	public int addMembers(UserInfo userInfo) {
+		if(userInfo.getCardCom() == null) {	
+			int ret1 = authMapper.addMembers(userInfo);	
+			int ret2 = authMapper.addPersonalPay(userInfo);
+			if(ret1 ==1 && ret2 ==1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} else {
+			int ret3 = authMapper.addMembers(userInfo);//if문 조건절 일때 {}타고 그리고 내려와서 이것도 타 그래서 Members랑 PersonalPay 테이블에 데이터 다 들어가
+			if(ret3 == 1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 	}
 
 	public String checkId(String id) {
@@ -44,9 +59,6 @@ public class AuthService {
 		}
 	}
 	
-	public int addMembers(Members members) {
-		return authMapper.addMembers(members);
-	}
 	
 	public int addManager(ManagerInfo managerInfo) {
 		return authMapper.addManager(managerInfo);

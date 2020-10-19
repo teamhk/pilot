@@ -45,10 +45,9 @@ public class AuthController {
 	} 
 	
 	@PostMapping("/addCustomer")
-	public String addCustomerPost(Model model, Members members, PersonalPay personalPay) {
-		System.out.println("userInfo는"+members+personalPay);
-		authService.addMembers(members);
-		authService.addPersonalPay(personalPay);
+	public String addCustomerPost(Model model, UserInfo userInfo) {
+		System.out.println("userInfo는"+userInfo);
+		authService.addMembers(userInfo);
 		return "redirect:/";
 	}
 	

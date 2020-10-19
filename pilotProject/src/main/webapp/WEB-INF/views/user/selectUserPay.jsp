@@ -65,17 +65,16 @@ function checkMM(){
 	<label><b>아이디</b></label>
 		<input type="text" name="id" value="${loginMember.id }" readOnly><br>
 	<label><b>카드회사</b></label>
-	<select id="cardCom" name="cardCom">
-					<option value="" selected>${pay.cardCom }</option>
-					<option value="KB카드">KB국민카드</option>
-					<option value="신한카드">신한카드</option>
-					<option value="하나카드">하나카드</option>
-					<option value="롯데카드">롯데카드</option>
-					<option value="BC카드">BC카드</option>
-					<option value="농협카드">NH농협카드</option>
-					<option value="삼성카드">삼성카드</option>
-					<option value="현대카드">현대카드</option>
-				</select><br>
+	<select id="cardCom" name="cardCom" form="selectUserPay">
+		<option value="KB카드">KB국민카드</option>
+		<option value="신한카드">신한카드</option>
+		<option value="하나카드">하나카드</option>
+		<option value="롯데카드">롯데카드</option>
+		<option value="BC카드">BC카드</option>
+		<option value="농협카드">NH농협카드</option>
+		<option value="삼성카드">삼성카드</option>
+		<option value="현대카드">현대카드</option>
+	</select><br>
 <%-- 		<input type='text' name='cardCom' value="${pay.cardCom }" readOnly><br> --%>
 	<label><b>카드번호</b></label>
 		<input type='text' id="cardNum" name='cardNum' maxlength="12" value="${pay.cardNum }" oninput="checkCardNum()">
@@ -93,7 +92,10 @@ function checkMM(){
 	<input type="button" onclick="location.href='/'" value="메인페이지">
 	</form>
 <script>
-
+//--------셀렉트값을 디비에서 가져와서 표현
+var str1 = "${pay.cardCom}";
+console.log(str1);
+$("#cardCom").val(str1);
 
 	var str = $("#cardExp").val();
 	console.log("str", str);
@@ -110,8 +112,6 @@ function checkMM(){
 		if(expR.test($("#expMM").val()) != true){
 			document.getElementById('expMM').focus();
 			//$("#btn").prop('disabled', false);
-		} else if ($("#cardCom").val() == ''){
-			document.getElementById('cardCom').focus();
 		} else {
 			//$("#btn").prop('disabled', true);
 			document.selectUserPay.submit();
