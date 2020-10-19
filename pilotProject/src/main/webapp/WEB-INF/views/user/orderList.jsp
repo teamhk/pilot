@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ page import="com.hk.pilot.dto.OrderList"%>
+<%@ page import="java.util.List"%>
+<%
+List<OrderList> user = (List<OrderList>) request.getAttribute("order");
+%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +14,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
+<c:choose>
+<c:when test = "${user.orderNum ==null}">주문내역이 없습니다.</c:when>
+<c:otherwise>
 <c:forEach var="order" items="${order}">
 	<c:out value="${order.snum }"/>
    <a href='processOne?orderNum=<c:out value="${order.orderNum }"/>'>${order. orderNum}</a>
 		<br>
 	</c:forEach>
+	</c:otherwise>
+	</c:choose>
 <script>
 
 window.onload = function(){	

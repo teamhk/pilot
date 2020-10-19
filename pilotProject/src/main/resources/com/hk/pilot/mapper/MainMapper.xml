@@ -34,15 +34,19 @@ select userFirstAddr  from members where id=#{id}
 
 </select>
 
-<insert id="insert" > 
- INSERT INTO STUDY.CART (id,snum,sname,ITEMS,PAY_CART,cart_seq,choice,c_check) 
-  VALUES(#{id},#{snum},#{sname},#{items},#{pay_cart},CARTNUM_SEQ.nextval,#{choice},#{c_check})
+<insert id="insert"  parameterType="com.hk.pilot.dto.Cart"  > 
+<selectKey resultType="int" keyProperty="cart_seq" order="BEFORE">
+select NVL(MAX(cart_seq) + 1, 1) from CART 
+</selectKey>
+ INSERT INTO CART (id,snum,sname,ITEMS,PAY_CART,cart_seq,choice,c_check) 
+  VALUES(#{id},#{snum},#{sname},#{items},#{pay_cart},#{cart_seq},#{choice},#{c_check})
  </insert>
-
-<!-- <select id="countCart" resultType="int"> -->
-<!-- 		SELECT COUNT(*) FROM cart  -->
-<!-- 		WHERE id= #{Id} AND cart_seq = #{cart_seq} -->
-<!-- </select> -->
+ 
+ 
+<select id="countCart" resultType="int"> 
+		SELECT COUNT(*) FROM cart  
+		WHERE  cart_seq = #{cart_seq}
+ </select> 
 
 <select id="userCart" resultType="com.hk.pilot.dto.Cart">
 
@@ -55,6 +59,12 @@ select m.id,ITEMS, SNUM, SNAME, C_CHECK, CART_SEQ, CHOICE,pay_cart from Members 
  choice='Y' where 
  cart_seq=#{cart_seq}
  </update> 
+ 
+<delete id="deleteCart">
+
+delete from cart where cart_seq=#{cart_seq}
+
+</delete>
  
 
 <select id="userPay" resultType="com.hk.pilot.dto.FinalPay">
@@ -82,6 +92,13 @@ SELECT bubble FROM (
 <insert id="bubblePay" >
 
 INSERT INTO STUDY.BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble) VALUES(#{id},#{b_price}, sysdate,#{b_bubble},BUBBLE_SEQ.NEXTVAL,#{bubble}) 
+
+
+</insert>
+
+<insert id="finalPay">
+
+INSERT INTO STUDY.ORDERLIST (id, ITEMS, PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{id}, #{items}, sysdate, #{pay_price}, '', 0, 'N', 0, 'N');
 
 
 </insert>

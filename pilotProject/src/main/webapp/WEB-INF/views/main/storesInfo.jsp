@@ -5,8 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="com.hk.pilot.dto.StoreInfo"%>
 <%@ page import="com.hk.pilot.dto.Product"%>
+
 <%@ page import="java.util.List"%>
 <% List<Product> pro=(List<Product>) request.getAttribute("product"); %>
+
 <!DOCTYPE html>
 <html>
 <head>

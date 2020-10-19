@@ -39,19 +39,24 @@
            
         }
 
-       
+        $(function(){
         $("#order").click(function () {               
             if (confirm("결제 하시겠습니까?")== true) {
                 $("#cartform").submit();
             }
         });
-    
-</script>
+        });
 
+       
+</script>
+<h3>장바구니</h3>
+<%-- <c:choose> --%>
+<%-- <c:when test ="${user.items eq null}">장바구니가 비어있습니다.</c:when> --%>
+<%-- <c:otherwise> --%>
+ 
 	<form id="cartform" method="post">
 		<div class="container">
-			<h3>장바구니</h3>
-
+			
 			<table class="table table-bordered" id="tbl-product">
 				<colgroup>
 					<col style="width: 20%;" />
@@ -83,7 +88,7 @@
 							value="${fn:substring(itemStr, 0, fn:length(itemStr)-1)}" />
 						<td class='item'>${itemStr}</td>
 						<td>${cart.pay_cart}</td>
-						<td><input type="button" class="delete" value="삭제">
+						<td><input type="button" value="삭제" onclick="location.href='delete?cart_seq=${cart.cart_seq}'">
 					</tr>
 					<input type="hidden" name="cart_seq" value="${cart.cart_seq}" />
 				</c:forEach>
@@ -98,6 +103,7 @@
 			<input type='submit' id='order' value='구매하기' onclick='location.href="pay"' />
 		</div>
 	</form>
+
 	<script>
         //들오오자마자 체크박스에 체크해주기
         var ck = "${cart}";

@@ -11,6 +11,7 @@ import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
+import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StoreInfo;
@@ -54,7 +55,10 @@ public class MainService {
 		return mainMapper.insert(cart);
 		
 	}
-	
+	//장바구니 상품확인 
+	public int countCart(int cart_seq) {
+		return mainMapper.countCart(cart_seq);
+	}
 	
 	public List<Cart> userCart(String id) { //카트
 		return mainMapper.userCart(id);
@@ -67,6 +71,11 @@ public class MainService {
 //		 System.out.println("ret"+i+"="+ret);
 		}
 		return 1;
+	}
+	//장바구니 삭제
+	public void deleteCart(int cart_seq) {
+		 mainMapper.deleteCart(cart_seq);
+		
 	}
 	
 	public FinalPay userPay(String id) {
@@ -89,6 +98,12 @@ public class MainService {
 	public int bubbleplus(Bubble bubble) {
 		
 		return mainMapper.bubbleplus(bubble);
+	}
+	
+	//최종결제
+	public int finalPay(OrderList orderList,List<String> payData) {
+		
+		return mainMapper.finalPay(orderList,payData);
 	}
 	
 }

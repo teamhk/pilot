@@ -106,7 +106,7 @@
 													<a href="/user/update">회원정보 수정</a>
 													<a href="/user/creditCard">등록된 카드 관리</a>
 													<a href="/user/bubbleList">버블 관리</a>
-													<a href="/user/cart">장바구니</a>
+													<a href="/stores/cart">장바구니</a>
 													<a href="/user/process">세탁 진행 상황</a>
 													<a href="/user/review">리뷰 관리</a>
 													<a href="/user/cChat">문의글 관리</a>

@@ -1,5 +1,12 @@
 package com.hk.pilot;
 
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Members;
+import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.service.MainService;
 
@@ -28,10 +36,7 @@ public class PayRestController {
 	  public int bubblePay(int b_price,HttpSession session,Bubble bubble) {
 		  System.out.println(b_price);
 		  Members loginMember = (Members) session.getAttribute("loginMember");
-		  
-		  
-		  
-		  		  
+	 		  
 		  bubble.setId(loginMember.getId());
 		  int bu=mainService.bubbleplus(bubble);
 		  System.out.println(bu);
@@ -41,7 +46,18 @@ public class PayRestController {
 		  
 		  return mainService.bubblePay(bubble);
 		}
-	  
-	  
-		 
+	 
+	  @RequestMapping(path = "/finalPay", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE )
+	  public int finalPay(int pay_price,HttpSession session,OrderList orderList, @RequestParam("payData") List<String> payData) throws UnsupportedEncodingException  {
+//		  @RequestParam("payData") List<String> payData
+		  URLDecoder.decode("payData", "UTF-8");
+		  Members loginMember = (Members) session.getAttribute("loginMember");
+		  orderList.setId(loginMember.getId());
+		  orderList.setPay_price(pay_price);
+		  System.out.println(payData);
+		
+		  System.out.println(loginMember.getId());
+		  
+		  return mainService.finalPay(orderList,payData);
+	  }
 }

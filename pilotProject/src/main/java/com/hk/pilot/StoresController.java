@@ -74,8 +74,15 @@ public class StoresController {
         }
         cart.setId(loginMember.getId());
     
-        int ret=mainService.insert(cart); //장바구니 테이블에 저장됨
-        System.out.println(ret);
+        int count =mainService.countCart(cart.getCart_seq());
+        
+        if(count ==0) {
+        	mainService.insert(cart);
+        }
+        
+        
+//        int ret=mainService.insert(cart); //장바구니 테이블에 저장됨
+//        System.out.println(ret);
         return "main/cart"; //장바구니 목록으로 이동
     }
 	
@@ -83,9 +90,21 @@ public class StoresController {
 	public String addCart(Cart cart, HttpSession session,Model model,Members members) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		List<Cart> cartList=mainService.userCart(loginMember.getId());
+//		 int count =mainService.countCart(cart.getCart_seq());
+//		 model.addAttribute("count",count);
 		model.addAttribute("cartList",cartList);
 		return "main/cartList";
 	}
+	
+	//장바구니삭제
+	@RequestMapping("/delete")
+		public String deleteCart(@RequestParam("cart_seq") int cart_seq ,Model model) {
+		mainService.deleteCart(cart_seq);
+			
+			return "redirect:/stores/cart";
+		}
+		
+		
 	
 	@PostMapping("/cart")
 	public String UpdateCart(@RequestParam("cart_seq") List<Integer> cart_seq ,Model model) {
@@ -96,6 +115,7 @@ public class StoresController {
 		
 		return "redirect:/stores/pay";
 	}
+	
 	
 	@GetMapping("/pay")
 	public String cartPay(FinalPay finalpay,HttpSession session,Model model) {
