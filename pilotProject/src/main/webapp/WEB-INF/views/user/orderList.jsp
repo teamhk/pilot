@@ -15,7 +15,7 @@ List<OrderList> user = (List<OrderList>) request.getAttribute("order");
 </head>
 <body>
 <c:choose>
-<c:when test = "${user.orderNum ==null}">주문내역이 없습니다.</c:when>
+<c:when test = "${user.orderNum ==0}">주문내역이 없습니다.</c:when>
 <c:otherwise>
 <c:forEach var="order" items="${order}">
 	<c:out value="${order.snum }"/>
