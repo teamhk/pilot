@@ -52,7 +52,8 @@ public class AuthController {
 	}
 	
 	@GetMapping("/addOwner")
-	public String addOwnerGet(Members member) {
+	public String addOwnerGet(Model model, Members member) {
+		model.addAttribute("product", authService.selectPname());
 		return "/auth/addOwner";
 	}
 	
@@ -93,8 +94,6 @@ public class AuthController {
 			}
 		System.out.println("managerInfo는"+managerInfo);
 		authService.addManager(managerInfo);
-		authService.addStores(managerInfo);
-		authService.addItemList(managerInfo);
 		authService.addMapData(managerInfo);
 		return "redirect:/";
 	}

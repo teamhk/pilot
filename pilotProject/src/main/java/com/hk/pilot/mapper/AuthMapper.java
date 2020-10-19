@@ -1,5 +1,7 @@
 package com.hk.pilot.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.hk.pilot.dto.EmailCheck;
@@ -7,6 +9,7 @@ import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PersonalPay;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
 
@@ -21,6 +24,8 @@ public interface AuthMapper {
 	public int addMembers(UserInfo userInfo);
 	
 	public int addManager(ManagerInfo managerInfo);
+	
+	public List<Product> selectPname();
 	
 	public int addStores(ManagerInfo managerInfo);
 	

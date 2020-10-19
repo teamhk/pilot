@@ -32,11 +32,13 @@ public class ManagerInfo {
 	String storeFirstAddr;
 	String storeSecondAddr;
 	String storeExtraAddr;
+	String saddress;
 	String sp1;
 	String sp2;
 	String sp3;
 	String sp4;
 	String items;
+	int mno;
 	public String getId() {
 		return id;
 	}
@@ -211,6 +213,12 @@ public class ManagerInfo {
 	public void setStoreExtraAddr(String storeExtraAddr) {
 		this.storeExtraAddr = storeExtraAddr;
 	}
+	public String getSaddress() {
+		return saddress;
+	}
+	public void setSaddress(String saddress) {
+		this.saddress = saddress;
+	}
 	public String getSp1() {
 		return sp1;
 	}
@@ -241,6 +249,12 @@ public class ManagerInfo {
 	public void setItems(String items) {
 		this.items = items;
 	}
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	@Override
 	public String toString() {
 		return "ManagerInfo [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", pnum=" + pnum
@@ -251,8 +265,9 @@ public class ManagerInfo {
 				+ scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date=" + s_date
 				+ ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode
 				+ ", storeFirstAddr=" + storeFirstAddr + ", storeSecondAddr=" + storeSecondAddr + ", storeExtraAddr="
-				+ storeExtraAddr + ", sp1=" + sp1 + ", sp2=" + sp2 + ", sp3=" + sp3 + ", sp4=" + sp4 + ", items="
-				+ items + "]";
+				+ storeExtraAddr + ", saddress=" + saddress + ", sp1=" + sp1 + ", sp2=" + sp2 + ", sp3=" + sp3
+				+ ", sp4=" + sp4 + ", items=" + items + ", mno=" + mno + "]";
 	}
-		
+	
+	
 }

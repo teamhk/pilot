@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -377,18 +379,18 @@ function checkScontact(){
 //파일 업로드 갯수제한 스크립트 추가
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //--------품목이 체크되면 Value값을 1로 변경해주는 함수
-$(document).ready(function(){
-	$("input[type='checkbox']").click(function() {
-		console.log(typeof ($('#list')));
-		console.log($("input[type='checkbox']:checked").length);
-		if ($(this).is(':checked')) {
-			$(this).val('Y');       //체크된 체크박스는 value값을 1로 바꿈
+// $(document).ready(function(){
+// 	$("input[type='checkbox']").click(function() {
+// 		console.log(typeof ($('#list')));
+// 		console.log($("input[type='checkbox']:checked").length);
+// 		if ($(this).is(':checked')) {
+// 			$(this).val('Y');       //체크된 체크박스는 value값을 1로 바꿈
 			
-		} else {
-			$(this).val('N');			//체크되지 않은 체크박스는 value값을 0으로 바꿈
-		}
-	});
-});
+// 		} else {
+// 			$(this).val('N');			//체크되지 않은 체크박스는 value값을 0으로 바꿈
+// 		}
+// 	});
+// });
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //submit not null chekc
@@ -439,14 +441,22 @@ function submitCheck() {
 		document.getElementById('bnum').focus();
 		return false;
 	}else {
-		console.log($(this).attr('name'));
-		var box= $("input[type='checkbox']:checked");
-		var items = "";
-		for(i=0;i<box.length;i++){
-			items += box.eq(i).attr('id')+"!@#";
-		}
+		var items="";
+		$("input[type='checkbox']").each(function(){
+			if($(this).is(":checked")==true){
+				items += $(this).attr('id')+"!@#";
+				$(this).val('Y');
+			} 
+		});
 		$("#items").val(items);
 
+		var saddress = ($("#sample6_address1").val()+$("#sample6_extraAddress1").val());
+		console.log($("#sample6_address1").val());
+		console.log($("#sample6_extraAddress1").val());
+		$("#saddress").val(saddress);
+		console.log($("#saddress").val());
+
+		
 		var a = document.getElementsByName("storeFirstAddr")[0];
 		aval = a.value;
 		if(aval.indexOf("강남구")!=-1){
@@ -542,10 +552,11 @@ function submitCheck() {
 				<label><b>상호 주소</b></label>
 				<input type="text" id="sample6_postcode1" placeholder="우편번호" name="storeZipCode">
 				<input type="button" onclick="sample6_execDaumPostcode1()" value="우편번호 찾기"><br>
-				<input type="text" id="sample6_address1" placeholder="주소" name="storeFirstAddr"><br>
+				<input type="text" id="sample6_address1" placeholder="주소"  name="storeFirstAddr"><br>
 				<input type="text" id="sample6_extraAddress1" placeholder="참고항목" name="storeExtraAddr"><br>
 				<input type="text" id="sample6_detailAddress1" placeholder="상세주소" name="storeSecondAddr">				
 				<input type='hidden' name='area_num' value='0'>
+				<input type="hidden" id="saddress" name="saddress" value="">
 				<label><b>상호 연락처</b></label>
 				<input type="text" id="scontact" placeholder="Store Contact Number" name="scontact" oninput="checkScontact()">
 				<div class="validation" id="scontact_check"></div>
@@ -576,22 +587,25 @@ function submitCheck() {
 				<input type='button' id='btn' value='펼치기'><br>
 				<fieldset>
 					<legend>취급 품목 리스트</legend>
-						<input type='checkbox' id='와이셔츠' name='Y1' value='N'>와이셔츠&nbsp;&nbsp;&nbsp;
-<!-- 					<input type='hidden' name='Blouse' value='0'> -->
-						<input type='checkbox' id='블라우스' name='B1' value='N'>블라우스&nbsp;&nbsp;&nbsp;
-<!-- 					<input type='hidden' name='Shirt' value='0'> -->
-						<input type='checkbox' id='티셔츠' name='T1' value='N'>티셔츠&nbsp;&nbsp;&nbsp;
-<!-- 					<input type='hidden' name='T_shirt' value='0'> -->
-						<input type='checkbox' id='맨투맨/후드' name='M1' value='N'>맨투맨/후드&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='바지' name='P1' value='N'>바지&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='니트류' name='K1' value='N'>니트류&nbsp;&nbsp;&nbsp;<br>
-						<input type='checkbox' id='자켓' name='J1' value='N'>자켓&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='코트' name='C1' value='N'>코트&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='패딩' name='P2' value='N'>패딩&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='이불' name='D1' value='N'>이불&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='신발' name='S1' value='N'>신발&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='커튼' name='C2' value='N'>커튼&nbsp;&nbsp;&nbsp;
-						<input type='checkbox' id='가방' name='B2' value='N'>가방&nbsp;&nbsp;&nbsp;			
+						<c:forEach var="product" items="${product}" varStatus="status">
+							<input type='checkbox' id='${product.pname }' name='items' value='${product.pname}'>${product.pname}&nbsp;&nbsp;&nbsp;
+							<c:if test="${status.count%5==0}"><br></c:if>
+						</c:forEach>
+<!-- 						<input type='checkbox' id='와이셔츠' name='Y1' value='N'>와이셔츠&nbsp;&nbsp;&nbsp; -->
+<!-- <!-- 					<input type='hidden' name='Blouse' value='0'> -->
+<!-- 						<input type='checkbox' id='블라우스' name='B1' valu
+<!-- 						<input type='checkbox' id='티셔츠' name='T1' value='N'>티셔츠&nbsp;&nbsp;&nbsp; -->
+<!-- <!-- 					<input type='hidden' name='T_shirt' value='0'> --> 
+<!-- 						<input type='checkbox' id='맨투맨/후드' name='M1' value='N'>맨투맨/후드&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='바지' name='P1' value='N'>바지&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='니트류' name='K1' value='N'>니트류&nbsp;&nbsp;&nbsp;<br> -->
+<!-- 						<input type='checkbox' id='자켓' name='J1' value='N'>자켓&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='코트' name='C1' value='N'>코트&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='패딩' name='P2' value='N'>패딩&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='이불' name='D1' value='N'>이불&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='신발' name='S1' value='N'>신발&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='커튼' name='C2' value='N'>커튼&nbsp;&nbsp;&nbsp; -->
+<!-- 						<input type='checkbox' id='가방' name='B2' value='N'>가방&nbsp;&nbsp;&nbsp;			 -->
 				</fieldset>
 				<input type="hidden" id ="items" name="items" value="">
 				<input type="file" id="file" value="파일 선택" multiple="multiple" name="uploadFile" maxlength="4"/><br>

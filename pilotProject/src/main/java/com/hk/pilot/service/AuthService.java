@@ -1,5 +1,7 @@
 package com.hk.pilot.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PersonalPay;
+import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.mapper.AuthMapper;
@@ -61,17 +64,20 @@ public class AuthService {
 	
 	
 	public int addManager(ManagerInfo managerInfo) {
-		return authMapper.addManager(managerInfo);
+		int ret1 = authMapper.addManager(managerInfo);
+		int ret2 = authMapper.addStores(managerInfo);
+		int ret3 = authMapper.addItemList(managerInfo);
+		if(ret1==1 && ret2==1 && ret3==1) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 	
-	public int addStores(ManagerInfo managerInfo) {
-		return authMapper.addStores(managerInfo);
+	public List<Product> selectPname() {
+		return authMapper.selectPname();
 	}
 	
-	public int addItemList(ManagerInfo managerInfo) {
-		return authMapper.addItemList(managerInfo);
-	}
-
 	public int addMapData(ManagerInfo managerInfo) {
 		return authMapper.addMapData(managerInfo);
 	}
