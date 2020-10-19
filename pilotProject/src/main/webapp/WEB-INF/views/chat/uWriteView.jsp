@@ -16,6 +16,7 @@
 			if (fn_valiChk()) {
 				return false;
 			}
+			alert("글 작성이 완료되었습니다.")
 			formObj.attr("action", "/user/cChatW");
 			formObj.attr("method", "post");
 			formObj.submit();

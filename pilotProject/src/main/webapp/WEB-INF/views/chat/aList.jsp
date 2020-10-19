@@ -8,7 +8,7 @@
 <!--  1009 session id, grade 수정 js -->
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>문의게시판</title>
+<title>1:1 문의게시판(관리자에게)</title>
 
 <style type="text/css">
 li {
@@ -34,7 +34,7 @@ li {
 <body>
 	<div id="root">
 		<header>
-			<h1>1:1 문의게시판</h1>
+			<h1>1:1 문의게시판(관리자에게)</h1>
 		</header>
 
 		<hr />
