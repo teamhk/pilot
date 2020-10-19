@@ -43,15 +43,19 @@ public class UserService {
 	// user 개인정보 수정
 	public int userUpdate(UserInfo userInfo) {
 		int ret1 = userMapper.userUpdate(userInfo); 
-		int ret2 = userMapper.payUpdate(userInfo);
-		System.out.println("ret1="+ret1+", ret2="+ret2);
-		if(ret1==1 && ret2==1) {
+		//int ret2 = userMapper.payUpdate(userInfo);
+		System.out.println("ret1="+ret1);
+		if(ret1==1 ) {
 			return 1;
 		} else {
 			return 0; 
 		} 
 	}
 	
+	//user 카드정보 업데이트
+	public int payUpdate(PersonalPay personalPay) {
+		return userMapper.payUpdate(personalPay);
+	}
 
 	
 	//user 탈퇴

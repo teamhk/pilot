@@ -70,40 +70,6 @@ function sample6_execDaumPostcode() {
 </head>
 <body>
 <h1>회원 정보 수정</h1>
-<%-- 	<form action='update' name='storeform' method='post' id='storeform'> --%>
-<%-- 		ID :<input type='text' name='id' value="${loginMember.id }" readonly><br>  <!--${loginMember.name }--> --%>
-<!-- 		비밀번호 확인 : <input id='pwdcheck' type='password' name= "" value="">&nbsp;&nbsp;<span id="result1"></span><br> -->
-<!-- 		새 비밀번호 : <input id='newPwd' type='password' value=""><br> -->
-<!-- 		새 비밀번호 확인 : <input type='password' id='pwd' name="" value="">&nbsp;&nbsp;<span id="result2"></span><br> -->
-<%-- 		이름 :<input type='text' name='name' value="${user.name}"><br>  --%>
-<%-- 		이메일 :<input type='text' name='email' value="${user.email}"><br> --%>
-<%--         주소 :<input type='text' name='address' value="${user.userSecondAddr}"><br>  --%>
-<%-- 		연락처:<input type='number' name='pnum' value="${user.pnum}"><br> --%>
-<%--         비밀 번호 찾기 질문 : <input type='text' name='pwQuestion' value="${user.pwQuestion}"><br> --%>
-<%--         비밀 번호 찾기 정답 : <input type='text' name='pwAnswer' value="${user.pwAnswer}"><br> --%>
-<%-- 		카드회사:<input type='text' name='cardCom' value="${user.cardCom }"><br>  --%>
-<%-- 		카드번호:<input type='text' name='cardNum' value="${user.cardNum }"><br> --%>
-<!-- 		<label for="banks">카드등록:</label> -->
-<!-- 		<select id="banks" name="bank" form="storeform"> -->
-<!--   			<option value="" selected>-은행을 선택해 주세요-</option> -->
-<!--   			<option value="국민">국민</option> -->
-<!--   			<option value="기업">기업</option> -->
-<!--   			<option value="농협">농협</option> -->
-<!--   			<option value="신한">신한</option> -->
-<!--   			<option value="우체국">우체국</option> -->
-<!--   			<option value="스탠다드차타드">스탠다드차타드</option> -->
-<!--   			<option value="하나">하나</option> -->
-<!--   			<option value="우리">우리</option> -->
-<!--   			<option value="산업">산업</option> -->
-<!--   			<option value="수협">수협</option> -->
-<!--   			<option value="새마을금고">새마을금고</option> -->
-<!--   			<option value="신용협동조합">신용협동조합</option> -->
-<!--   			<option value="저축은행">저축은행</option> -->
-<!--   			<option value="케이뱅크">케이뱅크</option> -->
-<!--   			<option value="카카오뱅크">카카오뱅크</option> -->
-<!--   		</select> -->
-<!-- 		카드번호:<input type='number' name='cardNum'><br> -->
-<%-- 	</form> --%>
 	<div class="col-sm-6 col-md-offset-3">
 			<form action='update' name='storeform' method='post' id='storeform'>
 				<input type="hidden" name="grade" value="1">

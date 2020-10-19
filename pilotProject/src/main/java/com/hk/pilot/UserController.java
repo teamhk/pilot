@@ -43,12 +43,9 @@ public class UserController {
 	//회원정보수정
 	@GetMapping("/update")
 	public String selectUserOne(Model model,HttpSession session,UserInfo uerInfo) {
-		
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		Members user = userService.selectUserOne(loginMember.getId());
-		PersonalPay pay = userService.selectUserPay(loginMember.getId());
 		model.addAttribute("user",user);
-		model.addAttribute("pay",pay);
 		return "user/selectUserOne";
 	}
 	
@@ -56,6 +53,23 @@ public class UserController {
 	public String userUpdate(Model model,UserInfo userInfo) {
 		int ret = userService.userUpdate(userInfo);
 		return "user/userUpdate";
+	}
+	
+	@GetMapping("/creditCard")
+	public String selectUserPay(Model model, HttpSession session, PersonalPay personalPay) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		PersonalPay pay = userService.selectUserPay(loginMember.getId());
+		model.addAttribute("pay",pay);
+		return "/user/selectUserPay";
+	}
+	
+	@PostMapping("/payUpdate")
+	public String payUpdate(Model model, HttpSession session, PersonalPay personalPay) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		PersonalPay pay = userService.selectUserPay(loginMember.getId());
+		model.addAttribute("pay",pay);
+		userService.payUpdate(personalPay);
+		return "redirect:/user/creditCard";
 	}
 	
 	//user 탈퇴

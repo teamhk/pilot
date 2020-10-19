@@ -18,13 +18,14 @@ public interface UserMapper {
 	
 	public Members selectUserOne(String id);//user호출
 	
-	public PersonalPay selectUserPay(String id) ;
+	public PersonalPay selectUserPay(String id); //카드정보 가져오기
 	
 	public int userUpdate(UserInfo userInfo);//회원의 개인정보 수정
 	
-	public int payUpdate(UserInfo uerInfo);//회원의 카드정보수정
+	public int payUpdate(PersonalPay personalPay);//회원의 카드정보수정
 	
 	public Members deleteUserOne(String id);//user탈퇴
+	
 	public int userDeleterPost(Members members);//
 	
 	public List<Bubble> bubbleList(String id);//버블내역

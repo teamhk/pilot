@@ -27,6 +27,9 @@ var phoneR=/^01([0|1|?)?([0-9]{8,9})$/;
 //카드 번호 정규식 
 var cardNumR = /([0-9]{12})/;
 // 이메일 인증 확인값
+
+//카드 유효기간 무조건 2자리 넣게 하는 정규식
+var expR = /[0-9]{2}/;
 var isComfirm = false
 
 
@@ -319,11 +322,14 @@ $(document).ready(function(){
 	$('#cardNum').focus(function(){
 		checkCardNum();
 	});
+	$("#expMM").focus(function(){
+		checkMM();
+	});
 });
 function checkCardNum(){
 	if($('#cardNum').val() == ''){
 		$('#cardNum_check').text('카드번호를 입력해주세요');
-		$('#cardNum_check').css('color', 'black');
+		$('#cardNum_check').css('color', 'red');
 	} else if(cardNumR.test($('#cardNum').val()) != true) {
 		$('#cardNum_check').text('숫자만 입력해주세요(공백 사용 불가)');
 		$('#cardNum_check').css('color', 'red');
@@ -339,7 +345,18 @@ function cardExp(){
 	$("#cardExp").val(cardExp);
 }
 
-
+function checkMM(){
+	if($("#expMM").val() == ''){
+		$('#cardExp_check').text('유효기간 월 을 입력해주세요');
+		$('#cardExp_check').css('color', 'red');
+	} else if (expR.test($("#expMM").val()) != true) {
+		$('#cardExp_check').text('MM형식에 맞게 입력 해주세요(ex.3월->03)');
+		$('#cardExp_check').css('color', 'red');
+	} else {
+		$('#cardExp_check').text('✔' );
+		$('#cardExp_check').css('color', 'black');
+	}
+}
 
 function submitCheck() {
 	if($('#id').val() == '') {
@@ -432,16 +449,17 @@ function submitCheck() {
 					<option value="농협카드">NH농협카드</option>
 					<option value="삼성카드">삼성카드</option>
 					<option value="현대카드">현대카드</option>
-				</select>
+				</select><br>
 				<label><b>카드번호</b></label>
 				<input type="text" size="20" id="cardNum" name="cardNum" maxlength="12" oninput="checkCardNum()">
 				<div class="validation" id="cardNum_check"></div>
 				<label><b>유효기간</b></label>
 				<label><b>월</b></label>
-				<input type="text" size="20" id="expMM" maxlength="4" >
+				<input type="text" size="20" id="expMM" maxlength="4" oninput="checkMM()">
 				<label><b>년</b></label>
 				<input type="text" size="20" id="expYY" maxlength="4">
 				<input type="hidden" id="cardExp" name="cardExp" value=""><br>
+				<div class="validation" id="cardExp_check"></div>
 				<label><b>CVC</b></label>
 				<input type="text" size="20" id="cardCvc" name="cardCvc"><br>
 				<input type="hidden" id="cardCheck" name="cardCheck" value="N" >

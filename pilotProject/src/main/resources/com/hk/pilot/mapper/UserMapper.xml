@@ -21,7 +21,7 @@
 		where id = #{id}
 </update>
 <update id="payUpdate" parameterType="com.hk.pilot.dto.UserInfo">
-	update personalpay set cardcom=#{cardCom} ,cardnum=#{cardNum},cardexp=#{cardExp},cardcvc=#{cardCvc} where id =#{id}
+	update personalpay set cardcom=#{cardCom} ,cardnum=#{cardNum}, cardexp=#{cardExp}, cardcvc=#{cardCvc} where id =#{id}
 
 </update>
 
