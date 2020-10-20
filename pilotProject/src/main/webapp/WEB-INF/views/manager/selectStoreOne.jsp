@@ -26,6 +26,7 @@
 				<input type="text" id="sample6_address" placeholder="주소" name="storeFirstAddr" value="${storeInfo.storeFirstAddr}"><br>
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="storeExtraAddr" value="${storeInfo.storeExtraAddr}"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="storeSecondAddr" value="${storeInfo.storeSecondAddr}">
+				<input type="hidden" id="saddress" name="saddress" value="">
 		전화번호:<input type='number' name='scontact' value="${storeInfo.scontact}"><br>
 		사업자 등록 번호:<input type='number' name='snum' value="${storeInfo.snum}" readonly><br>
 		<label for="banks">은행명:</label>
@@ -46,7 +47,7 @@
   			<option value="케이뱅크">케이뱅크</option>
   			<option value="카카오뱅크">카카오뱅크</option>
   		</select>
-		계좌번호:<input type='number' name='bnum' value=${storeInfo.bnum}><br>
+		계좌번호:<input type='number' name='bnum' value='${storeInfo.bnum}'><br>
 		취급 품목 : <input type='button' id='btn' value='펼치기'><br>
 		<fieldset>
 			<legend>취급 품목 리스트</legend>
@@ -185,6 +186,9 @@
 			items += str + "!@#";
 		});
 		$("input[name='items']").val(items);
+
+		var saddress = ($("#sample6_address1").val()+$("#sample6_extraAddress1").val());
+		$("#saddress").val(saddress);
 		document.storeform.submit();
 	}
 

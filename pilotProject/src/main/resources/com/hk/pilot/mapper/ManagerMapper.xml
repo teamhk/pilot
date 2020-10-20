@@ -31,7 +31,7 @@
 			SELECT MAX(mno)+1 FROM MAPDATA
 		</selectKey>
 			INSERT INTO MAPDATA (MNO, SNUM, SADDRESS) 
-			VALUES (#{mno}, #{snum}, #{storeFirstAddr}+#{STOREEXTRAADDR})
+			VALUES (#{mno}, #{snum}, #{saddress})
 	</insert>
 	
 	<insert id="mapDataUpdate" parameterType="com.hk.pilot.dto.StoreInfo">
