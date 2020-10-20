@@ -82,32 +82,52 @@ select items,SNUM, SNAME,CART_SEQ,pay_cart from members m,cart c where m.id=c.id
 <select id="bubbleplus"  resultType="int" parameterType="com.hk.pilot.dto.Bubble">
 
 SELECT bubble FROM (
-      SELECT bubble FROM BUBBLE 
+      SELECT bubble
+ FROM BUBBLE 
       WHERE id=#{id}
       ORDER BY ROWNUM DESC)
    WHERE ROWNUM = 1
 
 </select>
 
-<insert id="bubblePay" >
+<insert id="bubblePay" parameterType="com.hk.pilot.dto.Bubble" >
+<selectKey resultType="int" keyProperty="b_seq" order="BEFORE">
+select NVL(MAX(b_seq) + 1, 1) from Bubble 
 
-INSERT INTO STUDY.BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble,P_bubble) VALUES(#{id},#{b_price}, sysdate,#{b_bubble},BUBBLE_SEQ.NEXTVAL,#{bubble},0) 
-
+</selectKey>
+INSERT INTO BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble,P_bubble) VALUES(#{id},#{b_price}, sysdate,#{b_bubble},#{b_seq},#{bubble},0) 
 
 </insert>
 
 <insert id="finalPay" parameterType="map">
 
-INSERT INTO STUDY.ORDERLIST (ORDERNUM,ID, ITEMS, SNAME,SNUM,PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{orderNum},#{id},#{items},#{sname},#{snum}, sysdate, #{pay_price}, 'N', #{bubble}, 'N')
+INSERT ALL 
+INTO ORDERLIST (ORDERNUM,ID, ITEMS, SNAME,SNUM,PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{orderNum},#{id},#{items},#{sname},#{snum}, sysdate, #{pay_price}, 'N', #{bubble}, 'N')
 
+INTO PROCESS (ID, ORDERNUM, WAIT, OK, PICK, WASH, FINISH) VALUES(#{id}, #{orderNum}, sysdate, null, null,null, null)
 
+select * from DUAL
 </insert>
 
+<delete id="cartChk">
+
+delete from cart where CHOICE='Y' and id=#{id}
+
+</delete>
 
 <insert id="bubblefinal">
+<selectKey resultType="int" keyProperty="b_seq" order="BEFORE">
+select NVL(MAX(b_seq) + 1, 1) from Bubble 
 
-INSERT INTO STUDY.BUBBLE (id,b_price, B_DATE,b_seq,bubble,p_bubble,b_bubble) VALUES(#{id},0, sysdate,BUBBLE_SEQ.NEXTVAL,#{bubble},#{p_bubble},0)
+</selectKey>
+INSERT INTO BUBBLE (id,b_price, B_DATE,b_seq,bubble,p_bubble,b_bubble) VALUES(#{id},0, sysdate,#{b_seq},#{bubble},#{p_bubble},0)
 
 </insert>
+
+<select id="payCheck" resultType="com.hk.pilot.dto.OrderList">
+
+select * from members m,orderList o where m.id=o.id and o.id=#{id}
+
+</select>
 
 </mapper>

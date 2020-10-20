@@ -52,6 +52,10 @@ public interface MainMapper {
 	//public int finalPay(int pay_price,String items,String snum,String sname,int bubble);
 
 	public int finalPay(HashMap<String, Object> map);
-
+	
+	public int cartChk(String id);
+	
 	public int bubblefinal(Bubble bubble1);
+	
+	public List<OrderList> payCheck(String id);
 }

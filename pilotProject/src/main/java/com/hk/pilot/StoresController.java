@@ -127,14 +127,11 @@ public class StoresController {
 		return "main/cartPay";
 	}
 	
-//	@PostMapping("/bubble")
-//	public String bubblePay(HttpSession session,Model model,Members members) {
-//		Members loginMember = (Members) session.getAttribute("loginMember");
-//		UserInfo bubblePay=mainService.bubblePay(loginMember.getId());
-//		model.addAttribute("bubblePay",bubblePay);
-//		
-//		return "redirect:/stores/pay";
-//	}
-		
+	@GetMapping("/payCheck")
+	public String payCheck(HttpSession session,Model model) {
+	Members loginMember = (Members) session.getAttribute("loginMember");
+	model.addAttribute("payChk",mainService.payCheck(loginMember.getId()));	
+	return "main/paycheck";
+	}
 }
 
