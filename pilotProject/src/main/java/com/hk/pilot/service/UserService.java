@@ -20,6 +20,7 @@ import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.PersonalPay;
+import com.hk.pilot.dto.Review;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.mapper.AuthMapper;
@@ -176,6 +177,12 @@ public class UserService {
 
 		userMapper.schatWrite(chat);
 
+	}
+	
+	// review ----------------------------------------------------------------------------------------
+	
+	public List<Review> reviewListU(String logId){
+		return userMapper.reviewListU(logId);
 	}
 
 

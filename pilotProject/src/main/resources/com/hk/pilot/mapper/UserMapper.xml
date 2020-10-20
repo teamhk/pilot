@@ -2,58 +2,73 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.hk.pilot.mapper.UserMapper">
 
-<select id="selectUserOne" resultType="com.hk.pilot.dto.Members">
-<!-- 	SELECT m.id,pwd,name,cardcom FROM MEMBERS m,personalpay p WHERE m.ID=p.id AND m.id=#{id} -->
-	SELECT * from members where id=#{id} 
-</select>
+	<select id="selectUserOne" resultType="com.hk.pilot.dto.Members">
+		<!-- SELECT m.id,pwd,name,cardcom FROM MEMBERS m,personalpay p WHERE m.ID=p.id 
+			AND m.id=#{id} -->
+		SELECT * from members where id=#{id}
+	</select>
 
-<select id="selectUserPay" resultType="com.hk.pilot.dto.PersonalPay">
-<!-- 	SELECT m.id,pwd,name,cardcom FROM MEMBERS m,personalpay p WHERE m.ID=p.id AND m.id=#{id} -->
-	SELECT * from personalPay where id=#{id} 
-</select>
+	<select id="selectUserPay"
+		resultType="com.hk.pilot.dto.PersonalPay">
+		<!-- SELECT m.id,pwd,name,cardcom FROM MEMBERS m,personalpay p WHERE m.ID=p.id 
+			AND m.id=#{id} -->
+		SELECT * from personalPay where id=#{id}
+	</select>
 
-<update id="userUpdate" parameterType="com.hk.pilot.dto.UserInfo">
-		update members set pwd=#{pwd},name=#{name},email=#{email},pnum=#{pnum},userZipCode=#{userZipCode},
+	<update id="userUpdate"
+		parameterType="com.hk.pilot.dto.UserInfo">
+		update members set
+		pwd=#{pwd},name=#{name},email=#{email},pnum=#{pnum},userZipCode=#{userZipCode},
 		userFirstAddr=#{userFirstAddr},userSecondAddr=#{userSecondAddr},userExtraAddr=#{userExtraAddr}
 		where id = #{id}
-</update>
+	</update>
 
-<insert id="insertCard" parameterType="com.hk.pilot.dto.PersonalPay">
-	INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC)
-	VALUES (#{id}, #{cardCom}, #{cardNum}, #{cardExp}, #{cardCvc})
-</insert>
+	<insert id="insertCard"
+		parameterType="com.hk.pilot.dto.PersonalPay">
+		INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC)
+		VALUES (#{id}, #{cardCom}, #{cardNum}, #{cardExp}, #{cardCvc})
+	</insert>
 
-<update id="payUpdate" parameterType="com.hk.pilot.dto.PersonalPay">
-	update personalpay set cardcom=#{cardCom} ,cardnum=#{cardNum}, cardexp=#{cardExp}, cardcvc=#{cardCvc} where id =#{id}
+	<update id="payUpdate"
+		parameterType="com.hk.pilot.dto.PersonalPay">
+		update personalpay set cardcom=#{cardCom} ,cardnum=#{cardNum},
+		cardexp=#{cardExp}, cardcvc=#{cardCvc} where id =#{id}
 
-</update>
+	</update>
 
-<select id="deleteUserOne" resultType="com.hk.pilot.dto.Members" >
-SELECT * FROM MEMBERS WHERE ID=#{ID}
-</select>
+	<select id="deleteUserOne" resultType="com.hk.pilot.dto.Members">
+		SELECT * FROM MEMBERS WHERE ID=#{ID}
+	</select>
 
 
-<update id="userDeleterPost" parameterType="com.hk.pilot.dto.Members">
-	UPDATE MEMBERS SET UDCHECK='Y', REASON=#{reason} where ID=#{id}
-</update>
+	<update id="userDeleterPost"
+		parameterType="com.hk.pilot.dto.Members">
+		UPDATE MEMBERS SET UDCHECK='Y', REASON=#{reason} where ID=#{id}
+	</update>
 
-<select id="bubbleList" resultType="com.hk.pilot.dto.Bubble">
+	<select id="bubbleList" resultType="com.hk.pilot.dto.Bubble">
 
-	select m.id,b_price,bubble,b_date,p_bubble,b_bubble,b_seq from members m,bubble b where m.id=b.id and m.id=#{id}
+		select m.id,b_price,bubble,b_date,p_bubble,b_bubble,b_seq from members
+		m,bubble b where m.id=b.id and m.id=#{id}
 
-</select>
+	</select>
 
-<select id="orderList" resultType="com.hk.pilot.dto.OrderList">
- 	select m.id,ordernum from members m,orderlist o where m.id=o.id and m.id=#{id}
+	<select id="orderList" resultType="com.hk.pilot.dto.OrderList">
+		select m.id,ordernum from members m,orderlist o where m.id=o.id and
+		m.id=#{id}
 
-</select>
+	</select>
 
-<select id="myOrderList" resultType="com.hk.pilot.dto.OrderProcess">
-  select o.id,o.ordernum,sname,items,pay_price,pay_date,wait,ok,pick,wash,finish from orderlist o,process p where o.ordernum=p.ordernum and o.ordernum=#{orderNum}
-</select>
+	<select id="myOrderList"
+		resultType="com.hk.pilot.dto.OrderProcess">
+		select
+		o.id,o.ordernum,sname,snum,items,pay_price,pay_date,wait,ok,pick,wash,finish
+		from orderlist o,process p where o.ordernum=p.ordernum and
+		o.ordernum=#{orderNum}
+	</select>
 
 	<!-- 게시글 등록 -->
 	<insert id="write">
@@ -70,13 +85,15 @@ SELECT * FROM MEMBERS WHERE ID=#{ID}
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
-		SELECT w_id, c_no, c_date, c_content, c_title, g_check, snum
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check,
+		snum
 		FROM
 		(SELECT w_id,
 		c_no, c_date, c_content, c_title, g_check, snum,
 		row_number()
 		over(ORDER
-		BY c_no DESC) as rnum FROM chat) WHERE w_id=#{logId} and snum is null
+		BY c_no DESC) as rnum FROM chat) WHERE
+		w_id=#{logId} and snum is null
 		ORDER BY c_no DESC
 	</select>
 
@@ -140,8 +157,8 @@ SELECT * FROM MEMBERS WHERE ID=#{ID}
 		WHERE c_no =#{c_no}
 
 	</select>
-	
-	
+
+
 	<select id="schatList" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
 		SELECT w_id, c_no, c_date, c_content, c_title, snum
@@ -150,20 +167,34 @@ SELECT * FROM MEMBERS WHERE ID=#{ID}
 		c_no, c_date, c_content, c_title, snum,
 		row_number()
 		over(ORDER
-		BY c_no DESC) as rnum FROM chat) WHERE w_id=#{logId} and snum is not null
+		BY c_no DESC) as rnum FROM chat) WHERE w_id=#{logId} and
+		snum is not null
 		ORDER BY c_no DESC
 	</select>
-	
-	
-		<insert id="schatWrite">
 
-		INSERT INTO CHAT (W_ID, C_NO, C_DATE, C_CONTENT,g_check, snum,
+
+	<insert id="schatWrite">
+
+		INSERT INTO CHAT (W_ID, C_NO, C_DATE,
+		C_CONTENT,g_check, snum,
 		C_TITLE)
-		VALUES(#{w_id}, CHAT_seq.nextval, sysdate,
+		VALUES(#{w_id}, CHAT_seq.nextval,
+		sysdate,
 		#{c_content} ,#{g_check}, #{snum},
 		#{c_title} )
 
 	</insert>
+
+	<select id="reviewListU" resultType="com.hk.pilot.dto.Review"
+		parameterType="String">
+
+		SELECT
+
+		orderNum, r_no, r_CONTENT, w_ID, r_date, snum,
+		star, badCnt
+		FROM review WHERE w_id=#{logId} ORDER BY r_date desc
+
+	</select>
 
 
 </mapper>

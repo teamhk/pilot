@@ -123,9 +123,23 @@ public class UserController {
 		return "/chat/choiceBoardType";
 	}
 	
+	// review list 1020 ----------------------------------------------------------------------------------------------
+	
+	@GetMapping(value="/review")
+	public String myReviewList(HttpServletRequest request, Model model, HttpSession session) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		
+		String logId = loginMember.getId();
+		
+		model.addAttribute("reviewListU", userService.reviewListU(logId));
+		
+		return "/user/reviewList";
+	}
 	
 	
-	//  Chat user to admin--------------------------------------------------------------------------------------
+	
+	
+	//  Chat user to admin-------------------------------------------------------------------------------------------
 
 	//게시글 작성화면
 	@GetMapping(value="/cChatW")
@@ -147,7 +161,7 @@ public class UserController {
 		model.addAttribute("user",user);
 
 		userService.write(chat);
-		return "redirect:/user/cChat";
+		return "redirect:/user/cChatL";
 	}
 
 	//게시글 목록 조회

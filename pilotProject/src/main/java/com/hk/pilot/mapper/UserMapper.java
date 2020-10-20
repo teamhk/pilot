@@ -11,6 +11,7 @@ import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.PersonalPay;
+import com.hk.pilot.dto.Review;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.UserInfo;
 
@@ -57,5 +58,9 @@ public interface UserMapper {
 	public List<Chat> schatList(SearchCriteria scri, @Param("logId") String logId);
 	
 	public void schatWrite(Chat chat);
+	
+	// review ----------------------------------------------------------------------------------------
+	
+	public List<Review> reviewListU(String logId);
 	
 }
