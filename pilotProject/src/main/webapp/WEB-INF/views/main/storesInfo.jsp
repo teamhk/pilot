@@ -7,15 +7,21 @@
 <%@ page import="com.hk.pilot.dto.Product"%>
 
 <%@ page import="java.util.List"%>
-<% List<Product> pro=(List<Product>) request.getAttribute("product"); %>
-<% StoreInfo StoreInfo = (StoreInfo) request.getAttribute("storeInfo"); %>
+<%
+	List<Product> pro = (List<Product>) request.getAttribute("product");
+%>
+<%
+	StoreInfo StoreInfo = (StoreInfo) request.getAttribute("storeInfo");
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <title>퀴클린24셀프빨래방 | 카카오맵</title>
 <script type="text/javascript">
@@ -417,6 +423,7 @@ $(document).ready(function() {
 	background-color: #000000;
 	display: none;
 }
+
 .layerpop {
 	display: none;
 	z-index: 1000;
@@ -424,6 +431,7 @@ $(document).ready(function() {
 	background: #fff;
 	/* 	cursor: move; */
 }
+
 .layerpop_area .title {
 	padding: 10px 10px 10px 10px;
 	border: 0px solid #aaaaaa;
@@ -433,6 +441,7 @@ $(document).ready(function() {
 	font-weight: bold;
 	line-height: 24px;
 }
+
 .layerpop_area .layerpop_close {
 	width: 25px;
 	height: 25px;
@@ -441,16 +450,16 @@ $(document).ready(function() {
 	top: 10px;
 	right: 10px;
 }
+
 .layerpop_area .layerpop_close:hover {
 	cursor: pointer;
 }
+
 .layerpop_area .content {
 	width: 96%;
 	margin: 2%;
 	color: #828282;
 }
-
-
 </style>
 <style type="text/css">
 .kakao-video-ad {
@@ -1485,43 +1494,43 @@ $(document).ready(function() {
 								<li><span class="ico_comm ico_parking"></span> <span
 									class="color_g">주차</span></li>
 							</ul>
-							
-							
-							
-								<select id="selGoods" name="selGoods" style="height: 40px;">
-									<option value=''>-[필수] 옵션을 선택해 주세요 -</option>
-									<c:set var="num" value="1" />
-									<c:forEach var="item" items="${items}" varStatus="status">
-										<option id="${item}" value="${item}">${item}</option>
-										<c:set var="num" value="${num + 1}" />
-									</c:forEach>
-								</select>
 
-								
-								<!-- </select> -->
-								<form name='productForm' method="post" >
+
+
+							<select id="selGoods" name="selGoods" style="height: 40px;">
+								<option value=''>-[필수] 옵션을 선택해 주세요 -</option>
+								<c:set var="num" value="1" />
+								<c:forEach var="item" items="${items}" varStatus="status">
+									<option id="${item}" value="${item}">${item}</option>
+									<c:set var="num" value="${num + 1}" />
+								</c:forEach>
+							</select>
+
+
+							<!-- </select> -->
+							<form name='productForm' method="post">
 								<div id="container" name="addCart">
- 							<input type="hidden" value="${storeInfo.snum}" name="snum">
-								<input type="hidden" value="${storeInfo.sname}" name="sname">
-								<input type="hidden" id="items" value="" name="items">
-								<input type="hidden"  value='N' name="choice">
-							<input type="hidden"  value='N' name="c_check">
-						
+									<input type="hidden" value="${storeInfo.snum}" name="snum">
+									<input type="hidden" value="${storeInfo.sname}" name="sname">
+									<input type="hidden" id="items" value="" name="items">
+									<input type="hidden" value='N' name="choice"> <input
+										type="hidden" value='N' name="c_check">
+
 								</div>
 
-							
 
 
-								총금액:<input id="goodsTotAmt" name="pay_cart" value="0">	 
- 								<input type='button' value='장바구니담기' onclick="openPopup()"/> 
-							<input type='submit' value='구매하기' onclick="cart" />
+
+								총금액:<input id="goodsTotAmt" name="pay_cart" value="0"> <input
+									type='button' value='장바구니담기' onclick="openPopup()" /> <input
+									type='submit' value='구매하기' onclick="cart" />
 							</form>
 							<!-- //<input type='button' value='장바구니담기' onclick='location.href="cart"'/> -->
 							<c:forEach var="ppp" items='${product }'>
 								<input type='hidden' value='${ppp.pname}' name='pname'>
 								<input type='hidden' value='${ppp.pprice}' name='pprice'>
 							</c:forEach>
-<script>
+							<script>
 
 
 
@@ -1773,7 +1782,7 @@ this.deselect = function (trgtGoodsId){
 
 					</div>
 				</div>
-								<!-- 선택 되었을 때 클래스 agree_chacked ->
+				<!-- 선택 되었을 때 클래스 agree_chacked ->
                 <input id="mapChoice2" class="inp_choice" type="checkbox" checked="checked">
                 <label for="mapChoice2" class="lab_agree">
                     <span class="ico_comm ico_choice"></span><!-- 선택 되었을 때 클래스 ico_focused 추가 ->
@@ -2304,7 +2313,7 @@ this.deselect = function (trgtGoodsId){
             <script type="text/javascript" src="//t1.daumcdn.net/kakaomapweb/place/jscss/pc.2018109d.js"></script><iframe style="position:absolute;left:0;top:0;width:0;height:0;border:0" src="mapclick.html?_=1601813623771"></iframe>-->
 
 
-								<!--
+				<!--
     <script>
         var minidaum_options = {
             disableTracker: true, // 미니다음에서 tiara 사용안함
@@ -2317,80 +2326,80 @@ this.deselect = function (trgtGoodsId){
         };
     </script>
     <script async src="//go.daum.net/jsa_minidaum_pc.daum" charset="utf-8" type="text/javascript"></script>
-    --> <!-- <input type='submit' value='주문하기' > --> <!-- <input type='button' onclick='location.href="list"' value='계쇽쇼핑하기'> -->
+    -->
+				<!-- <input type='submit' value='주문하기' > -->
+				<!-- <input type='button' onclick='location.href="list"' value='계쇽쇼핑하기'> -->
 
-								<!-- </form>  -->
-								
-		<!--Popup Start -->
+				<!-- </form>  -->
 
-		<button onClick="javascript:goDetail('테스트');">문의글 작성하기</button>
-		<div style="height: 1000px;"></div>
+				<!--Popup Start -->
 
-		<!-- 팝업뜰때 배경 -->
-		<div id="mask"></div>
+				<button onClick="javascript:goDetail('테스트');">문의글 작성하기</button>
+				<div style="height: 1000px;"></div>
 
-
-		<div id="layerbox" class="layerpop"
-			style="width: 700px; height: 350px;">
-			<article class="layerpop_area">
-				<div class="title2">문의하기</div>
-				<a href="javascript:popupClose();" class="layerpop_close"
-					id="layerbox_close"></a> <br>
+				<!-- 팝업뜰때 배경 -->
+				<div id="mask"></div>
 
 
-				<form name="writeForm" method="post" action="/user/schatW">
-					<table>
-						<tbody>
-						
-						<tr>
-								<td><label for="content">제목</label> <textarea
-										id="c_title" name="c_title" class="chk" title="제목을 입력하세요."
-										placeholder="내용을 입력해주세요"></textarea></td>
-							</tr>
-
-							<tr>
-								<td><label for="content">내용</label> <textarea
-										id="c_content" name="c_content" class="chk" title="내용을 입력하세요."
-										placeholder="내용을 입력해주세요"></textarea></td>
-							</tr>
-							<tr>
-								<td><label for="writer">작성자</label><input type="text"
-									id="writer" name="w_id" placeholder="ID가져올 예정"
-									value="${loginMember.id}" /></td>
-							<tr>
-							
-													<tr>
-							<td><label for="writer"></label><input type="hidden"
-								id="grade" name="g_check" placeholder="회원등급 가져올예정" value="${loginMember.grade}"/></td>
-						<tr>
-							
-							
-							<tr>
-								<td><label for="writer"></label><input type="text"
-									id="snum" name="snum" value='${storeInfo.snum}'
-									placeholder="사업자번호 가져올예정" /></td>
-							<tr>
-
-								<td>
-									<button type="submit" class="write_btn">작성하기</button>
-								</td>
-							</tr>
-
-							<tr>
+				<div id="layerbox" class="layerpop"
+					style="width: 700px; height: 350px;">
+					<article class="layerpop_area">
+						<div class="title2">문의하기</div>
+						<a href="javascript:popupClose();" class="layerpop_close"
+							id="layerbox_close"></a> <br>
 
 
-								<td>
-									<button id='layerboxc'>취소</button>
-								</td>
-							</tr>
+						<form name="writeForm" method="post" action="/user/schatW">
+							<table>
+								<tbody>
 
-						</tbody>
-					</table>
-				</form>
+									<tr>
+										<td><label for="content">제목</label> <textarea
+												id="c_title" name="c_title" class="chk" title="제목을 입력하세요."
+												placeholder="내용을 입력해주세요"></textarea></td>
+									</tr>
 
-			</article>
-		</div>
+									<tr>
+										<td><label for="content">내용</label> <textarea
+												id="c_content" name="c_content" class="chk"
+												title="내용을 입력하세요." placeholder="내용을 입력해주세요"></textarea></td>
+									</tr>
+									<tr>
+										<td><label for="writer">작성자</label><input type="text"
+											id="writer" name="w_id" placeholder="ID가져올 예정"
+											value="${loginMember.id}" /></td>
+									<tr>
+									<tr>
+										<td><label for="writer"></label><input type="hidden"
+											id="grade" name="g_check" placeholder="회원등급 가져올예정"
+											value="${loginMember.grade}" /></td>
+									<tr>
+									<tr>
+										<td><label for="writer"></label><input type="hidden"
+											id="snum" name="snum" value='${storeInfo.snum}'
+											placeholder="사업자번호 가져올예정" /></td>
+									<tr>
 
-		<!--Popup End -->								
+										<td>
+											<button type="submit" class="write_btn">작성하기</button>
+										</td>
+									</tr>
+
+									<tr>
+
+
+										<td>
+											<button id='layerboxc'>취소</button>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</form>
+
+					</article>
+				</div>
+
+				<!--Popup End -->
 </body>
 </html>

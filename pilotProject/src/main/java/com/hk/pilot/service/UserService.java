@@ -179,11 +179,35 @@ public class UserService {
 
 	}
 	
+	//문의글 수정
+
+	public void updateU(Chat chat) {
+		System.out.println("chatService-update 호출");
+
+		System.out.println(chat.toString()+"chatService");
+
+		userMapper.updateU(chat);
+
+	}
+
+	//문의글 삭제하기
+
+	public void deleteU(int c_no) {
+		System.out.println("chatService-delete 호출");
+
+		userMapper.deleteU(c_no);
+
+	}
+	
 	// review ----------------------------------------------------------------------------------------
 	
 	public List<Review> reviewListU(String logId){
 		return userMapper.reviewListU(logId);
 	}
+	
+
+	
+	
 
 
 

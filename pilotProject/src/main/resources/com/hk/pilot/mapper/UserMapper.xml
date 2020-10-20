@@ -184,6 +184,26 @@
 		#{c_title} )
 
 	</insert>
+	
+			<update id="updateU" parameterType="com.hk.pilot.dto.Chat">
+
+		UPDATE CHAT SET W_ID=#{w_id},
+		snum=#{snum}, g_chaeck = #{g_check},
+		C_CONTENT=#{c_content}, C_TITLE=#{c_title} WHERE
+		C_NO= #{c_no}
+
+	</update>
+
+	<!-- 게시글 삭제 -->
+
+	<delete id="deleteU" parameterType="int">
+
+		DELETE FROM CHAT WHERE c_no =
+		#{c_no}
+
+	</delete>
+	
+	
 
 	<select id="reviewListU" resultType="com.hk.pilot.dto.Review"
 		parameterType="String">
@@ -195,6 +215,8 @@
 		FROM review WHERE w_id=#{logId} ORDER BY r_date desc
 
 	</select>
+	
+
 
 
 </mapper>

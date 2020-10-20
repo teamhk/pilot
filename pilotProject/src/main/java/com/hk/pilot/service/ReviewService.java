@@ -17,6 +17,8 @@ public class ReviewService {
 	public void rWrite(Review review) {
 		reviewMapper.rWrite(review);
 		
+		reviewMapper.rCheckup(review.getOrderNum());
+		
 	}
 	
 	public List<Review> rList(){

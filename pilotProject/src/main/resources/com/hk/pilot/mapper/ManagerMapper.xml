@@ -246,6 +246,17 @@
 		WHERE c_no =#{c_no}
 
 	</select>
+	
+		<select id="schatList" resultType="com.hk.pilot.dto.Chat" parameterType="String">
+
+		SELECT
+
+		c_no, c_CONTENT, w_ID, c_date, snum
+		FROM chat WHERE snum = #{snum} ORDER BY c_date desc
+
+	</select>
+	
+	
 
 
 </mapper>

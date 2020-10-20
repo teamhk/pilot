@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="com.hk.pilot.dto.Members"%>
-<%
-	Members loginMember = (Members) session.getAttribute("loginMember");
-%>
+
 
 <c:choose>
 		
@@ -14,6 +12,5 @@
 		<a href="/">메인으로 이동하기</a>
 
 	</c:when>
-	
 	
 </c:choose>

@@ -228,7 +228,7 @@
 
 	<!--Popup Start -->
 	<c:choose>
-		<c:when test="${myOrderList.finish ne null}">
+		<c:when test="${myOrderList.finish ne null && myOrderList.r_check eq 'N' }">
 
 
 			<button onClick="javascript:goDetail('테스트');">리뷰 작성하기</button>

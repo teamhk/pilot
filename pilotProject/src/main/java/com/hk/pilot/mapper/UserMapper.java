@@ -59,8 +59,14 @@ public interface UserMapper {
 	
 	public void schatWrite(Chat chat);
 	
+	public void updateU(Chat chat);
+	//문의글 삭제하기
+
+	public void deleteU(int c_no);
+	
 	// review ----------------------------------------------------------------------------------------
 	
 	public List<Review> reviewListU(String logId);
 	
+
 }

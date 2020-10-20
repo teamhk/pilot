@@ -34,5 +34,11 @@
 
 	</insert>
 	
+	<update id="rCheckup">
+	
+	UPDATE ORDERLIST SET R_CHECK='Y' WHERE ORDERNUM=#{orderNum}
+	
+	</update>
+	
 
 </mapper>

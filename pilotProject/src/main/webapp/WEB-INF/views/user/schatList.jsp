@@ -51,7 +51,7 @@ li {
 					<c:forEach items="${schatList}" var="schatList">
 						<tr>
 							<td><c:out value="${schatList.c_no}" /></td>
-							<td><a href="/user/cChatR?c_no=${schatList.c_no}"><c:out
+							<td><a href="/user/schatR?c_no=${schatList.c_no}"><c:out
 										value="${schatList.c_title}" /></a></td>
 							<td><c:out value="${schatList.w_id}" /></td>
 							<td><fmt:formatDate value="${schatList.c_date}"

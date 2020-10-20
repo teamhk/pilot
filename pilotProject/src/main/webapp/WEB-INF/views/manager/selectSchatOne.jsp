@@ -20,9 +20,6 @@
 <body>
 	<h1>유저로부터 문의글</h1>
 
-	<div>
-		<%@include file="navi.jsp"%>
-	</div>
 	<form action='updateOne' name='storeform' method='post' id='storeform'>
 		ID :<input type='text' name='id' value=${loginMember.id } readonly><br>
 		<!--${loginMember.name }-->
@@ -36,19 +33,17 @@
 			<table>
 				<tr>
 					<th>문의글번호</th>
-					<th>문의글번호</th>
 					<th>내용</th>
 					<th>작성자</th>
 					<th>등록일</th>
 				</tr>
 
-				<c:forEach items="${reviewList}" var="reviewList">
+				<c:forEach items="${schatList}" var="schatList">
 					<tr>
-						<td><c:out value="${reviewList.r_no}" /></td>
-						<td><c:out value="${reviewList.orderNum}" /></td>
-						<td><c:out value="${reviewList.r_content}" /></td>
-						<td><c:out value="${reviewList.w_id}" /></td>
-						<td><fmt:formatDate value="${reviewList.r_date}"
+						<td><c:out value="${schatList.c_no}" /></td>
+						<td><c:out value="${schatList.c_content}" /></td>
+						<td><c:out value="${schatList.w_id}" /></td>
+						<td><fmt:formatDate value="${schatList.c_date}"
 								pattern="yyyy-MM-dd" /></td>
 					</tr>
 				</c:forEach>

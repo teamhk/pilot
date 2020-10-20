@@ -263,7 +263,7 @@ public class UserController {
 		return "user/schatList";
 	}
 	
-	//게시글 작성화면
+		//문의글 작성화면
 		@GetMapping(value="/schatW")
 		public String swriteGet() {
 			System.out.println("너 여기 들어오니?");
@@ -272,7 +272,7 @@ public class UserController {
 			return "main/storesInfo";
 		}
 
-		//게시글 작성 - db저장
+		//문의글 작성 - db저장
 		@PostMapping(value="/schatW")
 		public String swritePost(@RequestParam("snum") String snum, Model model, Chat chat, HttpSession session) {
 			System.out.println("너 여기도 들어오니?");
@@ -296,8 +296,56 @@ public class UserController {
 			
 			return "main/storesInfo";
 		}
-	
-	
+		
+		//문의글 상세 조회
+		@GetMapping(value="/schatR")
+		public String sSelectOne (Chat chat, Model model) {
+			System.out.println("selectOne 들어옴");
 
+			model.addAttribute("selectOne", userService.selectOne(chat.getC_no()));
+			
+			List<ChatComment> commentList = userService.readComment(chat.getC_no());
+
+			model.addAttribute("commentList", commentList);
+
+
+			return "user/schatReadView";
+		}
+
+		//게시글 수정 화면
+		@GetMapping(value="/schatU")
+		public String supdateGet(Chat chat, Model model) {
+			System.out.println("updateGet 들어옴");
+
+			model.addAttribute("updateU", userService.selectOne(chat.getC_no()));
+
+			return "user/schatUpdateView";
+		}
+
+		//게시글 수정 - db저장
+		@PostMapping(value="/schatU")
+		public String supdatePost(Chat chat) {
+			System.out.println("update 들어옴");
+
+			userService.update(chat);
+
+			System.out.println(chat.toString() + "chatCon");
+
+			return "redirect:/user/schat";
+
+		}
+
+		//게시글 삭제 - db저장
+		@PostMapping(value="/schatD")
+
+		public String sdelete(Chat chat) {
+			System.out.println("delete 들어옴");
+
+			userService.delete(chat.getC_no() );
+
+			System.out.println("delete 반환");
+
+			return "redirect:/user/cChatL";
+		}
 
 }

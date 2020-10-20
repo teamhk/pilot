@@ -389,7 +389,7 @@ public class ManagerController {
 		StoreInfo storeInfo = managerService.selectStoreOne(snum);
 		System.out.println(storeInfo.toString());
 		model.addAttribute("storeInfo",storeInfo);
-		model.addAttribute("reviewList", managerService.reviewList(snum));
+		model.addAttribute("schatList", managerService.schatList(snum));
 		return "/manager/selectSchatOne";
 
 	}
