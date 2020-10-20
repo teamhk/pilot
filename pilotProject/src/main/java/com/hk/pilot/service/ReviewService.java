@@ -16,6 +16,7 @@ public class ReviewService {
 	
 	public void rWrite(Review review) {
 		reviewMapper.rWrite(review);
+		
 	}
 	
 	public List<Review> rList(){
