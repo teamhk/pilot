@@ -160,6 +160,7 @@
 			$(this).parent().children('span.on').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			var bb = $(this).attr('data-value');
+			alert(bb+'점 선택!')
 			$("#point").val(bb); // 히든 인풋에 값 저장.
 			return false;
 		});
@@ -266,7 +267,7 @@
 										value="${loginMember.id}" /></td>
 								<tr>
 								<tr>
-									<td><label for="writer"></label><input type="text"
+									<td><label for="writer"></label><input type="hidden"
 										id="snum" name="snum" value='${myOrderList.snum}'
 										placeholder="사업자번호 가져올예정" /></td>
 								<tr>
