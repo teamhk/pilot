@@ -73,6 +73,9 @@ public interface ManagerMapper {
 	//  chat  manager from user 1019 james ------------------------------------------------------------------------------------------------
 
 	public List<Chat> schatList(String snum);
+	
+	public void writeComment(ChatComment ccment); //댓글 작성
+	
 
 
 }

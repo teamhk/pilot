@@ -36,6 +36,7 @@
 					<th>내용</th>
 					<th>작성자</th>
 					<th>등록일</th>
+					<th>사업자번호</th>
 				</tr>
 
 				<c:forEach items="${reviewListU}" var="reviewListU">
@@ -46,6 +47,7 @@
 						<td><c:out value="${reviewListU.w_id}" /></td>
 						<td><fmt:formatDate value="${reviewListU.r_date}"
 								pattern="yyyy-MM-dd" /></td>
+						<td><c:out value="${reviewListU.snum}" /></td>		
 					</tr>
 				</c:forEach>
 

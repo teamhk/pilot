@@ -33,7 +33,7 @@
 			<table>
 				<tr>
 					<th>문의글번호</th>
-					<th>내용</th>
+					<th>문의글 제목</th>
 					<th>작성자</th>
 					<th>등록일</th>
 				</tr>
@@ -41,7 +41,8 @@
 				<c:forEach items="${schatList}" var="schatList">
 					<tr>
 						<td><c:out value="${schatList.c_no}" /></td>
-						<td><c:out value="${schatList.c_content}" /></td>
+						<td><a href="/manager/schatR?c_no=${schatList.c_no}"><c:out
+										value="${schatList.c_title}" /></a></td>
 						<td><c:out value="${schatList.w_id}" /></td>
 						<td><fmt:formatDate value="${schatList.c_date}"
 								pattern="yyyy-MM-dd" /></td>

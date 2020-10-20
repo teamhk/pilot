@@ -373,7 +373,7 @@ public class ManagerController {
 
 	// chat manager from user 1019 james ------------------------------------------------------------------------------
 
-	@GetMapping("/schat")
+	@GetMapping("/schat") //문의게시판 - 업체리스트 선택페이지
 	public String mySchatList(HttpServletRequest request,Model model,HttpSession session) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		System.out.println(loginMember.toString());
@@ -383,8 +383,8 @@ public class ManagerController {
 		return "/manager/schatList";
 	}
 
-	@GetMapping("/schatOne")
-	public String selectSchatOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
+	@GetMapping("/schatOne") //업체 1개 선택 
+	public String selectSnumOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
 		System.out.println(snum);
 		StoreInfo storeInfo = managerService.selectStoreOne(snum);
 		System.out.println(storeInfo.toString());
@@ -393,6 +393,41 @@ public class ManagerController {
 		return "/manager/selectSchatOne";
 
 	}
+
+	//문의글 상세 조회
+	@GetMapping(value="/schatR")
+	public String sSelectOne (Chat chat, Model model) {
+		System.out.println("selectOne 들어옴");
+
+		model.addAttribute("selectOne", managerService.selectOne(chat.getC_no()));
+
+		List<ChatComment> commentList = managerService.readComment(chat.getC_no());
+
+		model.addAttribute("commentList", commentList);
+
+
+		return "manager/schatReadView";
+	}
+
+	//문의글  - 댓글달기 1020추가 james(업주만 작성 유저는 읽기만)
+
+	@PostMapping(value="/schatCom")
+
+	public String writeCommentPost(ChatComment ccment) {
+
+		System.out.println("manager commentWrite-con 들어옴");
+
+		managerService.writeComment(ccment);
+
+		return "redirect:/manager/schat";
+
+	}
+
+
+
+
+
+
 
 
 }

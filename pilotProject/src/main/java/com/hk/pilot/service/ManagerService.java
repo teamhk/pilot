@@ -214,6 +214,16 @@ public class ManagerService {
 	public List<Chat> schatList(String snum){
 		return managerMapper.schatList(snum);
 	}
+	
+	public void writeComment(ChatComment ccment) {
+		
+		System.out.println("manager - ccmentService -writeComment 호출");
+
+		System.out.println(ccment.toString());
+
+		managerMapper.writeComment(ccment);
+		
+	}
 
 
 }	

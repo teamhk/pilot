@@ -251,10 +251,25 @@
 
 		SELECT
 
-		c_no, c_CONTENT, w_ID, c_date, snum
+		c_no, c_title, w_ID, c_date, snum
 		FROM chat WHERE snum = #{snum} ORDER BY c_date desc
 
 	</select>
+	
+	<insert id="writeComment">
+		INSERT INTO CHATCOMMENT(
+		C_NO
+		, COM_NO
+		, COM_CONTENT
+		,
+		R_ID
+		)
+		VALUES( #{c_no}
+		, CHATCOMMENT_SEQ.NEXTVAL
+		, #{com_content}
+		, #{r_id}
+		)
+	</insert>
 	
 	
 
