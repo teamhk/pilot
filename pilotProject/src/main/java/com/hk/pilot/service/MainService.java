@@ -1,10 +1,15 @@
 package com.hk.pilot.service;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Cart;
@@ -101,9 +106,36 @@ public class MainService {
 	}
 	
 	//최종결제
-	public int finalPay(OrderList orderList,List<String> payData) {
+	public int finalPay(int pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,int bubble,String id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		return mainMapper.finalPay(orderList,payData);
+	for(int i=0;i<items.length;i++) {
+		Date now = new Date();
+        SimpleDateFormat vans = new SimpleDateFormat("yyyyMMdd");
+		String wdate = vans.format(now);
+		int randomCode = new Random().nextInt(10000)+1000;
+		String joinCode = String.valueOf(randomCode);
+		String num=wdate+joinCode;
+		double orderNum=Double.valueOf(num);
+		map.put("pay_price",pay_price);
+		map.put("items",items[i]);
+		map.put("snum",snum[i]);
+		map.put("sname",sname[i]);
+		map.put("bubble",bubble);
+		map.put("id", id);
+		map.put("orderNum", orderNum);
+		mainMapper.finalPay(map);
+		System.out.println(map);
 	}
+		
+		return 0;
+	}
+	
+	public int bubblefinal(Bubble bubble1) {
+		
+		return mainMapper.bubblefinal(bubble1);
+	}
+	
+ 
 	
 }

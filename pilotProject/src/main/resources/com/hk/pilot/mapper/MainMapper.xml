@@ -91,15 +91,22 @@ SELECT bubble FROM (
 
 <insert id="bubblePay" >
 
-INSERT INTO STUDY.BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble) VALUES(#{id},#{b_price}, sysdate,#{b_bubble},BUBBLE_SEQ.NEXTVAL,#{bubble}) 
+INSERT INTO STUDY.BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble,P_bubble) VALUES(#{id},#{b_price}, sysdate,#{b_bubble},BUBBLE_SEQ.NEXTVAL,#{bubble},0) 
 
 
 </insert>
 
-<insert id="finalPay">
+<insert id="finalPay" parameterType="map">
 
-INSERT INTO STUDY.ORDERLIST (id, ITEMS, PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{id}, #{items}, sysdate, #{pay_price}, '', 0, 'N', 0, 'N');
+INSERT INTO STUDY.ORDERLIST (ORDERNUM,ID, ITEMS, SNAME,SNUM,PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{orderNum},#{id},#{items},#{sname},#{snum}, sysdate, #{pay_price}, 'N', #{bubble}, 'N')
 
+
+</insert>
+
+
+<insert id="bubblefinal">
+
+INSERT INTO STUDY.BUBBLE (id,b_price, B_DATE,b_seq,bubble,p_bubble,b_bubble) VALUES(#{id},0, sysdate,BUBBLE_SEQ.NEXTVAL,#{bubble},#{p_bubble},0)
 
 </insert>
 

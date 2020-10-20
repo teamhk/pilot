@@ -34,7 +34,7 @@
             
          }
       }
-		//주문자 정보 동일
+      //주문자 정보 동일
        $(function(){
               $('#useraddr').click(function(){
                 var user = this.checked;
@@ -46,6 +46,33 @@
                 $('#detailAddress').val(user ? $('#sample6_detailAddress').val():'');
               });
             });
+
+		//버블충전 금액 chk
+		$(document).ready(function(){
+			console.log("들어오냐")
+			$('#paybubble').focus(function() {
+			checkBubble();
+			});
+		});
+
+		function checkBubble(){
+			console.log("여기도 들어오냐")
+			var paybub=$('#paybubble').val();
+			var bub=${finalPay.bubble};
+			
+		
+			if(paybub>bub){
+			$('#bubble_check').text('버블이 부족합니다,버블을 충전해주세요');
+			$('#bubble_check').css('color', 'red');
+			
+			}else {
+				$('#bubble_check').text('버블사용 가능합니다' );
+				$('#bubble_check').css('color', 'black');
+				}
+		
+	
+		}
+       
          //버블충전
          $(function(){
          $('#bubbleBut').click(function () {
@@ -105,7 +132,7 @@
                 var finalbubble= $(this).val();
                 $('#p_bubble').val(finalbubble);
             var pay=$("#pricepay").val()-$('#p_bubble').val();
-            		 $("#finalprice").val(pay);
+                   $("#finalprice").val(pay);
              
                 });
          });
@@ -113,13 +140,22 @@
          //최종결제 
              
                 function kakaopay(){
-       				 //var payData = $("#payform").serialize();
-       				 
-       				 var items=$('input[name="items"]')
-       				 for(var i=0;i<items.length;i++){
-						items.eq(i).val();
-           				 }
-       				 console.log(items);
+                    //var payData = $("#payform").serialize();
+                   var id=$('input[name="id"]').val();
+                   var bubble=$('input[name="bubble"]').val();
+                   console.log(bubble);
+                   var items=$('input[name="items"]');
+                   var sname=$('input[name="sname"]');
+                   var snum=$('input[name="snum"]');
+                       var ttt = new Array();
+                       var sss = new Array();
+                       var snn = new Array();
+                       for(var i=0;i<items.length;i++){
+                          ttt.push(items.eq(i).val());
+                          sss.push(sname.eq(i).val());
+                          snn.push(snum.eq(i).val());
+                       }
+                  
                       var pay_price =$('input[name="pay_price"]').val()
                       var email=$('input[name="email"]').val()
                       var name=$('input[name="name"]').val()
@@ -148,7 +184,7 @@
                                     msg += '상점 거래ID : ' + rsp.merchant_uid;
                                     msg += '결제 금액 : ' + rsp.paid_amount;
                                     msg += '카드 승인번호 : ' + rsp.apply_num;
-                                    console.log($("#payform").serialize().replace(/%/g, '%25'));
+                                  
                                     $.ajax({
                                         type: "POST", 
                                         url: "/order/finalPay", //충전 금액값을 보낼 url 설정 
@@ -157,8 +193,11 @@
                                         data: {
                                            //amount : money
                                             pay_price : rsp.paid_amount,
-                                            payData : $("#payform").serialize().replace(/%/g, '%25'),
-                                            
+                                            sname : sss,
+                                            snum : snn,
+                                            items : ttt,
+                                           	bubble : bubble,
+                                           	id : id
                                             
                                             
                                         },
@@ -192,7 +231,10 @@
             </tr>
           
             <c:forEach var="cart" items="${cartpay}">
-             <input type="hidden" name="items" value="${cart.items}"/>
+            <input type="hidden" name="items" value="${cart.items}"/>
+             <input type="hidden" name="sname" value="${cart.sname}"/>
+             <input type="hidden" name="snum" value="${cart.snum}"/>
+             
                <tr>
                   <td class="product-close"><input type="checkbox"
                      name="chkbox" onClick="itemSum()" class="chkbox"
@@ -217,6 +259,7 @@
       <div class="member">
          <h2>주문자 정보</h2>
 <%--          <input type="hidden" name="id" value="${finalPay.id}"/> --%>
+		<input type="hidden" name="id" value="${finalPay.id}"/>
          주문하시는 분:<input type="text" id="orderName" name="name" value="${finalPay.name}" readonly  /><br>
          주소: <input type="text" id="sample6_postcode" placeholder="${finalPay.userZipCode}" name="userZipCode" value="${finalPay.userZipCode}">
             <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -245,7 +288,8 @@
 
       <div class="bubble">
          <h2>포인트 사용</h2>
-         버블사용:<input type="text" name="pp_bubble" id="paybubble" value="0" >원(사용가능 버블:<a>${finalPay.bubble}</a>)<br>
+         버블사용:<input type="text" name="pp_bubble" id="paybubble" value="0" oninput="checkBubble()">원(사용가능 버블:<a>${finalPay.bubble}</a>)<br>
+        <div id="bubble_check"></div>
          버블충전:<input tyPe="radio" value="10000" name="b_price"/>10000버블 <input tyPe="radio" value="30000" name="b_price"/>30000버블 <input tyPe="radio" value="50000" name="b_price"/>50000버블
          <button type="button" id="bubbleBut">충전하기</button>
       </div>
@@ -271,7 +315,7 @@
          <input tyPe="radio" name="b_price"/>
          <label >등록 카드</label><br>
          <!-- 카카오페이 -->
-    	<input tyPe="radio" name="kakao"/>
+       <input tyPe="radio" name="kakao"/>
          <label >카카오페이</label><br>
       </div>
       <div class="form-check check_agree_policy">

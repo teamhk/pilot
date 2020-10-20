@@ -1,6 +1,7 @@
 package com.hk.pilot.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.hk.pilot.dto.Bubble;
@@ -48,6 +49,9 @@ public interface MainMapper {
 	
 	public int bubbleplus(Bubble bubble);
 	
-	public int finalPay(OrderList orderList,List<String> payData);
+	//public int finalPay(int pay_price,String items,String snum,String sname,int bubble);
 
+	public int finalPay(HashMap<String, Object> map);
+
+	public int bubblefinal(Bubble bubble1);
 }

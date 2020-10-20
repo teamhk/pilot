@@ -4,7 +4,10 @@ package com.hk.pilot;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,16 +51,18 @@ public class PayRestController {
 		}
 	 
 	  @RequestMapping(path = "/finalPay", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE )
-	  public int finalPay(int pay_price,HttpSession session,OrderList orderList, @RequestParam("payData") List<String> payData) throws UnsupportedEncodingException  {
-//		  @RequestParam("payData") List<String> payData
-		  URLDecoder.decode("payData", "UTF-8");
+	     public int finalPay(HttpSession session,int pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,int bubble,String id,Bubble bubble1){
 		  Members loginMember = (Members) session.getAttribute("loginMember");
-		  orderList.setId(loginMember.getId());
-		  orderList.setPay_price(pay_price);
-		  System.out.println(payData);
-		
-		  System.out.println(loginMember.getId());
+		  bubble1.setId(loginMember.getId());
+		  int bu=mainService.bubbleplus(bubble1);
+		  System.out.println(bu);
+		   bubble1.setP_bubble(bubble);
+		  	bubble1.setBubble((int)(bu-bubble));
+		  	System.out.println((int)(bu-bubble));
 		  
-		  return mainService.finalPay(orderList,payData);
-	  }
+		  	mainService.bubblefinal(bubble1);
+	        mainService.finalPay(pay_price,items,snum,sname,bubble,id);
+	        return 0;
+	     }
+	
 }
