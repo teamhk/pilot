@@ -274,7 +274,7 @@
 								<tr>
 									<td><label for="writer">작성자</label><input type="text"
 										id="writer" name="w_id" placeholder="ID가져올 예정"
-										value="${loginMember.id}" /></td>
+										value="${loginMember.id}" readOnly/></td>
 								<tr>
 								<tr>
 									<td><label for="writer"></label><input type="hidden"
@@ -284,7 +284,7 @@
 								<tr>
 									<td><label for="star">별점</label> <input type="hidden"
 										name="star" id="point" title="별점을 선택해주세요" />
-										<div class="starRev">
+										<div class="starRev" title="별점을 선택해주세요">
 											<span class="star1 on" id="star1" data-value="1">★</span> <span
 												class="star2 on" id="star2" data-value="2">★</span> <span
 												class="star3 on" id="star3" data-value="3">★</span> <span

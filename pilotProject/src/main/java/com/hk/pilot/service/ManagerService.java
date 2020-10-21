@@ -3,7 +3,11 @@ package com.hk.pilot.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
@@ -19,72 +23,91 @@ import com.hk.pilot.mapper.ManagerMapper;
 @Service
 public class ManagerService {
 
-	@Autowired
-	ManagerMapper managerMapper;
+   @Autowired
+   ManagerMapper managerMapper;
+
+   @Autowired
+   DataSourceTransactionManager transactionManager;
+
+   public List<Members> memberList(){
+      return managerMapper.memberList();
+   }
+
+   public String pwdCheck(String id, String pwd){
+      System.out.println("서비스들어옴");
+      Members checkMember = managerMapper.pwdCheck(id,pwd);
+      System.out.println("서비스 실행완료");
+      if(checkMember==null) {
+         return "N";  //비번이 일치하지않음
+      } else {
+         return "Y";  //비번이 일치함
+      }
+   }
 
 
-	public List<Members> memberList(){
-		return managerMapper.memberList();
-	}
+   // 업체정보 추가
+    @Transactional
+   public int storeAdd(StoreInfo storeInfo) { 
+       TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());    
+      try {
+       managerMapper.storeAdd(storeInfo);
+      managerMapper.itemListAdd(storeInfo);
+      } catch (Exception e) {
+         transactionManager.rollback(txStatus);
+            return 0;
+      }
+       transactionManager.commit(txStatus);
+         return 1;    
+   }
 
-	public String pwdCheck(String id, String pwd){
-		System.out.println("서비스들어옴");
-		Members checkMember = managerMapper.pwdCheck(id,pwd);
-		System.out.println("서비스 실행완료");
-		if(checkMember==null) {
-			return "N";  //비번이 일치하지않음
-		} else {
-			return "Y";  //비번이 일치함
-		}
-	}
+   //업체정보 추가2-MapData테이블에도 데이터 insert
+   public int mapDataAdd(StoreInfo storeInfo) {
+      int ret = managerMapper.mapDataAdd(storeInfo);
+      return ret;
+   }
 
+   // 전체 업체 리스트
+   public List<Stores> myStoresList(String id) {
 
-	// 업체정보 추가
-	public int storeAdd(StoreInfo storeInfo) { 
+      return managerMapper.myStoresList(id);
+   }
 
-		int ret1 = managerMapper.storeAdd(storeInfo);
-		int ret2 = managerMapper.itemListAdd(storeInfo);
-		if(ret1==1 && ret2==1) {
-			return 1;
-		} else {
-			return 0; 
-		}
-	}
+   // 업체 1개 상세정보
+   public StoreInfo selectStoreOne(String snum) {
 
-	//업체정보 추가2-MapData테이블에도 데이터 insert
-	public int mapDataAdd(StoreInfo storeInfo) {
-		int ret1 = managerMapper.mapDataAdd(storeInfo);
-		if(ret1==1) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
+      return managerMapper.selectStoreOne(snum);
+   }
 
-	// 전체 업체 리스트
-	public List<Stores> myStoresList(String id) {
+   // 업체 정보 수정1
+    @Transactional
+   public int storeUpdate(StoreInfo storeInfo) {
+       TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());    
+          try {
+             managerMapper.storeUpdate(storeInfo); 
+             managerMapper.itemListUpdate(storeInfo);
+          } catch (Exception e) {
+             transactionManager.rollback(txStatus);
+               return 0;
+         }
+          transactionManager.commit(txStatus);
+            return 1;   
+   }
 
-		return managerMapper.myStoresList(id);
-	}
+   //업체 정보 수정2
+   public int mapDataUpdate(StoreInfo storeInfo) {
+      int ret = managerMapper.mapDataUpdate(storeInfo);
+      return ret;
+   }
 
-	// 업체 1개 상세정보
-	public StoreInfo selectStoreOne(String snum) {
+   // 업체 정보 삭제(sdcheck=>true)
+   public int storeDelete(String snum) {
 
-		return managerMapper.selectStoreOne(snum);
-	}
+      int ret = managerMapper.storeDelete(snum);
 
-	// 업체 정보 수정1
-	public int storeUpdate(StoreInfo storeInfo) {
-		int ret1 = managerMapper.storeUpdate(storeInfo); 
-		int ret2 = managerMapper.itemListUpdate(storeInfo);
-		System.out.println("ret1="+ret1+", ret2="+ret2);
-		if(ret1==1 && ret2==1) {
-			return 1;
-		} else {
-			return 0; 
-		} 
-	}
+      return ret;
+   }
 
+<<<<<<< HEAD
 	//업체 정보 수정2
 	public int mapDataUpdate(MapData mapData) {
 		int ret = managerMapper.mapDataUpdate(mapData);
@@ -94,53 +117,42 @@ public class ManagerService {
 			return 0;
 		}
 	}
+=======
+   // 업주의 개인정보 호출 + 업주 탈퇴 확인을 위한 호출
+   public Members selectMemberOne(String id) {
+>>>>>>> branch 'master' of https://github.com/teamhk/pilot.git
 
-	// 업체 정보 삭제(sdcheck=>true)
-	public int storeDelete(String snum) {
+      return managerMapper.selectMemberOne(id);
+   }
 
-		int ret = managerMapper.storeDelete(snum);
+   // 업주 개인정보 수정
+   public int ownerUpdate(Members members) {
+      return managerMapper.ownerUpdate(members);
+   }
 
-		return ret;
-	}
+   // 업주 개인정보 삭제
+   public int ownerDeleterPost(String id) {
+      return managerMapper.ownerDeleterPost(id);
+   }
 
-	// 업주의 개인정보 호출 + 업주 탈퇴 확인을 위한 호출
-	public Members selectMemberOne(String id) {
+   // 업체 오더리스트 호출
+   public List<OrderProcess> managerOrderList(String snum) {
+      return managerMapper.managerOrderList(snum);
+   }
 
-		return managerMapper.selectMemberOne(id);
-	}
+   // 주문 내역 상세 보기
+   public OrderProcess managerOrderInfo(int orderNum) {
+      return managerMapper.managerOrderInfo(orderNum);
+   }
 
-	// 업주 개인정보 수정
-	public int ownerUpdate(Members members) {
-		return managerMapper.ownerUpdate(members);
-	}
-
-	// 업주 개인정보 삭제
-	public int ownerDeleterPost(String id) {
-		return managerMapper.ownerDeleterPost(id);
-	}
-
-	// 업체 오더리스트 호출
-	public List<OrderProcess> managerOrderList(String snum) {
-		return managerMapper.managerOrderList(snum);
-	}
-
-	// 주문 내역 상세 보기
-	public OrderProcess managerOrderInfo(int orderNum) {
-		return managerMapper.managerOrderInfo(orderNum);
-	}
-
-	// 상태 실시간 ajax 변경
-	public int managerProcess(int orderNum, String process) {
-		System.out.println("managerProcess...호출");
-		System.out.println("orderNum="+orderNum+":::::process ="+process);
-		int ret = managerMapper.managerProcess(orderNum,process);
-		System.out.println("실시간으로 상태가 잘 업데이트 되었나? ="+ret);
-		return ret;
-	}
-
-	//업체 통계 
-	//	managerStatsOne
-
+   // 상태 실시간 ajax 변경
+   public int managerProcess(int orderNum, String process) {
+      System.out.println("managerProcess...호출");
+      System.out.println("orderNum="+orderNum+":::::process ="+process);
+      int ret = managerMapper.managerProcess(orderNum,process);
+      System.out.println("실시간으로 상태가 잘 업데이트 되었나? ="+ret);
+      return ret;
+   }
 	// review 1015 james-------------------------------------------------------------
 	public List<Review> reviewList(String snum){
 		return managerMapper.reviewList(snum);
