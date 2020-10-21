@@ -32,209 +32,223 @@ import com.hk.pilot.service.UserService;
 @RequestMapping("/manager")
 public class ManagerController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AuthRestController.class);
+   private static final Logger logger = LoggerFactory.getLogger(AuthRestController.class);
 
-	@Autowired
-	ManagerService managerService;
+   @Autowired
+   ManagerService managerService;
 
-	@Autowired
-	UserService userService;
+   @Autowired
+   UserService userService;
 
-	@Autowired
-	AdminService adminService;
+   @Autowired
+   AdminService adminService;
 
-	@GetMapping("/add")
-	public String StoreAddGet(Model model) {
-		System.out.println("StoreAddGet...호출");
-		model.addAttribute("product",adminService.getProduct());
-		return "/manager/storeAddGet";
-	}
+   @GetMapping("/add")
+   public String StoreAddGet(Model model) {
+      System.out.println("StoreAddGet...호출");
+      model.addAttribute("product",adminService.getProduct());
+      return "/manager/storeAddGet";
+   }
 
-	@PostMapping("/add")
-	public String StoreAddPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
-		for(int i=0; i<uploadFile.length; i++) {
-			String uploadFolder = "C:\\upload";
-			String uploadFileName = uploadFile[i].getOriginalFilename(); 
+   @PostMapping("/add")
+   public String StoreAddPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
+      for(int i=0; i<uploadFile.length; i++) {
+         String uploadFolder = "C:\\upload";
+         String uploadFileName = uploadFile[i].getOriginalFilename(); 
 
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+         uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 
-			UUID uuid = UUID.randomUUID();
-			uploadFileName = uuid.toString()+"_"+uploadFileName;
+         UUID uuid = UUID.randomUUID();
+         uploadFileName = uuid.toString()+"_"+uploadFileName;
 
-			if(i==0) {storeInfo.setSp1(uploadFileName);}
-			else if(i==1) {storeInfo.setSp2(uploadFileName);}
-			else if(i==2) {storeInfo.setSp3(uploadFileName);}
-			else if(i==3) {storeInfo.setSp4(uploadFileName);}
+         if(i==0) {storeInfo.setSp1(uploadFileName);}
+         else if(i==1) {storeInfo.setSp2(uploadFileName);}
+         else if(i==2) {storeInfo.setSp3(uploadFileName);}
+         else if(i==3) {storeInfo.setSp4(uploadFileName);}
 
-			File saveFile = new File(uploadFolder, uploadFileName);
-			try {
-				uploadFile[i].transferTo(saveFile);
-			}catch (Exception e) {
-				logger.error(e.getMessage());
-			}//end catch
-		}
-		System.out.println("StoreAddPost...호출");
-		System.out.println("점포정보 잘들어왔나? =>" + storeInfo.toString());
+         File saveFile = new File(uploadFolder, uploadFileName);
+         try {
+            uploadFile[i].transferTo(saveFile);
+         }catch (Exception e) {
+            logger.error(e.getMessage());
+         }//end catch
+      }
+      System.out.println("StoreAddPost...호출");
+      System.out.println("점포정보 잘들어왔나? =>" + storeInfo.toString());
 
-		int ret = managerService.storeAdd(storeInfo);
-		managerService.mapDataAdd(storeInfo);
-		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
+      int ret = managerService.storeAdd(storeInfo);
+      managerService.mapDataAdd(storeInfo);
+      System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
 
-		return "/manager/storeAddPost";
-	}
+      return "/manager/storeAddPost";
+   }
 
-	@GetMapping("/update")
-	public String myStoresList(HttpServletRequest request,Model model,HttpSession session) {
-		Members loginMember = (Members) session.getAttribute("loginMember");
-		System.out.println(loginMember.toString());
-		model.addAttribute("url", request.getRequestURI());
-		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
-		return "/manager/storesList";
-	}
+   @GetMapping("/update")
+   public String myStoresList(HttpServletRequest request,Model model,HttpSession session) {
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      System.out.println(loginMember.toString());
+      model.addAttribute("url", request.getRequestURI());
+      model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+      return "/manager/storesList";
+   }
 
-	@GetMapping("/updateOne")
-	public String selectStoreOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
-		System.out.println(snum);
-		StoreInfo storeInfo = managerService.selectStoreOne(snum);
-		System.out.println(storeInfo.toString());
-		model.addAttribute("product",adminService.getProduct());
-		model.addAttribute("storeInfo",storeInfo);
-		return "/manager/selectStoreOne";
-	}
+   @GetMapping("/updateOne")
+   public String selectStoreOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
+      System.out.println(snum);
+      StoreInfo storeInfo = managerService.selectStoreOne(snum);
+      System.out.println(storeInfo.toString());
+      model.addAttribute("product",adminService.getProduct());
+      model.addAttribute("storeInfo",storeInfo);
+      return "/manager/selectStoreOne";
+   }
 
-	@PostMapping("/updateOne")
-	public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
-		System.out.println(storeInfo.toString());
-		System.out.println("StoreUpdate...호출");
-		System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
-		for(int i=0; i<uploadFile.length; i++) {
-			String uploadFolder = "C:\\upload";
-			String uploadFileName = uploadFile[i].getOriginalFilename(); 
+   @PostMapping("/updateOne")
+   public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
+      System.out.println(storeInfo.toString());
+      System.out.println("StoreUpdate...호출");
+      System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
+      for(int i=0; i<uploadFile.length; i++) {
+         String uploadFolder = "C:\\upload";
+         String uploadFileName = uploadFile[i].getOriginalFilename(); 
 
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+         uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 
-			UUID uuid = UUID.randomUUID();
-			uploadFileName = uuid.toString()+"_"+uploadFileName;
+         UUID uuid = UUID.randomUUID();
+         uploadFileName = uuid.toString()+"_"+uploadFileName;
 
-			if(i==0) {storeInfo.setSp1(uploadFileName);}
-			else if(i==1) {storeInfo.setSp2(uploadFileName);}
-			else if(i==2) {storeInfo.setSp3(uploadFileName);}
-			else if(i==3) {storeInfo.setSp4(uploadFileName);}
+         if(i==0) {storeInfo.setSp1(uploadFileName);}
+         else if(i==1) {storeInfo.setSp2(uploadFileName);}
+         else if(i==2) {storeInfo.setSp3(uploadFileName);}
+         else if(i==3) {storeInfo.setSp4(uploadFileName);}
 
-			File saveFile = new File(uploadFolder, uploadFileName);
-			try {
-				uploadFile[i].transferTo(saveFile);
-			}catch (Exception e) {
-				logger.error(e.getMessage());
-			}//end catch
-		}
-		int ret = managerService.storeUpdate(storeInfo);
-		managerService.mapDataUpdate(storeInfo);
-		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
+         File saveFile = new File(uploadFolder, uploadFileName);
+         try {
+            uploadFile[i].transferTo(saveFile);
+         }catch (Exception e) {
+            logger.error(e.getMessage());
+         }//end catch
+      }
+      int ret = managerService.storeUpdate(storeInfo);
+      managerService.mapDataUpdate(storeInfo);
+      System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
 
-		return "/manager/storeUpdate";
-	}
+      return "/manager/storeUpdate";
+   }
 
-	@GetMapping("/delete")
-	public String storeDeleteList(HttpServletRequest request,Model model,HttpSession session) {
-		Members loginMember = (Members) session.getAttribute("loginMember");
-		System.out.println(loginMember.toString());
-		model.addAttribute("url", request.getRequestURI());
-		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
-		return "/manager/storesList";
-	}
+   @GetMapping("/delete")
+   public String storeDeleteList(HttpServletRequest request,Model model,HttpSession session) {
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      System.out.println(loginMember.toString());
+      model.addAttribute("url", request.getRequestURI());
+      model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+      return "/manager/storesList";
+   }
 
-	@GetMapping("/deleteOne")
-	public String selectDeleteOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
-		System.out.println(snum);
-		StoreInfo storeInfo = managerService.selectStoreOne(snum);
-		System.out.println(storeInfo.toString());
-		model.addAttribute("storeInfo",storeInfo);
-		return "/manager/selectDeleteOne";
-	}
+   @GetMapping("/deleteOne")
+   public String selectDeleteOne(@RequestParam("snum") String snum,Model model,HttpSession session) {
+      System.out.println(snum);
+      StoreInfo storeInfo = managerService.selectStoreOne(snum);
+      System.out.println(storeInfo.toString());
+      model.addAttribute("storeInfo",storeInfo);
+      return "/manager/selectDeleteOne";
+   }
 
-	@PostMapping("/deleteOne")
-	public String storeDelete(@RequestParam("snum") String snum,Model model) {
-		System.out.println("storeDelete...호출");
-		//System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
-		int ret = managerService.storeDelete(snum);
-		System.out.println("점포정보 성공적으로 삭제 됬나? =>" + ret);
-		return "/manager/storeDelete";
-	}
+   @PostMapping("/deleteOne")
+   public String storeDelete(@RequestParam("snum") String snum,Model model) {
+      System.out.println("storeDelete...호출");
+      //System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
+      int ret = managerService.storeDelete(snum);
+      System.out.println("점포정보 성공적으로 삭제 됬나? =>" + ret);
+      return "/manager/storeDelete";
+   }
 
-	@GetMapping("/ownerUpdate")
-	public String selectMemberOne(Model model,HttpSession session) {
+   @GetMapping("/ownerUpdate")
+   public String selectMemberOne(Model model,HttpSession session) {
 
-		Members loginMember = (Members) session.getAttribute("loginMember");
-		Members owner = managerService.selectMemberOne(loginMember.getId());
-		System.out.println(owner.toString());
-		model.addAttribute("owner",owner);
-		return "/manager/selectMemberOne";
-	}
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      Members owner = managerService.selectMemberOne(loginMember.getId());
+      System.out.println(owner.toString());
+      model.addAttribute("owner",owner);
+      return "/manager/selectMemberOne";
+   }
 
-	@PostMapping("/ownerUpdate")
-	public String ownerUpdate(Model model,Members members) {
-		System.out.println("memberUpdate...호출");
-		System.out.println("업주정보 잘들어갔나? =>" + members.toString());
-		int ret = managerService.ownerUpdate(members);
-		System.out.println("업주정보 성공적으로 수정 됬나? =>" + ret);
-		return "/manager/ownerUpdate";
-	}
+   @PostMapping("/ownerUpdate")
+   public String ownerUpdate(Model model,Members members) {
+      System.out.println("memberUpdate...호출");
+      System.out.println("업주정보 잘들어갔나? =>" + members.toString());
+      int ret = managerService.ownerUpdate(members);
+      System.out.println("업주정보 성공적으로 수정 됬나? =>" + ret);
+      return "/manager/ownerUpdate";
+   }
 
-	@GetMapping("/ownerDelete")
-	public String ownerDeleteGet(Model model,HttpSession session) {
-		Members loginMember = (Members) session.getAttribute("loginMember");
-		Members owner = managerService.selectMemberOne(loginMember.getId());
-		System.out.println("업주 정보 로드가 잘 됬나?" +owner.toString());
-		model.addAttribute("owner",owner);
-		return "/manager/ownerDeleteGet";
-	}
+   @GetMapping("/ownerDelete")
+   public String ownerDeleteGet(Model model,HttpSession session) {
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      Members owner = managerService.selectMemberOne(loginMember.getId());
+      System.out.println("업주 정보 로드가 잘 됬나?" +owner.toString());
+      model.addAttribute("owner",owner);
+      return "/manager/ownerDeleteGet";
+   }
 
-	@PostMapping("/ownerDelete")
-	public String ownerDeleterPost(@RequestParam("id") String id,Model model) {
-		System.out.println("ownerDeleterPost...호출");
-		//System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
-		int ret = managerService.ownerDeleterPost(id);
-		System.out.println("업주정보 성공적으로 삭제 됬나? =>" + ret);
-		return "/manager/ownerDeleterPost";
-	}
+   @PostMapping("/ownerDelete")
+   public String ownerDeleterPost(@RequestParam("id") String id,Model model) {
+      System.out.println("ownerDeleterPost...호출");
+      //System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
+      int ret = managerService.ownerDeleterPost(id);
+      System.out.println("업주정보 성공적으로 삭제 됬나? =>" + ret);
+      return "/manager/ownerDeleterPost";
+   }
 
-	@GetMapping("/process")
-	public String process(HttpServletRequest request,Model model,HttpSession session) {
-		Members loginMember = (Members) session.getAttribute("loginMember");
-		System.out.println(loginMember.toString());
-		model.addAttribute("url", request.getRequestURI());
-		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
-		return "/manager/storesList";
-	}
+   @GetMapping("/process")
+   public String process(HttpServletRequest request,Model model,HttpSession session) {
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      System.out.println(loginMember.toString());
+      model.addAttribute("url", request.getRequestURI());
+      model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+      return "/manager/storesList";
+   }
 
-	@GetMapping("/processOne")
-	public String managerOrderList(@RequestParam("snum") String snum,Model model) {
-		model.addAttribute("managerOrderList",managerService.managerOrderList(snum));
-		return "/manager/managerOrderList";
-	}
+   @GetMapping("/processOne")
+   public String managerOrderList(@RequestParam("snum") String snum,Model model) {
+      model.addAttribute("managerOrderList",managerService.managerOrderList(snum));
+      return "/manager/managerOrderList";
+   }
 
-	@GetMapping("/orderInfo")
-	public String managerOrderInfo(@RequestParam("orderNum") int orderNum,Model model) {
-		model.addAttribute("managerOrderInfo",managerService.managerOrderInfo(orderNum));
-		return "/manager/managerOrderInfo";
-	}
+   @GetMapping("/orderInfo")
+   public String managerOrderInfo(@RequestParam("orderNum") int orderNum,Model model) {
+      model.addAttribute("managerOrderInfo",managerService.managerOrderInfo(orderNum));
+      return "/manager/managerOrderInfo";
+   }
 
-	@GetMapping("/stats")
-	public String stats(HttpServletRequest request,Model model,HttpSession session) {
-		Members loginMember = (Members) session.getAttribute("loginMember");
-		model.addAttribute("url", request.getRequestURI());
-		model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
-		return "/manager/storesList";
-	}
+   @GetMapping("/stat")
+   public String stat(HttpServletRequest request,Model model,HttpSession session) {
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      model.addAttribute("url", request.getRequestURI());
+      model.addAttribute("storeslist",managerService.myStoresList(loginMember.getId()));
+      return "/manager/storesList";
+   }
 
-	//	@GetMapping("/statsOne")
-	//	public String managerStatsOne(@RequestParam("snum") String snum,Model model) {
-	//		model.addAttribute("managerStatsOne",managerService.managerStatsOne(snum));
-	//		 
-	//		return "/manager/managerStatsOne";
-	//	}
-
+   @GetMapping("/statOne")
+   public String managerStatOne(@RequestParam("snum") String snum,Model model) {
+      model.addAttribute("snum",snum);
+      return "/manager/statOne";
+   }
+   
+   @GetMapping("/asset")
+   public String assetList(Model model,HttpSession session) {
+      System.out.println("assetList....호출...");
+      Members loginMember = (Members) session.getAttribute("loginMember");
+      model.addAttribute("stores",managerService.myStoresList(loginMember.getId()));
+      return "/manager/assetStoreList";
+   }
+   
+   @GetMapping("/assetOne")
+   public String assetOne(Model model,@RequestParam("snum") String snum) {
+      System.out.println("assetOne....호출...");
+      model.addAttribute("asset",adminService.assetOne(snum));
+      System.out.println(adminService.assetOne(snum).toString());
+      return "/manager/assetOne";
+   }
 	//  Review 1015 -------------------------------------------------------------------------------
 
 	@GetMapping("/review")
