@@ -138,7 +138,7 @@
          });
 
          //최종결제 
-             
+           var ret;  
                 function kakaopay(){
                     //var payData = $("#payform").serialize();
                     
@@ -159,13 +159,16 @@
                    var items=$('input[name="items"]');
                    var sname=$('input[name="sname"]');
                    var snum=$('input[name="snum"]');
+                   var paycart=$('input[name="paycart"]');
                        var ttt = new Array();
                        var sss = new Array();
                        var snn = new Array();
+                       var ccc = new Array();
                        for(var i=0;i<items.length;i++){
                           ttt.push(items.eq(i).val());
                           sss.push(sname.eq(i).val());
                           snn.push(snum.eq(i).val());
+                          ccc.push(paycart.eq(i).val());
                        }
                   
                       var pay_price =$('input[name="pay_price"]').val()
@@ -200,27 +203,33 @@
                                     $.ajax({
                                         type: "POST", 
                                         url: "/order/finalPay", //충전 금액값을 보낼 url 설정 
-                                                                       
+                                        async: false,                               
                                         dataType: "json",
                                         data: {
                                            //amount : money
-                                            pay_price : rsp.paid_amount,
+                                            pay_price : ccc,
                                             sname : sss,
                                             snum : snn,
                                             items : ttt,
                                            	bubble : bubble,
                                            	id : id
-                                            
-                                            
                                         },
+                                        success: function(data){
+										  ret =data/2;
+                                      	  $('input[name="ret"]').val(ret);
+                                          console.log($('input[name="ret"]').val());
+                                         
+                                        }
                                     });
-                                       } else {
+                                    } else {
                                            var msg = '결제에 실패하였습니다.';
                                            msg += '에러내용 : ' + rsp.error_msg;
                                            document.location.href="cart.jsp";
                                        }
                                        alert(msg);
-                                       document.location.href="/stores/payCheck"; //alert창 확인 후 이동할 url 설정
+                                       
+                                       
+                                       document.location.href="/stores/payCheck?ret="+ret; //alert창 확인 후 이동할 url 설정
                                    });
                                };
 
@@ -250,9 +259,10 @@
           
             <c:forEach var="cart" items="${cartpay}">
             <input type="hidden" name="items" value="${cart.items}"/>
+            <input type="hidden" name="ret" value=""/>
              <input type="hidden" name="sname" value="${cart.sname}"/>
              <input type="hidden" name="snum" value="${cart.snum}"/>
-             
+             <input type="hidden" name="paycart" value="${cart.pay_cart}"/>
                <tr>
                   <td class="product-close"><input type="checkbox"
                      name="chkbox" onClick="itemSum()" class="chkbox"

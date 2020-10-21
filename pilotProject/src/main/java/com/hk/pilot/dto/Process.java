@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Process {
 	String id;
-	int orderNum;
+	String orderNum;
 	Date wait;
 	Date ok;
 	Date pick;
@@ -17,10 +17,10 @@ public class Process {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 	public Date getWait() {
@@ -64,4 +64,5 @@ public class Process {
 		return "Process [id=" + id + ", orderNum=" + orderNum + ", wait=" + wait + ", ok=" + ok + ", pick=" + pick
 				+ ", wash=" + wash + ", finish=" + finish + ", refundDate=" + refundDate + "]";
 	}
+	
 }

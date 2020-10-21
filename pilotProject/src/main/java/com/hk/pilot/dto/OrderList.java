@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class OrderList {
 	
-	int orderNum;
+	String orderNum;
 	String id;
 	String snum;
 	String sname;
@@ -13,10 +13,10 @@ public class OrderList {
 	int pay_price;
 	String r_check;
 	int bubble;
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 	public String getId() {
@@ -73,5 +73,5 @@ public class OrderList {
 				+ items + ", pay_date=" + pay_date + ", pay_price=" + pay_price + ", r_check=" + r_check + ", bubble="
 				+ bubble + "]";
 	}
-			
+	
 }

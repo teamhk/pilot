@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class OrderProcess {
 
-	int orderNum;
+	String orderNum;
 	String id;
 	String snum;
 	String sname;
@@ -27,10 +27,10 @@ public class OrderProcess {
 	String userFirstAddr;
 	String userSecondAddr;
 	String userExtraAddr;
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 	public String getId() {
