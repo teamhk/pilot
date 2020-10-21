@@ -159,4 +159,14 @@ select * from members m,orderList o where m.id=o.id and o.id=#{id}
 
 </select>
 
+	<select id="reviewList" resultType="com.hk.pilot.dto.Review" parameterType="String">
+
+		SELECT
+
+		r_no, r_CONTENT, w_ID, r_date, snum, star, badCnt
+		FROM review WHERE snum = #{snum} ORDER BY r_date desc
+
+	</select>
+
+
 </mapper>

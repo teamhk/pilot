@@ -24,6 +24,7 @@ import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.Product;
+import com.hk.pilot.dto.Review;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -31,34 +32,34 @@ import com.hk.pilot.mapper.MainMapper;
 
 @Service
 public class MainService {
-	
+
 	@Autowired
 	DataSourceTransactionManager transactionManager;
-	
+
 	@Autowired
 	MainMapper mainMapper;
-	
+
 	public List<Price> priceList(){
 		return mainMapper.priceList();
 	}
-	
+
 	public List<Stores> storesList(){
 		return mainMapper.storesList();
 	}
-	
+
 	public ManagerInfo userAdr(String id) {
 		return mainMapper.userAdr(id);
 	}
-//	
-//	public ItemList itemArry(String items){
-//		return mainMapper.itemArry(items);
-//	}//수정
-	
+	//	
+	//	public ItemList itemArry(String items){
+	//		return mainMapper.itemArry(items);
+	//	}//수정
+
 	public StoreInfo selectsStoreOne(String snum) {
-		
+
 		return mainMapper.selectsStoreOne(snum);
 	}
-	
+
 	public List<Product> price(){
 		return mainMapper.price();
 	}
@@ -66,50 +67,50 @@ public class MainService {
 	public int insert(Cart cart) {
 		// TODO Auto-generated method stub
 		return mainMapper.insert(cart);
-		
+
 	}
 	//장바구니 상품확인 
 	public int countCart(int cart_seq) {
 		return mainMapper.countCart(cart_seq);
 	}
-	
+
 	public List<Cart> userCart(String id) { //카트
 		return mainMapper.userCart(id);
 	}
-	
+
 	public int cartPrice(List<Integer> cart_seq){
 		for(int i=0;i<cart_seq.size();i++) {
-//			System.out.println("cart_seq="+cart_seq.get(i));
-		 int ret = mainMapper.cartPrice(cart_seq.get(i));
-//		 System.out.println("ret"+i+"="+ret);
+			//			System.out.println("cart_seq="+cart_seq.get(i));
+			int ret = mainMapper.cartPrice(cart_seq.get(i));
+			//		 System.out.println("ret"+i+"="+ret);
 		}
 		return 1;
 	}
 	//장바구니 삭제
 	public void deleteCart(int cart_seq) {
-		 mainMapper.deleteCart(cart_seq);
-		
+		mainMapper.deleteCart(cart_seq);
+
 	}
-	
+
 	public FinalPay userPay(String id) {
 		return mainMapper.userPay(id);
-		
+
 	}
 
 	public List<FinalPay> cartpay (String id){
-		
+
 		return mainMapper.cartpay(id);
 	}
-	
+
 
 	//버블충전
 	public int bubblePay(Bubble bubble,Account account) {
-		
+
 		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
 		//TransactionStatus라는 것을 transactionManager로 부터 가져온다
 		// Transaction Test
 		try { 
-			 mainMapper.bubblePay(bubble);
+			mainMapper.bubblePay(bubble);
 		} catch (Exception e) { 
 			System.out.println("Service ------------------- End");
 			// 비정상일때는 rollback
@@ -121,14 +122,14 @@ public class MainService {
 		return mainMapper.bubAcc(account);		
 	}
 
-	
+
 	public int accpay(Account account) {
 		return mainMapper.accpay(account);
 	}
-	
+
 	@Transactional
 	public int bubbleplus(Bubble bubble) {
-		
+
 		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
 		//TransactionStatus라는 것을 transactionManager로 부터 가져온다
 		// Transaction Test
@@ -156,7 +157,7 @@ public class MainService {
 		try { 
 			for(int i=0;i<items.length;i++) {
 				Date now = new Date();
-		        SimpleDateFormat vans = new SimpleDateFormat("yyMMdd");
+				SimpleDateFormat vans = new SimpleDateFormat("yyMMdd");
 				String wdate = vans.format(now);
 				int randomCode = new Random().nextInt(100)+100;
 				String joinCode = String.valueOf(randomCode);
@@ -181,25 +182,33 @@ public class MainService {
 		transactionManager.commit(txStatus);
 		return mainMapper.cartChk(id);		
 	}
-	
+
 	//최종결제시 사용한 버블 
 	public int bubblefinal(Bubble bubble1) {
-			if(bubble1.getBubble()!=0) {
-				mainMapper.bubblefinal(bubble1);
-			
-			}
-		 return 0;	
+		if(bubble1.getBubble()!=0) {
+			mainMapper.bubblefinal(bubble1);
+
+		}
+		return 0;	
 	}
-	
+
 	public int orderAcc(Account account) {
-		
+
 		return mainMapper.orderAcc(account);
-		
+
 	}
-	
+
 	//주문내역
 	public List<OrderList> payCheck(String id){
 		return mainMapper.payCheck(id);
 	}
-		
+
+	// review 1015 james-------------------------------------------------------------
+	public List<Review> reviewList(String snum){
+		return mainMapper.reviewList(snum);
+	}
+
+
+
+
 }

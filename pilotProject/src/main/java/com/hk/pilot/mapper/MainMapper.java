@@ -14,6 +14,7 @@ import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.Product;
+import com.hk.pilot.dto.Review;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.dto.UserInfo;
@@ -65,4 +66,9 @@ public interface MainMapper {
 	public int orderAcc(Account account);
 	
 	public List<OrderList> payCheck(String id);
+	
+	// review 1015 james-----------------------------------------------------------------------
+
+	public List<Review> reviewList(String snum);
+	
 }

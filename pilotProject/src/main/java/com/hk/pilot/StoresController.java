@@ -56,6 +56,7 @@ public class StoresController {
 		model.addAttribute("items",items);
 		model.addAttribute("storeInfo",storeInfo);
 		model.addAttribute("product",mainService.price());
+		model.addAttribute("reviewList", mainService.reviewList(snum));
 		return "main/storesInfo";
 	}
 	

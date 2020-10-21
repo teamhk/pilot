@@ -162,7 +162,7 @@ function popupOpen() {
 }
 
 function popupClose() {
-	$('#layerboxc').hide();
+	$('#layerbox').hide();
 	$('#mask').hide();
 }
 
@@ -1121,6 +1121,14 @@ $(document).ready(function() {
 		background-size: 180px 80px
 	}
 }
+
+.starcolor{
+
+color : red;
+
+}
+
+
 </style>
 </head>
 
@@ -1781,7 +1789,73 @@ this.deselect = function (trgtGoodsId){
 						</ul>
 
 					</div>
+					<br>
+
+
+
+					<section id="container">
+						<h4 class="review">리뷰</h4>
+						<form role="form" method="get">
+							<table>
+								<tr>
+									<th>리뷰번호</th>
+									<th>내용</th>
+									<th>작성자</th>
+									<th>등록일</th>
+									<th>별점</th>
+								</tr>
+
+								<c:forEach items="${reviewList}" var="reviewList">
+					
+									<c:set var="star0" value="${reviewList.star}" />
+									<c:choose>
+										<c:when test="${star0 eq '1' }">
+											<c:set var="star1" value="${fn:replace(star0, '1', '★' ) }" />
+										</c:when>
+
+										<c:when test="${star0 eq '2' }">
+											<c:set var="star1" value="${fn:replace(star0, '2', '★★')  }" />
+										</c:when>
+
+
+										<c:when test="${star0 eq '3' }">
+											<c:set var="star1" value="${fn:replace(star0, '3', '★★★' ) }" />
+										</c:when>
+
+
+										<c:when test="${star0 eq '4' }">
+											<c:set var="star1"
+												value="${fn:replace(star0, '4', '★★★★')  }" />
+										</c:when>
+
+
+										<c:when test="${star0 eq '5' }">
+
+											<c:set var="star1"
+												value="${fn:replace(star0, '5', '★★★★★')  }" />
+										</c:when>
+
+
+									</c:choose>
+
+
+									<tr>
+										<td><c:out value="${reviewList.r_no}" /></td>
+										<td><c:out value="${reviewList.r_content}" /></td>
+										<td><c:out value="${reviewList.w_id}" /></td>
+										<td><fmt:formatDate value="${reviewList.r_date}"
+												pattern="yyyy-MM-dd" /></td>
+										<td class="starcolor"><c:out value="${star1}" /></td>
+									</tr>
+								</c:forEach>
+
+							</table>
+						</form>
+					</section>
+
 				</div>
+
+
 				<!-- 선택 되었을 때 클래스 agree_chacked ->
                 <input id="mapChoice2" class="inp_choice" type="checkbox" checked="checked">
                 <label for="mapChoice2" class="lab_agree">
@@ -2333,73 +2407,73 @@ this.deselect = function (trgtGoodsId){
 				<!-- </form>  -->
 
 				<!--Popup Start -->
-
-				<button onClick="javascript:goDetail('테스트');">문의글 작성하기</button>
-				<div style="height: 1000px;"></div>
-
-				<!-- 팝업뜰때 배경 -->
-				<div id="mask"></div>
-
-
-				<div id="layerbox" class="layerpop"
-					style="width: 700px; height: 350px;">
-					<article class="layerpop_area">
-						<div class="title2">문의하기</div>
-						<a href="javascript:popupClose();" class="layerpop_close"
-							id="layerbox_close"></a> <br>
+				<div>
+					<button onClick="javascript:goDetail('테스트');">문의글 작성하기</button>
+					<div style="height: 1000px;"></div>
+	
+					<!-- 팝업뜰때 배경 -->
+					<div id="mask"></div>
 
 
-						<form name="writeForm" method="post" action="/user/schatW">
-							<table>
-								<tbody>
-
-									<tr>
-										<td><label for="content">제목</label> <textarea
-												id="c_title" name="c_title" class="chk" title="제목을 입력하세요."
-												placeholder="내용을 입력해주세요"></textarea></td>
-									</tr>
-
-									<tr>
-										<td><label for="content">내용</label> <textarea
-												id="c_content" name="c_content" class="chk"
-												title="내용을 입력하세요." placeholder="내용을 입력해주세요"></textarea></td>
-									</tr>
-									<tr>
-										<td><label for="writer">작성자</label><input type="text"
-											id="writer" name="w_id" placeholder="ID가져올 예정"
-											value="${loginMember.id}" /></td>
-									<tr>
-									<tr>
-										<td><label for="writer"></label><input type="hidden"
-											id="grade" name="g_check" placeholder="회원등급 가져올예정"
-											value="${loginMember.grade}" /></td>
-									<tr>
-									<tr>
-										<td><label for="writer"></label><input type="hidden"
-											id="snum" name="snum" value='${storeInfo.snum}'
-											placeholder="사업자번호 가져올예정" /></td>
-									<tr>
-
-										<td>
-											<button type="submit" class="write_btn">작성하기</button>
-										</td>
-									</tr>
-
-									<tr>
+					<div id="layerbox" class="layerpop"
+						style="width: 700px; height: 350px;">
+						<article class="layerpop_area">
+							<div class="title2">문의하기</div>
+							<a href="javascript:popupClose();" class="layerpop_close"
+								id="layerbox_close"></a> <br>
 
 
-										<td>
-											<button id='layerboxc'>취소</button>
-										</td>
-									</tr>
+							<form name="writeForm" method="post" action="/user/schatW">
+								<table>
+									<tbody>
 
-								</tbody>
-							</table>
-						</form>
+										<tr>
+											<td><label for="content">제목</label> <textarea
+													id="c_title" name="c_title" class="chk" title="제목을 입력하세요."
+													placeholder="내용을 입력해주세요"></textarea></td>
+										</tr>
 
-					</article>
+										<tr>
+											<td><label for="content">내용</label> <textarea
+													id="c_content" name="c_content" class="chk"
+													title="내용을 입력하세요." placeholder="내용을 입력해주세요"></textarea></td>
+										</tr>
+										<tr>
+											<td><label for="writer">작성자</label><input type="text"
+												id="writer" name="w_id" placeholder="ID가져올 예정"
+												value="${loginMember.id}" /></td>
+										<tr>
+										<tr>
+											<td><label for="writer"></label><input type="hidden"
+												id="grade" name="g_check" placeholder="회원등급 가져올예정"
+												value="${loginMember.grade}" /></td>
+										<tr>
+										<tr>
+											<td><label for="writer"></label><input type="hidden"
+												id="snum" name="snum" value='${storeInfo.snum}'
+												placeholder="사업자번호 가져올예정" /></td>
+										<tr>
+
+											<td>
+												<button type="submit" class="write_btn">작성하기</button>
+											</td>
+										</tr>
+
+										<tr>
+
+
+											<td>
+												<button id="layerbox" onclick="javascript:popupClose() ;">취소</button>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</form>
+
+						</article>
+					</div>
 				</div>
-
 				<!--Popup End -->
 </body>
 </html>
