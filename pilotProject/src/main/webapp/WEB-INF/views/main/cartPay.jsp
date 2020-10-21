@@ -141,6 +141,18 @@
              
                 function kakaopay(){
                     //var payData = $("#payform").serialize();
+                    
+                     if ( ! jQuery('input[name="b_price"]:checked').val() ) {
+                            alert('결제수단을 선택해주세요.');
+                         jQuery('input[name="b_price"]').focus();  
+                         return false;
+                     }
+                      if( ! $('#check_agree_policy:checked').val()){
+                         alert('동의하셔야 결제가 가능합니다.');
+                          $('#check_agree_policy').focus();
+                          return false;
+                      }
+                 	console.log("안들어오지?")
                    var id=$('input[name="id"]').val();
                    var bubble=$('input[name="bubble"]').val();
                    console.log(bubble);
@@ -205,12 +217,18 @@
                                        } else {
                                            var msg = '결제에 실패하였습니다.';
                                            msg += '에러내용 : ' + rsp.error_msg;
+                                           document.location.href="cart.jsp";
                                        }
                                        alert(msg);
                                        document.location.href="/stores/payCheck"; //alert창 확인 후 이동할 url 설정
                                    });
                                };
-                    
+
+
+                               
+                               
+                               
+                             
    </script>
    <form id="payform" method="post" >
       <div class="payOrder">
@@ -312,10 +330,10 @@
       <div class="pricechk">
          <h2>결제 수단</h2>
          <!-- 등록카드 -->
-         <input tyPe="radio" name="b_price"/>
+         <input tyPe="radio" name="b_price" />
          <label >등록 카드</label><br>
          <!-- 카카오페이 -->
-       <input tyPe="radio" name="kakao"/>
+       <input tyPe="radio" name="b_price" />
          <label >카카오페이</label><br>
       </div>
       <div class="form-check check_agree_policy">

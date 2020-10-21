@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
@@ -49,13 +50,19 @@ public interface MainMapper {
 	
 	public int bubbleplus(Bubble bubble);
 	
+	public int accpay(Account account); //accont 초기값 가져오기
+	
+	public int bubAcc(Account account);
+	
 	//public int finalPay(int pay_price,String items,String snum,String sname,int bubble);
 
 	public int finalPay(HashMap<String, Object> map);
 	
 	public int cartChk(String id);
-	
+
 	public int bubblefinal(Bubble bubble1);
+	
+	public int orderAcc(Account account);
 	
 	public List<OrderList> payCheck(String id);
 }

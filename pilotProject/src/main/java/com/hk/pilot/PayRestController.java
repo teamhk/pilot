@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
@@ -36,7 +37,7 @@ public class PayRestController {
 	
 	
 	  @RequestMapping(path = "/bubblePay", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE )
-	  public int bubblePay(int b_price,HttpSession session,Bubble bubble) {
+	  public int bubblePay(int b_price,HttpSession session,Bubble bubble,Account account) {
 		  System.out.println(b_price);
 		  Members loginMember = (Members) session.getAttribute("loginMember");
 	 		  
@@ -47,11 +48,17 @@ public class PayRestController {
 		  bubble.setB_bubble((int) (b_price*1.1));
 		  bubble.setBubble((int)(bu+(b_price*1.1)));
 		  
-		  return mainService.bubblePay(bubble);
+		  int bal=mainService.accpay(account);
+		  account.setId(loginMember.getId());
+		  account.setBalance((int)(bal+b_price));
+		  account.setI_price(b_price);
+		  
+		 
+		  return mainService.bubblePay(bubble,account);
 		}
 	 
 	  @RequestMapping(path = "/finalPay", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE )
-	     public int finalPay(HttpSession session,int pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,int bubble,String id,Bubble bubble1){
+	     public int finalPay(HttpSession session,int pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,int bubble,String id,Bubble bubble1,Account account){
 		  Members loginMember = (Members) session.getAttribute("loginMember");
 		  bubble1.setId(loginMember.getId());
 		  int bu=mainService.bubbleplus(bubble1);
@@ -59,8 +66,14 @@ public class PayRestController {
 		   bubble1.setP_bubble(bubble);
 		  	bubble1.setBubble((int)(bu-bubble));
 		  	System.out.println((int)(bu-bubble));
+		  	
+		  	 int bal=mainService.accpay(account);
+			 account.setId(loginMember.getId());
+			 account.setBalance((int)(bal+pay_price));
+		  account.setI_price(pay_price);
 		  
 		  	mainService.bubblefinal(bubble1);
+		  	mainService.orderAcc(account);
 	        mainService.finalPay(pay_price,items,snum,sname,bubble,id);
 	        return 0;
 	     }

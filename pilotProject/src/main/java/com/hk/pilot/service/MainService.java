@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
@@ -102,9 +103,27 @@ public class MainService {
 	
 
 	//버블충전
-	public int bubblePay(Bubble bubble) {
+	public int bubblePay(Bubble bubble,Account account) {
 		
-		return mainMapper.bubblePay(bubble);
+		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
+		//TransactionStatus라는 것을 transactionManager로 부터 가져온다
+		// Transaction Test
+		try { 
+			 mainMapper.bubblePay(bubble);
+		} catch (Exception e) { 
+			System.out.println("Service ------------------- End");
+			// 비정상일때는 rollback
+			transactionManager.rollback(txStatus);
+			return 0;
+		}
+		// 정상일때는 commit 저장 (빼먹으면 안됨)
+		transactionManager.commit(txStatus);
+		return mainMapper.bubAcc(account);		
+	}
+
+	
+	public int accpay(Account account) {
+		return mainMapper.accpay(account);
 	}
 	
 	@Transactional
@@ -126,31 +145,11 @@ public class MainService {
 		return mainMapper.bubbleplus(bubble);		
 	}
 
+
 	//최종결제
 	public int finalPay(int pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,int bubble,String id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-//	for(int i=0;i<items.length;i++) {
-//		Date now = new Date();
-//        SimpleDateFormat vans = new SimpleDateFormat("yyMMdd");
-//		String wdate = vans.format(now);
-//		int randomCode = new Random().nextInt(100)+100;
-//		String joinCode = String.valueOf(randomCode);
-//		String num=wdate+joinCode;
-//		double orderNum=Double.valueOf(num);
-//		map.put("pay_price",pay_price);
-//		map.put("items",items[i]);
-//		map.put("snum",snum[i]);
-//		map.put("sname",sname[i]);
-//		map.put("bubble",bubble);
-//		map.put("id", id);
-//		map.put("orderNum", orderNum);
-//		mainMapper.finalPay(map);
-//		System.out.println(map);
-//	}	
-//		return 0;
-//
-//	}
+
 		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
 		//TransactionStatus라는 것을 transactionManager로 부터 가져온다
 		// Transaction Test
@@ -190,6 +189,12 @@ public class MainService {
 			
 			}
 		 return 0;	
+	}
+	
+	public int orderAcc(Account account) {
+		
+		return mainMapper.orderAcc(account);
+		
 	}
 	
 	//주문내역

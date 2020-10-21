@@ -90,6 +90,16 @@ SELECT bubble FROM (
 
 </select>
 
+<select id="accpay" resultType="int" parameterType="com.hk.pilot.dto.Account">
+
+SELECT BALANCE FROM (
+      SELECT BALANCE
+ FROM Account 
+      ORDER BY ROWNUM DESC)
+   WHERE ROWNUM = 1
+
+</select>
+
 <insert id="bubblePay" parameterType="com.hk.pilot.dto.Bubble" >
 <selectKey resultType="int" keyProperty="b_seq" order="BEFORE">
 select NVL(MAX(b_seq) + 1, 1) from Bubble 
@@ -99,8 +109,17 @@ INSERT INTO BUBBLE (id,B_PRICE, B_DATE,b_bubble,b_seq,bubble,P_bubble) VALUES(#{
 
 </insert>
 
-<insert id="finalPay" parameterType="map">
+<insert id="bubAcc" parameterType="com.hk.pilot.dto.Account">
+<selectKey resultType="int" keyProperty="a_seq" order="BEFORE">
+select NVL(MAX(a_seq) + 1, 1) from Account 
 
+</selectKey>
+
+INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, #{i_price}, '버블결제', #{id}, 0, #{a_seq})
+
+</insert>
+
+<insert id="finalPay" parameterType="map">
 INSERT ALL 
 INTO ORDERLIST (ORDERNUM,ID, ITEMS, SNAME,SNUM,PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{orderNum},#{id},#{items},#{sname},#{snum}, sysdate, #{pay_price}, 'N', #{bubble}, 'N')
 
@@ -121,6 +140,16 @@ select NVL(MAX(b_seq) + 1, 1) from Bubble
 
 </selectKey>
 INSERT INTO BUBBLE (id,b_price, B_DATE,b_seq,bubble,p_bubble,b_bubble) VALUES(#{id},0, sysdate,#{b_seq},#{bubble},#{p_bubble},0)
+
+</insert>
+
+
+<insert id="orderAcc">
+<selectKey resultType="int" keyProperty="a_seq" order="BEFORE">
+select NVL(MAX(A_SEQ) + 1, 1) from ACCOUNT 
+
+</selectKey>
+INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, #{i_price}, '상품결제', #{id}, 0, #{a_seq})
 
 </insert>
 
