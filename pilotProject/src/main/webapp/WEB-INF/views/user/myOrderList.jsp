@@ -21,6 +21,7 @@
 	cursor: pointer;
 } /* 마우스 포인터가 손가락 모양으로 바꿈*/
 
+
 /*-- POPUP common style S ======================================================================================================================== --*/
 #mask {
 	position: absolute;
@@ -56,11 +57,11 @@
 	position: absolute;
 	top: 10px;
 	right: 10px;
-	background: transparent url('btn_exit_off.png') no-repeat;
+	background: transparent url('/resources/images/btn_exit_off.png') no-repeat;
 }
 
 .layerpop_area .layerpop_close:hover {
-	background: transparent url('btn_exit_on.png') no-repeat;
+	background: transparent url('/resources/images/btn_exit_on.png') no-repeat;
 	cursor: pointer;
 }
 
@@ -135,7 +136,7 @@
 		$('#layerbox').show();
 	}
 	function popupClose() {
-		$('#layerboxc').hide();
+		$('#layerbox').hide();
 		$('#mask').hide();
 	}
 	function goDetail() {
@@ -242,7 +243,7 @@
 			<div id="layerbox" class="layerpop"
 				style="width: 700px; height: 350px;">
 				<article class="layerpop_area">
-					<div class="title2">리뷰 작성하기</div>
+					<div class="title">리뷰 작성하기</div>
 					<a href="javascript:popupClose();" class="layerpop_close"
 						id="layerbox_close"></a> <br>
 
@@ -288,13 +289,7 @@
 									</td>
 								</tr>
 
-								<tr>
-
-
-									<td>
-										<button id='layerboxc'>취소</button>
-									</td>
-								</tr>
+						
 
 							</tbody>
 						</table>

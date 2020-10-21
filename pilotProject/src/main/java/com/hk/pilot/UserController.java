@@ -294,7 +294,7 @@ public class UserController {
 			userService.schatWrite(chat);
 			
 			
-			return "main/storesInfo";
+			return "redirect:/";
 		}
 		
 		//문의글 상세 조회
