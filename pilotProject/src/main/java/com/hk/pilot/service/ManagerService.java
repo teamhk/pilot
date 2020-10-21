@@ -93,12 +93,6 @@ public class ManagerService {
             return 1;   
    }
 
-   //업체 정보 수정2
-   public int mapDataUpdate(StoreInfo storeInfo) {
-      int ret = managerMapper.mapDataUpdate(storeInfo);
-      return ret;
-   }
-
    // 업체 정보 삭제(sdcheck=>true)
    public int storeDelete(String snum) {
 
@@ -107,7 +101,7 @@ public class ManagerService {
       return ret;
    }
 
-<<<<<<< HEAD
+
 	//업체 정보 수정2
 	public int mapDataUpdate(MapData mapData) {
 		int ret = managerMapper.mapDataUpdate(mapData);
@@ -117,10 +111,10 @@ public class ManagerService {
 			return 0;
 		}
 	}
-=======
+
    // 업주의 개인정보 호출 + 업주 탈퇴 확인을 위한 호출
    public Members selectMemberOne(String id) {
->>>>>>> branch 'master' of https://github.com/teamhk/pilot.git
+
 
       return managerMapper.selectMemberOne(id);
    }

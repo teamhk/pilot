@@ -103,7 +103,7 @@ public class ManagerController {
       return "/manager/selectStoreOne";
    }
 
-<<<<<<< HEAD
+
 	@PostMapping("/updateOne")
 	public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo, MapData mapData ) {
 		System.out.println(storeInfo.toString());
@@ -112,16 +112,7 @@ public class ManagerController {
 		for(int i=0; i<uploadFile.length; i++) {
 			String uploadFolder = "C:\\upload";
 			String uploadFileName = uploadFile[i].getOriginalFilename(); 
-=======
-   @PostMapping("/updateOne")
-   public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
-      System.out.println(storeInfo.toString());
-      System.out.println("StoreUpdate...호출");
-      System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
-      for(int i=0; i<uploadFile.length; i++) {
-         String uploadFolder = "C:\\upload";
-         String uploadFileName = uploadFile[i].getOriginalFilename(); 
->>>>>>> branch 'master' of https://github.com/teamhk/pilot.git
+
 
          uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 
@@ -133,7 +124,6 @@ public class ManagerController {
          else if(i==2) {storeInfo.setSp3(uploadFileName);}
          else if(i==3) {storeInfo.setSp4(uploadFileName);}
 
-<<<<<<< HEAD
 			File saveFile = new File(uploadFolder, uploadFileName);
 			try {
 				uploadFile[i].transferTo(saveFile);
@@ -144,18 +134,6 @@ public class ManagerController {
 		int ret = managerService.storeUpdate(storeInfo);
 		managerService.mapDataUpdate(mapData);
 		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
-=======
-         File saveFile = new File(uploadFolder, uploadFileName);
-         try {
-            uploadFile[i].transferTo(saveFile);
-         }catch (Exception e) {
-            logger.error(e.getMessage());
-         }//end catch
-      }
-      int ret = managerService.storeUpdate(storeInfo);
-      managerService.mapDataUpdate(storeInfo);
-      System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
->>>>>>> branch 'master' of https://github.com/teamhk/pilot.git
 
       return "/manager/storeUpdate";
    }
