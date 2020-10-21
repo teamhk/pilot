@@ -35,7 +35,7 @@ public interface UserMapper {
 
 	public List<OrderList> orderList(String id);
 	
-	public OrderProcess myOrderList(int orderNum);
+	public OrderProcess myOrderList(String orderNum);
 //  1013 chat--------------------------------------------------------------------------------------------------------------------------------
 	
 	public void write(Chat chat); //문의게시판 게시글작성

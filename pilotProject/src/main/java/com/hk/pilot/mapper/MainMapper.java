@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Cart;
@@ -65,7 +67,7 @@ public interface MainMapper {
 	
 	public int orderAcc(Account account);
 	
-	public List<OrderList> payCheck(String id);
+	public List<OrderList> payCheck(@Param("id") String id,@Param("ret") int ret);
 	
 	// review 1015 james-----------------------------------------------------------------------
 

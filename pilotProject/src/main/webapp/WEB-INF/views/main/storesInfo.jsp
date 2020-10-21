@@ -177,7 +177,7 @@ function goDetail() {
 }
 
 $(document).ready(function() {
-	var formObj = $("form[name='reviewForm']");
+	var formObj = $("form[name='writeForms']");
 	$(".write_btn").on("click", function() {
 		if (fn_valiChk()) {
 			return false;
@@ -189,6 +189,16 @@ $(document).ready(function() {
 	});
 
 })
+
+	function fn_valiChk() {
+		var writeForm = $("form[name='writeForm'] .chk").length;
+		for (var i = 0; i < writeForm; i++) {
+			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
+				alert($(".chk").eq(i).attr("title"));
+				return true;
+			}
+		}
+	}
 
 </script>
 <meta property="og:title" content="퀴클린24셀프빨래방">

@@ -196,6 +196,13 @@
 			String process = "";
 		%>
 		<c:choose>
+		
+			<c:when test="${myOrderList.refundDate ne null}">
+				<%
+					process = "환불완료";
+				%>
+			</c:when>
+		
 			<c:when test="${myOrderList.finish ne null}">
 				<%
 					process = "배달완료";
@@ -224,6 +231,8 @@
 		</c:choose>
 		<input type='text' value='<%=process%>' class='pro' readonly><br>
 	</div>
+	
+	<button id=refund >환불하기</button>
 
 	<button class='tdn'>전화면으로</button>
 	<div id='detail'></div>
@@ -274,7 +283,7 @@
 								<tr>
 								<tr>
 									<td><label for="star">별점</label> <input type="hidden"
-										name="star" id="point" />
+										name="star" id="point" title="별점을 선택해주세요" />
 										<div class="starRev">
 											<span class="star1 on" id="star1" data-value="1">★</span> <span
 												class="star2 on" id="star2" data-value="2">★</span> <span

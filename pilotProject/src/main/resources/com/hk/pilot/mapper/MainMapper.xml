@@ -123,7 +123,7 @@ INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUE
 INSERT ALL 
 INTO ORDERLIST (ORDERNUM,ID, ITEMS, SNAME,SNUM,PAY_DATE, PAY_PRICE, R_CHECK, BUBBLE, REFUND) VALUES(#{orderNum},#{id},#{items},#{sname},#{snum}, sysdate, #{pay_price}, 'N', #{bubble}, 'N')
 
-INTO PROCESS (ID, ORDERNUM, WAIT, OK, PICK, WASH, FINISH) VALUES(#{id}, #{orderNum}, sysdate, null, null,null, null)
+INTO PROCESS (ID, ORDERNUM, WAIT, OK, PICK, WASH, FINISH,REFUNDDATE) VALUES(#{id}, #{orderNum}, sysdate, null, null,null, null,null)
 
 select * from DUAL
 </insert>
@@ -155,8 +155,11 @@ INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUE
 
 <select id="payCheck" resultType="com.hk.pilot.dto.OrderList">
 
-select * from members m,orderList o where m.id=o.id and o.id=#{id}
-
+SELECT * FROM (
+      SELECT *
+ FROM orderList 
+      ORDER BY pay_date DESC)
+   WHERE ROWNUM BETWEEN  1 AND #{ret} AND id=#{id}
 </select>
 
 	<select id="reviewList" resultType="com.hk.pilot.dto.Review" parameterType="String">

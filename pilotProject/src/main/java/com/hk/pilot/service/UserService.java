@@ -96,7 +96,7 @@ public class UserService {
 		return userMapper.orderList(id);
 	}
 
-	public OrderProcess myOrderList(int orderNum) {
+	public OrderProcess myOrderList(String orderNum) {
 		return userMapper.myOrderList(orderNum);
 	}
 	// 1013 chat------------------------------------------------------------------------------------------------------

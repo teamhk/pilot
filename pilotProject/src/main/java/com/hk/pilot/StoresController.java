@@ -19,6 +19,7 @@ import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
 import com.hk.pilot.dto.ManagerInfo;
 import com.hk.pilot.dto.Members;
+import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
@@ -30,10 +31,10 @@ import com.hk.pilot.service.MainService;
 @Controller
 @RequestMapping("/stores")
 public class StoresController {
-	
+
 	@Autowired
 	MainService mainService;
-	
+
 	@GetMapping("/map")
 	public String storesList(Stores Stores,ManagerInfo managerInfo,Model model,HttpSession session,Members members) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
@@ -42,12 +43,12 @@ public class StoresController {
 		model.addAttribute("user",user);
 		return "/main/mapTestEnd";
 	}
-	
+
 	@GetMapping("/noUserMap")
 	public String noUserMap(Stores stores, ManagerInfo managerInfo, Model model) {
 		return "/main/noUserMap";
 	}
-	
+
 	@GetMapping("/info")
 	public String selectsStoreOne(String snum,Model model,StoreInfo StoreInfo) {
 		StoreInfo storeInfo = mainService.selectsStoreOne(snum);
@@ -59,65 +60,65 @@ public class StoresController {
 		model.addAttribute("reviewList", mainService.reviewList(snum));
 		return "main/storesInfo";
 	}
-	
-	
+
+
 	@PostMapping("/info")
-    public String insert( Cart cart, HttpSession session) {
+	public String insert( Cart cart, HttpSession session) {
 
-       
+
 		Members loginMember=(Members)session.getAttribute("loginMember");
-		
-        if(loginMember==null) { 
 
-        //로그인하지 않은 상태이면 로그인 화면으로 이동
+		if(loginMember==null) { 
 
-            return "redirect:/auth/login";
-        }
-        cart.setId(loginMember.getId());
-    
-        int count =mainService.countCart(cart.getCart_seq());
-        
-        if(count ==0) {
-        	mainService.insert(cart);
-        }
-        
-        
-//        int ret=mainService.insert(cart); //장바구니 테이블에 저장됨
-//        System.out.println(ret);
-        return "main/cart"; //장바구니 목록으로 이동
-    }
-	
+			//로그인하지 않은 상태이면 로그인 화면으로 이동
+
+			return "redirect:/auth/login";
+		}
+		cart.setId(loginMember.getId());
+
+		int count =mainService.countCart(cart.getCart_seq());
+
+		if(count ==0) {
+			mainService.insert(cart);
+		}
+
+
+		//        int ret=mainService.insert(cart); //장바구니 테이블에 저장됨
+		//        System.out.println(ret);
+		return "main/cart"; //장바구니 목록으로 이동
+	}
+
 	@GetMapping("/cart")
 	public String addCart(Cart cart, HttpSession session,Model model,Members members) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		List<Cart> cartList=mainService.userCart(loginMember.getId());
-//		 int count =mainService.countCart(cart.getCart_seq());
-//		 model.addAttribute("count",count);
+		//		 int count =mainService.countCart(cart.getCart_seq());
+		//		 model.addAttribute("count",count);
 		model.addAttribute("cartList",cartList);
 		return "main/cartList";
 	}
-	
+
 	//장바구니삭제
 	@RequestMapping("/delete")
-		public String deleteCart(@RequestParam("cart_seq") int cart_seq ,Model model) {
+	public String deleteCart(@RequestParam("cart_seq") int cart_seq ,Model model) {
 		mainService.deleteCart(cart_seq);
-			
-			return "redirect:/stores/cart";
-		}
-		
-		
-	
+
+		return "redirect:/stores/cart";
+	}
+
+
+
 	@PostMapping("/cart")
 	public String UpdateCart(@RequestParam("cart_seq") List<Integer> cart_seq ,Model model) {
 		//List<Cart> cartList=mainService.userCart();
 		int cartPrice=mainService.cartPrice(cart_seq);
-		
-		
-		
+
+
+
 		return "redirect:/stores/pay";
 	}
-	
-	
+
+
 	@GetMapping("/pay")
 	public String cartPay(FinalPay finalpay,HttpSession session,Model model) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
@@ -127,12 +128,15 @@ public class StoresController {
 		model.addAttribute("cartpay",cartpay);
 		return "main/cartPay";
 	}
-	
+
 	@GetMapping("/payCheck")
-	public String payCheck(HttpSession session,Model model) {
-	Members loginMember = (Members) session.getAttribute("loginMember");
-	model.addAttribute("payChk",mainService.payCheck(loginMember.getId()));	
-	return "main/paycheck";
+	public String payCheck(HttpSession session,Model model,@RequestParam("ret") int ret,OrderList orderList) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		System.out.println("ret="+ret);
+		System.out.println(loginMember);
+		//orderList.setId(loginMember.getId());
+		model.addAttribute("payChk",mainService.payCheck(loginMember.getId(),ret));	
+		return "main/paycheck";
 	}
 }
 

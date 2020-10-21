@@ -111,7 +111,7 @@ public class UserController {
 	
 	//주문 상세내역
 	@GetMapping("/processOne")
-	public String myOrderList(@RequestParam("orderNum") int orderNum,Model model) {
+	public String myOrderList(@RequestParam("orderNum") String orderNum,Model model) {
 		model.addAttribute("myOrderList",userService.myOrderList(orderNum));
 		return "user/myOrderList";
 	}
