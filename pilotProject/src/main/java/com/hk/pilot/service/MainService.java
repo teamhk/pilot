@@ -21,6 +21,7 @@ import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
+import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.Product;
@@ -58,6 +59,39 @@ public class MainService {
 	public StoreInfo selectsStoreOne(String snum) {
 		
 		return mainMapper.selectsStoreOne(snum);
+	}
+	
+	public int likeStore(String id, String snum) {
+		Members likeStores = mainMapper.selectLikeStore(id);
+		System.out.println("likeStores.getLikeStore1()"+likeStores.getLikeStore1());
+		System.out.println("snum은"+snum);
+		if( likeStores.getLikeStore1() == null ) {
+			System.out.println("찍히니1");
+			mainMapper.updateLikeStore1(id, snum);
+			return 0;
+		} else if ( likeStores.getLikeStore2() == null) {
+			System.out.println("찍히니2");
+			mainMapper.updateLikeStore2(id, snum);
+			return 0;
+		} else if ( likeStores.getLikeStore3() == null) {
+			System.out.println("찍히니3");
+			mainMapper.updateLikeStore3(id, snum);
+			return 0;
+		} else if ( likeStores.getLikeStore1().equals(snum)) {
+			System.out.println("likeStroe1에 있나?"+likeStores.getLikeStore1());
+			mainMapper.deleteLikeStore1(id, snum);
+			return 1;
+		} else if ( likeStores.getLikeStore2().equals(snum)) {
+			System.out.println("찍히니4");
+			mainMapper.deleteLikeStore2(id, snum);
+			return 1;
+		} else if ( likeStores.getLikeStore3().equals(snum)) {
+			System.out.println("찍히니5");
+			mainMapper.deleteLikeStore3(id, snum);
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 	
 	public List<Product> price(){

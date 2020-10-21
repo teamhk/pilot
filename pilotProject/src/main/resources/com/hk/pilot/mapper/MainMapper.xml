@@ -16,6 +16,54 @@ select * from stores
 
 </select>
 
+<select id="selectLikeStore"  resultType="com.hk.pilot.dto.Members">
+	SELECT *
+	FROM MEMBERS
+	WHERE ID=#{id}
+</select>
+
+<update id="updateLikeStore1" parameterType="String">
+	UPDATE MEMBERS
+	SET
+	LIKESTORE1=#{snum}
+	WHERE ID=#{id}
+</update>
+
+<update id="updateLikeStore2">
+	UPDATE MEMBERS
+	SET
+	LIKESTORE2=#{snum}
+	WHERE ID=#{id}
+</update>
+
+<update id="updateLikeStore3" >
+	UPDATE MEMBERS
+	SET
+	LIKESTORE3=#{snum}
+	WHERE ID=#{id}
+</update>
+
+<update id="deleteLikeStore1" parameterType="String">
+	UPDATE MEMBERS
+	SET
+	LIKESTORE1=null
+	WHERE ID=#{id} 
+</update>
+
+<update id="deleteLikeStore2" parameterType="String">
+	UPDATE MEMBERS
+	SET
+	LIKESTORE2=null
+	WHERE ID=#{id}
+</update>
+
+<update id="deleteLikeStore3" parameterType="String">
+	UPDATE MEMBERS
+	SET
+	LIKESTORE3=null
+	WHERE ID=#{id}
+</update>
+
 <select id="userAdr" resultType="com.hk.pilot.dto.ManagerInfo">
 
 select userFirstAddr  from members where id=#{id}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
+import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.Review;
@@ -85,8 +86,8 @@ public class ManagerService {
 	}
 
 	//업체 정보 수정2
-	public int mapDataUpdate(StoreInfo storeInfo) {
-		int ret = managerMapper.mapDataUpdate(storeInfo);
+	public int mapDataUpdate(MapData mapData) {
+		int ret = managerMapper.mapDataUpdate(mapData);
 		if(ret == 1) {
 			return 1;
 		} else {

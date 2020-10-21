@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
+import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PageMaker;
 import com.hk.pilot.dto.SearchCriteria;
@@ -103,7 +104,7 @@ public class ManagerController {
 	}
 
 	@PostMapping("/updateOne")
-	public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
+	public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo, MapData mapData ) {
 		System.out.println(storeInfo.toString());
 		System.out.println("StoreUpdate...호출");
 		System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
@@ -129,7 +130,7 @@ public class ManagerController {
 			}//end catch
 		}
 		int ret = managerService.storeUpdate(storeInfo);
-		managerService.mapDataUpdate(storeInfo);
+		managerService.mapDataUpdate(mapData);
 		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);
 
 		return "/manager/storeUpdate";

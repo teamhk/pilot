@@ -72,8 +72,10 @@
 		UPDATE ITEMLIST SET ITEMS=#{items} WHERE SNUM=#{snum}
 	</update>
 	
-	<select id="mapLoad" resultType="com.hk.pilot.dto.MapData">
-		select * from MAPDATA
+	<select id="mapLoad" resultType="com.hk.pilot.dto.StoresMap">
+		SELECT s2.SNAME , m2.SADDRESS , s2.AREA_NUM, s2.SNUM
+		FROM STORES s2 , MAPDATA m2 
+		WHERE s2.SNUM = m2.SNUM
 	</select>
 	
 	<select id="itemsPriceGet" resultType="com.hk.pilot.dto.Product">

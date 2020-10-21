@@ -188,6 +188,37 @@ $(document).ready(function() {
 		formObj.submit();
 	});
 
+	$(".link_bookmark").on("click", function(){
+		var id = '${loginMember.id}'
+		var snum = ${storeInfo.snum}
+		console.log("id는", id);
+		console.log("snum은", snum);
+		$.ajax({
+			url: "/likeStore",
+			dataType:"json",
+			method: "post",
+			data:{
+				id:id,
+				snum:snum
+				},
+			success : function(data){
+				if(data==0){
+					alert("관심점포에 등록되었습니다.");
+				} else if (data==1){
+					alert("관심점포가 해제되었습니다.");
+				} else {
+					alert ("관심점포는 최대 3개까지만 등록 가능합니다.");
+				}
+			},
+			error:function(error){
+				alert("에러가 발생했습니다.");
+				console.log("error:",error);
+			}
+			
+		});
+	});
+	
+
 })
 
 	function fn_valiChk() {

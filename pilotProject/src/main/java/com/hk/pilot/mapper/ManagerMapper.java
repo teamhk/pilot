@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
+import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.Review;
@@ -33,7 +34,7 @@ public interface ManagerMapper {
 
 	public int itemListUpdate(StoreInfo storeInfo); // 3-2 업체1개 품목 수정
 
-	public int mapDataUpdate(StoreInfo storeInfo); //3-3 업체1개 정보 수정시 MapData테이블도 정보 수정인데..얘는 주소만 update
+	public int mapDataUpdate(MapData mapData); //3-3 업체1개 정보 수정시 MapData테이블도 정보 수정인데..얘는 주소만 update
 
 	public int storeDelete(String snum);  // 4 업체 정보 삭제처리
 

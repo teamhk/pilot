@@ -35,7 +35,7 @@
 	</insert>
 	
 	<insert id="mapDataUpdate" parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE MAPDATA SET SADDRESS=#{storeFirstAddr}+#{STOREEXTRAADDR}
+		UPDATE MAPDATA SET SADDRESS=#{saddress}
 		WHERE SNUM=#{snum}
 	</insert>
 

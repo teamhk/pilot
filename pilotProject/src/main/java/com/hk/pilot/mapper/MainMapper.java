@@ -33,6 +33,20 @@ public interface MainMapper {
 	
 	public StoreInfo selectsStoreOne(String snum);
 	
+	public Members selectLikeStore(@Param("id") String id); //likeStore 1,2,3에 값 있나 없나 조회
+
+	public int updateLikeStore1(@Param("id") String id, @Param("snum") String snum);
+	
+	public int updateLikeStore2(@Param("id") String id, @Param("snum") String snum);
+	
+	public int updateLikeStore3(@Param("id") String id, @Param("snum") String snum);
+	
+	public int deleteLikeStore1(@Param("id") String id, @Param("snum") String snum);
+	
+	public int deleteLikeStore2(@Param("id") String id, @Param("snum") String snum);
+	
+	public int deleteLikeStore3(@Param("id") String id, @Param("snum") String snum);
+	
 	public List<Product> price();
 	
 	public int insert(Cart Cart);
