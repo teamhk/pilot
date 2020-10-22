@@ -1,15 +1,21 @@
 package com.hk.pilot.dto;
 
-import java.util.Date;
-
 public class Asset {
+	
+	String periodStart;
 	String snum;
 	int a_price;
-	Date a_date;
-	Date periodStart;
-	Date periodEnd;
+	String a_date;
+	String periodEnd;
 	String a_check;
 	int asset_seq;
+	String sname;
+	public String getPeriodStart() {
+		return periodStart;
+	}
+	public void setPeriodStart(String periodStart) {
+		this.periodStart = periodStart;
+	}
 	public String getSnum() {
 		return snum;
 	}
@@ -22,22 +28,16 @@ public class Asset {
 	public void setA_price(int a_price) {
 		this.a_price = a_price;
 	}
-	public Date getA_date() {
+	public String getA_date() {
 		return a_date;
 	}
-	public void setA_date(Date a_date) {
+	public void setA_date(String a_date) {
 		this.a_date = a_date;
 	}
-	public Date getPeriodStart() {
-		return periodStart;
-	}
-	public void setPeriodStart(Date periodStart) {
-		this.periodStart = periodStart;
-	}
-	public Date getPeriodEnd() {
+	public String getPeriodEnd() {
 		return periodEnd;
 	}
-	public void setPeriodEnd(Date periodEnd) {
+	public void setPeriodEnd(String periodEnd) {
 		this.periodEnd = periodEnd;
 	}
 	public String getA_check() {
@@ -52,13 +52,17 @@ public class Asset {
 	public void setAsset_seq(int asset_seq) {
 		this.asset_seq = asset_seq;
 	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
 	@Override
 	public String toString() {
-		return "Asset [snum=" + snum + ", a_price=" + a_price + ", a_date=" + a_date + ", periodStart=" + periodStart
-				+ ", periodEnd=" + periodEnd + ", a_check=" + a_check + ", asset_seq=" + asset_seq + "]";
+		return "Asset [periodStart=" + periodStart + ", snum=" + snum + ", a_price=" + a_price + ", a_date=" + a_date
+				+ ", periodEnd=" + periodEnd + ", a_check=" + a_check + ", asset_seq=" + asset_seq + ", sname=" + sname
+				+ "]";
 	}
-	
-	
-	
 	
 }

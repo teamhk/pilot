@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hk.pilot.dto.Asset;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StatisticDay;
@@ -34,10 +35,10 @@ public class AdminRestController {
 	}
 	
 	@GetMapping(path = "/chartData", produces = MediaType.APPLICATION_JSON_VALUE)
-	public JSONObject chartData(Model model) {
+	public JSONObject chartData(Model model,@RequestParam("snum") String snum,@RequestParam("pStart") String pStart,@RequestParam("pEnd") String pEnd) {
 		logger.info("/admin/rest/mapLoad ----------");
 		System.out.println("<<여기는 AdminRestController>>"+"맵데이터 로딩중입니다.");
-		List<StatisticDay> sd = adminService.chartData();
+		List<StatisticDay> sd = adminService.chartData(snum,pStart,pEnd);
 		System.out.println(sd);
 		JSONObject data = new JSONObject();
 		JSONObject ajaxObjCols1 = new JSONObject();    //cols의 1번째 object를 담을 JSONObject
@@ -113,6 +114,21 @@ public class AdminRestController {
 		System.out.println("삭제 pno="+pno);
 		return adminService.deleteItem(pno);
 	}
+	
+	@GetMapping(path = "/assetAcheck", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Asset> assetAcheck(Model model) {
+		logger.info("/admin/rest/assetAcheck ----------");
+		System.out.println(adminService.assetAcheck());
+		return adminService.assetAcheck();
+	}
+	
+	@GetMapping(path = "/assetAcheckPost", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int assetAcheckPost(Model model,@RequestParam("asset_seq") String asset_seq,@RequestParam("a_check") String a_check) {
+		logger.info("/admin/rest/assetAcheckPost ----------");
+		System.out.println(adminService.assetAcheckPost(asset_seq,a_check));
+		return adminService.assetAcheckPost(asset_seq,a_check);
+	}
+	
 	
 	
 }

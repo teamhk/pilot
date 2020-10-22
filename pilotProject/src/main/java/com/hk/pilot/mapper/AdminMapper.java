@@ -2,13 +2,14 @@ package com.hk.pilot.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.hk.pilot.dto.Asset;
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.MapData;
 import com.hk.pilot.dto.Members;
-import com.hk.pilot.dto.Price;
 import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.SearchCriteria;
 import com.hk.pilot.dto.StatisticDay;
@@ -53,7 +54,14 @@ public interface AdminMapper {
 	
 	public int itemsPricePost(Product product); //제품 수정하기
 	
-	public List<StatisticDay> chartData(); //일일 통계 불러오기 
+	public List<StatisticDay> chartData(@Param("snum") String snum,@Param("pStart") String pStart,@Param("pEnd") String pEnd); //일일 통계 불러오기
+	
+	public List<Asset> assetOne(String snum); // 업체별 정산 가져오기
+	
+	public List<Asset> assetAcheck(); // 미정산 업체 가져오기
+	
+	public int assetAcheckPost(@Param("asset_seq") String asset_seq,@Param("a_check") String a_check); // 정산 상태 변경
+	
 	//  admin chat 1013 james--------------------------------------------------------------------------------------------------------------------------------
 
 	public Members selectMemberOne(String id); // 관리의 개인정보 호출

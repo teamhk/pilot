@@ -91,7 +91,7 @@
 													<a href="/admin/storeList">점포 관리</a>
 													<a href="/admin/price">가격 관리</a>
 													<a href="/admin/aChat">게시글 관리</a>
-													<a href="/admin/stats">통계 관리</a>
+													<a href="/admin/stat">통계 관리</a>
 													<a href="/admin/assets">정산 관리</a>
 													<a href="/admin/account">자산 관리</a>	
 													<a href="/auth/logout">로그아웃</a>
@@ -127,8 +127,8 @@
 													<a href="/manager/process">세탁 진행 상황</a>
 													<a href="/manager/review">리뷰 관리</a>
 													<a href="/manager/aChat">문의글 관리</a>
-													<a href="/manager/stats">통계 관리</a>
-													<a href="/manager/asset">정산 관리</a>
+													<a href="/manager/stat">통계 관리</a>
+													<a href="/manager/assets">정산 관리</a>
 													<a href="/auth/logout">로그아웃</a>
 													<a href="/manager/ownerDelete">회원탈퇴</a>
 												</li>

@@ -143,9 +143,6 @@
 		});
 		$("#items").val(items);
 
-		var saddress = ($("#sample6_address1").val()+$("#sample6_extraAddress1").val());
-		$("#saddress").val(saddress);
-		document.storeform.submit();
 		
 		//-----------area_num값을 자동으로 입력해주는 함수
 		var a = document.getElementsByName("storeFirstAddr")[0];

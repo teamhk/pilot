@@ -126,6 +126,37 @@ public class AdminController {
 			int ret = adminService.itemsPricePost(product);
 			return "admin/itemsPricePost";
 		}
+		
+		@GetMapping("/stat")
+		public String statList(Model model) {
+			System.out.println("statList....호출...");
+			model.addAttribute("stores",adminService.storeList());
+			return "/admin/statList";
+		}
+		
+		@GetMapping("/statOne")
+		public String statOne(Model model,@RequestParam("snum") String snum) {
+			System.out.println("statOne....호출...");
+			model.addAttribute("snum",snum);
+			return "/admin/statOne";
+		}
+		
+		@GetMapping("/assets")
+		public String assetList(Model model) {
+			System.out.println("assetList....호출...");
+			model.addAttribute("stores",adminService.storeList());
+			return "/admin/assetList";
+		}
+		
+		@GetMapping("/assetOne")
+		public String assetOne(Model model,@RequestParam("snum") String snum) {
+			System.out.println("assetOne....호출...");
+			model.addAttribute("asset",adminService.assetOne(snum));
+			System.out.println(adminService.assetOne(snum).toString());
+			return "/admin/assetOne";
+		}
+		
+		
 		//--------------chat---------------------------------------------------------------------------------------------------------------------------------------------
 
 		@GetMapping("/adminUpdate")

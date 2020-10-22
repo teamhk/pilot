@@ -237,7 +237,7 @@ public class ManagerController {
       return "/manager/statOne";
    }
    
-   @GetMapping("/asset")
+   @GetMapping("/assets")
    public String assetList(Model model,HttpSession session) {
       System.out.println("assetList....호출...");
       Members loginMember = (Members) session.getAttribute("loginMember");

@@ -4,104 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.hk.pilot.mapper.AdminMapper">
-<<<<<<< HEAD
-	<select id="userUpdateGet" resultType="com.hk.pilot.dto.UserInfo">
-		SELECT * FROM (SELECT m.id, m.NAME , m.EMAIL , m.PNUM , m.USERZIPCODE , m.CARDCHECK , m.LIKESTORE1 , m.LIKESTORE2 
-		, m.LIKESTORE3 , m.USERFIRSTADDR , m.USERSECONDADDR , USEREXTRAADDR 
-		, p.CARDCOM , p.CARDCVC , p.CARDEXP ,p.CARDNUM , b.BUBBLE FROM MEMBERS m ,PERSONALPAY p,BUBBLE b  WHERE m.id=p.ID(+) AND m.id=b.ID(+) AND m.id=#{id} ORDER BY rownum DESC) 
-		WHERE rownum=1
-	</select>
-	
-	<select id="getProduct" resultType="com.hk.pilot.dto.Product">
-		select * from product
-	</select>
-	
-	<update id="userUpdatePost1">
-		UPDATE MEMBERS SET NAME=#{name}, PNUM=#{pnum}, USERZIPCODE=#{userZipCode}, CARDCHECK=#{cardCheck}, USERFIRSTADDR=#{userFirstAddr}, USERSECONDADDR=#{userSecondAddr}, USEREXTRAADDR=#{userExtraAddr}, EMAIL=#{email} WHERE ID=#{id}
-	</update>
-	
-	<update id="userUpdatePost2">
-		UPDATE PERSONALPAY SET CARDCOM=#{cardCom}, CARDNUM=#{cardNum}, CARDEXP=#{cardExp}, CARDCVC=#{cardCvc} WHERE ID=#{id}
-	</update>
-	
-	<insert id="userInsertPost2">
-		INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC) VALUES(#{id},#{cardCom} ,#{cardNum},#{cardExp}, #{cardCvc})
-	</insert>
-	
-	<select id="managerUpdateGet1" resultType="com.hk.pilot.dto.Members">
-		select * from members where id=#{id}
-	</select>
-	
-	<select id="managerUpdateGet2" resultType="com.hk.pilot.dto.Stores">
-		select * from stores where id=#{id}
-	</select>
-	
-	<update id="managerUpdatePost">
-		UPDATE MEMBERS SET EMAIL=#{email}, NAME=#{name}, PNUM=#{pnum}, USERZIPCODE=#{userZipCode}, CARDCHECK='N', UDCHECK='N',GRADE='2', USERFIRSTADDR=#{userFirstAddr},USERSECONDADDR=#{userSecondAddr}, USEREXTRAADDR=#{userExtraAddr} WHERE ID=#{id}
-	</update>
-	
-	<select id="storeList" resultType="com.hk.pilot.dto.Stores">
-		SELECT ID, SNAME, SCONTACT, SNUM, BANK, BNUM, PERMIT, S_DATE, SDCHECK, AREA_NUM, STOREFIRSTADDR, STORESECONDADDR, STOREEXTRAADDR, STOREZIPCODE, SP1, SP2, SP3, SP4 FROM STORES where SDCHECK='N' 
-	</select>
-	
-	<select id="storeUpdateGet" resultType="com.hk.pilot.dto.StoreInfo">
-		 SELECT s.ID , s.SNAME , s.SCONTACT , s.SNUM , s.BANK , s.BNUM , s.PERMIT , s.S_DATE , s.SDCHECK , s.AREA_NUM , s.STOREFIRSTADDR ,s.STORESECONDADDR ,s.STOREEXTRAADDR ,s.STOREZIPCODE , sp1,sp2,sp3,sp4, i.ITEMS 
-		 FROM STORES s , ITEMLIST i WHERE s.SNUM =i.SNUM AND s.SNUM =#{snum}
-	</select>
-	
-	<update id="storeUpdatePost1" parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE STORES SET ID=#{id}, SNAME=#{sname}, SCONTACT=#{scontact}, BANK=#{bank}, 
-		BNUM=#{bnum}, PERMIT=#{permit}, 
-		AREA_NUM=#{area_num}, STOREFIRSTADDR=#{storeFirstAddr},STORESECONDADDR=#{storeSecondAddr}, STOREEXTRAADDR=#{storeExtraAddr}, 
-		STOREZIPCODE=#{storeZipCode}
-		<if test='sp1 != null'>
-			, SP1=#{sp1}
-		</if>
-		<if test='sp2 != null'>
-			, SP2=#{sp2}
-		</if>
-		<if test='sp3 != null'>
-			, SP3=#{sp3}
-		</if>
-		<if test='sp1 != null'>
-			, SP4=#{sp4}
-		</if>
-		 WHERE SNUM=#{snum}
-	</update>
-	
-	<update id="storeUpdatePost2" parameterType="com.hk.pilot.dto.StoreInfo">
-		UPDATE ITEMLIST SET ITEMS=#{items} WHERE SNUM=#{snum}
-	</update>
-	
-	<select id="mapLoad" resultType="com.hk.pilot.dto.StoresMap">
-		SELECT s2.SNAME , m2.SADDRESS , s2.AREA_NUM, s2.SNUM
-		FROM STORES s2 , MAPDATA m2 
-		WHERE s2.SNUM = m2.SNUM
-	</select>
-	
-	<select id="itemsPriceGet" resultType="com.hk.pilot.dto.Product">
-		SELECT * FROM product
-	</select>
-	
-	<insert id="insertItem" parameterType="com.hk.pilot.dto.Product" useGeneratedKeys="true">
-		<selectKey resultType="int" keyProperty="pno" order="BEFORE">
-        	SELECT MAX(pno)+1 FROM PRODUCT        
-    	</selectKey>    
-		insert into product (PNO,PNAME,PCODE,PPRICE) VALUES (#{pno}, #{pname},#{pcode},#{pprice})
-	</insert>
-	
-	<update id="itemsPricePost" parameterType="com.hk.pilot.dto.Product">
-		UPDATE PRODUCT SET PCODE=#{pcode}, PNAME=#{pname}, PPRICE=#{pprice} WHERE PNO=#{pno}
-	</update>
-	
-	<delete id="deleteItem">
-		DELETE FROM PRODUCT WHERE PNO=#{pno}
-	</delete>
-	
-	<select id="chartData" resultType="com.hk.pilot.dto.StatisticDay">
-		SELECT TO_CHAR(CDAY, 'yy-mm-dd') as cday,OQ,OP FROM STATISTIC s WHERE snum='13131313'
-	</select>
-=======
    <select id="userUpdateGet" resultType="com.hk.pilot.dto.UserInfo">
       SELECT * FROM (SELECT m.id, m.NAME , m.EMAIL , m.PNUM , m.USERZIPCODE , m.CARDCHECK , m.LIKESTORE1 , m.LIKESTORE2 
       , m.LIKESTORE3 , m.USERFIRSTADDR , m.USERSECONDADDR , USEREXTRAADDR 
@@ -208,7 +110,6 @@
    <update id="assetAcheckPost">
       UPDATE ASSET SET A_CHECK=#{a_check},A_DATE=sysdate WHERE ASSET_SEQ=#{asset_seq}
    </update>
->>>>>>> branch 'master' of https://github.com/teamhk/pilot.git
 	
 	<!-- 게시물 작성 -->
 	

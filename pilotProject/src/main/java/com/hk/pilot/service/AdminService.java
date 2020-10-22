@@ -3,8 +3,13 @@ package com.hk.pilot.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.hk.pilot.dto.Asset;
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
 import com.hk.pilot.dto.MapData;
@@ -24,6 +29,9 @@ public class AdminService {
 	@Autowired
 	AdminMapper adminMapper;
 	
+	@Autowired
+	DataSourceTransactionManager transactionManager;
+	
 	public UserInfo userUpdateGet(String id) {
 		
 		return adminMapper.userUpdateGet(id);
@@ -33,33 +41,35 @@ public class AdminService {
 		return adminMapper.getProduct();
 	}
 	
+	@Transactional
 	public int userUpdatePost(UserInfo userInfo) {
-		int ret2=0;
-		int ret1=0;
+		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
+		
 		if(userInfo.getCardCheck().equals("Y")) {
-			ret1 = adminMapper.userUpdatePost1(userInfo);
-			ret2 = adminMapper.userUpdatePost2(userInfo);
-			System.out.println("ret1="+ret1+"::::ret2="+ret2);
-			if(ret1==1&&ret2==1) {
-				return 1;
-			} else {
-				return 0;
+			try {
+			adminMapper.userUpdatePost1(userInfo);
+			adminMapper.userUpdatePost2(userInfo);
+			} catch (Exception e){
+				 transactionManager.rollback(txStatus);
+				 return 0;
 			}
+			transactionManager.commit(txStatus);
+		    return 1;    
 		} else {
 			if(userInfo.getCardCom()!=null) {
 				userInfo.setCardCheck("Y");
-				ret1 = adminMapper.userUpdatePost1(userInfo);
-				ret2 = adminMapper.userInsertPost2(userInfo);
-				System.out.println("ret1="+ret1+"::::ret2="+ret2);
-				if(ret1==1&&ret2==1) {
-					return 1;
-				} else {
-					return 0;
-				}	
+				try {
+				adminMapper.userUpdatePost1(userInfo);
+				adminMapper.userInsertPost2(userInfo);
+				} catch (Exception e) {
+					transactionManager.rollback(txStatus);
+					 return 0;
+				}
+				transactionManager.commit(txStatus);
+			    return 1;    
 			} else {
-				ret1 = adminMapper.userUpdatePost1(userInfo);
-				System.out.println("ret1="+ret1);
-				return ret1;
+				int ret = adminMapper.userUpdatePost1(userInfo);
+				return ret;
 			}
 		}
 				
@@ -90,14 +100,18 @@ public class AdminService {
 		return adminMapper.storeUpdateGet(snum);
 	}
 	
+	@Transactional
 	public int storeUpdatePost(StoreInfo storeInfo) {
-		int ret1 = adminMapper.storeUpdatePost1(storeInfo);
-		int ret2 = adminMapper.storeUpdatePost2(storeInfo);
-		if(ret1==1&&ret2==1) {
-			return 1;
-		} else {
+		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
+		try {
+		adminMapper.storeUpdatePost1(storeInfo);
+		adminMapper.storeUpdatePost2(storeInfo);
+		} catch (Exception e) {
+			transactionManager.rollback(txStatus);
 			return 0;
 		}
+		transactionManager.commit(txStatus);
+	    return 1;  
 	}
 	
 	public List<MapData> mapLoad() {
@@ -120,9 +134,22 @@ public class AdminService {
 		return adminMapper.deleteItem(pno);
 	}
 
-	public List<StatisticDay> chartData() {
-		return adminMapper.chartData();
+	public List<StatisticDay> chartData(String snum,String pStart,String pEnd) {
+		return adminMapper.chartData(snum,pStart,pEnd);
 	}
+	
+	public List<Asset> assetOne(String snum){
+		return adminMapper.assetOne(snum);
+	}
+	public List<Asset> assetAcheck(){
+		return adminMapper.assetAcheck();
+	}
+	
+	public int assetAcheckPost(String asset_seq,String a_check) {
+		return adminMapper.assetAcheckPost(asset_seq,a_check);
+	}
+	
+	
 	// 관리자 one
 	public Members selectMemberOne(String id) {
 
