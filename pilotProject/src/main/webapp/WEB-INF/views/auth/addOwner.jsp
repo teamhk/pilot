@@ -445,7 +445,6 @@ function submitCheck() {
 		$("input[type='checkbox']").each(function(){
 			if($(this).is(":checked")==true){
 				items += $(this).attr('id')+"!@#";
-				$(this).val('Y');
 			} 
 		});
 		$("#items").val(items);
