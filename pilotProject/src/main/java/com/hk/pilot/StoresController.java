@@ -111,7 +111,7 @@ public class StoresController {
 
 		//        int ret=mainService.insert(cart); //장바구니 테이블에 저장됨
 		//        System.out.println(ret);
-		return "main/cart"; //장바구니 목록으로 이동
+		return null; //장바구니 목록으로 이동
 	}
 
 	@GetMapping("/cart")
