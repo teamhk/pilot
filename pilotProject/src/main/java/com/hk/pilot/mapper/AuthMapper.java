@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.hk.pilot.dto.EmailCheck;
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
+import com.hk.pilot.dto.MemberLikeStores;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.Product;
@@ -42,4 +43,10 @@ public interface AuthMapper {
 	public int updateRandomPwd(Members members);
 	
 	public void uploadAjaxPost(Stores stores);
+	
+	public MemberLikeStores getLikeStore1(String id);
+	
+	public MemberLikeStores getLikeStore2(String id);
+	
+	public MemberLikeStores getLikeStore3(String id);
 }

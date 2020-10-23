@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hk.pilot.dto.Cart;
 import com.hk.pilot.dto.FinalPay;
 import com.hk.pilot.dto.ManagerInfo;
+import com.hk.pilot.dto.MemberLikeStores;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
 import com.hk.pilot.dto.Product;
 import com.hk.pilot.dto.StoreInfo;
 import com.hk.pilot.dto.Stores;
+import com.hk.pilot.service.AuthService;
 import com.hk.pilot.service.MainService;
 
 
@@ -34,6 +36,9 @@ public class StoresController {
 
 	@Autowired
 	MainService mainService;
+	
+	@Autowired
+	AuthService authService;
 
 	@GetMapping("/map")
 	public String storesList(Stores Stores,ManagerInfo managerInfo,Model model,HttpSession session,Members members) {
@@ -50,8 +55,19 @@ public class StoresController {
 	}
 
 	@GetMapping("/like")
-	public String likeStores(HttpSession session ) {
-		return "/main/likeStores";
+	public String likeStores(HttpSession session, Model model, MemberLikeStores memberLikeStores ) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		if(loginMember==null) {
+			return "redirect:/auth/login";
+		} else {
+			MemberLikeStores userLikeStore1 = authService.getLikeStore1(loginMember.getId());
+			MemberLikeStores userLikeStore2 = authService.getLikeStore2(loginMember.getId());
+			MemberLikeStores userLikeStore3 = authService.getLikeStore3(loginMember.getId());
+			model.addAttribute("likeStore1", userLikeStore1);
+			model.addAttribute("likeStore2", userLikeStore2);
+			model.addAttribute("likeStore3", userLikeStore3);
+			return "/main/likeStores";
+		}
 	}
 	
 	@GetMapping("/noUserMap")

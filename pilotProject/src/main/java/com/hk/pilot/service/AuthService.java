@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.pilot.dto.ItemList;
 import com.hk.pilot.dto.ManagerInfo;
+import com.hk.pilot.dto.MemberLikeStores;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.PersonalPay;
 import com.hk.pilot.dto.Product;
@@ -85,4 +86,16 @@ public class AuthService {
 	public Members findId(Members members) {
 		return authMapper.findId(members);
 	}	
+	
+	public MemberLikeStores getLikeStore1(String id) {
+		return authMapper.getLikeStore1(id);
+	}
+	
+	public MemberLikeStores getLikeStore2(String id) {
+		return authMapper.getLikeStore2(id);
+	}
+	
+	public MemberLikeStores getLikeStore3(String id) {
+		return authMapper.getLikeStore3(id);
+	}
 }
