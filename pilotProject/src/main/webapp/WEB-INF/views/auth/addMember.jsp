@@ -410,7 +410,7 @@ function submitCheck() {
 		<div class="col-sm-6 col-md-offset-3">
 			<form name="addCustomer" action="addCustomer" method="post">
 				<input type="hidden" name="grade" value="1">
-				<input type="hidden" name="udcheck" value="N">
+				<input type="hidden" name="udCheck" value="N">
 				<label><b>아이디</b></label>
 				<input type="text" id="id" placeholder="ID" name="id" oninput="checkId()">
 				<div class="validation" id="id_check"></div>
