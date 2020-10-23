@@ -25,8 +25,8 @@
 </insert>
 
 <insert id="addManager" parameterType="com.hk.pilot.dto.ManagerInfo">
-	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, CARDCHECK, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
-	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{cardCheck}, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
+	INSERT INTO MEMBERS (ID, PWD, NAME, EMAIL, PNUM, CARDCHECK, UDCHECK, USERZIPCODE, USERFIRSTADDR, USERSECONDADDR, USEREXTRAADDR, GRADE)
+	VALUES (#{id}, #{pwd}, #{name}, #{email}, #{pnum}, #{cardCheck}, N, #{userZipCode}, #{userFirstAddr}, #{userSecondAddr}, #{userExtraAddr}, #{grade})
 </insert>
 
 <select id="selectPname" resultType="com.hk.pilot.dto.Product">
