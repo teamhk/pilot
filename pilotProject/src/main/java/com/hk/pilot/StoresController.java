@@ -38,12 +38,22 @@ public class StoresController {
 	@GetMapping("/map")
 	public String storesList(Stores Stores,ManagerInfo managerInfo,Model model,HttpSession session,Members members) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
-		ManagerInfo user=mainService.userAdr(loginMember.getId());
-		model.addAttribute("stores",mainService.storesList());
-		model.addAttribute("user",user);
-		return "/main/mapTestEnd";
+		model.addAttribute("loginMember", loginMember);
+		if(loginMember == null) {
+			return "redirect:/auth/login";
+		} else { 
+			ManagerInfo user=mainService.userAdr(loginMember.getId());
+			model.addAttribute("stores",mainService.storesList());
+			model.addAttribute("user",user);
+			return "/main/mapTestEnd";
+		}
 	}
 
+	@GetMapping("/like")
+	public String likeStores(HttpSession session ) {
+		return "/main/likeStores";
+	}
+	
 	@GetMapping("/noUserMap")
 	public String noUserMap(Stores stores, ManagerInfo managerInfo, Model model) {
 		return "/main/noUserMap";

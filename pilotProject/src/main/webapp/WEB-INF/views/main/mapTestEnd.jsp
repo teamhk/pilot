@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.hk.pilot.dto.ManagerInfo" %>
+<%@ page import="com.hk.pilot.dto.Members" %>
 <% ManagerInfo user = (ManagerInfo)request.getAttribute("user");%>
-
+<% Members loginMember = (Members)request.getAttribute("loginMember");%>
 <!DOCTYPE html>
 <html>
 <head>

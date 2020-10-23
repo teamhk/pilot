@@ -47,13 +47,16 @@
 										<div class="form-group">
 											<input type="text" name="id" class="form-control form-control-user"
 												id="exampleInputEmail" aria-describedby="emailHelp"
-												placeholder="이메일 주소를 입력하세요">
+												placeholder="아이디를 입력하세요">
 										</div>
 										<div class="form-group">
 											<input type="password" name="pwd" class="form-control form-control-user"
 												id="exampleInputPassword" placeholder="비밀번호를 입력하세요">
 										</div>
 										
+										<c:if test="${msg==false }">
+											<p style="color:#f00;">로그인에 실패했습니다. 아이디 또는 비밀번호를 다시 입력해주세요</p>
+										</c:if>
 										<input type="submit" value="로그인"
 											class="btn btn-primary btn-user btn-block">
 										<hr>

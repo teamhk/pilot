@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.service.MemberService;
@@ -25,20 +26,17 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String loginPost(HttpSession session, Model model, Members members) {
+	public String loginPost(HttpSession session, RedirectAttributes reattr, Model model, Members members) {
 		System.out.println("타니1");
 		System.out.println("members는"+members);
 		Members loginMember = memberService.memberLogin(members);
-		System.out.println("타니2");
-		System.out.println("loginMember는:"+loginMember);
-		System.out.println("name은:"+loginMember.getName());
-		session.setAttribute("name", loginMember.getName());	
-		boolean isLogin=loginMember!=null;
-		if(isLogin) {
+		if(loginMember==null) {
+			reattr.addFlashAttribute("msg", false);
+			return "redirect:/auth/login";
+		} else {
 			session.setAttribute("loginMember", loginMember);
+			session.setAttribute("name", loginMember.getName());	
 			return "redirect:/";
-		}else {
-			return "/auth/loginFail";
 		}
 	}
 	
