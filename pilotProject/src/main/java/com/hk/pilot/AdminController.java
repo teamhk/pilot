@@ -1,9 +1,14 @@
 package com.hk.pilot;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
@@ -34,6 +40,9 @@ public class AdminController {
 		
 		@Autowired
 		AdminService adminService;
+		
+		@Autowired
+		ServletContext sc;
 		
 		@GetMapping("/memberList")
 		public String memberList(Model model) {
@@ -103,7 +112,21 @@ public class AdminController {
 		}
 		
 		@PostMapping("/storeUpdate")
-		public String storeUpdatePost(Model model,StoreInfo storeInfo ) {
+		public String storeUpdatePost(Model model,StoreInfo storeInfo, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3, @RequestParam("file4") MultipartFile file4 ) {
+			
+			String oldFile1 = storeInfo.getSp1();
+			String oldFile2 = storeInfo.getSp2();
+			String oldFile3 = storeInfo.getSp3();
+			String oldFile4 = storeInfo.getSp4();
+			
+			System.out.println("기존 사진"+oldFile1+oldFile2+oldFile3+oldFile4);
+			
+			String uploadFolder = sc.getRealPath("/resources/upload/");
+			String newFile1 = file1.getOriginalFilename();
+			String newFile2 = file2.getOriginalFilename(); 
+			String newFile3 = file3.getOriginalFilename(); 
+			String newFile4 = file4.getOriginalFilename(); 
+			
 			System.out.println("바뀐 값:"+storeInfo.toString());
 			int ret = adminService.storeUpdatePost(storeInfo);
 			System.out.println("정상적으로 수정되었나? "+ret);

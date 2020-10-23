@@ -1,8 +1,12 @@
 package com.hk.pilot;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +37,9 @@ public class AuthController {
 	@Autowired
 	AuthService authService;
 	
+	@Autowired
+	ServletContext sc;
+	
 	@GetMapping("/registration")
 	public String choiceMemberType() {
 		System.out.println("타니?");
@@ -60,7 +67,7 @@ public class AuthController {
 	@PostMapping("/addOwner")
 	public String addOwnerPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model, ManagerInfo managerInfo) {
 		for(int i=0; i<uploadFile.length; i++) {
-			 String uploadFolder = "C:\\upload";
+			 String uploadFolder = sc.getRealPath("/resources/upload/");
 			 String uploadFileName = uploadFile[i].getOriginalFilename(); 
 			 logger.info("---------------------------------");
 	         logger.info("Upload File Name :"+uploadFile[i].getOriginalFilename());
@@ -75,6 +82,10 @@ public class AuthController {
 	            UUID uuid = UUID.randomUUID();
 	            uploadFileName = uuid.toString()+"_"+uploadFileName;
 	            
+//	            if(i==0 ) {managerInfo.setSp2(""); managerInfo.setSp3(""); managerInfo.setSp4("");}
+//	            else if(i==1) {managerInfo.setSp3(""); managerInfo.setSp4("");}
+//	            else if(i==2) {managerInfo.setSp4(""); }
+	            
 	            if(i==0) {managerInfo.setSp1(uploadFileName);}
 	            else if(i==1) {managerInfo.setSp2(uploadFileName);}
 	            else if(i==2) {managerInfo.setSp3(uploadFileName);}
@@ -82,15 +93,18 @@ public class AuthController {
 	           // stores.setSnum(snum);
 	            
 	            //File saveFile = new File(uploadFolder, uploadFileName);
-	            File saveFile = new File(uploadFolder, uploadFileName);
-	            System.out.println("saveFile"+saveFile);
-	            System.out.println("uploadFile:"+uploadFile[i]);
-	            System.out.println("ManagerInfo는"+managerInfo);
-	            try {
-	            	uploadFile[i].transferTo(saveFile);
-	            }catch (Exception e) {
-	               logger.error(e.getMessage());
-	            }//end catch
+	            File oldProfFile = new File(uploadFolder + uploadFile[i].getOriginalFilename());   // 업로드한 파일이 실제로 저장되는 위치  + 파일명 (확장자 포함) => 실행 디렉토리
+	            File newProfFile = new File(uploadFolder + uploadFileName);
+	            oldProfFile.renameTo(newProfFile);   // 파일명 변경
+	           //logger.info("newProfFile = " + newProfFile);
+	           try {
+	              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+	              InputStream fileStream = uploadFile[i].getInputStream();
+	              FileUtils.copyInputStreamToFile(fileStream, newProfFile);
+	           } catch (Exception e) {
+	              FileUtils.deleteQuietly(newProfFile);
+	              e.printStackTrace();
+	           }
 			}
 		System.out.println("managerInfo는"+managerInfo);
 		authService.addManager(managerInfo);
