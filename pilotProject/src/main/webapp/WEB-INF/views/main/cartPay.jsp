@@ -159,16 +159,19 @@
                    var items=$('input[name="items"]');
                    var sname=$('input[name="sname"]');
                    var snum=$('input[name="snum"]');
-                   var paycart=$('input[name="paycart"]');
+                   var paycart=$('input[name="paycart"]');//상품별 가격
+                  
                        var ttt = new Array();
                        var sss = new Array();
                        var snn = new Array();
                        var ccc = new Array();
+                       var bbb = new Array();
                        for(var i=0;i<items.length;i++){
                           ttt.push(items.eq(i).val());
                           sss.push(sname.eq(i).val());
                           snn.push(snum.eq(i).val());
                           ccc.push(paycart.eq(i).val());
+                          bbb.push();
                        }
                   
                       var pay_price =$('input[name="pay_price"]').val()
@@ -176,7 +179,7 @@
                       var name=$('input[name="name"]').val()
 //                       var pnum=$('input[name="orderpnum"]').val()
                          
-                       
+                      
                        var IMP = window.IMP;
                        IMP.init('imp75580600'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
                            //var msg;
@@ -224,7 +227,7 @@
                                     } else {
                                            var msg = '결제에 실패하였습니다.';
                                            msg += '에러내용 : ' + rsp.error_msg;
-                                           document.location.href="cart.jsp";
+                                           document.location.href="stores/cart";
                                        }
                                        alert(msg);
                                        

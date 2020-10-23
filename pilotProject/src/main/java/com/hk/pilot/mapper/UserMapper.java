@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
@@ -36,6 +37,12 @@ public interface UserMapper {
 	public List<OrderList> orderList(String id);
 	
 	public OrderProcess myOrderList(String orderNum);
+	
+	public int refundCheck(@Param("id") String id,@Param("orderNum")String orderNum,@Param("bubble") int bubble);
+	
+	public int refundPro(@Param("id") String id,@Param("orderNum")String orderNum);
+	
+	public int accRefunt(Account account);
 //  1013 chat--------------------------------------------------------------------------------------------------------------------------------
 	
 	public void write(Chat chat); //문의게시판 게시글작성

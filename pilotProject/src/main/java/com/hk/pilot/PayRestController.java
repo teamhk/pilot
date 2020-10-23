@@ -1,6 +1,5 @@
 package com.hk.pilot;
 
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -26,57 +25,97 @@ import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Members;
 import com.hk.pilot.dto.OrderList;
+import com.hk.pilot.dto.OrderProcess;
 import com.hk.pilot.dto.UserInfo;
 import com.hk.pilot.service.MainService;
+import com.hk.pilot.service.UserService;
 
 @RestController
-@RequestMapping(path="/order", produces="text/plain;charset=UTF-8")
+@RequestMapping(path = "/order", produces = "text/plain;charset=UTF-8")
 public class PayRestController {
-   @Autowired
-   MainService mainService;
-   
-   
-     @RequestMapping(path = "/bubblePay", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE )
-     public int bubblePay(int b_price,HttpSession session,Bubble bubble,Account account) {
-        System.out.println(b_price);
-        Members loginMember = (Members) session.getAttribute("loginMember");
-            
-        bubble.setId(loginMember.getId());
-        int bu=mainService.bubbleplus(bubble);
-        System.out.println(bu);
-        bubble.setB_price(b_price);
-        bubble.setB_bubble((int) (b_price*1.1));
-        bubble.setBubble((int)(bu+(b_price*1.1)));
-        
-        int bal=mainService.accpay(account);
-        account.setId(loginMember.getId());
-        account.setBalance((int)(bal+b_price));
-        account.setI_price(b_price);
-        
-       
-        return mainService.bubblePay(bubble,account);
-      }
-    
-     @RequestMapping(path = "/finalPay", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE )
-        public int finalPay(HttpSession session,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,@RequestParam("pay_price[]") int[] pay_price,int bubble,String id,Bubble bubble1,Account account){
-        Members loginMember = (Members) session.getAttribute("loginMember");
-        bubble1.setId(loginMember.getId());
-        int bu=mainService.bubbleplus(bubble1);
-        System.out.println(bu);
-         bubble1.setP_bubble(bubble);
-           bubble1.setBubble((int)(bu-bubble));
-           System.out.println((int)(bu-bubble));
-//           
-//            int bal=mainService.accpay(account);
-//          account.setId(loginMember.getId());
-//          account.setBalance((int)(bal+pay_price));
-//        account.setI_price(pay_price);
+	@Autowired
+	MainService mainService;
+	
+	@Autowired
+	UserService userService;
+
+	@RequestMapping(path = "/bubblePay", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public int bubblePay(int b_price, HttpSession session, Bubble bubble, Account account) {
+		System.out.println(b_price);
+		Members loginMember = (Members) session.getAttribute("loginMember");
+
+		bubble.setId(loginMember.getId());
+		int bu = mainService.bubbleplus(bubble);
+		System.out.println(bu);
+		bubble.setB_price(b_price);
+		bubble.setB_bubble((int) (b_price * 1.1));
+		bubble.setBubble((int) (bu + (b_price * 1.1)));
+
+		int bal = mainService.accpay(account);
+		account.setId(loginMember.getId());
+		account.setBalance((int) (bal + b_price));
+		account.setI_price(b_price);
+
+		return mainService.bubblePay(bubble, account);
+	}
+
+	@RequestMapping(path = "/finalPay", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public int finalPay(HttpSession session, @RequestParam("items[]") String[] items,
+			@RequestParam("snum[]") String[] snum, @RequestParam("sname[]") String[] sname,
+			@RequestParam("pay_price[]") int[] pay_price, int bubble, String id, Bubble bubble1, Account account) {
+		Members loginMember = (Members) session.getAttribute("loginMember");
+		System.out.println("들어오니??");
+		//버블 계산
+		bubble1.setId(loginMember.getId());
+		int bu = mainService.bubbleplus(bubble1);
+		System.out.println(bu);
+		bubble1.setP_bubble(bubble);
+		bubble1.setBubble((int) (bu - bubble));
+		System.out.println((int) (bu - bubble));
+		
+		//상품결제계산
+		int payy=0;
+		int payP = 0;
+		int paypp=0;
+		int pay = 0;
+		int bub = 0;
+		int bal = mainService.accpay(account);
+		account.setId(loginMember.getId());
+		for (int i = 0; i < pay_price.length; i++) {
+			pay = bal += pay_price[i];
+			payP += pay_price[i];
+			bub -=bubble[i];
+			
+		};
+		payy=pay-bubble;
+		paypp=payP-bubble;
+		account.setBalance(payy);
+		account.setI_price(paypp);
+
 //       
-           mainService.bubblefinal(bubble1);
-           mainService.orderAcc(account);
-           int ret=mainService.finalPay(pay_price,items,snum,sname,bubble,id);
-           System.out.println("ret="+ret);
-           return ret;
-        }
-   
+		mainService.bubblefinal(bubble1);
+		mainService.orderAcc(account);
+		int ret = mainService.finalPay(pay_price, items, snum, sname, bubble, id);
+		System.out.println("ret=" + ret);
+		return ret;
+	}
+	
+	@RequestMapping(path = "/refundCheck", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public OrderProcess refundCheck(@RequestParam("id") String id,@RequestParam("orderNum")String orderNum,@RequestParam("i_price")int i_price,@RequestParam("bubble")int bubble,Account account) {
+		System.out.println("들어와?");
+		
+		int bal = mainService.accpay(account);
+		int bub =i_price-bubble;
+		account.setId(id);
+		account.setBalance((int)(bal-bub));
+		System.out.println(account);
+		account.setO_price(bub);
+		userService.accRefunt(account);
+		userService.refundCheck(id,orderNum,bubble);
+		return userService.myOrderList(orderNum);
+	}
+	
+	
+	
+
 }

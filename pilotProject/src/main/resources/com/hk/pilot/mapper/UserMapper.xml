@@ -69,6 +69,30 @@
 		from orderlist o,process p where o.ordernum=p.ordernum and
 		o.ordernum=#{orderNum}
 	</select>
+	
+	<!-- 환불 orderList  -->
+	<update id="refundCheck" parameterType="com.hk.pilot.dto.OrderProcess">
+	
+	update orderList set refund='Y' where orderNum=#{orderNum}
+	
+	</update>
+	
+	<update id="refundPro"  parameterType="com.hk.pilot.dto.OrderProcess">
+	
+	update process set refundDate=sysdate where orderNum=#{orderNum}
+	
+	</update>
+	
+	<insert id="accRefunt">
+	<selectKey resultType="int" keyProperty="a_seq" order="BEFORE">
+	select NVL(MAX(a_seq) + 1, 1) from Account 
+
+	</selectKey>
+
+	INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, #{i_price}, '환불', #{id}, 0, #{a_seq})
+	
+	
+	</insert>
 
 	<!-- 게시글 등록 -->
 	<insert id="write">

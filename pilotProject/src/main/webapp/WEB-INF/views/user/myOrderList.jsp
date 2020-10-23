@@ -175,6 +175,48 @@
 			}
 		}
 	}
+
+
+
+	$(document).on("click", "#refund", function(){
+		console.log("들어오냐");
+			var re=$('#refun').val();
+			var id=$('#userid').val();
+			var orderNum=$('#ordernum').val();
+			var i_price=$('#price').val();
+			var bubble=$('#bub').val();
+			console.log(re);
+			if(!$('#refun').val()==false){
+				console.log("들어오냐22");
+	 			alert("접수완료로 환불 할 수 없습니다");
+	 			}
+			
+			else{$.ajax({
+        			data: {
+        				id :id,
+        				orderNum :orderNum,
+        				i_price :i_price,
+        				bubble : bubble
+        			},
+        			url:"/order/refundCheck",
+        			dataType:'json',
+        			method:'POST',
+        			success:function(data){
+        				
+        				alert("환불완료되었습니다.");
+        				$("#maindiv").load(window.location.href + "#maindiv");
+        				
+        			},
+        			error:function(data){
+        				alert("에러가 발생했습니다.");
+        				return false;
+        			}
+        			
+        		});
+			}
+	});
+
+	
 </script>
 
 </head>
@@ -185,12 +227,11 @@
 	<c:set var="itemStr"
 		value="${fn:substring(itemStr, 0, fn:length(itemStr)-1)}" />
 	<div id='maindiv'>
-		주문번호:<input type='text' value='${myOrderList.orderNum}'><br>
-		ID:<input type='text' value='${myOrderList.id}'><br> 품목:<input
-			type='text' class='item' value='${itemStr}'><br> 결제금액:<input
-			type='text' value='${myOrderList.pay_price}'><br> 결제일:
-		<fmt:formatDate value='${myOrderList.pay_date}' type='both'
-			pattern='yyyy.MM.dd(E)(a)hh:mm:ss' />
+		주문번호:<input type='text' id="ordernum" value='${myOrderList.orderNum}'><br>
+		ID:<input type='text' id="userid" value='${myOrderList.id}'><br> 
+		품목:<input type='text' class='item' value='${itemStr}'><br> 
+		결제금액:<input type='text' id="price" value='${myOrderList.pay_price}'><br>
+		 결제일:<fmt:formatDate value='${myOrderList.pay_date}' type='both' pattern='yyyy.MM.dd(E)(a)hh:mm:ss' />
 		<br> 진행 상황:
 		<%
 			String process = "";
@@ -230,11 +271,11 @@
 			</c:when>
 		</c:choose>
 		<input type='text' value='<%=process%>' class='pro' readonly><br>
-	</div>
-	
-	<button id=refund >환불하기</button>
-
+		<input type="hidden" id="refun" value="${myOrderList.ok }" />
+		<input type="hidden" id="bub" value="${myOrderList.bubble }" />
+	<button type="button" id="refund" >환불하기</button>
 	<button class='tdn'>전화면으로</button>
+	</div>
 	<div id='detail'></div>
 
 	<!--Popup Start -->

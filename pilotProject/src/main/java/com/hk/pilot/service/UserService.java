@@ -7,12 +7,16 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hk.pilot.dto.Account;
 import com.hk.pilot.dto.Bubble;
 import com.hk.pilot.dto.Chat;
 import com.hk.pilot.dto.ChatComment;
@@ -30,6 +34,9 @@ import com.hk.pilot.mapper.UserMapper;
 @Service
 public class UserService {
 
+	@Autowired
+	DataSourceTransactionManager transactionManager;
+	
 	@Autowired
 	UserMapper userMapper;
 
@@ -98,6 +105,31 @@ public class UserService {
 
 	public OrderProcess myOrderList(String orderNum) {
 		return userMapper.myOrderList(orderNum);
+	}
+	
+	public int refundCheck(@Param("id") String id,@Param("orderNum")String orderNum,@Param("bubble") int bubble) {
+		
+		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
+		//TransactionStatus라는 것을 transactionManager로 부터 가져온다
+		// Transaction Test
+		try { 
+			 userMapper.refundCheck(id,orderNum,bubble);
+			 
+			 
+		} catch (Exception e) { 
+			System.out.println("Service ------------------- End");
+			// 비정상일때는 rollback
+			transactionManager.rollback(txStatus);
+			return 0;
+		}
+		// 정상일때는 commit 저장 (빼먹으면 안됨)
+		transactionManager.commit(txStatus);
+		
+		return  userMapper.refundPro(id,orderNum);		
+	}
+	
+	public int accRefunt(Account account) {
+		return userMapper.accRefunt(account);
 	}
 	// 1013 chat------------------------------------------------------------------------------------------------------
 	//게시글 작성

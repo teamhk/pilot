@@ -17,51 +17,51 @@ select * from stores
 </select>
 
 <select id="selectLikeStore"  resultType="com.hk.pilot.dto.Members">
-	SELECT *
-	FROM MEMBERS
-	WHERE ID=#{id}
+   SELECT *
+   FROM MEMBERS
+   WHERE ID=#{id}
 </select>
 
 <update id="updateLikeStore1" parameterType="String">
-	UPDATE MEMBERS
-	SET
-	LIKESTORE1=#{snum}
-	WHERE ID=#{id}
+   UPDATE MEMBERS
+   SET
+   LIKESTORE1=#{snum}
+   WHERE ID=#{id}
 </update>
 
 <update id="updateLikeStore2">
-	UPDATE MEMBERS
-	SET
-	LIKESTORE2=#{snum}
-	WHERE ID=#{id}
+   UPDATE MEMBERS
+   SET
+   LIKESTORE2=#{snum}
+   WHERE ID=#{id}
 </update>
 
 <update id="updateLikeStore3" >
-	UPDATE MEMBERS
-	SET
-	LIKESTORE3=#{snum}
-	WHERE ID=#{id}
+   UPDATE MEMBERS
+   SET
+   LIKESTORE3=#{snum}
+   WHERE ID=#{id}
 </update>
 
 <update id="deleteLikeStore1" parameterType="String">
-	UPDATE MEMBERS
-	SET
-	LIKESTORE1=null
-	WHERE ID=#{id} 
+   UPDATE MEMBERS
+   SET
+   LIKESTORE1=null
+   WHERE ID=#{id} 
 </update>
 
 <update id="deleteLikeStore2" parameterType="String">
-	UPDATE MEMBERS
-	SET
-	LIKESTORE2=null
-	WHERE ID=#{id}
+   UPDATE MEMBERS
+   SET
+   LIKESTORE2=null
+   WHERE ID=#{id}
 </update>
 
 <update id="deleteLikeStore3" parameterType="String">
-	UPDATE MEMBERS
-	SET
-	LIKESTORE3=null
-	WHERE ID=#{id}
+   UPDATE MEMBERS
+   SET
+   LIKESTORE3=null
+   WHERE ID=#{id}
 </update>
 
 <select id="userAdr" resultType="com.hk.pilot.dto.ManagerInfo">
@@ -71,14 +71,14 @@ select userFirstAddr  from members where id=#{id}
 </select>
 
  <select id="selectsStoreOne" parameterType="String" 
- 		resultType="com.hk.pilot.dto.StoreInfo"> 
-<!-- 		SELECT s.ID , s.SNAME , s.SADDRESS, i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,storeFirstAddr,storeSecondAddr,storeExtraAddr,items,Y1,B1,T1,M1,P1,K1,J1,C1,P2,D1,S1,C2,B2,w_id,orderNum,r_content,star,badCnt,r_date,depth,r_no,rcom_no,r_id,rcom_content,rcom_date,Y1P,B1P,T1P,M1P,P1P,K1P,J1P,C1P,P2P,D1P,S1P,C2P,B2P,p_date,p_seq FROM ITEMLIST i,STORES s,price,review WHERE i.SNUM = s.SNUM AND i.snum=#{snum} -->
-		SELECT s.ID , s.SNAME , i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,STORESECONDADDR,STOREFIRSTADDR,storeExtraAddr,items FROM ITEMLIST i,STORES s WHERE i.SNUM = s.SNUM AND i.snum=#{snum}
+       resultType="com.hk.pilot.dto.StoreInfo"> 
+<!--       SELECT s.ID , s.SNAME , s.SADDRESS, i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,storeFirstAddr,storeSecondAddr,storeExtraAddr,items,Y1,B1,T1,M1,P1,K1,J1,C1,P2,D1,S1,C2,B2,w_id,orderNum,r_content,star,badCnt,r_date,depth,r_no,rcom_no,r_id,rcom_content,rcom_date,Y1P,B1P,T1P,M1P,P1P,K1P,J1P,C1P,P2P,D1P,S1P,C2P,B2P,p_date,p_seq FROM ITEMLIST i,STORES s,price,review WHERE i.SNUM = s.SNUM AND i.snum=#{snum} -->
+      SELECT s.ID , s.SNAME , i.snum, scontact,bank, bnum,permit,s_date,area_num,sdcheck,storeZipCode,STORESECONDADDR,STOREFIRSTADDR,storeExtraAddr,items FROM ITEMLIST i,STORES s WHERE i.SNUM = s.SNUM AND i.snum=#{snum}
 </select> 
 
 <select id="price" resultType="com.hk.pilot.dto.Product">
 
-	select * from Product
+   select * from Product
 
 </select>
 
@@ -92,8 +92,8 @@ select NVL(MAX(cart_seq) + 1, 1) from CART
  
  
 <select id="countCart" resultType="int"> 
-		SELECT COUNT(*) FROM cart  
-		WHERE  cart_seq = #{cart_seq}
+      SELECT COUNT(*) FROM cart  
+      WHERE  cart_seq = #{cart_seq}
  </select> 
 
 <select id="userCart" resultType="com.hk.pilot.dto.Cart">
@@ -210,14 +210,14 @@ SELECT * FROM (
    WHERE ROWNUM BETWEEN  1 AND #{ret} AND id=#{id}
 </select>
 
-	<select id="reviewList" resultType="com.hk.pilot.dto.Review" parameterType="String">
+   <select id="reviewList" resultType="com.hk.pilot.dto.Review" parameterType="String">
 
-		SELECT
+      SELECT
 
-		r_no, r_CONTENT, w_ID, r_date, snum, star, badCnt
-		FROM review WHERE snum = #{snum} ORDER BY r_date desc
+      r_no, r_CONTENT, w_ID, r_date, snum, star, badCnt
+      FROM review WHERE snum = #{snum} ORDER BY r_date desc
 
-	</select>
+   </select>
 
 
 </mapper>
