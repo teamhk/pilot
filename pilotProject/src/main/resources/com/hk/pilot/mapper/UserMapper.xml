@@ -65,7 +65,7 @@
 	<select id="myOrderList"
 		resultType="com.hk.pilot.dto.OrderProcess">
 		select
-		o.id,o.ordernum,sname,snum,items,pay_price,pay_date,wait,ok,pick,wash,finish,REFUNDDATE, r_check
+		o.id,o.ordernum,sname,snum,items,pay_price,pay_date,wait,ok,pick,wash,finish,REFUNDDATE, r_check,o.bubble
 		from orderlist o,process p where o.ordernum=p.ordernum and
 		o.ordernum=#{orderNum}
 	</select>

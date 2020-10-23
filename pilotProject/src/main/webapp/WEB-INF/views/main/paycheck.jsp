@@ -26,7 +26,7 @@
 					<!--              <th><input type="checkbox" name="allCheck" id="allCheck" checked="checked"/></th>  -->
 					<th>주문번호</th>
 					<th>주문품목</th>
-					<th>결제금액</th>
+					<th>상품금액</th>
 					<th>버블사용</th>
 					<th>결제수단</th>
 				</tr>
@@ -41,7 +41,7 @@
 					<td class='item'>${itemStr}</td>
 					<td>${payList.pay_price}</td>
 					<td>${payList.bubble}</td>
-					<td></td>
+					<td>카카오페이</td>
 				
 				</tr>
 				
@@ -50,8 +50,8 @@
 				
 				</table>
 
-
-
+				<input type='button' value='주문내역'onclick='location.href="/user/process"' /> 
+				<input type='button' value='메인페이지'onclick='location.href="/"' /> 
 
 
 </div>

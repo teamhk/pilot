@@ -23,7 +23,7 @@
     </div>
     <div class="btnArea type2">
         <a href="cart" class="btnSubmit" onclick="{$move_basket_page}">장바구니 이동</a>
-        <a href="/" class="btnEm" onclick="$('#confirmLayer').hide();">빨래 계속하기</a>
+        <a href="/stores/map" class="btnEm" onclick="$('#confirmLayer').hide();">빨래 계속하기</a>
     </div>
 </div>
 

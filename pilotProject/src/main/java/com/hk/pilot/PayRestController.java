@@ -62,33 +62,32 @@ public class PayRestController {
 	@RequestMapping(path = "/finalPay", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public int finalPay(HttpSession session, @RequestParam("items[]") String[] items,
 			@RequestParam("snum[]") String[] snum, @RequestParam("sname[]") String[] sname,
-			@RequestParam("pay_price[]") int[] pay_price, int bubble, String id, Bubble bubble1, Account account) {
+			@RequestParam("pay_price[]") int[] pay_price,@RequestParam("bubble") int bubble, String id, Bubble bubble1, Account account) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		System.out.println("들어오니??");
 		//버블 계산
 		bubble1.setId(loginMember.getId());
 		int bu = mainService.bubbleplus(bubble1);
-		System.out.println(bu);
-		bubble1.setP_bubble(bubble);
-		bubble1.setBubble((int) (bu - bubble));
-		System.out.println((int) (bu - bubble));
+	
 		
 		//상품결제계산
 		int payy=0;
 		int payP = 0;
 		int paypp=0;
-		int pay = 0;
+		int pay = 0;		
 		int bub = 0;
 		int bal = mainService.accpay(account);
-		account.setId(loginMember.getId());
 		for (int i = 0; i < pay_price.length; i++) {
 			pay = bal += pay_price[i];
 			payP += pay_price[i];
-			bub -=bubble[i];
+			bub += bubble;
 			
 		};
-		payy=pay-bubble;
-		paypp=payP-bubble;
+		bubble1.setP_bubble(bub);
+		bubble1.setBubble((int) (bu - bub));
+		payy=pay-bub;
+		paypp=payP-bub;
+		account.setId(loginMember.getId());
 		account.setBalance(payy);
 		account.setI_price(paypp);
 
@@ -105,7 +104,9 @@ public class PayRestController {
 		System.out.println("들어와?");
 		
 		int bal = mainService.accpay(account);
-		int bub =i_price-bubble;
+		System.out.println(bubble);
+		int bub =(int)(i_price-bubble);
+		System.out.println(bub);
 		account.setId(id);
 		account.setBalance((int)(bal-bub));
 		System.out.println(account);

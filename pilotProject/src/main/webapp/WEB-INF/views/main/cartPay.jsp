@@ -152,26 +152,33 @@
                           $('#check_agree_policy').focus();
                           return false;
                       }
+					if( ! $('#useraddr:checked').val()){
+                        alert('배송지정보를 입력하셔야 결제가 가능합니다.');
+                        $('#useraddr').focus();
+                        return false;
+                    }
                  	console.log("안들어오지?")
                    var id=$('input[name="id"]').val();
-                   var bubble=$('input[name="bubble"]').val();
-                   console.log(bubble);
+                   var bub=$('input[name="bubble"]').val();
+                   
                    var items=$('input[name="items"]');
                    var sname=$('input[name="sname"]');
                    var snum=$('input[name="snum"]');
                    var paycart=$('input[name="paycart"]');//상품별 가격
-                  
+                   console.log(items.length);
+                   var bubb=Math.floor(bub/items.length);
+                   console.log(bubb);
                        var ttt = new Array();
                        var sss = new Array();
                        var snn = new Array();
                        var ccc = new Array();
-                       var bbb = new Array();
+                       
                        for(var i=0;i<items.length;i++){
                           ttt.push(items.eq(i).val());
                           sss.push(sname.eq(i).val());
                           snn.push(snum.eq(i).val());
                           ccc.push(paycart.eq(i).val());
-                          bbb.push();
+                                                 
                        }
                   
                       var pay_price =$('input[name="pay_price"]').val()
@@ -214,7 +221,7 @@
                                             sname : sss,
                                             snum : snn,
                                             items : ttt,
-                                           	bubble : bubble,
+                                           	bubble : bubb,
                                            	id : id
                                         },
                                         success: function(data){
@@ -334,7 +341,7 @@
       <div class="price">
          <h2>최종 결제금액</h2>
          상품금액:<input type="text" id="pricepay" name="orderprice"  value="" />원<br>
-         버블사용:<input type="text" id="p_bubble" name="bubble" value="0" />원<br>
+         버블사용:<input type="text" id="p_bubble" name="bubble" value="0" readonly />원<br>
          총 결제금액:<input type="text" id="finalprice" name="pay_price"  value=""readonly />원
          
       

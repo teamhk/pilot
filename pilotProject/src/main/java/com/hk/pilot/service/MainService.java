@@ -182,7 +182,7 @@ public class MainService {
 
 
 	//최종결제
-	public int finalPay(@RequestParam("pay_price[]") int[] pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,int bubble,String id) {
+	public int finalPay(@RequestParam("pay_price[]") int[] pay_price,@RequestParam("items[]") String[] items,@RequestParam("snum[]") String[] snum,@RequestParam("sname[]") String[] sname,@RequestParam("bubble") int bubble,String id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int ret=0;
 		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
@@ -214,7 +214,7 @@ public class MainService {
 		// 정상일때는 commit 저장 (빼먹으면 안됨)
 		transactionManager.commit(txStatus);
 		 mainMapper.cartChk(id);
-		return ret;	//장바구니삭제	
+		return ret;	
 	}
 	
 	//최종결제시 사용한 버블 

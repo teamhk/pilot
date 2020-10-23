@@ -99,7 +99,7 @@
 <!-- //       }); -->
 <!--      </script> -->
 			<input type="text" class="total-cart-p" id="total_sum"name="pay_cart" /> 
-			<input type='button' value='계속빨래하기'onclick='location.href="/"' /> 
+			<input type='button' value='계속빨래하기'onclick='location.href="/stores/map"' /> 
 			<input type='submit' id='order' value='구매하기' onclick='location.href="pay"' />
 		</div>
 	</form>
