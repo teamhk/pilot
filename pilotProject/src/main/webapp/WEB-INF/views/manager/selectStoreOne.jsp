@@ -16,7 +16,7 @@
 </head>
 <body>
 <h1>업체 정보</h1>
-<form action='updateOne' name='storeform' method='post' id='storeform'>
+<form action='updateOne' name='storeform' method='post' id='storeform' enctype="multipart/form-data">
 		ID :<input type='text' name='id' value=${loginMember.id } readonly><br>  <!--${loginMember.name }-->
 		상호명 :<input type='text' name='sname' value="${storeInfo.sname}"><br>
 <%-- 		주소 :<input type='text' name='saddress' value="${storeInfo.saddress}"><br> --%>
@@ -26,6 +26,7 @@
 				<input type="text" id="sample6_address" placeholder="주소" name="storeFirstAddr" value="${storeInfo.storeFirstAddr}"><br>
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="storeExtraAddr" value="${storeInfo.storeExtraAddr}"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="storeSecondAddr" value="${storeInfo.storeSecondAddr}">
+				<input type="hidden" id="saddress" name="saddress" value="">
 		전화번호:<input type='number' name='scontact' value="${storeInfo.scontact}"><br>
 		사업자 등록 번호:<input type='number' name='snum' value="${storeInfo.snum}" readonly><br>
 		<label for="banks">은행명:</label>
@@ -179,6 +180,13 @@
 	}
 	//--------서브밋 할때 현재 체크 상태 확인해서 체크된건 1로 변경
 	function abcd(){
+		//--------------------saddress합치는거
+		var saddress = ($("#sample6_address").val()+$("#sample6_extraAddress").val());
+		console.log($("#sample6_address").val());
+		console.log($("#sample6_extraAddress").val());
+		$("#saddress").val(saddress);
+		console.log($("#saddress").val());
+		
 		var items = "";
 		$("input[type='checkbox']:checked").each(function(){
 			var str = $(this).attr('id');

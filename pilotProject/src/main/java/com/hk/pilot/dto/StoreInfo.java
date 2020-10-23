@@ -35,6 +35,8 @@ public class StoreInfo {
 	String r_id;
 	String rcom_content;
 	Date rcom_date;
+	int mno;
+	String saddress;
 	public String getId() {
 		return id;
 	}
@@ -221,6 +223,18 @@ public class StoreInfo {
 	public void setRcom_date(Date rcom_date) {
 		this.rcom_date = rcom_date;
 	}
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
+	public String getSaddress() {
+		return saddress;
+	}
+	public void setSaddress(String saddress) {
+		this.saddress = saddress;
+	}
 	@Override
 	public String toString() {
 		return "StoreInfo [id=" + id + ", sname=" + sname + ", snum=" + snum + ", scontact=" + scontact + ", bank="
@@ -230,7 +244,10 @@ public class StoreInfo {
 				+ ", sp2=" + sp2 + ", sp3=" + sp3 + ", sp4=" + sp4 + ", items=" + items + ", w_id=" + w_id
 				+ ", orderNum=" + orderNum + ", r_content=" + r_content + ", star=" + star + ", badCnt=" + badCnt
 				+ ", r_date=" + r_date + ", depth=" + depth + ", r_no=" + r_no + ", rcom_no=" + rcom_no + ", r_id="
-				+ r_id + ", rcom_content=" + rcom_content + ", rcom_date=" + rcom_date + "]";
+				+ r_id + ", rcom_content=" + rcom_content + ", rcom_date=" + rcom_date + ", mno=" + mno + ", saddress="
+				+ saddress + "]";
 	}
-			
+	
+	
+	
 }

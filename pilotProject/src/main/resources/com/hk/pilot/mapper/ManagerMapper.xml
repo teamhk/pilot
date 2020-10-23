@@ -66,7 +66,8 @@
 		STOREFIRSTADDR=#{storeFirstAddr}
 		,STORESECONDADDR= #{storeSecondAddr},
 		STOREEXTRAADDR=#{storeExtraAddr},STOREZIPCODE=#{storeZipCode},
-		SCONTACT=#{scontact}, BANK=#{bank}, BNUM=#{bnum}, AREA_NUM=#{area_num}
+		SCONTACT=#{scontact}, BANK=#{bank}, BNUM=#{bnum}, AREA_NUM=#{area_num},
+		SP1=#{sp1}, SP2=#{sp2}, SP3=#{sp3}, SP4=#{sp4}
 		WHERE SNUM=#{snum}
 	</update>
 

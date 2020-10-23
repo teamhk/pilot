@@ -522,6 +522,7 @@ function submitCheck() {
 				<input type="hidden" name="grade" value="2">
 				<input type="hidden" name="permit" value="N">
 				<input type="hidden" name="sdcheck" value="N">
+				<input type="hidden" id="cardCheck" name="cardCheck" value="N" >
 				<label><b>아이디</b></label>
 				<input type="text" id="id" placeholder="ID" name="id" oninput="checkId()">
 				<div class="validation" id="id_check"></div>

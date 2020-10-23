@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h1>업체 등록</h1>
-	<form action='add' name='form1' method='post' id='storeform'>
+	<form action='add' name='form1' method='post' id='storeform' enctype="multipart/form-data">
 		ID :<input type='text' name='id' value=${loginMember.id } readonly><br>
 		상호명 :<input type='text' name='sname'><br>
 		<label>점포주소</label> 
@@ -23,6 +23,7 @@
 		<input type="text" id="sample6_address" placeholder="주소" name="storeFirstAddr" value="${storeInfo.storeFirstAddr}"><br>
 		<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="storeExtraAddr" value="${storeInfo.storeExtraAddr}"><br>
 		<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="storeSecondAddr" value="${storeInfo.storeSecondAddr}">
+		<input type="hidden" id="saddress" name="saddress" value="">
 		전화번호:<input type='number' name='scontact'><br> 
 		사업자 등록 번호:<input type='number' name='snum'><br> <label for="banks">은행명:</label>
 		<select id="banks" name="bank" form="storeform">
@@ -65,7 +66,7 @@
 		</fieldset>
 		<input type='hidden' id='items' name='items' value=""> 
 		<input type='hidden' name='area_num' value='0'>
-		<input type="file" value="파일 선택" multiple="multiple" name="uploadFile"/><br>
+		<input type="file" id="file" value="파일 선택" multiple="multiple" name="uploadFile" maxlength="4"/><br>
 		<button onclick="abcd();">추가</button>
 	</form>
 	<script>
@@ -134,6 +135,14 @@
 	//--------서브밋 할때 현재 체크 상태 확인해서 체크된건 스트링형태로 items에 저장
 	
 	function abcd(){
+	//--------------------saddress합치는거
+		var saddress = ($("#sample6_address").val()+$("#sample6_extraAddress").val());
+		console.log($("#sample6_address").val());
+		console.log($("#sample6_extraAddress").val());
+		$("#saddress").val(saddress);
+		console.log($("#saddress").val());
+		
+		
 		var items="";
 		$("input[type='checkbox']").each(function(){
 			if($(this).is(":checked")==true){
