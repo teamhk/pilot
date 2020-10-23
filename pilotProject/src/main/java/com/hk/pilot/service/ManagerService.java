@@ -135,12 +135,12 @@ public class ManagerService {
    }
 
    // 주문 내역 상세 보기
-   public OrderProcess managerOrderInfo(int orderNum) {
+   public OrderProcess managerOrderInfo(String orderNum) {
       return managerMapper.managerOrderInfo(orderNum);
    }
 
    // 상태 실시간 ajax 변경
-   public int managerProcess(int orderNum, String process) {
+   public int managerProcess(String orderNum, String process) {
       System.out.println("managerProcess...호출");
       System.out.println("orderNum="+orderNum+":::::process ="+process);
       int ret = managerMapper.managerProcess(orderNum,process);

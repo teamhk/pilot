@@ -46,9 +46,9 @@ public interface ManagerMapper {
 
 	public List<OrderProcess> managerOrderList(String snum); // 7-1 업체 주문정보 조회
 
-	public OrderProcess managerOrderInfo(int orderNum); // 7-2 업체 주문 정보 상세보기
+	public OrderProcess managerOrderInfo(String orderNum); // 7-2 업체 주문 정보 상세보기
 
-	public int managerProcess(@Param("orderNum") int orderNum,@Param("process") String process); // 8 업체 주문 상태 실시간업데이트 (myBatis 동적쿼리)
+	public int managerProcess(@Param("orderNum") String orderNum,@Param("process") String process); // 8 업체 주문 상태 실시간업데이트 (myBatis 동적쿼리)
 	//  chat--------------------------------------------------------------------------------------------------------------------------------
 
 	public void write(Chat chat); //문의게시판 게시글작성

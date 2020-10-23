@@ -227,7 +227,7 @@ public class ManagerController {
    }
 
    @GetMapping("/orderInfo")
-   public String managerOrderInfo(@RequestParam("orderNum") int orderNum,Model model) {
+   public String managerOrderInfo(@RequestParam("orderNum") String orderNum,Model model) {
       model.addAttribute("managerOrderInfo",managerService.managerOrderInfo(orderNum));
       return "/manager/managerOrderInfo";
    }

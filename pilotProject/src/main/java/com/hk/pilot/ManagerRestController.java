@@ -50,7 +50,7 @@ public class ManagerRestController {
 	}
 	
 	@GetMapping(path = "/process", produces = MediaType.APPLICATION_JSON_VALUE)
-	public int managerProcess(@RequestParam("orderNum") int orderNum, @RequestParam("process") String process,Model model) {
+	public int managerProcess(@RequestParam("orderNum") String orderNum, @RequestParam("process") String process,Model model) {
 		logger.info("/member/rest/managerProcess ----------");
 		System.out.println("<<여기는 managerRestController>>"+"주문상태 변경중입니다.");
 		return managerService.managerProcess(orderNum, process);
