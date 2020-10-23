@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h3>관심 점포</h3>
-		<p>${likeStores1.name }님의 등록된 관심점포 목록 입니다.<br>
+		<p>${likeStore1.name }님의 등록된 관심점포 목록 입니다.<br>
 			<table border="1">
 				<tr>
 					<td>관심등록</td>
