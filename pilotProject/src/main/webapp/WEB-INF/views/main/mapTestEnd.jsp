@@ -78,7 +78,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level:10 // 지도의 확대 레벨
+    level:3 // 지도의 확대 레벨
 };  
 
 //지도를 생성합니다    
@@ -133,6 +133,15 @@ function searchPlaces() {
 
     // 페이지 번호를 표출합니다
    // displayPagination(pagination);
+
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    geocoder.addressSearch(keyword, function(result) {
+	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	    map.setCenter(coords);
+	});
+
+	
 }
 
 function placesSearch() {
@@ -194,6 +203,7 @@ var geocoder = new kakao.maps.services.Geocoder();
 	 		    map: map,
 	 	    	position: coords,
 	 		});
+
 	 	    // 인포윈도우로 장소에 대한 설명을 표시합니다
 	 		var infowindow = new kakao.maps.InfoWindow({
 	 			content: '<div style="width:150px;text-align:center;padding:6px 0;">'+title+'</div>',
@@ -296,7 +306,8 @@ function displayPlaces(arrFilterDatas){
     menuEl.scrollTop = 0;
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-    //map.setBounds(bounds);
+   // map.setBounds(bounds);
+ 	
     
 }
 
