@@ -5,10 +5,10 @@ import java.util.Date;
 public class Review {
 
 	String w_id;
-	int orderNum;
+	String orderNum;
 	String snum;
 	String r_content;
-	int star;
+	String star;
 	int badCnt;
 	Date r_date;
 	String depth;
@@ -20,10 +20,10 @@ public class Review {
 	public void setW_id(String w_id) {
 		this.w_id = w_id;
 	}
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 	public String getSnum() {
@@ -38,10 +38,10 @@ public class Review {
 	public void setR_content(String r_content) {
 		this.r_content = r_content;
 	}
-	public int getStar() {
+	public String getStar() {
 		return star;
 	}
-	public void setStar(int star) {
+	public void setStar(String star) {
 		this.star = star;
 	}
 	public int getBadCnt() {
