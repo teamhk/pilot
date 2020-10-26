@@ -27,29 +27,37 @@
 <title>퀴클린24셀프빨래방 | 카카오맵</title>
 <script type="text/javascript">
 //팝업창 오픈하여 데이터 전송
-// function openPopup( ) {
-	
-// // window.open("", popOpen, ['fullscreen=no,menubar=no,status=no,toolbar=no,titlebar=no,location=no,scrollbar=auto,width=650,height=550'] );
-// // productForm.target="popOpen";
-// productForm.action=" info";
-// console.log("서브밋 들어옴");
-// var itemlist = "";
-// var itemname = $('input[name="item"]');
-// var itemmimi = $('input[name="mimi"]');
-// console.log(itemname);
-// console.log(itemmimi);
-// for(var i=0;i<itemname.length;i++){
-// 	itemlist += itemname.eq(i).val()+"!@#"+itemmimi.eq(i).val()+"$%^";
+function openPopup( ) {
 
-// }
-// console.log(itemlist);
-// console.log("서브밋 중반");
-// $('#items').val(itemlist);
-// console.log("서브밋 후반");
-// console.log($('#items').val(itemlist));
 
-// productForm.submit();
-// }
+productForm.action=" info";
+
+console.log("서브밋 들어옴");
+var itemlist = "";
+var itemname = $('input[name="item"]');
+var itemmimi = $('input[name="mimi"]');
+console.log(itemname);
+console.log(itemmimi);
+for(var i=0;i<itemname.length;i++){
+	itemlist += itemname.eq(i).val()+"!@#"+itemmimi.eq(i).val()+"$%^";
+
+
+}
+console.log(itemlist);
+
+console.log("서브밋 중반");
+$('#items').val(itemlist);
+console.log("서브밋 후반");
+console.log($('#items').val(itemlist));
+
+
+
+
+productForm.submit();
+
+
+
+}
 function wrapWindowByMask() {
 	//화면의 높이와 너비를 구한다.
 	var maskHeight = $(document).height();
@@ -817,7 +825,7 @@ $(document).ready(function() {
 
 
 							<!-- </select> -->
-							<form name='productForm' method="post" action="info">
+								<form name='productForm' method="post" action="info">
 								<div id="container" name="addCart">
 									<input type="hidden" value="${storeInfo.snum}" name="snum">
 									<input type="hidden" value="${storeInfo.sname}" name="sname">
@@ -826,29 +834,10 @@ $(document).ready(function() {
 										type="hidden" value='N' name="c_check">
 
 								</div>
-
-
-
-
-								총금액:<input id="goodsTotAmt" name="pay_cart" value="0" readonly> 
-<!-- 							<input type='button' value='구매하기' onclick="openPopup()" /> -->
-								<div>
-								<button type="submit" class="ordercart" onclick="cartOpen()" >구매하기</button>
-								<div id="cartpop" >
-								<h2>장바구니 담기</h2>
-								<div class="content">
-								<p>
-									장바구니에 상품이<br>정상적으로 담겼습니다.
-								</p>
-								</div>
-								<div class="btnArea type2">
-								<a href="cart" class="btnSubmit" onclick="{$move_basket_page}">장바구니
-									이동</a> <a href="/stores/map" class="btnEm"
-									onclick="$('#confirmLayer').hide();">빨래 계속하기</a>
-								</div>
-
-						</div>
-						</div>
+							총금액:<input id="goodsTotAmt" name="pay_cart" value="0" readonly> 
+							<input type='submit' value='구매하기' onclick="javascript:openPopup()" /> 
+								
+						
 							</form>
 							<!-- //<input type='button' value='장바구니담기' onclick='location.href="cart"'/> -->
 							<c:forEach var="ppp" items='${product }'>
