@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.hk.pilot.mapper.SupportMapper">
+
+	<!-- 게시글 목록 -->
+	<select id="noticeList" resultType="com.hk.pilot.dto.Notice"
+		parameterType="com.hk.pilot.dto.Criteria">
+		SELECT id, n_seq, n_date, n_content, n_title
+		FROM
+		(SELECT id,
+		n_seq, n_date, n_content, n_title,
+		row_number()
+		over(ORDER
+		BY n_seq DESC) as rnum FROM notice) WHERE rnum
+		BETWEEN #{rowStart} AND
+		#{rowEnd}
+		ORDER BY n_seq DESC
+	</select>
+
+	<!-- 게시글 총 개수 -->
+	<select id="noticeListCount"
+		parameterType="com.hk.pilot.dto.SearchCriteria" resultType="int">
+
+		SELECT COUNT(n_seq)
+		FROM notice
+		WHERE 1 = 1
+		<include refid="search"></include>
+		And n_seq > 0
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT
+				LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+
+	<!-- 게시글 상세조회 -->
+
+	<select id="selectOne" parameterType="int"
+		resultType="com.hk.pilot.dto.Notice">
+
+		SELECT id, n_seq, n_date, n_content, n_title FROM
+		NOTICE
+		where n_seq = #{n_seq}
+
+	</select>
+
+
+
+</mapper>
