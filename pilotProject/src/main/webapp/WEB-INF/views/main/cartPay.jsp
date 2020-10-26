@@ -138,12 +138,15 @@
                                  
                               },
                           });
+                          alert(msg);
+                          document.location.href="/stores/pay";
+                          
                              } else {
                                  var msg = '결제에 실패하였습니다.';
                                  msg += '에러내용 : ' + rsp.error_msg;
+                                 document.location.href="/stores/pay";
                              }
-                             alert(msg);
-                             document.location.href="/stores/pay"; //alert창 확인 후 이동할 url 설정
+                             //alert창 확인 후 이동할 url 설정
                          });
                      });
          });
@@ -165,9 +168,9 @@
                 function kakaopay(){
                     //var payData = $("#payform").serialize();
                     
-                     if ( ! jQuery('input[name="b_price"]:checked').val() ) {
+                     if ( ! jQuery('input[name="usercard"]:checked').val() ) {
                             alert('결제수단을 선택해주세요.');
-                         jQuery('input[name="b_price"]').focus();  
+                         jQuery('input[name="usercard"]').focus();  
                          return false;
                      }
                       if( ! $('#check_agree_policy:checked').val()){
@@ -254,15 +257,14 @@
                                          
                                         }
                                     });
+                                    alert(msg);
+                                    document.location.href="/stores/payCheck?ret="+ret; //alert창 확인 후 이동할 url 설정
                                     } else {
                                            var msg = '결제에 실패하였습니다.';
                                            msg += '에러내용 : ' + rsp.error_msg;
-                                           document.location.href="stores/cart";
+                                           document.location.href="/stores/pay";
                                        }
-                                       alert(msg);
-                                       
-                                       
-                                       document.location.href="/stores/payCheck?ret="+ret; //alert창 확인 후 이동할 url 설정
+                                     
                                    });
                                };
 
