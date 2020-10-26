@@ -177,10 +177,10 @@
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
-		SELECT w_id, c_no, c_date, c_content, c_title, g_check
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check, c_cnt,
 		FROM
 		(SELECT w_id,
-		c_no, c_date, c_content, c_title, g_check,
+		c_no, c_date, c_content, c_title, g_check, c_cnt,
 		row_number()
 		over(ORDER
 		BY c_no DESC) as rnum FROM chat) WHERE w_id=#{logId}

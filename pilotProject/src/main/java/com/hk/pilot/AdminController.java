@@ -9,6 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -375,11 +376,13 @@ public class AdminController {
 
 		@PostMapping(value="/aChatCom")
 
-		public String writeCommentPost(ChatComment ccment) {
+		public String writeCommentPost(ChatComment ccment, @Param("c_no")int c_no) {
 
 			System.out.println("commentWrite-con 들어옴");
 
 			adminService.writeComment(ccment);
+			
+			adminService.updateRplCnt(c_no);
 
 			return "redirect:/admin/aChat";
 
