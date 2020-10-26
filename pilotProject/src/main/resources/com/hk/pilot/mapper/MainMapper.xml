@@ -117,8 +117,8 @@ delete from cart where cart_seq=#{cart_seq}
 
 <select id="userPay" resultType="com.hk.pilot.dto.FinalPay">
 
-SELECT m.id,name,pnum,email,USERZIPCODE,USERFIRSTADDR,USEREXTRAADDR,USERSECONDADDR,cardcheck,cardcom,cardnum,cardcvc,cardexp,b.bubble FROM MEMBERS m,PERSONALPAY p ,(SELECT id, BUBBLE FROM (SELECT bubble,id FROM BUBBLE WHERE id=#{id} order by b_seq DESC ) WHERE rownum=1) b
-WHERE m.id=p.id(+) AND m.id=b.id(+) AND m.id=#{id} 
+SELECT m.id,name,pnum,email,USERZIPCODE,USERFIRSTADDR,USEREXTRAADDR,USERSECONDADDR,cardcom,cardnum,cardcvc,cardexp,b.bubble FROM MEMBERS m,PERSONALPAY p ,(SELECT id, BUBBLE FROM (SELECT bubble,id FROM BUBBLE WHERE id=#{id} order by b_seq DESC ) WHERE rownum=1) b
+WHERE m.id=p.id(+) AND m.id=b.id(+) AND m.id=#{id}
 
 </select>
 <select id="cartpay" resultType="com.hk.pilot.dto.FinalPay">
@@ -143,9 +143,8 @@ SELECT bubble FROM (
 SELECT BALANCE FROM (
       SELECT BALANCE
  FROM Account 
-      ORDER BY A_SEQ DESC)
+      ORDER BY ROWNUM DESC)
    WHERE ROWNUM = 1
-
 
 </select>
 

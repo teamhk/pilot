@@ -32,13 +32,7 @@ import com.hk.pilot.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-//
-//	@GetMapping("/update")
-//	public String memberUpdate (Members Member,Model model) {
-//		model.addAttribute("url", );
-//		
-//		return "/user/memberUpdate";
-//	}
+
 	@Autowired
 	UserService userService;
 	
@@ -69,11 +63,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/payUpdate")
-	public String payUpdate(Model model, HttpSession session, PersonalPay personalPay) {
+	public String payUpdate(Model model, HttpSession session, UserInfo userInfo) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		PersonalPay pay = userService.selectUserPay(loginMember.getId());
 		model.addAttribute("pay",pay);
-		userService.payUpdate(personalPay);
+		userService.payUpdate(userInfo);
 		return "redirect:/user/creditCard";
 	}
 	

@@ -33,11 +33,16 @@ public class LoginController {
 		if(loginMember==null) {
 			reattr.addFlashAttribute("msg", false);
 			return "redirect:/auth/login";
+		} else if (loginMember.getUdCheck().equals("Y")){
+			reattr.addFlashAttribute("deleted", false);
+			return "redirect:/auth/login";
 		} else {
 			session.setAttribute("loginMember", loginMember);
 			session.setAttribute("name", loginMember.getName());	
 			return "redirect:/";
 		}
+		
+		
 	}
 	
 	@GetMapping("/logout")

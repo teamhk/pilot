@@ -62,7 +62,7 @@
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="${user.userFirstAddr } 세탁" id="keyword" size="15"> 
+                    키워드 : <input type="text" value="${user.userFirstAddr } 세탁" id="keyword" size="15">
                     <button type="submit">검색하기</button> 
                 </form>
             </div>
@@ -78,7 +78,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
+    level:10 // 지도의 확대 레벨
 };  
 
 //지도를 생성합니다    
@@ -90,20 +90,12 @@ var geocoder = new kakao.maps.services.Geocoder();
 //주소로 좌표를 검색합니다
 geocoder.addressSearch( '${user.userFirstAddr}', function(result, status) {
 // 정상적으로 검색이 완료됐으면 
+	console.log("맵생성");
  	if (status === kakao.maps.services.Status.OK) {
     	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
    		map.setCenter(coords);
 	} 
 });    
-
-// var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-// mapOption = {
-//     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-//     level: 5 // 지도의 확대 레벨
-// };  
-
-// //지도를 생성합니다   
-// var map = new kakao.maps.Map(mapContainer, mapOption);
 
 //장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();  
@@ -117,38 +109,57 @@ $.ajax({
 	async : false,
 	success : function(data) {
 		storeInfos = data;
-		console.log('storeInfos:', storeInfos);
+		console.log('storeInfosaaa:', storeInfos);
 	}
 });
 
-// //키워드로 장소를 검색합니다
-// searchPlaces();
+//키워드로 장소를 검색합니다
+searchPlaces();
 
-// //키워드 검색을 요청하는 함수입니다
-// function searchPlaces() {
+//키워드 검색을 요청하는 함수입니다
+function searchPlaces() {
+	console.log("검색기능되니");
+    var keyword = document.getElementById('keyword').value;
+    console.log("키워드는", keyword);
 
-//     var keyword = document.getElementById('keyword').value;
-
-//     if (!keyword.replace(/^\s+|\s+$/g, '')) {
-//         alert('키워드를 입력해주세요!');
-//         return false;
-//     }
-//     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+        alert('키워드를 입력해주세요!');
+        return false;
+    }
+    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 //     ps.keywordSearch( keyword, placesSearchCB); 
-//     displayPlaces(storeInfos);
+    placesSearch();
+   // displayPlaces(storeInfos);
 
-//     // 페이지 번호를 표출합니다
-//     displayPagination(pagination);
-// }
+    // 페이지 번호를 표출합니다
+   // displayPagination(pagination);
+}
 
-// //장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearch() {
+    var areaResult = setArea_num();
+    console.log("스토어 area_num", areaResult);
+    console.log('storeInfos:',storeInfos);
+    var arrFilterDatas = storeInfos.filter(data => data.area_num == areaResult);
+    console.log("result는", arrFilterDatas);
+    displayPlaces(arrFilterDatas);
+}
+
+//장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 // function placesSearchCB(storeInfos, status, pagination) {
+// function placesSearchCB(status, pagination) {
 // 	//console.log("data는", data);
 //     if (status === kakao.maps.services.Status.OK) {
 	
 //         // 정상적으로 검색이 완료됐으면
 //         // 검색 목록과 마커를 표출합니다
-//         displayPlaces(storeInfos);
+        
+//         //검색어 키워드가 들어간 주소만 배열로 리턴v
+//         var areaResult = setArea_num();
+//         console.log("스토어 area_num", areaResult);
+//         console.log('storeInfos:',storeInfos);
+//         var result = addrSearchData.filter(areaResult == storeInfos.area_num);
+//         console.log("result는", result);
+//         displayPlaces(result);
 
 //         // 페이지 번호를 표출합니다
 //         displayPagination(pagination);
@@ -168,96 +179,135 @@ $.ajax({
 // console.log("타니111");
 
  
-//주소-좌표 변환 객체를 생성합니다
+	//주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
-
-// storeInfos 갯수만큼 반복
-for (var i = 0; i < storeInfos.length; i++) {
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(storeInfos[i].saddress, function(result, status) {
-		// result값은 1개의 배열로 값이 오기때문에 0번째 값을 배열에 넣음 
-		addrSearchData.push(result[0]);
+	var saddressArr = storeInfos.map( addressData => addressData.saddress);
+	saddressArr.forEach(function(addr, index) {
+		geocoder.addressSearch(addr, function(result, status) {
+			console.log('result:',result);
+			console.log('storeInfos:',storeInfos[index])
+			//forEach문은 반복문이라서 하나씩 쓰기위해서 [index]가 필요하다아
+			var title = storeInfos[index].sname;
+			var snum = storeInfos[index].snum;
+	 	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	 	  	var marker = new kakao.maps.Marker({
+	 		    map: map,
+	 	    	position: coords,
+	 		});
+	 	    // 인포윈도우로 장소에 대한 설명을 표시합니다
+	 		var infowindow = new kakao.maps.InfoWindow({
+	 			content: '<div style="width:150px;text-align:center;padding:6px 0;">'+title+'</div>',
+	 			disableAutoPan: true
+	 		});
+	 	    infowindow.open(map, marker);
+	 	    kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, snum));
+	 		//클릭이벤트
+	 	 	function makeOverListener(map, marker, snum) {
+	 			return function() {
+	 	         	location.href='/stores/info?snum='+snum;
+	 	      	};
+	 	  	}
+		});
+	
 	});
-};
+		
+// storeInfos.forEach(function(storeInfos, index) {
+// 	geocoder.addressSearch(storeInfos.saddress, function(result, status) {
+// 		console.log("result는11",result);
+// 		addrSearchData.push(result[0]);
+// 	});
 
-// console.log('addrSearchData:',addrSearchData);
+// });
 
-setTimeout(() => {
-	for (var j = 0; j < storeInfos.length; j++) {
-	    var coords = new kakao.maps.LatLng(addrSearchData[j].y, addrSearchData[j].x);
-	    
-	  	var marker = new kakao.maps.Marker({
-		    map: map,
-	    	position: coords,
-	    	title : storeInfos[j].sname
-		});
-		console.log('marker:', marker);
-	    // 인포윈도우로 장소에 대한 설명을 표시합니다
-		var infowindow = new kakao.maps.InfoWindow({
-			content: '<div style="width:150px;text-align:center;padding:6px 0;">'+storeInfos[j].sname+'</div>',
-			disableAutoPan: true
-		});
-	    infowindow.open(map, marker);
-	    kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker,storeInfos[j].snum));
-		//클릭이벤트
-	 	function makeOverListener(map, marker, snum) {
-			return function() {
-	         	location.href='/stores/info?snum='+snum;
-	      	};
-	  	}
-	};
-}, 500);
+// // storeInfos 갯수만큼 반복
+// for (var i = 0; i < storeInfos.length; i++) {
+// 	// 주소로 좌표를 검색합니다
+// 	geocoder.addressSearch(storeInfos[i].saddress, function(result, status) {
+// 		// result값은 1개의 배열로 값이 오기때문에 0번째 값을 배열에 넣음 
+// 		addrSearchData.push(result[0]);
+// 	});
+// };
+
+console.log('addrSearchData:',addrSearchData);
+
+// setTimeout(() => {
+// 	for (var j = 0; j < storeInfos.length; j++) {
+// 	    var coords = new kakao.maps.LatLng(addrSearchData[j].y, addrSearchData[j].x);
+// 	    console.log("coords는",coords);
+// 	  	var marker = new kakao.maps.Marker({
+// 		    map: map,
+// 	    	position: coords,
+// 	    	title : storeInfos[j].sname
+// 		});
+// 		console.log('marker:', marker);
+// 	    // 인포윈도우로 장소에 대한 설명을 표시합니다
+// 		var infowindow = new kakao.maps.InfoWindow({
+// 			content: '<div style="width:150px;text-align:center;padding:6px 0;">'+storeInfos[j].sname+'</div>',
+// 			disableAutoPan: true
+// 		});
+// 	    infowindow.open(map, marker);
+// 	    kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker,storeInfos[j].snum));
+// 		//클릭이벤트
+// 	 	function makeOverListener(map, marker, snum) {
+// 			return function() {
+// 	         	location.href='/stores/info?snum='+snum;
+// 	      	};
+// 	  	}
+// 	};
+// }, 500);
 
 console.log('addrSearchData1111:',addrSearchData);
 console.log("storeInfos2222:", storeInfos);
 
 
-// function displayPlaces(storeInfos){
-// 	console.log("목록", storeInfos);
+function displayPlaces(arrFilterDatas){
+	console.log("목록", arrFilterDatas);
 
-//     var listEl = document.getElementById('placesList'), 
-//     menuEl = document.getElementById('menu_wrap'),
-//     fragment = document.createDocumentFragment(), 
-//     bounds = new kakao.maps.LatLngBounds(), 
-//     listStr = '';
+	if(arrFilterDatas.length==0){
+		alert("검색결과가 없습니다.");
+	}
+    var listEl = document.getElementById('placesList'), 
+    menuEl = document.getElementById('menu_wrap'),
+    fragment = document.createDocumentFragment(), 
+    bounds = new kakao.maps.LatLngBounds(), 
+    listStr = '';
 
-// //  // 검색 결과 목록에 추가된 항목들을 제거합니다
-//     removeAllChildNods(listEl);
+//  // 검색 결과 목록에 추가된 항목들을 제거합니다
+    removeAllChildNods(listEl);
 
-//     // 지도에 표시되고 있는 마커를 제거합니다
-//     //removeMarker();
-//     for ( var i=0; i<storeInfos.length; i++ ) {
+    // 지도에 표시되고 있는 마커를 제거합니다
+    //removeMarker();
+    for ( var i=0; i<arrFilterDatas.length; i++ ) {
 
-//         // 마커를 생성하고 지도에 표시합니다
-//         var placePosition = new kakao.maps.LatLng(storeInfos[i].y, storeInfos[i].x),
-//             //marker = addMarker(placePosition, i), 
-//             itemEl = getListItem(i, storeInfos[i]); // 검색 결과 항목 Element를 생성합니다
+        // 마커를 생성하고 지도에 표시합니다
+        var placePosition = new kakao.maps.LatLng(arrFilterDatas[i].y, arrFilterDatas[i].x),
+            //marker = Marker(placePosition, i), 
+            itemEl = getListItem(i, arrFilterDatas[i]); // 검색 결과 항목 Element를 생성합니다
 
-//         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-//         // LatLngBounds 객체에 좌표를 추가합니다
-//         bounds.extend(placePosition);
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        bounds.extend(placePosition);
 
-//         fragment.appendChild(itemEl);
+        fragment.appendChild(itemEl);
        
-//     }
-//     // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-//     listEl.appendChild(fragment);
-//     menuEl.scrollTop = 0;
+    }
+    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
+    listEl.appendChild(fragment);
+    menuEl.scrollTop = 0;
 
-//     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-//     map.setBounds(bounds);
+    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+    //map.setBounds(bounds);
     
-// }
+}
 
 
 //검색결과 항목을 Element로 반환하는 함수입니다
-function getListItem(index, storeInfos) {
-	console.log("왜안탈까");
-	console.log("index", index);
-    var el = document.createElement('li'),
+function getListItem(index, arrFilterDatas) {
+	console.log("storeInfos", storeInfos);
+    var addressDiv = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + storeInfos.sname + '</h5>';
+                '   <h5>' + arrFilterDatas.sname + '</h5>';
 
 //     if (places.road_address_name) {
 //         itemStr += '    <span>' + places.road_address_name + '</span>' +
@@ -265,15 +315,15 @@ function getListItem(index, storeInfos) {
 //     } else {
 //         itemStr += '    <span>' +  places.address_name  + '</span>'; 
 //     }
-	itemStr += '  <span >' + storeInfos.saddress  + '</span>';   
+	itemStr += '  <span >' + arrFilterDatas.saddress  + '</span>';   
                  
-      itemStr += '  <span class="tel">' + storeInfos.snum  + '</span>' +
+      itemStr += '  <span class="tel">' + arrFilterDatas.snum  + '</span>' +
                 '</div>';           
 
-    el.innerHTML = itemStr;
-    el.className = 'item';
+    addressDiv.innerHTML = itemStr;
+    addressDiv.className = 'item';
 
-    return el;
+    return addressDiv;
 }
 
 function displayPagination(pagination) {
@@ -310,6 +360,63 @@ function removeAllChildNods(el) {
     while (el.hasChildNodes()) {
         el.removeChild (el.lastChild);
     }
+}
+
+
+function setArea_num(){
+	var aval = $("#keyword").val();
+	console.log("aval", aval);
+	if(aval.indexOf("강남구")!=-1){
+		return '1';
+	} else if (aval.indexOf("강동구")!=-1){
+		return '2';
+	} else if (aval.indexOf("강북구")!=-1){
+		return '3';
+	} else if (aval.indexOf("강서구")!=-1){
+		return '4';
+	} else if (aval.indexOf("관악구")!=-1){
+		return '5';
+	} else if (aval.indexOf("광진구")!=-1){
+		return '6';
+	} else if (aval.indexOf("구로구")!=-1){
+		return '7';
+	} else if (aval.indexOf("금천구")!=-1){
+		return '8';
+	} else if (aval.indexOf("노원구")!=-1){
+		return '9';
+	} else if (aval.indexOf("도봉구")!=-1){
+		return '10';
+	} else if (aval.indexOf("동대문구")!=-1){
+		return '11';
+	} else if (aval.indexOf("동작구")!=-1){
+		return '12';
+	} else if (aval.indexOf("마포구")!=-1){
+		return '13';
+	} else if (aval.indexOf("서대문구")!=-1){
+		return '14';
+	} else if (aval.indexOf("서초구")!=-1){
+		return '15';
+	} else if (aval.indexOf("성동구")!=-1){
+		return '16';
+	} else if (aval.indexOf("성북구")!=-1){
+		return '17';
+	} else if (aval.indexOf("송파구")!=-1){
+		return '18';
+	} else if (aval.indexOf("양천구")!=-1){
+		return '19';
+	} else if (aval.indexOf("영등포구")!=-1){
+		return '20';
+	} else if (aval.indexOf("용산구")!=-1){
+		return '21';
+	} else if (aval.indexOf("은평구")!=-1){
+		return '22';
+	} else if (aval.indexOf("종로구")!=-1){
+		return '23';
+	} else if (aval.indexOf("중구")!=-1){
+		return '24';
+	} else {
+		return '25';
+	}
 }
 
 </script>

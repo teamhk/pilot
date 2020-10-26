@@ -115,12 +115,6 @@
 	
 	<!-- 게시물 작성 -->
 	
-	<update id="updateRplCnt" parameterType="int">
-	
-	update chat c set c.c_cnt = (select count(com_no) from chatcomment where c_no=#{c_no}) where c.c_no =#{c_cno}
-	
-	</update>
-	
 	<insert id="write">
 
 		INSERT INTO CHAT (W_ID, C_NO, C_DATE, C_CONTENT,
@@ -136,10 +130,10 @@
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
-		SELECT w_id, c_no, c_date, c_content, c_title, snum, g_check, c_cnt
+		SELECT w_id, c_no, c_date, c_content, c_title, snum, g_check
 		FROM
 		(SELECT w_id,
-		c_no, c_date, c_content, c_title, snum, g_check, c_cnt,
+		c_no, c_date, c_content, c_title, snum, g_check,
 		row_number()
 		over(ORDER
 		BY c_no DESC) as rnum FROM chat) WHERE snum is null and rnum

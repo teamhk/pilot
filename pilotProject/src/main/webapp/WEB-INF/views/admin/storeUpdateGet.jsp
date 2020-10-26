@@ -92,11 +92,10 @@
 		</fieldset>
 		<input type='hidden' name='area_num' value="${storeInfo.area_num}">
 		<input type='hidden' name='items' value="">
-		<img src="/resources/upload/${storeInfo.sp1 }"><input type="hidden" name="sp1" value="${storeInfo.sp1}"><input type="file" name="file1">
-		<img src="/resources/upload/${storeInfo.sp2 }"><input type="hidden" name="sp2" value="${storeInfo.sp2}"><input type="file" name="file2">
-		<img src="/resources/upload/${storeInfo.sp3 }"><input type="hidden" name="sp3" value="${storeInfo.sp3}"><input type="file" name="file3">
-		<img src="/resources/upload/${storeInfo.sp4 }"><input type="hidden" name="sp4" value="${storeInfo.sp4}"><input type="file" name="file4"><br>
-		<input type="file" id="file" value="파일 선택" multiple="multiple" name="uploadFile" maxlength="4"/><br>
+		<img src="/resources/upload/${storeInfo.sp1 }" onerror="this.style.display='none'" ><input type="hidden" name="sp1" value="${storeInfo.sp1}"><input type="file" name="file1">
+		<img src="/resources/upload/${storeInfo.sp2 }" onerror="this.style.display='none'" ><input type="hidden" name="sp2" value="${storeInfo.sp2}"><input type="file" name="file2">
+		<img src="/resources/upload/${storeInfo.sp3 }" onerror="this.style.display='none'" ><input type="hidden" name="sp3" value="${storeInfo.sp3}"><input type="file" name="file3">
+		<img src="/resources/upload/${storeInfo.sp4 }" onerror="this.style.display='none'" ><input type="hidden" name="sp4" value="${storeInfo.sp4}"><input type="file" name="file4"><br>
 		<label for="permit">승인여부:</label>
 		<select id="permit" name="permit" form="storeform">
   			<option value="Y">Y</option>

@@ -36,8 +36,8 @@
 </script>
 </head>
 <body>
-		ID: <input type="text" name="id" id="id"><br>
 		이름:	 <input type="text" name="name" id="name"><br>
+		아이디: <input type="text" name="id" id="id"><br>
 		이메일: <input type="text" name="email" id="email"><br>
 		<button type="button" id="randomPwd">비밀번호 찾기</button>
 		<input type="button" onclick="location.href='/auth/login'" value="로그인">	

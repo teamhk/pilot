@@ -24,9 +24,15 @@ public interface UserMapper {
 	
 	public int userUpdate(UserInfo userInfo);//회원의 개인정보 수정
 	
-	public int insertCard(PersonalPay personalPay);//카드정보 조회해서 없으면 insert
+	public int insertCard(UserInfo userInfo);//카드정보 조회해서 없으면 insert
 	
-	public int payUpdate(PersonalPay personalPay);//카드정보 조회해서 있으면 update
+	public int updateCardCheck(UserInfo userInfo);//카드정보 조회해서 없으면 insert는 위에서 하고, members에 cardCheck Y로 업데이트
+	
+	public int payUpdate(UserInfo userInfo);//카드정보 조회해서 있으면 update
+	
+	public int cardDelete(String id); //카드정보 삭제
+	
+	public int updateCardCheckToN(String id);//카드정보 삭제시 cardCheck도 N으로 업데이트
 	
 	public Members deleteUserOne(String id);//user탈퇴
 	

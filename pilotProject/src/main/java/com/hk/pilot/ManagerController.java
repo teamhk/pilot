@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -45,6 +46,9 @@ public class ManagerController {
 
    @Autowired
    AdminService adminService;
+   
+   @Autowired
+   ServletContext sc;
 
    @GetMapping("/add")
    public String StoreAddGet(Model model) {
@@ -56,7 +60,7 @@ public class ManagerController {
    @PostMapping("/add")
    public String StoreAddPost(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo ) {
       for(int i=0; i<uploadFile.length; i++) {
-         String uploadFolder = "C:\\upload";
+         String uploadFolder = sc.getRealPath("/resources/upload/");
          String uploadFileName = uploadFile[i].getOriginalFilename(); 
 
          uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
@@ -64,6 +68,11 @@ public class ManagerController {
          UUID uuid = UUID.randomUUID();
          uploadFileName = uuid.toString()+"_"+uploadFileName;
 
+         if(i==0) {storeInfo.setSp1(""); storeInfo.setSp2(""); storeInfo.setSp3(""); storeInfo.setSp4("");}
+         else if(i==1) {storeInfo.setSp2(""); storeInfo.setSp3(""); storeInfo.setSp4("");}
+         else if(i==2) {storeInfo.setSp3(""); storeInfo.setSp4("");}
+         else if(i==3) {storeInfo.setSp4("");}
+         
          if(i==0) {storeInfo.setSp1(uploadFileName);}
          else if(i==1) {storeInfo.setSp2(uploadFileName);}
          else if(i==2) {storeInfo.setSp3(uploadFileName);}
@@ -107,39 +116,99 @@ public class ManagerController {
 
 
 	@PostMapping("/updateOne")
-	public String storeUpdate(@RequestParam("uploadFile") MultipartFile[] uploadFile, Model model,StoreInfo storeInfo, MapData mapData ) {
+	public String storeUpdate(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, 
+							  @RequestParam("file3") MultipartFile file3, @RequestParam("file4") MultipartFile file4, Model model,StoreInfo storeInfo, MapData mapData ) {
 		System.out.println(storeInfo.toString());
 		System.out.println("StoreUpdate...호출");
 		System.out.println("점포업데이트 잘들어왔나? =>" + storeInfo.toString());
-		for(int i=0; i<uploadFile.length; i++) {
-			String uploadFolder = "C:\\upload";
-			String uploadFileName = uploadFile[i].getOriginalFilename(); 
-
-
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-
-			UUID uuid = UUID.randomUUID();
-			uploadFileName = uuid.toString()+"_"+uploadFileName;
-
-			if(i==0) {storeInfo.setSp1(uploadFileName);}
-			else if(i==1) {storeInfo.setSp2(uploadFileName);}
-			else if(i==2) {storeInfo.setSp3(uploadFileName);}
-			else if(i==3) {storeInfo.setSp4(uploadFileName);}
-
-			//File saveFile = new File(uploadFolder, uploadFileName);
-			File oldProfFile = new File(uploadFolder + uploadFile[i].getOriginalFilename());   // 업로드한 파일이 실제로 저장되는 위치  + 파일명 (확장자 포함) => 실행 디렉토리
-			File newProfFile = new File(uploadFolder + uploadFileName);
-			oldProfFile.renameTo(newProfFile);   // 파일명 변경
-			//logger.info("newProfFile = " + newProfFile);
-			try {
-				// 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
-				InputStream fileStream = uploadFile[i].getInputStream();
-				FileUtils.copyInputStreamToFile(fileStream, newProfFile);
-			} catch (Exception e) {
-				FileUtils.deleteQuietly(newProfFile);
-				e.printStackTrace();
-			}
-		}
+		String oldFile1 = storeInfo.getSp1();
+		String oldFile2 = storeInfo.getSp2();
+		String oldFile3 = storeInfo.getSp3();
+		String oldFile4 = storeInfo.getSp4();
+		
+		System.out.println("기존 사진"+oldFile1+oldFile2+oldFile3+oldFile4);
+		
+		String uploadFolder = sc.getRealPath("/resources/upload/");
+		String newFile1 = file1.getOriginalFilename();
+		newFile1 = newFile1.substring(newFile1.lastIndexOf("\\")+1);
+		UUID uuid = UUID.randomUUID();
+		newFile1 = uuid.toString()+"_"+newFile1;
+		
+		String newFile2 = file2.getOriginalFilename(); 
+		newFile2 = newFile2.substring(newFile1.lastIndexOf("\\")+1);
+		newFile2 = uuid.toString()+"_"+newFile2;
+		
+		String newFile3 = file3.getOriginalFilename(); 
+		newFile3 = newFile3.substring(newFile1.lastIndexOf("\\")+1);
+		newFile3 = uuid.toString()+"_"+newFile3;
+				
+		String newFile4 = file4.getOriginalFilename(); 
+		newFile4 = newFile4.substring(newFile4.lastIndexOf("\\")+1);
+		newFile4 = uuid.toString()+"_"+newFile4;
+		
+		if(file1.isEmpty()) {storeInfo.setSp1(oldFile1);}
+		else {storeInfo.setSp1(newFile1);}
+		
+		if(file2.isEmpty()) {storeInfo.setSp2(oldFile2);}
+		else {storeInfo.setSp2(newFile2);}
+		
+		if(file3.isEmpty()) {storeInfo.setSp3(oldFile3);}
+		else {storeInfo.setSp3(newFile3);}
+		
+		if(file4.isEmpty()) {storeInfo.setSp4(oldFile4);}
+		else {storeInfo.setSp4(newFile4);}
+		
+		File oldSaveFile1 = new File(uploadFolder+file1.getOriginalFilename());
+		File newSaveFile1 = new File(uploadFolder+newFile1);
+		oldSaveFile1.renameTo(newSaveFile1);
+		
+		File oldSaveFile2 = new File(uploadFolder+file2.getOriginalFilename());
+		File newSaveFile2 = new File(uploadFolder+newFile2);
+		oldSaveFile2.renameTo(newSaveFile2);
+		
+		File oldSaveFile3 = new File(uploadFolder+file3.getOriginalFilename());
+		File newSaveFile3 = new File(uploadFolder+newFile3);
+		oldSaveFile3.renameTo(newSaveFile3);
+		
+		File oldSaveFile4 = new File(uploadFolder+file4.getOriginalFilename());
+		File newSaveFile4 = new File(uploadFolder+newFile4);
+		oldSaveFile4.renameTo(newSaveFile4);
+		
+	    try {
+              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+              InputStream fileStream = file1.getInputStream();
+              FileUtils.copyInputStreamToFile(fileStream, newSaveFile1);
+           } catch (Exception e) {
+              FileUtils.deleteQuietly(newSaveFile1);
+              e.printStackTrace();
+           }
+	    
+	    try {
+              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+              InputStream fileStream = file2.getInputStream();
+              FileUtils.copyInputStreamToFile(fileStream, newSaveFile2);
+           } catch (Exception e) {
+              FileUtils.deleteQuietly(newSaveFile2);
+              e.printStackTrace();
+           }
+	    
+	    try {
+              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+              InputStream fileStream = file3.getInputStream();
+              FileUtils.copyInputStreamToFile(fileStream, newSaveFile3);
+           } catch (Exception e) {
+              FileUtils.deleteQuietly(newSaveFile3);
+              e.printStackTrace();
+           }
+	    
+	    try {
+              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+              InputStream fileStream = file4.getInputStream();
+              FileUtils.copyInputStreamToFile(fileStream, newSaveFile4);
+           } catch (Exception e) {
+              FileUtils.deleteQuietly(newSaveFile4);
+              e.printStackTrace();
+           }
 		int ret = managerService.storeUpdate(storeInfo);
 		managerService.mapDataUpdate(mapData);
 		System.out.println("점포정보 성공적으로 DB에 등록됬나? =>" + ret);

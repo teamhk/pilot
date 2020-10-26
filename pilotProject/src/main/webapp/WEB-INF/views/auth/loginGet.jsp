@@ -57,6 +57,9 @@
 										<c:if test="${msg==false }">
 											<p style="color:#f00;">로그인에 실패했습니다. 아이디 또는 비밀번호를 다시 입력해주세요</p>
 										</c:if>
+										<c:if test="${deleted==false }">
+											<p style="color:#f00;">이미 탈퇴한 계정입니다. 새로운 아이디로 회원가입 해주시기 바랍니다.</p>
+										</c:if>
 										<input type="submit" value="로그인"
 											class="btn btn-primary btn-user btn-block">
 										<hr>

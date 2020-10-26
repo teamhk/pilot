@@ -9,7 +9,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,9 +123,85 @@ public class AdminController {
 			
 			String uploadFolder = sc.getRealPath("/resources/upload/");
 			String newFile1 = file1.getOriginalFilename();
+			newFile1 = newFile1.substring(newFile1.lastIndexOf("\\")+1);
+			UUID uuid = UUID.randomUUID();
+			newFile1 = uuid.toString()+"_"+newFile1;
+			
 			String newFile2 = file2.getOriginalFilename(); 
+			newFile2 = newFile2.substring(newFile1.lastIndexOf("\\")+1);
+			newFile2 = uuid.toString()+"_"+newFile2;
+			
 			String newFile3 = file3.getOriginalFilename(); 
+			newFile3 = newFile3.substring(newFile1.lastIndexOf("\\")+1);
+			newFile3 = uuid.toString()+"_"+newFile3;
+					
 			String newFile4 = file4.getOriginalFilename(); 
+			newFile4 = newFile4.substring(newFile4.lastIndexOf("\\")+1);
+			newFile4 = uuid.toString()+"_"+newFile4;
+			
+			if(file1.isEmpty()) {storeInfo.setSp1(oldFile1);}
+			else {storeInfo.setSp1(newFile1);}
+			
+			if(file2.isEmpty()) {storeInfo.setSp2(oldFile2);}
+			else {storeInfo.setSp2(newFile2);}
+			
+			if(file3.isEmpty()) {storeInfo.setSp3(oldFile3);}
+			else {storeInfo.setSp3(newFile3);}
+			
+			if(file4.isEmpty()) {storeInfo.setSp4(oldFile4);}
+			else {storeInfo.setSp4(newFile4);}
+			
+			File oldSaveFile1 = new File(uploadFolder+file1.getOriginalFilename());
+			File newSaveFile1 = new File(uploadFolder+newFile1);
+			oldSaveFile1.renameTo(newSaveFile1);
+			
+			File oldSaveFile2 = new File(uploadFolder+file2.getOriginalFilename());
+			File newSaveFile2 = new File(uploadFolder+newFile2);
+			oldSaveFile2.renameTo(newSaveFile2);
+			
+			File oldSaveFile3 = new File(uploadFolder+file3.getOriginalFilename());
+			File newSaveFile3 = new File(uploadFolder+newFile3);
+			oldSaveFile3.renameTo(newSaveFile3);
+			
+			File oldSaveFile4 = new File(uploadFolder+file4.getOriginalFilename());
+			File newSaveFile4 = new File(uploadFolder+newFile4);
+			oldSaveFile4.renameTo(newSaveFile4);
+			
+		    try {
+	              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+	              InputStream fileStream = file1.getInputStream();
+	              FileUtils.copyInputStreamToFile(fileStream, newSaveFile1);
+	           } catch (Exception e) {
+	              FileUtils.deleteQuietly(newSaveFile1);
+	              e.printStackTrace();
+	           }
+		    
+		    try {
+	              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+	              InputStream fileStream = file2.getInputStream();
+	              FileUtils.copyInputStreamToFile(fileStream, newSaveFile2);
+	           } catch (Exception e) {
+	              FileUtils.deleteQuietly(newSaveFile2);
+	              e.printStackTrace();
+	           }
+		    
+		    try {
+	              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+	              InputStream fileStream = file3.getInputStream();
+	              FileUtils.copyInputStreamToFile(fileStream, newSaveFile3);
+	           } catch (Exception e) {
+	              FileUtils.deleteQuietly(newSaveFile3);
+	              e.printStackTrace();
+	           }
+		    
+		    try {
+	              // 소스 디렉토리에 저장된 파일을 실행 디렉토리에 복사하라는 명령?
+	              InputStream fileStream = file4.getInputStream();
+	              FileUtils.copyInputStreamToFile(fileStream, newSaveFile4);
+	           } catch (Exception e) {
+	              FileUtils.deleteQuietly(newSaveFile4);
+	              e.printStackTrace();
+	           }
 			
 			System.out.println("바뀐 값:"+storeInfo.toString());
 			int ret = adminService.storeUpdatePost(storeInfo);
@@ -300,13 +375,11 @@ public class AdminController {
 
 		@PostMapping(value="/aChatCom")
 
-		public String writeCommentPost(ChatComment ccment, @Param("c_no")int c_no) {
+		public String writeCommentPost(ChatComment ccment) {
 
 			System.out.println("commentWrite-con 들어옴");
 
 			adminService.writeComment(ccment);
-			
-			adminService.updateRplCnt(c_no);
 
 			return "redirect:/admin/aChat";
 

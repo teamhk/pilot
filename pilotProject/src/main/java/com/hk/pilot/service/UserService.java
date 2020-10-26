@@ -62,16 +62,17 @@ public class UserService {
 	}
 
 	//user 카드정보 업데이트
-	public int payUpdate(PersonalPay personalPay) {
-		if(userMapper.selectUserPay(personalPay.getId())==null) {
-			int ret1 = userMapper.insertCard(personalPay);
+	public int payUpdate(UserInfo userInfo) {
+		if(userMapper.selectUserPay(userInfo.getId())==null) {
+			int ret1 = userMapper.insertCard(userInfo);
+			userMapper.updateCardCheck(userInfo);
 			if(ret1==1) {
 				return 1;
 			} else {
 				return 0;
 			}
 		} else {
-			int ret2 = userMapper.payUpdate(personalPay);
+			int ret2 = userMapper.payUpdate(userInfo);
 			if(ret2 == 1) {
 				return 1;
 			} else {
@@ -79,7 +80,17 @@ public class UserService {
 			}
 		}
 	}
-
+	
+	//user 카드정보 삭제
+	public int cardDelete(String id) {
+		int ret = userMapper.cardDelete(id);
+		userMapper.updateCardCheckToN(id);
+		if(ret == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 
 	//user 탈퇴
 

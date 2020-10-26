@@ -66,11 +66,7 @@ li {
 						<tr>
 							<td><c:out value="${list.c_no}" /></td>
 							<td><a href="/admin/aChatR?c_no=${list.c_no}"><c:out
-										value="${list.c_title}" />&nbsp; 
-										<c:if test="${list.c_cnt ne null }">
-										<small><b>[&nbsp;<c:out value="${list.c_cnt}"/>&nbsp;]
-										</b></small>
-									</c:if></a></td>
+										value="${list.c_title}" /></a></td>
 							<td><c:out value="${list.w_id}" /></td>
 							<td><fmt:formatDate value="${list.c_date}"
 									pattern="yyyy-MM-dd" /></td>

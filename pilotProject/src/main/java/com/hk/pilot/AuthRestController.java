@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.pilot.dto.Stores;
 import com.hk.pilot.service.AuthService;
+import com.hk.pilot.service.UserService;
 
 
 @RestController
@@ -40,6 +41,9 @@ public class AuthRestController {
 	@Autowired
 	ServletContext sc;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping(path="/addCustomer1", produces=MediaType.APPLICATION_JSON_VALUE)
 	   public String checkIdDup(@RequestParam("id") String id) {
 		System.out.println("타니?");   
@@ -50,5 +54,11 @@ public class AuthRestController {
 	   public String checkEmailDup(@RequestParam("email") String email) {
 		System.out.println("email중복체크 타니?");   
 		return authService.checkEmail(email);
+	   }
+	
+	@PostMapping(path="/cardDelete", produces=MediaType.APPLICATION_JSON_VALUE)
+	   public int cardDelete(@RequestParam("id") String id) {
+		System.out.println("카드삭제 ajax?");   
+		return userService.cardDelete(id);
 	   }
 }

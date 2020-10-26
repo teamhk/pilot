@@ -87,33 +87,12 @@ function sample6_execDaumPostcode() {
 				<input type='text' name='email' value="${user.email}"><br>
 				<label><b>휴대전화</b></label>
 				<input type='number' name='pnum' value="${user.pnum}"><br> 
-				<label><b>집주소</b></label>
+				<label><b>집주소!!!!!!!!!</b></label>
 				<input type="text" id="sample6_postcode" placeholder="${user.userZipCode}" name="userZipCode" value="${user.userZipCode}">
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 				<input type="text" id="sample6_address" placeholder="주소" name="userFirstAddr" value="${user.userFirstAddr}"><br>
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="userExtraAddr" value="${user.userExtraAddr}"><br>
 				<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="userSecondAddr" value="${user.userSecondAddr}">
-				<label><b>카드회사</b></label>
-				<input type='text' name='cardCom' value="${pay.cardCom }">
-				<label><b>카드번호</b></label>
-				<input type='text' name='cardNum' value="${pay.cardNum }">
-<!-- 				<h3>결제 카드 등록</h3> -->
-<!-- 				<label for="cardCom"><b>카드회사</b></label> -->
-<!-- 				<select id="cardCom" name="cardCom"> -->
-<!-- 					<option value="" selected>-카드사를 선택해 주세요-</option> -->
-<!-- 					<option value="KB카드">KB국민카드</option> -->
-<!-- 					<option value="신한카드">신한카드</option> -->
-<!-- 					<option value="하나카드">하나카드</option> -->
-<!-- 					<option value="롯데카드">롯데카드</option> -->
-<!-- 					<option value="BC카드">BC카드</option> -->
-<!-- 					<option value="농협카드">NH농협카드</option> -->
-<!-- 					<option value="삼성카드">삼성카드</option> -->
-<!-- 					<option value="현대카드">현대카드</option> -->
-<!-- 				</select> -->
-<!-- 				<label><b>카드번호</b></label> -->
-<!-- 				<input type="text" size="20" id="cardNum" name="cardNum" maxlength="12" oninput="checkCardNum(this.value)"> -->
-<!-- 				<div class="validation" id="cardNum_check"></div> -->
-				<!-- 카드 날짜 입력 받는거 상의해야해, 혹시 굳이 날싸 입력 받아야 된다고 하면 int타입으로 바꾸고 월입력칸 따로 년도 입력칸 따로 만든후 DB에도 칼럼을 그냥 date타입으로 하나만 하는게 아니라 나눠서 하기 -->
 			</form>
 		</div>
 		<button id='btn' disabled onclick="abcd();">전송</button>

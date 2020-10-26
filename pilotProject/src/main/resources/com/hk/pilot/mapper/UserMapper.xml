@@ -27,16 +27,29 @@
 	</update>
 
 	<insert id="insertCard"
-		parameterType="com.hk.pilot.dto.PersonalPay">
+		parameterType="com.hk.pilot.dto.UserInfo">
 		INSERT INTO PERSONALPAY (ID, CARDCOM, CARDNUM, CARDEXP, CARDCVC)
 		VALUES (#{id}, #{cardCom}, #{cardNum}, #{cardExp}, #{cardCvc})
 	</insert>
+
+	<update id="updateCardCheck" parameterType="com.hk.pilot.dto.UserInfo">
+		UPDATE MEMBERS SET CARDCHECK='Y'
+		WHERE ID=#{id}
+	</update>
 
 	<update id="payUpdate"
 		parameterType="com.hk.pilot.dto.PersonalPay">
 		update personalpay set cardcom=#{cardCom} ,cardnum=#{cardNum},
 		cardexp=#{cardExp}, cardcvc=#{cardCvc} where id =#{id}
+	</update>
 
+	<delete id="cardDelete" parameterType="String" >
+		DELETE FROM PERSONALPAY
+		WHERE ID=#{id}
+	</delete>
+
+	<update id="updateCardCheckToN" parameterType="String">
+		UPDATE MEMBERS SET CARDCHECK='N' WHERE ID=#{id}
 	</update>
 
 	<select id="deleteUserOne" resultType="com.hk.pilot.dto.Members">
@@ -89,7 +102,7 @@
 
 	</selectKey>
 
-		INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, 0, '환불', #{id},#{o_price}, #{a_seq})
+	INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, #{i_price}, '환불', #{id}, 0, #{a_seq})
 	
 	
 	</insert>
@@ -109,11 +122,11 @@
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
-		SELECT w_id, c_no, c_date, c_content, c_title, g_check, c_cnt,
+		SELECT w_id, c_no, c_date, c_content, c_title, g_check,
 		snum
 		FROM
 		(SELECT w_id,
-		c_no, c_date, c_content, c_title, g_check, snum, c_cnt,
+		c_no, c_date, c_content, c_title, g_check, snum,
 		row_number()
 		over(ORDER
 		BY c_no DESC) as rnum FROM chat) WHERE

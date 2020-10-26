@@ -10,6 +10,7 @@
 <%  
 	PersonalPay pay = (PersonalPay) request.getAttribute("pay");
 %>
+<%-- <% int ret = (int) request.getAttribute("ret"); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,25 @@ var cardNumR = /([0-9]{12})/;
 //카드 유효기간 무조건 2자리 넣게 하는 정규식
 var expR = /[0-9]{2}/;
 
+$(document).on("click", "#deleteBtn", function(){
+	var id = $("#id").val();
+	$.ajax({
+		data:{id:id},
+		method: "post",
+		dataType: "json",
+		url: "/auth1/cardDelete",
+		success:function(data){
+			if(data==0){
+				alert("등록된 카드정보가 삭제되었습니다.");
+				window.location.reload();
+			}
+		},
+		error:function(error){
+			alert("에러 발생!!!");
+		}
+	});
+});
+
 $(document).ready(function(){
 	$('#cardNum').focus(function(){
 		checkCardNum();
@@ -29,6 +49,13 @@ $(document).ready(function(){
 	$("#expMM").focus(function(){
 		checkMM();
 	});
+
+	console.log("카드번호는", $("#cardNum").val() == null);
+	if($("#cardNum").val() == '') {
+		$("#deleteBtn").attr('disabled', true);
+	} else  {
+		$("#deleteBtn").attr('disabled', false);
+	}
 });
 function checkCardNum(){
 	if($('#cardNum').val() == ''){
@@ -56,14 +83,20 @@ function checkMM(){
 		$('#cardExp_check').css('color', 'black');
 	}
 }
+
+
+// if(${ret}==1){
+// 	alert("등록된 카드정보가 삭제되었습니다.")
+// }
 </script>
 </head>
 <body>
 	<h3>카드정보 수정</h3>
 		<p>*카드 등록은 하나만 가능합니다.<br>카드 정보를 변경하실 경우 기존 등록된 카드 정보는 삭제된 후 새로 등록됩니다.</p><br>
 	<form action="payUpdate" name="selectUserPay" id="selectUserPay" method="post">
+	<input type="hidden" name="cardCheck" value="Y">
 	<label><b>아이디</b></label>
-		<input type="text" name="id" value="${loginMember.id }" readOnly><br>
+		<input type="text" name="id" id="id" value="${loginMember.id }" readOnly><br>
 	<label><b>카드회사</b></label>
 	<select id="cardCom" name="cardCom" form="selectUserPay">
 		<option value="KB카드">KB국민카드</option>
@@ -88,10 +121,13 @@ function checkMM(){
 			<div class="validation" id="cardExp_check"></div>
 	<label><b>CVC</b></label>
 		<input type="text" name="cardCvc" value="${pay.cardCvc }"><br>
+	<button type="button" id="deleteBtn" onclick="" >삭제</button>	
 	<button type='button' id="btn" onclick="submitCheck()">등록</button>
 	<input type="button" onclick="location.href='/'" value="메인페이지">
 	</form>
 <script>
+
+
 //--------셀렉트값을 디비에서 가져와서 표현
 var str1 = "${pay.cardCom}";
 console.log(str1);

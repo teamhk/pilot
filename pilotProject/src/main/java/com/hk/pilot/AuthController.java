@@ -85,13 +85,19 @@ public class AuthController {
 //	            if(i==0 ) {managerInfo.setSp2(""); managerInfo.setSp3(""); managerInfo.setSp4("");}
 //	            else if(i==1) {managerInfo.setSp3(""); managerInfo.setSp4("");}
 //	            else if(i==2) {managerInfo.setSp4(""); }
+	           
+	            
+	            if(i==0) {managerInfo.setSp1(""); managerInfo.setSp2(""); managerInfo.setSp3(""); managerInfo.setSp4("");}
+	            else if(i==1) {managerInfo.setSp2(""); managerInfo.setSp3(""); managerInfo.setSp4("");}
+	            else if(i==2) {managerInfo.setSp3(""); managerInfo.setSp4("");}
+	            else if(i==3) {managerInfo.setSp4("");}
 	            
 	            if(i==0) {managerInfo.setSp1(uploadFileName);}
 	            else if(i==1) {managerInfo.setSp2(uploadFileName);}
 	            else if(i==2) {managerInfo.setSp3(uploadFileName);}
 	            else if(i==3) {managerInfo.setSp4(uploadFileName);}
 	           // stores.setSnum(snum);
-	            
+	            System.out.println("uploadFile.length는"+uploadFile.length);
 	            //File saveFile = new File(uploadFolder, uploadFileName);
 	            File oldProfFile = new File(uploadFolder + uploadFile[i].getOriginalFilename());   // 업로드한 파일이 실제로 저장되는 위치  + 파일명 (확장자 포함) => 실행 디렉토리
 	            File newProfFile = new File(uploadFolder + uploadFileName);
