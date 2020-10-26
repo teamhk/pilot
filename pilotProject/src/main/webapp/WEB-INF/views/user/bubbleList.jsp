@@ -4,6 +4,7 @@
 <%@ page import="com.hk.pilot.dto.Members" %>
 <%@ page import="com.hk.pilot.dto.Bubble" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,15 +16,20 @@
 <div id='maindiv'>
 	<table border='1'>
 		<tr>
-			<td>충전금액</td><td>버블잔량</td>
+			<td>충전금액</td>
+			<td>충전버블</td>
+			<td>버블잔량</td>
+			<td>버블사용</td>
+			<td>날짜</td>
 		</tr>
 		<c:forEach items="${bub}" var="bubble"> <!-- 반복문으로 tr,td생성 -->
 			<tr>
 				<td>${bubble.b_price}</td>
-<%-- 				<td><a href='update?mno=<c:out value="${member.mno}" />'><c:out value="${member.mname}" /></a></td> --%>
+				<td>${bubble.b_bubble}</td>
 				<td>${bubble.bubble}</td>
-<%-- 				<td><c:out value="${member.email}" /></td> --%>
-<%-- 				<td><a href='delete?mno=<c:out value="${member.mno}" />'>삭제</a></td> --%>
+				<td>${bubble.p_bubble}</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${bubble.b_date}"/></td>
+
 			</tr>
 		</c:forEach>
 	</table>

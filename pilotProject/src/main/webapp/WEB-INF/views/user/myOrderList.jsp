@@ -273,7 +273,6 @@
 		<input type='text' value='<%=process%>' class='pro' readonly><br>
 		<input type="hidden" id="refun" value="${myOrderList.ok }" />
 		<input type="hidden" id="bub" value="${myOrderList.bubble }" />
-		<input type="text" id="bub" value="${myOrderList.bubble }" />
 	<button type="button" id="refund" >환불하기</button>
 	<button class='tdn'>전화면으로</button>
 	</div>

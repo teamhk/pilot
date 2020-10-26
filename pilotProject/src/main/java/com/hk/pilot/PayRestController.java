@@ -102,10 +102,11 @@ public class PayRestController {
 	@RequestMapping(path = "/refundCheck", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public OrderProcess refundCheck(@RequestParam("id") String id,@RequestParam("orderNum")String orderNum,@RequestParam("i_price")int i_price,@RequestParam("bubble")int bubble,Account account) {
 		System.out.println("들어와?");
-		
-		int bal = mainService.accpay(account);
+		int bal=0;
+		int bub=0;
+		bal = mainService.accpay(account);
 		System.out.println(bubble);
-		int bub =(int)(i_price-bubble);
+		bub =(int)(i_price-bubble);
 		System.out.println(bub);
 		account.setId(id);
 		account.setBalance((int)(bal-bub));

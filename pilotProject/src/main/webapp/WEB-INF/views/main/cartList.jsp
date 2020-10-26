@@ -40,12 +40,17 @@
         }
 
         $(function(){
-        $("#order").click(function () {               
-            if (confirm("결제 하시겠습니까?")== true) {
-                $("#cartform").submit();
-            }
-        });
-        });
+            $("#order").click(function () {               
+                var ok= confirm("결제 하시겠습니까?");
+                if(ok){
+                    $("#cartform").submit();
+                    location.href="pay";
+                }
+                else{
+                	return false;
+                    }
+            });
+            });
 
        
 </script>

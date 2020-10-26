@@ -47,6 +47,29 @@
               });
             });
 
+
+       //카드정보 나오기 
+		//?는 삼항연산자 (true면 왼쪽 false면 오른쪽)
+      $(function(){
+   	   $("#user").click(function () {
+       	   var chk=$("input[name='cardchk']").val()
+       	   if(chk=="Y"){
+   		    $('.card').css('display', ($(this).val() === 'a') ? 'block':'none');
+       	   }else{
+						alert("등록된 카드정보가 없습니다");
+						$("#user").prop('checked', false);
+           	   }
+   		});
+		});
+
+      $(function(){
+   	   $("#userkakao").click(function () {
+       	  
+   		    $('.card').css('display', ($(this).val() === 'b') ? 'none':'block');
+       	  
+   		});
+		});
+       
 		//버블충전 금액 chk
 		$(document).ready(function(){
 			console.log("들어오냐")
@@ -184,7 +207,7 @@
                       var pay_price =$('input[name="pay_price"]').val()
                       var email=$('input[name="email"]').val()
                       var name=$('input[name="name"]').val()
-//                       var pnum=$('input[name="orderpnum"]').val()
+                      var pnum=$('input[name="orderpnum"]').val()
                          
                       
                        var IMP = window.IMP;
@@ -199,7 +222,7 @@
                                amount : pay_price,
                                buyer_email : email,
                                buyer_name : name,
-                               buyer_tel : '01026954959',
+                               buyer_tel : pnum,
                                //m_redirect_url : '/'
                            }, function(rsp) {
                                console.log(rsp);
@@ -348,12 +371,17 @@
       </div>
       
       <div class="pricechk">
-         <h2>결제 수단</h2>
+        <h2>결제 수단</h2>
          <!-- 등록카드 -->
-         <input tyPe="radio" name="b_price" />
+         <input tyPe="radio" name="usercard" id="user" value='a' />
          <label >등록 카드</label><br>
+         <div class="card" style='display:none'>
+         <input type="hidden" name="cardchk" value="${finalPay.cardCheck}" />
+         <input type="text" name="com" value="${finalPay.cardCom}" />
+         <input type="text" name="com" value="${finalPay.cardNum}" />
+         </div>
          <!-- 카카오페이 -->
-       <input tyPe="radio" name="b_price" />
+       <input tyPe="radio" name="usercard" id="userkakao" value='b'/>
          <label >카카오페이</label><br>
       </div>
       <div class="form-check check_agree_policy">
