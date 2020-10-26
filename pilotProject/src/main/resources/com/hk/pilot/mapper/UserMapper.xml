@@ -89,7 +89,7 @@
 
 	</selectKey>
 
-	INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, #{i_price}, '환불', #{id}, 0, #{a_seq})
+		INSERT INTO ACCOUNT (BALANCE, A_DATE, I_PRICE, DETAIL, ID, O_PRICE, A_SEQ) VALUES(#{balance}, sysdate, 0, '환불', #{id},#{o_price}, #{a_seq})
 	
 	
 	</insert>

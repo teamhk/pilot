@@ -20,7 +20,7 @@ public class FinalPay {
 	String reason;
 	String grade;
 	String cardCom;
-	String cardNun;
+	String cardNum;
 	String cardExp;
 	String cardCvc;
 	String sname;
@@ -155,11 +155,11 @@ public class FinalPay {
 	public void setCardCom(String cardCom) {
 		this.cardCom = cardCom;
 	}
-	public String getCardNun() {
-		return cardNun;
+	public String getCardNum() {
+		return cardNum;
 	}
-	public void setCardNun(String cardNun) {
-		this.cardNun = cardNun;
+	public void setCardNum(String cardNum) {
+		this.cardNum = cardNum;
 	}
 	public String getCardExp() {
 		return cardExp;
@@ -359,7 +359,7 @@ public class FinalPay {
 				+ ", userZipCode=" + userZipCode + ", userFirstAddr=" + userFirstAddr + ", userSecondAddr="
 				+ userSecondAddr + ", userExtraAddr=" + userExtraAddr + ", cardCheck=" + cardCheck + ", likeStore1="
 				+ likeStore1 + ", likeStore2=" + likeStore2 + ", likeStore3=" + likeStore3 + ", udCheck=" + udCheck
-				+ ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom + ", cardNun=" + cardNun
+				+ ", reason=" + reason + ", grade=" + grade + ", cardCom=" + cardCom + ", cardNum=" + cardNum
 				+ ", cardExp=" + cardExp + ", cardCvc=" + cardCvc + ", sname=" + sname + ", snum=" + snum
 				+ ", scontact=" + scontact + ", bank=" + bank + ", bnum=" + bnum + ", permit=" + permit + ", s_date="
 				+ s_date + ", area_num=" + area_num + ", sdcheck=" + sdcheck + ", storeZipCode=" + storeZipCode
@@ -369,5 +369,6 @@ public class FinalPay {
 				+ pay_cart + ", p_date=" + p_date + ", p_seq=" + p_seq + ", b_price=" + b_price + ", bubble=" + bubble
 				+ ", b_date=" + b_date + ", p_bubble=" + p_bubble + ", b_bubble=" + b_bubble + ", b_seq=" + b_seq + "]";
 	}
+	
 	
 }
