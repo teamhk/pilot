@@ -230,6 +230,15 @@ public class AdminService {
 
 
 	}
+	
+	public void updateRplCnt(int c_no) {
+		adminMapper.updateRplCnt(c_no);
+	
+
+
+	}
+	
+	
 
 
 

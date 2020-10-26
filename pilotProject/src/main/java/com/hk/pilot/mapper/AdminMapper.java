@@ -81,6 +81,7 @@ public interface AdminMapper {
 	public void writeComment(ChatComment ccment); //댓글 작성
 	public List<ChatComment> readComment(int c_no); //작성 댓글 조회
 
+	public void updateRplCnt(int c_no);
 }
 
 
