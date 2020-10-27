@@ -135,7 +135,7 @@ public class StoresController {
 
 
 	@PostMapping("/cart")
-	public String UpdateCart(@RequestParam("cart_seq") List<Integer> cart_seq ,Model model) {
+	public String UpdateCart(@RequestParam("cart_seq") List<String> cart_seq ,Model model) {
 		//List<Cart> cartList=mainService.userCart();
 		int cartPrice=mainService.cartPrice(cart_seq);
 

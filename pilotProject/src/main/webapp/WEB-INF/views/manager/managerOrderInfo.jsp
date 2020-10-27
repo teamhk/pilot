@@ -37,6 +37,7 @@
 	결제일:<fmt:formatDate value='${managerOrderInfo.pay_date}' type='both' pattern='yyyy.MM.dd(E)(a)hh:mm:ss'/><br>
 	진행 상황: <%String process="";%>
 				<c:choose>
+					<c:when test="${managerOrderInfo.refundDate ne null}"><%process="환불";%></c:when>
 					<c:when test="${managerOrderInfo.finish ne null}"><%process="배달완료";%></c:when>
 					<c:when test="${managerOrderInfo.wash ne null}"><%process="세탁중";%></c:when>
 					<c:when test="${managerOrderInfo.pick ne null}"><%process="수거완료";%></c:when>

@@ -35,17 +35,18 @@
          }
       }
       //주문자 정보 동일
-       $(function(){
-              $('#useraddr').click(function(){
-                var user = this.checked;
-                $('#username').val(user ? $('#orderName').val():'');
-                $('#userpnum').val(user ? $('#orderpnum').val():'');
-                 $('#postcode').val(user ? $('#sample6_postcode').val():'');
-                $('#address').val(user ? $('#sample6_address').val():'');
-                $('#extraAddress').val(user ? $('#sample6_extraAddress').val():'');
-                $('#detailAddress').val(user ? $('#sample6_detailAddress').val():'');
-              });
-            });
+	$(function(){
+		$('#useraddr').click(function(){
+			var user = this.checked;
+			$('#username').val(user ? $('#orderName').val():'');
+			$('#userpnum').val(user ? $('#orderpnum').val():'');
+			$('#postcode').val(user ? $('#sample6_postcode').val():'');
+			$('#address').val(user ? $('#sample6_address').val():'');
+			$('#extraAddress').val(user ? $('#sample6_extraAddress').val():'');
+			$('#detailAddress').val(user ? $('#sample6_detailAddress').val():'');
+		});
+	
+	});
 
 
        //카드정보 나오기 
@@ -79,20 +80,32 @@
 		});
 
 		function checkBubble(){
-			console.log("여기도 들어오냐")
+// 			console.log("여기도 들어오냐")
 			var paybub=$('#paybubble').val();
-			var bub=${finalPay.bubble};
+			var bub=Number(${finalPay.bubble});
+			var total_sum = $('#total_sum').val();	
 			
-		
+
 			if(paybub>bub){
-			$('#bubble_check').text('버블이 부족합니다,버블을 충전해주세요');
-			$('#bubble_check').css('color', 'red');
+// 			$('#bubble_check').text('버블이 부족합니다,버블을 충전해주세요');
+// 			$('#bubble_check').css('color', 'red');
+				$('#paybubble').val(${finalPay.bubble});
+// <input type="text" name="pp_bubble" id="paybubble" value="0" oninput="checkBubble()">원(사용가능 버블:<a>${finalPay.bubble}
 			
-			}else {
-				$('#bubble_check').text('버블사용 가능합니다' );
-				$('#bubble_check').css('color', 'black');
-				}
-		
+// 			}else {
+// 				$('#bubble_check').text('버블사용 가능합니다' );
+// 				$('#bubble_check').css('color', 'black');
+// 				console.log("최대치 들어간다");
+			}
+			
+			paybub = Number($('#paybubble').val());
+// 			console.log('total',total_sum);
+// 			console.log('paybub',paybub);
+			
+			if(paybub>total_sum){
+// 				console.log("버블 고만넣어");
+				$('#paybubble').val(total_sum);
+			}
 	
 		}
        
@@ -211,7 +224,44 @@
                       var email=$('input[name="email"]').val()
                       var name=$('input[name="name"]').val()
                       var pnum=$('input[name="orderpnum"]').val()
-                         
+                      
+                      console.log(Number($('#pricepay').val()));
+                      console.log(Number($('#p_bubble').val()));
+                      console.log(Number($('#finalprice').val()));
+                      
+						//버블로 전액 결제 됬을때                      
+                      if(Number($('#pricepay').val())==Number($('#p_bubble').val()) && Number($('#finalprice').val()==0)){
+						alert("버블로 몽땅 결제됬다");
+						var check = 'Y';
+						$.ajax({
+                            type: "POST", 
+                            url: "/order/finalPay", //충전 금액값을 보낼 url 설정 
+                            async: false,                               
+                            dataType: "json",
+                            data: {
+                               //amount : money
+                                pay_price : ccc,
+                                sname : sss,
+                                snum : snn,
+                                items : ttt,
+                               	bubble : bubb,
+                               	id : id,
+                               	check : check
+                            },
+                            success: function(data){
+							  ret =data/2;
+                          	  $('input[name="ret"]').val(ret);
+                              console.log($('input[name="ret"]').val());
+                             
+                            }
+                        });
+						var msg = '결제가 완료되었습니다.';
+                        alert(msg);
+                        document.location.href="/stores/payCheck?ret="+ret;
+                      }
+                      
+                      
+                      
                       
                        var IMP = window.IMP;
                        IMP.init('imp75580600'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -235,7 +285,7 @@
                                     msg += '상점 거래ID : ' + rsp.merchant_uid;
                                     msg += '결제 금액 : ' + rsp.paid_amount;
                                     msg += '카드 승인번호 : ' + rsp.apply_num;
-                                  
+                                    var check = 'N';
                                     $.ajax({
                                         type: "POST", 
                                         url: "/order/finalPay", //충전 금액값을 보낼 url 설정 
@@ -248,7 +298,8 @@
                                             snum : snn,
                                             items : ttt,
                                            	bubble : bubb,
-                                           	id : id
+                                           	id : id,
+                                           	check : check
                                         },
                                         success: function(data){
 										  ret =data/2;
@@ -267,11 +318,6 @@
                                      
                                    });
                                };
-
-
-                               
-                               
-                               
                              
    </script>
    <form id="payform" method="post" >
@@ -301,7 +347,7 @@
                <tr>
                   <td class="product-close"><input type="checkbox"
                      name="chkbox" onClick="itemSum()" class="chkbox"
-                     value="${cart.pay_cart}" /></td>
+                     value="${cart.pay_cart}" disabled/></td>
                   <td>${cart.sname}</td>
                   <c:set var="itemStr" value="${cart.items}" />
                   <c:set var="itemStr" value="${fn:replace(itemStr, '!@#', ':')}" />
@@ -351,7 +397,7 @@
 
       <div class="bubble">
          <h2>포인트 사용</h2>
-         버블사용:<input type="text" name="pp_bubble" id="paybubble" value="0" oninput="checkBubble()">원(사용가능 버블:<a>${finalPay.bubble}</a>)<br>
+         버블사용:<input type="text" name="pp_bubble" id="paybubble" value="0" onchange="checkBubble()">원(사용가능 버블:<a>${finalPay.bubble}</a>)<br>
         <div id="bubble_check"></div>
          버블충전:<input tyPe="radio" value="10000" name="b_price"/>10000버블 <input tyPe="radio" value="30000" name="b_price"/>30000버블 <input tyPe="radio" value="50000" name="b_price"/>50000버블
          <button type="button" id="bubbleBut">충전하기</button>

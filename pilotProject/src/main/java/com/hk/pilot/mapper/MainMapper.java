@@ -55,7 +55,7 @@ public interface MainMapper {
 	
 	public List<Cart> userCart(String id);
 	
-	public int cartPrice(Integer cart_seq);
+	public int cartPrice(@Param("seq") int seq,@Param("choice") String choice);
 	
 	public void deleteCart(int cart_seq);
 

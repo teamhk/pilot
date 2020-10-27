@@ -62,7 +62,7 @@ public class PayRestController {
 	@RequestMapping(path = "/finalPay", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public int finalPay(HttpSession session, @RequestParam("items[]") String[] items,
 			@RequestParam("snum[]") String[] snum, @RequestParam("sname[]") String[] sname,
-			@RequestParam("pay_price[]") int[] pay_price,@RequestParam("bubble") int bubble, String id, Bubble bubble1, Account account) {
+			@RequestParam("pay_price[]") int[] pay_price,@RequestParam("bubble") int bubble, String id, Bubble bubble1, Account account,String check) {
 		Members loginMember = (Members) session.getAttribute("loginMember");
 		System.out.println("들어오니??");
 		//버블 계산
@@ -84,7 +84,9 @@ public class PayRestController {
 			
 		};
 		bubble1.setP_bubble(bub);
-		bubble1.setBubble((int) (bu - bub));
+		System.out.println("bu-bub = "+(bu - bub));
+		bubble1.setBubble(bu-bub);
+		System.out.println(bubble1.toString());
 		payy=pay-bub;
 		paypp=payP-bub;
 		account.setId(loginMember.getId());
@@ -92,8 +94,12 @@ public class PayRestController {
 		account.setI_price(paypp);
 
 //       
-		mainService.bubblefinal(bubble1);
-		mainService.orderAcc(account);
+		if(bub!=0) {
+			mainService.bubblefinal(bubble1);
+		}
+		if(check.equals("N")) {
+			mainService.orderAcc(account);
+		}
 		int ret = mainService.finalPay(pay_price, items, snum, sname, bubble, id);
 		System.out.println("ret=" + ret);
 		return ret;
@@ -112,7 +118,9 @@ public class PayRestController {
 		account.setBalance((int)(bal-bub));
 		System.out.println(account);
 		account.setO_price(bub);
-		userService.accRefunt(account);
+		if(bub!=0) {
+			userService.accRefunt(account);
+		}
 		userService.refundCheck(id,orderNum,bubble);
 		return userService.myOrderList(orderNum);
 	}

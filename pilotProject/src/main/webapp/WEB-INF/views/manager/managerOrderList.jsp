@@ -90,6 +90,9 @@ window.onload = function(){
 			sel[i].value = "세탁중";
 		}else if(pro[i].value==="배달완료"){
 			sel[i].value = "배달완료";
+		}else if(pro[i].value==="환불"){
+			sel[i].value = "환불";
+			sel[i].disabled=true;
 		}
 	}
 	

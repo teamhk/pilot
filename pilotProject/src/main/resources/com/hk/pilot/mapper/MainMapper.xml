@@ -104,8 +104,8 @@ select m.id,ITEMS, SNUM, SNAME, C_CHECK, CART_SEQ, CHOICE,pay_cart from Members 
 
  <update id="cartPrice"> 
  update cart set
- choice='Y' where 
- cart_seq=#{cart_seq}
+ choice=#{choice} where 
+ cart_seq=#{seq}
  </update> 
  
 <delete id="deleteCart">
@@ -133,7 +133,7 @@ SELECT bubble FROM (
       SELECT bubble
  FROM BUBBLE 
       WHERE id=#{id}
-      ORDER BY ROWNUM DESC)
+      ORDER BY B_SEQ DESC)
    WHERE ROWNUM = 1
 
 </select>

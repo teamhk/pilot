@@ -25,13 +25,9 @@
            console.log(seq);
            console.log(count);
            for(var i=0; i < count; i++ ){
-               if( $(".chkbox")[i].checked === true ){
+               if( $(".chkbox")[i].checked == true ){
                 sum += Number($(".chkbox").eq(i).val());
-                seq.eq(i).prop("name","cart_seq");
-                console.log(seq);
-               }else{
-            	   seq.eq(i).prop("name","");
-                   }
+               }
            }
            console.log(sum);
            $("#total_sum").val(sum);
@@ -40,17 +36,33 @@
         }
 
         $(function(){
-            $("#order").click(function () {               
+            $("#order").click(function () {
+                if( $("#total_sum").val()==0){
+					alert("품목을 선택해주세요");
+				} else {              
                 var ok= confirm("결제 하시겠습니까?");
                 if(ok){
-                    $("#cartform").submit();
-                    location.href="pay";
+                	 var count = $(".chkbox").length;
+                     var seq= $('input[name="cart_seq"]');
+                     for(var i=0; i < count; i++ ){
+                         if( $(".chkbox")[i].checked == true ){	
+                        	 var seq_val = seq.eq(i).val();
+                             seq.eq(i).prop("value",seq_val+"Y");
+                             console.log(seq.eq(i).val());
+                         } else {
+                        	 var seq_val = seq.eq(i).val();
+                             seq.eq(i).prop("value",seq_val+"N");
+                             console.log(seq.eq(i).val());
+                         }
+                     }
+					$("#cartform").submit();
                 }
                 else{
                 	return false;
                     }
+                }
             });
-            });
+		});
 
        
 </script>
@@ -59,7 +71,7 @@
 <%-- <c:when test ="${user.items eq null}">장바구니가 비어있습니다.</c:when> --%>
 <%-- <c:otherwise> --%>
  
-	<form id="cartform" method="post">
+	<form id="cartform" method="post" action="cart">
 		<div class="container">
 			
 			<table class="table table-bordered" id="tbl-product">
@@ -104,8 +116,8 @@
 <!-- //       }); -->
 <!--      </script> -->
 			<input type="text" class="total-cart-p" id="total_sum"name="pay_cart" /> 
-			<input type='button' value='계속빨래하기'onclick='location.href="/stores/map"' /> 
-			<input type='submit' id='order' value='구매하기' onclick='location.href="pay"' />
+			<input type='button' value='계속빨래하기' onclick='location.href="/stores/map"' /> 
+			<input type='button' id='order' value='구매하기' />
 		</div>
 	</form>
 

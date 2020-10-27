@@ -65,7 +65,7 @@
 	<select id="bubbleList" resultType="com.hk.pilot.dto.Bubble">
 
 		select m.id,b_price,bubble,b_date,p_bubble,b_bubble,b_seq from members
-		m,bubble b where m.id=b.id and m.id=#{id}
+		m,bubble b where m.id=b.id and m.id=#{id} ORDER BY B_DATE DESC
 
 	</select>
 

@@ -112,10 +112,17 @@ public class MainService {
 		return mainMapper.userCart(id);
 	}
 	
-	public int cartPrice(List<Integer> cart_seq){
+	public int cartPrice(List<String> cart_seq){
+		System.out.println(cart_seq.toString());
 		for(int i=0;i<cart_seq.size();i++) {
 //			System.out.println("cart_seq="+cart_seq.get(i));
-		 int ret = mainMapper.cartPrice(cart_seq.get(i));
+		 String str = cart_seq.get(i);
+		 System.out.println("str="+str);
+		 String choice = str.substring(str.length()-1);
+		 System.out.println("choice ="+choice);
+		 int seq = Integer.parseInt(str.substring(0,str.length()-1));
+		 System.out.println("seq ="+seq);
+		 int ret = mainMapper.cartPrice(seq,choice);
 //		 System.out.println("ret"+i+"="+ret);
 		}
 		return 1;
@@ -163,12 +170,12 @@ public class MainService {
 	
 	@Transactional
 	public int bubbleplus(Bubble bubble) {
-		
+		int bub;
 		TransactionStatus txStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
 		//TransactionStatus라는 것을 transactionManager로 부터 가져온다
 		// Transaction Test
 		try { 
-			mainMapper.bubbleplus(bubble);	
+			bub = mainMapper.bubbleplus(bubble);	
 		} catch (Exception e) { 
 			System.out.println("Service ------------------- End");
 			// 비정상일때는 rollback
@@ -177,7 +184,7 @@ public class MainService {
 		}
 		// 정상일때는 commit 저장 (빼먹으면 안됨)
 		transactionManager.commit(txStatus);
-		return mainMapper.bubbleplus(bubble);		
+		return bub;		
 	}
 
 
@@ -219,11 +226,11 @@ public class MainService {
 	
 	//최종결제시 사용한 버블 
 	public int bubblefinal(Bubble bubble1) {
-			if(bubble1.getBubble()!=0) {
-				mainMapper.bubblefinal(bubble1);
 			
-			}
-		 return 0;	
+		int ret = mainMapper.bubblefinal(bubble1);
+			
+			
+		return ret;	
 	}
 	
 	public int orderAcc(Account account) {
