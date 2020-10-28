@@ -42,7 +42,11 @@
 					<tr>
 						<td><c:out value="${schatList.c_no}" /></td>
 						<td><a href="/manager/schatR?c_no=${schatList.c_no}"><c:out
-										value="${schatList.c_title}" /></a></td>
+										value="${schatList.c_title}" />&nbsp; 
+										<c:if test="${schatList.c_cnt ne null }">
+										<small><b>[&nbsp;<c:out value="${schatList.c_cnt}"/>&nbsp;]
+										</b></small>
+									</c:if></a></td>
 						<td><c:out value="${schatList.w_id}" /></td>
 						<td><fmt:formatDate value="${schatList.c_date}"
 								pattern="yyyy-MM-dd" /></td>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -508,11 +509,13 @@ public class ManagerController {
 
 	@PostMapping(value="/schatCom")
 
-	public String writeCommentPost(ChatComment ccment) {
+	public String writeCommentPost(ChatComment ccment, @Param("c_no")int c_no) {
 
 		System.out.println("manager commentWrite-con 들어옴");
 
 		managerService.writeComment(ccment);
+		
+		managerService.updateRplCnt(c_no);
 
 		return "redirect:/manager/schat";
 

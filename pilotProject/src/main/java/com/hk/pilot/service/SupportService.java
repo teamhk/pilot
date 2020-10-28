@@ -22,7 +22,7 @@ public class SupportService {
 	//게시물 총 개수
 	public int noticeListCount(SearchCriteria scri) {
 
-		System.out.println("chatService-listCount 호출");
+		System.out.println("noticeService-listCount 호출");
 
 		return supportMapper.noticeListCount(scri);
 	}
@@ -30,9 +30,42 @@ public class SupportService {
 	//게시물 상세 조회하기
 	public Notice selectOne(int n_seq) {
 
-		System.out.println("chatService-selectOne 호출");
+		System.out.println("noticeService-selectOne 호출");
 		return supportMapper.selectOne(n_seq);
 	}
+	
+	//어드민 게시글 작성
+		public void write(Notice notice) {
+
+			System.out.println("noticeService-write 호출");
+
+			System.out.println(notice.toString());
+
+			supportMapper.write(notice);
+
+		}
+		
+		//게시글 수정
+
+		public void update(Notice notice) {
+			System.out.println("noticeService-update 호출");
+
+			System.out.println(notice.toString()+"noticeService");
+
+			supportMapper.update(notice);
+
+		}
+
+		//게시글 삭제하기
+
+		public void delete(int n_seq) {
+			System.out.println("noticeService-delete 호출");
+
+			supportMapper.delete(n_seq);
+
+		}
+		
+		
 
 
 }

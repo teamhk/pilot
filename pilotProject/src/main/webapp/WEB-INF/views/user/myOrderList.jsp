@@ -301,6 +301,12 @@
 					<form name="writeForm" method="post" action="/review/rWrite">
 						<table>
 							<tbody>
+							
+								<tr>
+									<td><label for="title">업체명</label><input type="text"
+										id="orderNum" name="sname" class="chk" title="주문번호를 입력하세요"
+										value="${myOrderList.sname}" placeholder="주문번호를 입력하세요"  readOnly/></td>
+								</tr>
 
 								<tr>
 									<td><label for="title">주문번호</label><input type="text"
@@ -324,7 +330,7 @@
 								<tr>
 								<tr>
 									<td><label for="star">별점</label> <input type="hidden"
-										name="star" id="point" title="별점을 선택해주세요" />
+										name="star" id="point" title="별점을 선택해주세요" class="chk" />
 										<div class="starRev" title="별점을 선택해주세요">
 											<span class="star1 on" id="star1" data-value="1">★</span> <span
 												class="star2 on" id="star2" data-value="2">★</span> <span

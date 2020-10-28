@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.hk.pilot.dto.StoreInfo"%>
 <%
@@ -15,6 +16,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
+	
+	<style>
+.starcolor {
+	color: red;
+}
+
+</style>	
 
 </head>
 <body>
@@ -40,9 +48,41 @@
 					<th>내용</th>
 					<th>작성자</th>
 					<th>등록일</th>
+					<th>별점</th>
 				</tr>
 
 				<c:forEach items="${reviewList}" var="reviewList">
+				
+					<c:set var="star0" value="${reviewList.star}" />
+									<c:choose>
+										<c:when test="${star0 eq '1' }">
+											<c:set var="star1" value="${fn:replace(star0, '1', '★' ) }" />
+										</c:when>
+
+										<c:when test="${star0 eq '2' }">
+											<c:set var="star1" value="${fn:replace(star0, '2', '★★')  }" />
+										</c:when>
+
+
+										<c:when test="${star0 eq '3' }">
+											<c:set var="star1" value="${fn:replace(star0, '3', '★★★' ) }" />
+										</c:when>
+
+
+										<c:when test="${star0 eq '4' }">
+											<c:set var="star1"
+												value="${fn:replace(star0, '4', '★★★★')  }" />
+										</c:when>
+
+
+										<c:when test="${star0 eq '5' }">
+
+											<c:set var="star1"
+												value="${fn:replace(star0, '5', '★★★★★')  }" />
+										</c:when>
+
+
+									</c:choose>
 					<tr>
 						<td><c:out value="${reviewList.r_no}" /></td>
 						<td><c:out value="${reviewList.orderNum}" /></td>
@@ -50,6 +90,7 @@
 						<td><c:out value="${reviewList.w_id}" /></td>
 						<td><fmt:formatDate value="${reviewList.r_date}"
 								pattern="yyyy-MM-dd" /></td>
+						<td class="starcolor"><c:out value="${star1}" /></td>		
 					</tr>
 				</c:forEach>
 

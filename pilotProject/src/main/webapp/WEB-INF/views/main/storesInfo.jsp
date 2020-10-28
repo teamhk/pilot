@@ -1132,7 +1132,7 @@ this.deselect = function (trgtGoodsId){
 
 
 									<tr>
-										<td><c:out value="${reviewList.r_no}" /></td>
+<%-- 										<td><c:out value="${reviewList.r_no}" /></td> --%>
 										<td><c:out value="${reviewList.r_content}" /></td>
 										<td><c:out value="${reviewList.w_id}" /></td>
 										<td><fmt:formatDate value="${reviewList.r_date}"
@@ -1167,6 +1167,13 @@ this.deselect = function (trgtGoodsId){
 							<form name="writeForm" method="post" action="/user/schatW">
 								<table>
 									<tbody>
+									
+									<tr>
+											<td><label for="writer">업체명</label><input type="text"
+												id="sname" name="sname" placeholder="ID가져올 예정"
+												value="${storeInfo.sname}" readOnly /></td>
+										<tr>
+									
 
 										<tr>
 											<td><label for="content">제목</label> <textarea
@@ -1214,7 +1221,7 @@ this.deselect = function (trgtGoodsId){
 					</div>
 				</div>
 				</div>
-				</div>
+				
 				<!--Popup End -->
 </body>
 </html>

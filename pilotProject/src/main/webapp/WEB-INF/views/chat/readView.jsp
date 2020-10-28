@@ -78,7 +78,7 @@
 					</tr>
 
 					<tr>
-						<td><label for="writer">회원등급</label><input type="text"
+						<td><label for="writer"></label><input type="hidden"
 							id="grade" name="g_check" value="${selectOne.g_check}"
 							readonly="readonly" /></td>
 					</tr>

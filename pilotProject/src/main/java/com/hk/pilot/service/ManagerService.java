@@ -231,6 +231,13 @@ public class ManagerService {
 		managerMapper.writeComment(ccment);
 		
 	}
+	
+	public void updateRplCnt(int c_no) {
+		managerMapper.updateRplCnt(c_no);
+	
+
+
+	}
 
 
 }	

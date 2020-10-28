@@ -41,9 +41,10 @@ li {
 			<form role="form" method="get">
 				<table>
 					<tr>
-						<th>게시글 번호</th>
-						<th>게시글 제목</th>
-						<th>게시글 작성자</th>
+						<th>문의글 번호</th>
+						<th>문의글 제목</th>
+						<th>문의글 작성자</th>
+						<th>업체명</th>
 						<th>등록일</th>
 
 
@@ -52,8 +53,15 @@ li {
 						<tr>
 							<td><c:out value="${schatList.c_no}" /></td>
 							<td><a href="/user/schatR?c_no=${schatList.c_no}"><c:out
-										value="${schatList.c_title}" /></a></td>
+										value="${schatList.c_title}" />&nbsp; 
+										<c:if test="${schatList.c_cnt ne null }">
+										<small><b>[&nbsp;<c:out value="${schatList.c_cnt}"/>&nbsp;]
+										</b></small>
+									</c:if></a></td>
 							<td><c:out value="${schatList.w_id}" /></td>
+							
+							<td><c:out value="${schatList.sname}" /></td>
+							
 							<td><fmt:formatDate value="${schatList.c_date}"
 									pattern="yyyy-MM-dd" /></td>
 				

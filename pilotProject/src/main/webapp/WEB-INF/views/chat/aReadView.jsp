@@ -43,11 +43,24 @@
 		//관리자 댓글 작성버튼 1011 추가 james
 		$(".commentWriteBtn").on("click", function() {
 			var formObj = $("form[name='commentForm']");
+			if (fn_valiChk()) {
+				return false;
+			}
 			alert("댓글 작성이완료되었습니다")
 			formObj.attr("action", "/admin/aChatCom");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
+
+		function fn_valiChk() {
+			var commentForm = $("form[name='commentForm'] .chk").length;
+			for (var i = 0; i < commentForm; i++) {
+				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+					alert($(".chk").eq(i).attr("title"));
+					return true;
+				}
+			}
+		}
 		
 		
 	})
@@ -131,7 +144,7 @@
 				<div>
 					<label for="writer">댓글 작성자</label><input type="text" id="r_id"
 						name="r_id" value="${loginMember.id}"/> <br /> <label for="content">댓글 내용</label><input
-						type="text" id="com_content" name="com_content" />
+						type="text" id="com_content" name="com_content" class = 'chk' title="댓글 내용을 입력해주세요" placeholder=" 댓글 내용을 입력해주세요"/>
 				</div>
 				<div>
 					<button type="button" class="commentWriteBtn">작성</button>

@@ -77,7 +77,7 @@ public interface ManagerMapper {
 	
 	public void writeComment(ChatComment ccment); //댓글 작성
 	
-
+	public void updateRplCnt(int c_no);
 
 }
 

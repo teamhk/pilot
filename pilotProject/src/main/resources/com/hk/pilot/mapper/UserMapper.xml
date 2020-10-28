@@ -198,10 +198,10 @@
 
 	<select id="schatList" resultType="com.hk.pilot.dto.Chat"
 		parameterType="com.hk.pilot.dto.Criteria">
-		SELECT w_id, c_no, c_date, c_content, c_title, snum
+		SELECT w_id, c_no, c_date, c_content, c_title, snum , sname, c_cnt
 		FROM
 		(SELECT w_id,
-		c_no, c_date, c_content, c_title, snum,
+		c_no, c_date, c_content, c_title, snum, sname, c_cnt,
 		row_number()
 		over(ORDER
 		BY c_no DESC) as rnum FROM chat) WHERE w_id=#{logId} and
@@ -247,7 +247,7 @@
 
 		SELECT
 
-		orderNum, r_no, r_CONTENT, w_ID, r_date, snum,
+		orderNum, r_no, r_CONTENT, w_ID, r_date, snum, star
 		star, badCnt
 		FROM review WHERE w_id=#{logId} ORDER BY r_date desc
 

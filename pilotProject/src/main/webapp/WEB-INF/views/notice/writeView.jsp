@@ -8,7 +8,7 @@
 
 <title>게시판</title>
 </head>
-
+<!--  1009 session id, grade 수정 js -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[name='writeForm']");
@@ -16,7 +16,7 @@
 			if (fn_valiChk()) {
 				return false;
 			}
-			formObj.attr("action", "/manager/aChatW");
+			formObj.attr("action", "/support/noticeW");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
@@ -48,25 +48,22 @@
 		<hr />
 
 		<section id="container">
-			<form name="writeForm" method="post" action="/manager/aChatW">
+			<form name="writeForm" >
 				<table>
 					<tbody>
 						<tr>
 							<td><label for="title">제목</label><input type="text"
-								id="title" name="c_title" class="chk" title="제목을 입력하세요" placeholder="제목을 입력해주세요" /></td>
+								id="title" name="n_title" class="chk" title="제목을 입력하세요" placeholder="제목을 입력해주세요" /></td>
 						</tr>
 						<tr>
 							<td><label for="content">내용</label> <textarea id="content"
-									name="c_content" class="chk" title="내용을 입력하세요." placeholder="내용을 입력해주세요"></textarea></td>
+									name="n_content" class="chk" title="내용을 입력하세요." placeholder="내용을 입력해주세요"></textarea></td>
 						</tr>
 						<tr>
 							<td><label for="writer">작성자</label><input type="text"
-								id="writer" name="w_id" placeholder="ID가져올 예정" value="${loginMember.id}"/></td>
+								id="writer" name="id" placeholder="ID가져올 예정" value="${loginMember.id}"/></td>
 						<tr>
-						<tr>
-							<td><label for="writer"></label><input type="hidden"
-								id="grade" name="g_check" placeholder="회원등급 가져올예정" value="${loginMember.grade}"/></td>
-						<tr>
+						
 							<td>
 								<button type="submit" class="write_btn">작성하기</button>
 							</td>

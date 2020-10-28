@@ -6,20 +6,22 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 	<title>게시판</title>
 	</head>
+	<!--  1009 session.id,grade 수정 js -->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		var formObj = $("form[name='updateForm']");
 		
 		$(".cancel_btn").on("click", function(){
 			event.preventDefault();
-			location.href = "/manager/aChat";
+			location.href = "/support/notice";
 		})
 		
 		$(".update_btn").on("click", function(){
 			if(fn_valiChk()){
 				return false;
 			}
-			formObj.attr("action", "/manager/aChatU");
+			alert("수정이 완료되었습니다")
+			formObj.attr("action", "/support/noticeU");
 			formObj.attr("method", "post");
 			formObj.submit();
 		})
@@ -37,7 +39,7 @@
 	
 	
 	</script>
-<body>
+	<body>
 	
 		<div id="root">
 			<header>
@@ -51,37 +53,31 @@
 			<hr />
 			
 			<section id="container">
-				<form name="updateForm" method="post" action="/manager/achatU">
-					<input type="hidden" name="c_no" value="${update.c_no}" readonly="readonly"/>
+				<form name="updateForm">
+					<input type="hidden" name="n_seq" value="${update.n_seq}" readonly="readonly"/>
 					<table>
 						<tbody>
 							<tr>
 								<td>
-									<label for="title">제목</label><input type="text" id="title" name="c_title" class="chk" title="제목을 입력하세요" value="${update.c_title}"/>
+									<label for="title">제목</label><input type="text" id="title" name="n_title" class="chk" title="제목을 입력하세요" value="${update.n_title}"/>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="c_content"  class="chk" title="내용을 입력하세요"><c:out value="${update.c_content}" /></textarea>
+									<label for="content">내용</label><textarea id="content" name="n_content"  class="chk" title="내용을 입력하세요"><c:out value="${update.n_content}" /></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="w_id" value="${update.w_id}" readonly="readonly"/>
+									<label for="writer">작성자</label><input type="text" id="writer" name="id" value="${update.id}" readonly="readonly"/>
 								</td>
 							</tr>
-							
-							<tr>
-								<td>
-									<label for="writer"></label><input type="hidden" id="grade" name="g_check" value="${update.g_check}" readonly="readonly" />
-								</td>
-							</tr>
-							
+																				
 							
 							<tr>
 								<td>
 									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.c_date}" pattern="yyyy-MM-dd"/>					
+									<fmt:formatDate value="${update.n_date}" pattern="yyyy-MM-dd"/>					
 								</td>
 							</tr>		
 						</tbody>			
